@@ -25,8 +25,8 @@ class Register extends Frontend_Controller {
      * @see https://codeigniter.com/user_guide/general/urls.html
      */
 
-    public function index()
-    {
+    public function index(){
+    	
         $this->load->view('login');
     }
     
@@ -34,7 +34,9 @@ class Register extends Frontend_Controller {
     	
     	$this->User_d->register();
     	
-    	
-    	;
+    
     }
+    
+    
+    
 }

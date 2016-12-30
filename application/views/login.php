@@ -21,17 +21,22 @@
     <div class="logo">login</div>
     <!-- Main Form -->
     <div class="login-form-1">
-        <form id="login-form" class="text-left">
+    
+    <?php echo validation_errors();?>
+        <?php echo form_open('Login/login')?>
+    
+        <form id="login-form" class="text-left" action="" method = "post">
+        
             <div class="login-form-main-message"></div>
             <div class="main-login-form">
                 <div class="login-group">
                     <div class="form-group">
                         <label for="lg_username" class="sr-only">Username</label>
-                        <input type="text" class="form-control" id="lg_username" name="lg_username" placeholder="username">
+                        <input type="text" class="form-control" id="lg_username" name="username" placeholder="username">
                     </div>
                     <div class="form-group">
                         <label for="lg_password" class="sr-only">Password</label>
-                        <input type="password" class="form-control" id="lg_password" name="lg_password" placeholder="password">
+                        <input type="password" class="form-control" id="lg_password" name="password" placeholder="password">
                     </div>
                     <div class="form-group login-group-checkbox">
                         <input type="checkbox" id="lg_remember" name="lg_remember">
@@ -45,6 +50,9 @@
                 <p>new user? <a href="<?php echo base_url('Register'); ?>">create new account</a></p>
             </div>
         </form>
+        
+        
+        <?php echo form_close()?>
     </div>
     <!-- end:Main Form -->
 </div>

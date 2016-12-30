@@ -1,11 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Welcome extends Frontend_Controller {
+class Home extends Frontend_Controller {
 
 	public function index()
 	{
-		$this->load->view('login');
+		$this->load->view('FrontUser/home');
 	}
 
 	public function register()

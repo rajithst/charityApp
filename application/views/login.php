@@ -5,9 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="<?php echo base_url() ?>vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css') ?>">
     <!-- CSS -->
-    <link rel="stylesheet" href="<?php echo base_url() ?>CSS/Custom.css">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/Custom.css') ?>">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
     <title>Login</title>
@@ -42,7 +42,7 @@
             </div>
             <div class="etc-login-form">
                 <p>forgot your password? <a href="#">click here</a></p>
-                <p>new user? <a href="<?php echo base_url(); ?>index.php/welcome/register">create new account</a></p>
+                <p>new user? <a href="<?php echo base_url('Register'); ?>">create new account</a></p>
             </div>
         </form>
     </div>

@@ -10,6 +10,10 @@
     <link rel="stylesheet" href="<?php echo base_url('assets/css/Custom.css') ?>">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="<?php echo base_url('assets/css/validationEngine.jquery.css')?>" type="text/css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="<?php echo base_url('assets/js/jquery.validationEngine-en.js') ?>" type="text/javascript" charset="utf-8"></script>
+    <script src="<?php echo base_url('assets/js/jquery.validationEngine.js') ?>" type="text/javascript" charset="utf-8"></script>
     <title>Login</title>
     <script>
 
@@ -23,20 +27,22 @@
     <div class="login-form-1">
     
     <?php echo validation_errors();?>
-        <?php echo form_open('Login/login')?>
+         <?php $attributes = array('id' => 'login-form'); ?>
+        <?php echo form_open('Login/login',$attributes)?>
     
-        <form id="login-form" class="text-left" action="" method = "post">
+    
+        <form  class="text-left" action="" method = "post">
         
             <div class="login-form-main-message"></div>
             <div class="main-login-form">
                 <div class="login-group">
                     <div class="form-group">
                         <label for="lg_username" class="sr-only">Username</label>
-                        <input type="text" class="form-control" id="lg_username" name="username" placeholder="username">
+                        <input type="text" class="form-control validate[required]" id="lg_username" name="username"  data-errormessage-value-missing="Email is required!" placeholder="username">
                     </div>
                     <div class="form-group">
                         <label for="lg_password" class="sr-only">Password</label>
-                        <input type="password" class="form-control" id="lg_password" name="password" placeholder="password">
+                        <input type="password" class="form-control validate[required]" id="lg_password" name="password" data-errormessage-value-missing="password is required!"placeholder="password">
                     </div>
                     <div class="form-group login-group-checkbox">
                         <input type="checkbox" id="lg_remember" name="lg_remember">
@@ -56,5 +62,11 @@
     </div>
     <!-- end:Main Form -->
 </div>
+
+<script>
+$(document).ready(function(){
+    $("#login-form").validationEngine('attach', {promptPosition : "centerRight", scroll: false});
+   });
+</script>
 </body>
 </html>

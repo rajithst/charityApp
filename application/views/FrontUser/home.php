@@ -11,13 +11,7 @@ if ($logedin != true){
 
 ?>
 
-<html>
-<head>
-<title>Welcome</title>
-</head>
-<body>
-
-<h2>charity</h2>
+<div class="container-fluid">
 
 
 username = <?php echo $this->session->userdata('username').'<br>';?>
@@ -26,6 +20,19 @@ email = <?php echo $this->session->userdata('email').'<br>';?>
 
 <a href='Login/logout'>logout</a>
 
+<hr/>
 
-</body>
-</html>
+this is a temporary ui
+<div class="row">
+<div class="col-sm-6 col-sm-offset-3">
+	<div class="form-group">
+	  <label for="comment">Post:</label>
+	  <textarea class="form-control" rows="5" id="comment"></textarea>
+	</div>
+</div>
+</div>
+
+</div>
+
+
+

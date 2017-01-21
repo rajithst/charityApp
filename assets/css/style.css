@@ -40,14 +40,6 @@
   line-height: .9;
 }
 
-.navbar-brand{
-    color:white;
-    opacity: 1;
-}
-.navbar-brand:hover{
-        color: white;
-      opacity: 0.75;
-}
 
 
 
@@ -57,6 +49,7 @@
     border: 1px solid transparent;
     height: 35px;
 }
+
 
 .navbar-search input[type="search"], textarea {
 

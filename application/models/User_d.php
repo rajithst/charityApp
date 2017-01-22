@@ -38,5 +38,12 @@ class User_d extends MY_Model {
             $result = $query->result();
             return $result[0]->id;
         }
-		
+	
+        //get chidlren registered by particular user
+        function getChildren($id){
+            $this->db->where('donorID',$id);
+            $query = $this->db->get('children');
+            $result = $query->result();
+            return $result;
+        }
 	}

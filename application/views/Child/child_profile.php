@@ -23,78 +23,26 @@ email = <?php echo $this->session->userdata('email').'<br>';?>
 
 this is a temporary ui
 <div class="row">
-<div class="col-sm-6 col-sm-offset-3">
-	<div class="form-group">
-	  <label for="comment">Post:</label>
-	  <textarea class="form-control" rows="5" id="comment"></textarea>
-	</div>
-</div>
+    <div class="col-sm-6">
+        <ul class="list-group">
+            <li class="list-group-item"><?php echo $child->id; ?></li> 
+            <li class="list-group-item"><?php echo $child->name; ?></li>
+            <li class="list-group-item"><?php echo $child->birthDate; ?></li>
+        </ul>
+    </div>
 </div>
 
 
 
 
 <!--
-  following is for donation charts need to attach to profile  
+  following is for donation charts for received donation  
 -->
 <!-- donation with starts here -->
 
 <div class="panel col-lg-12" style="border: solid">
 
 <div class="row">
-    <div class="row">
-        <br>
-        <form class="form-group col-sm-6 center-block" id="donateForm" name="donateForm" method="post">
-            <input type="date" required class="form-control" placeholder="Date" id="donationdate"/>
-            <input type="text" required class="form-control" placeholder="Amount" id="donationamount"/>
-            <input type="text" required class="form-control" placeholder="Receiver" id="donationreceiver"/>
-            <script>
-                $('[name=donationamount]').change(function (){
-                    if(isNaN($('[name=donationamount]').val())){
-                        alert('Only numerical values');
-                    }
-                });
-                $('#donateForm').submit(function (e){
-                    e.preventDefault();
-                    return;
-                });
-                function donate(){
-                    var date = document.getElementById('donationdate').value;
-                    var amount = document.getElementById('donationamount').value;
-                    var receiver = document.getElementById('donationreceiver').value;
-                    if((date==="")||(amount==="")||(receiver==="")){
-                        alert('fill in the required fields');
-                        return;
-                    }
-                    var obj = {
-                            donationdate : date,
-                            donationamount : amount,
-                            receiver : receiver
-                        };
-                    jQuery.ajax({
-                        type: "POST",
-                        url: "<?php echo base_url(); ?>" + "index.php/Donation_c/donate",
-                        dataType: 'json',
-                        data: obj,
-                        success: function (res) {
-                            alert(res);
-                            var year = new Date().getFullYear();
-                            google.charts.setOnLoadCallback(loadData(year+"-01-01",year+"-12-31"));
-                        },
-                        error: function (jqXHR, textStatus, errorThrown) {
-                            alert(jqXHR.responseText);
-                        }
-                    });
-                }
-            </script>
-            <input type="submit" onclick="donate()" class="btn btn-default" value="Donate"/>
-            
-        </form>
-        <br>
-        
-    </div>
-    <br>
-    
     <div class="row">
         <div class="col-sm-6">
             <input type="date" id="strtdate" class="form-control">
@@ -128,7 +76,7 @@ this is a temporary ui
     function loadData(startdate,endDate){
         jQuery.ajax({
             type: "POST",
-            url: "<?php echo base_url(); ?>" + "index.php/Donation_c/getGraphData/"+startdate+"/"+endDate,
+            url: "<?php echo base_url(); ?>" + "index.php/Donation_c/getRecievedDonationGraphData/"+<?php echo $child->id;  ?>+"/"+startdate+"/"+endDate,
             dataType: 'json',
             success: function (res) {
                 if(res.length==0){
@@ -191,21 +139,6 @@ this is a temporary ui
 </script>
 
 <!-- donation ends here -->
-
-<!-- children belonging to user starts here -->
-    <!-- this data loads form controller home and views child profile with href using Children_c/viewChild function gets data using Children_m -->
-    <div class="row"> 
-        <ul class="list-inline">
-        <?php
-            foreach ($children as $row){
-        ?>
-            <li class="col-sm-3"><a href="<?php echo base_url()."index.php/Child/Children_c/viewChild/".$row->id; ?>"><?php echo $row->name; ?></a></li>
-        <?php
-            }
-        ?>
-        </ul>
-    </div>
-<!-- children belonging to user ends here -->
 
 
 

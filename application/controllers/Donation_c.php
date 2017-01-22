@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 //donation data handles by this controller
 class Donation_c extends MY_Controller{
     private $id = null;
-    public function __construct() {
+    function __construct() {
         parent::__construct();
         $this->load->model('Donation_m');
         $this->load->model('User_d');
@@ -24,6 +24,11 @@ class Donation_c extends MY_Controller{
     //get donation data (daily amounts)
     public function getGraphData($startDate,$endDate) {
         $amounts = $this->Donation_m->getAmounts($this->id,$startDate,$endDate);
+        //echo $id;
+        echo json_encode($amounts);
+    }
+    public function getRecievedDonationGraphData($id,$startDate,$endDate) {
+        $amounts = $this->Donation_m->getReceivedAmounts($id,$startDate,$endDate);
         //echo $id;
         echo json_encode($amounts);
     }

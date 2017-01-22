@@ -29,7 +29,8 @@ class Migration_Children extends CI_Migration {
               'type'=> 'DATE',
         ),
         ));
-                $this->dbforge->add_key('id', TRUE);
+
+        $this->dbforge->add_key('id', TRUE);
 		$this->dbforge->create_table('Children');
 	}
 

@@ -27,6 +27,8 @@ class Migration_Donation extends CI_Migration {
         'type'=> 'DOUBLE',
       ),
         ));
+
+        $this->dbforge->add_key('id', TRUE);
 		$this->dbforge->create_table('Donations');
 	}
 

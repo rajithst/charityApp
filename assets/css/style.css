@@ -43,7 +43,7 @@
 
 .btn {
     box-shadow: none;
-    background-color: #1c934e;
+
     border: 1px solid transparent;
     height: 35px;
 }
@@ -401,7 +401,6 @@ input[type=text]:focus, textarea:focus {
         background: #fff;
     }
 }
-
 
 /* Footer */
 #footer{

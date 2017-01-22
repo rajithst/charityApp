@@ -58,17 +58,17 @@ body{
             box-sizing: border-box;
 }
 
-.user{
+.user-chat{
 	cursor: pointer;
 	padding: 20px 25px;
 	position: relative;
 }
 
-.user:hover{
+.user-chat:hover{
 	background: #f8f8f8;
 }
 
-.user:before{
+.user-chat:before{
 	content: "";
 	position: absolute;
 	background: #2ecc71;

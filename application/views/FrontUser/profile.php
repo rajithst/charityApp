@@ -34,7 +34,7 @@
                                 </p>
                             </div>
                             <div class="col-lg-2 edit-profile-btn">
-                                <button type="button" class="btn btn-primary btn-block"><span class="fa fa-pencil-square-o"></span> Edit Profile</button>
+                                <a href="<?php echo base_url(); ?>index.php/FrontUser/edit_profile"><button type="button" class="btn btn-primary btn-block"><span class="fa fa-pencil-square-o"></span> Edit Profile</button><a/>
                             </div>
                             <!--/col-->
                             <div class="clearfix"></div>

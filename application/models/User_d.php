@@ -1,4 +1,4 @@
-<?php
+U<?php
 class User_d extends MY_Model {
 	
 	
@@ -31,10 +31,28 @@ class User_d extends MY_Model {
 		}
 		
 		}
+<<<<<<< HEAD
         //get userID by username
         function getUserID($username){
             $this->db->where('username',$username);
             $query = $this->db->get('users');
+=======
+
+
+
+	/** return all users **/
+	function getUsers(){
+		$query=$this->db->get('Users');
+		return $query->result();
+
+	}
+		
+
+        //get userID by username
+        function getUserID($username){
+            $this->db->where('username',$username);
+            $query = $this->db->get('Users');
+>>>>>>> 0a1192d90615629523b6e1c30f8a66e4ae1dde51
             $result = $query->result();
             return $result[0]->id;
         }
@@ -42,8 +60,18 @@ class User_d extends MY_Model {
         //get chidlren registered by particular user
         function getChildren($id){
             $this->db->where('donorID',$id);
+<<<<<<< HEAD
             $query = $this->db->get('children');
             $result = $query->result();
             return $result;
         }
+=======
+            $query = $this->db->get('Children');
+            $result = $query->result();
+            return $result;
+        }
+
+
+
+>>>>>>> 0a1192d90615629523b6e1c30f8a66e4ae1dde51
 	}

@@ -56,4 +56,21 @@ $route['Register'] = 'welcome/register';
 $route['Login'] = 'Register/index';
 $route['Home']= 'FrontUser/Home';
 $route['Logout']='Login/logout';
+<<<<<<< HEAD
 $route['profile'] = 'FrontUser/Home/profile';
+=======
+
+
+
+/** chat application routes **/
+
+
+$route['messageSave']='FrontUser/chatController/saveMessage';
+//load messages
+$route['messageLoad']='FrontUser/chatController/loadMessage';
+
+
+
+$route['profile'] = 'FrontUser/Home/profile';
+
+>>>>>>> 0a1192d90615629523b6e1c30f8a66e4ae1dde51

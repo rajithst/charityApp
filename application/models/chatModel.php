@@ -47,6 +47,14 @@ class chatModel extends MY_Model {
 	}
 
 
+	function loadAll(){
+		$owner=$this->session->userdata('username');
+		$query=$this->db->query("SELECT  sender from chat where receiver='".$owner."'");
+		return $query->result();
+
+	}
+
+
 
 
 }

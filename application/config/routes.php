@@ -63,8 +63,10 @@ $route['Logout']='Login/logout';
 
 
 $route['messageSave']='FrontUser/chatController/saveMessage';
-//load messages
+//load messages to chat
 $route['messageLoad']='FrontUser/chatController/loadMessage';
+//laod all messages
+$route['loadallmessages']='FrontUser/chatController/loadAll';
 
 
 

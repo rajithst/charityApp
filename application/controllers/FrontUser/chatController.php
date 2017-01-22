@@ -27,4 +27,12 @@ class chatController extends Frontend_Controller {
 
 
 	}
+
+	public function loadAll(){
+		header('Content-type: text/plain'); 
+		  // set json non IE
+		  header('Content-type: application/json'); 
+		$data=$this->chatModel->loadAll();
+		echo json_encode($data);
+	}
 }

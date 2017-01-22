@@ -41,9 +41,11 @@ this is a temporary ui
 	<div class="chat_head">chat box</div>
 	<div class="chat_body">
 		<?php foreach($users as $user):?>
-			<div class="user">
-			<?= $user->username; ?>
-			</div>
+			<?php if($user->username!=$this->session->userdata('username')): ?>
+				<div class="user-chat">
+				<?= $user->username; ?>
+				</div>
+			<?php endif; ?>
 		<?php endforeach; ?>
 		
 	</div>
@@ -95,7 +97,7 @@ this is a temporary ui
 			$('.msg_box').hide();
 		});
 
-		$('.user').click(function(){
+		$('.user-chat').click(function(){
 			rec_name=$(this).text();
 			rec_name=rec_name.replace(" ","");
 
@@ -179,6 +181,44 @@ this is a temporary ui
 
 	}
 
+
+
+</script>
+
+
+<script>
+
+$(document).ready(function(){
+	//load all messages
+	loadAllMessages();
+	setInterval(loadAllMessages, 1000);
+
+})
+
+
+function loadAllMessages(){
+	
+	$.ajax({
+		type: "POST",
+		url: "loadallmessages",
+		success: function( data, textStatus, jQxhr ){
+			$('.msg_menu').empty();
+			$("#msg_num1,#msg_num2").text(data.length);
+			var e = $('<li></li>');
+			$('.msg_menu').append(e);    
+			e.attr('class', 'msg_after');
+
+			for(var i=(data.length-1);i>=0;i--){
+				$("<li><a href='#'><h3>"+data[i].sender+"</h3></a></li>").insertBefore('.msg_after');
+			}
+			
+			},
+		error: function( jqXhr, textStatus, errorThrown ){
+			//alert("eror");
+			}
+		});
+
+}
 
 
 </script>

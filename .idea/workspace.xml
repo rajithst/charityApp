@@ -1,29 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5ecf6a35-8781-4d8c-9c3d-68ee2142d6e9" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/controllers/Child/Children_c.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/controllers/Donation_c.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/controllers/FrontUser/Home.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/controllers/FrontUser/Profile.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/controllers/FrontUser/chatController.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/controllers/Register.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/controllers/Welcome.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/models/Children_m.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/models/Donation_m.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/models/chatModel.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/views/Child/child_profile.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/views/FrontUser/edit_profile.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/views/FrontUser/home.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/views/FrontUser/profile.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/views/login.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/views/registration.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/views/templates/footer.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/views/templates/header.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/views/templates/w.php" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="5ecf6a35-8781-4d8c-9c3d-68ee2142d6e9" name="Default" comment="" />
     <ignored path=".idea/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -259,12 +237,12 @@
       <option name="presentableId" value="Default" />
       <updated>1485102085448</updated>
       <workItem from="1485102087661" duration="96000" />
-      <workItem from="1485102192695" duration="776000" />
+      <workItem from="1485102192695" duration="988000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="872000" />
+    <option name="totallyTimeSpent" value="1084000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-4" y="0" width="1928" height="1050" extended-state="6" />

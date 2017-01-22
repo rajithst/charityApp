@@ -194,7 +194,7 @@ this is a temporary ui
 -->
 <!-- donation with starts here -->
 
-<div class="panel col-lg-12" style="border: solid">
+<div class="panel col-lg-12" style="border: solid; display:none">
 
 <div class="row">
     <div class="row">

@@ -19,10 +19,19 @@ class Home extends Frontend_Controller {
                 $data['children'] = $this->User_d->getChildren($this->id);
                 //load children of user ends
 
+
                 $data['users']=$this->User_d->getUsers();
                 
 
-				$this->load->template('FrontUser/home',$data);
+
+		        if(count($data) > 0)
+		        {
+		            $this->load->template('FrontUser/home',$data);
+		        }else {
+
+		            $this->load->template('FrontUser/home');
+		        }
+
 	}
 
 	public function register()
@@ -32,7 +41,6 @@ class Home extends Frontend_Controller {
 
 	public function profile()
 	{
-		$this->load->view('templates/header');
-		$this->load->view('FrontUser/profile');
+		$this->load->customizeTemplate('header','FrontUser/profile');
 	}
 }

@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
   <title>charity</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css');?>">
-<<<<<<< HEAD
+
    <link rel="stylesheet" href="<?php echo base_url('assets/css/chat.css');?>">
-=======
+
   <link rel="stylesheet" href="<?php echo base_url('assets/css/style.css');?>">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
->>>>>>> 04d3768d2a810e75e026a5301fdd145a7e316d3d
+
   <script src="<?php echo base_url('assets/js/jquery.min.js');?>"></script>
   <script src="<?php echo base_url('assets/js/bootstrap.min.js');?>"></script>
 

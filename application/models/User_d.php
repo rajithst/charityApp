@@ -50,7 +50,7 @@ class User_d extends MY_Model {
         //get chidlren registered by particular user
         function getChildren($id){
             $this->db->where('donorID',$id);
-            $query = $this->db->get('children');
+            $query = $this->db->get('Children');
             $result = $query->result();
             return $result;
         }

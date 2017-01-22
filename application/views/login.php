@@ -38,7 +38,7 @@
                 <div class="login-group">
                     <div class="form-group">
                         <label for="lg_username" class="sr-only">Username</label>
-                        <input type="text" class="form-control validate[required]" id="lg_username" name="username"  data-errormessage-value-missing="Email is required!" placeholder="username">
+                        <input type="text" class="form-control validate[required]" id="lg_username" name="username"  data-errormessage-value-missing="Email is required!" placeholder="username" autofocus>
                     </div>
                     <div class="form-group">
                         <label for="lg_password" class="sr-only">Password</label>

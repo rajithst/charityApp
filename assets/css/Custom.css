@@ -257,10 +257,4 @@ label:hover:before {
     font-size: 30px;
     line-height: 25px;
 }
-/*=== 9. Misc ===*/
-.logo {
-    padding: 15px 0;
-    font-size: 25px;
-    color: #aaaaaa;
-    font-weight: bold;
-}
+

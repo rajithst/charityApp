@@ -1,4 +1,4 @@
-<?php
+U<?php
 class User_d extends MY_Model {
 	
 	
@@ -34,7 +34,7 @@ class User_d extends MY_Model {
         //get userID by username
         function getUserID($username){
             $this->db->where('username',$username);
-            $query = $this->db->get('users');
+            $query = $this->db->get('Users');
             $result = $query->result();
             return $result[0]->id;
         }
@@ -42,7 +42,7 @@ class User_d extends MY_Model {
         //get chidlren registered by particular user
         function getChildren($id){
             $this->db->where('donorID',$id);
-            $query = $this->db->get('children');
+            $query = $this->db->get('Children');
             $result = $query->result();
             return $result;
         }

@@ -23,3 +23,4 @@ class Migration extends CI_Controller{
 	}
 
 }
+

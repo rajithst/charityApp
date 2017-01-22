@@ -9,7 +9,7 @@ class MY_Loader extends CI_Loader {
         if($return):
             $content  = $this->view('templates/header', $vars, $return);
             $content .= $this->view($template_name, $vars, $return);
-           
+			//$content .= $this->view('templates/footer', $vars, $return);
 
             return $content;
         else:

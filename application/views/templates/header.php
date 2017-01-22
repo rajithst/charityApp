@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
   <title>charity</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,31 +16,34 @@
 
 
 </head>
+<<<<<<< HEAD
+<!-- Navbar -->
 
-<div class="navbar navbar-static-top padding">  
-  <div class="navbar-header">
-      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+<body style="padding-top: 50px;">
+  <div class="navbar padding navbar-fixed-top">
+    <div class="navbar-header">
+      <button class="navbar-toggle navbar-tog" type="button" data-toggle="collapse" data-target=".navbar-collapse" style="color : black;">
         <span class="sr-only">Toggle</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a href="/" class="navbar-brand logo">Help Me</a>
-  </div>
-  <nav class="collapse navbar-collapse  container-fluid" role="navigation">
-    <form class="navbar-form navbar-left">
-      <div class="input-group input-group-sm" style="max-width:360px;">
-        <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
+      <a href="/" class="navbar-brand logo"><b style="color: #990000;">Help Me</b></a>
+    </div>
+    <nav class="collapse navbar-collapse  container-fluid" role="navigation">
+      <form class="navbar-form navbar-left">
+        <div class="input-group input-group-sm" style="max-width:360px;">
+          <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
           <div class="input-group-btn">
             <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
           </div>
-          </div>
-    </form>
+        </div>
+      </form>
       <ul class="nav navbar-nav navbar-right">
         <ul class="nav navbar-nav">
-          
+
           <li>
-              <a href="#"><i class="glyphicon glyphicon-home" ></i> Home</a>
+            <a href="<?php echo base_url()."FrontUser/Home"; ?>"><i class="glyphicon glyphicon-home" ></i> Home</a>
           </li>
 
           <li class="dropdown messages-menu">
@@ -52,22 +54,22 @@
             <ul class="dropdown-menu">
               <li class="header">You have 4 messages</li>
 
-                <!-- inner menu: contains the actual data -->
-                <ul class="menu">
-                  <li><!-- start message -->
-                    <a href="#">
-                      <div class="pull-right">
-                        <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        Support Team
-                        <small><i class="fa fa-clock-o"></i> 5 mins</small>
-                      </h4>
-                      <p>Why not buy a new awesome theme?</p>
-                    </a>
-                  </li>
-                  <!-- end message -->
-                  </ul>
+              <!-- inner menu: contains the actual data -->
+              <ul class="menu">
+                <li><!-- start message -->
+                  <a href="#">
+                    <div class="pull-right">
+                      <img src=<?php echo base_url('img/user/user.png') ?>" class="img-circle" alt="User Image">
+                    </div>
+                    <h4>
+                      Support Team
+                      <small><i class="fa fa-clock-o"></i> 5 mins</small>
+                    </h4>
+                    <p>Why not buy a new awesome theme?</p>
+                  </a>
+                </li>
+                <!-- end message -->
+              </ul>
               <li class="footer"><a href="#">See All Messages</a></li>
             </ul>
           </li>
@@ -187,18 +189,18 @@
               </li>
             </ul>
           </li>
-      </ul>
+        </ul>
 
-      <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown user user-menu">
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+              <img src="<?php echo base_url('img/user/user.png') ?>" class="user-image" alt="User Image" width="160px" height="160px">
               <span class="hidden-xs"><?php echo $this->session->userdata('username').'<br>';?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                <img src="<?php echo base_url('img/user/user.png') ?>" class="img-circle" alt="User Image">
 
                 <p>
                   <?php echo $this->session->userdata('username').'<br>';?>
@@ -223,10 +225,10 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+                  <a href="profile" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href='Login/logout'>logout</a>
+                  <a href='Login/logout' class="btn btn-default btn-flat">logout</a>
                 </div>
               </li>
             </ul>

@@ -30,10 +30,7 @@ class User_d extends MY_Model {
 			return true;
 		}
 		
-		}
-
-
-
+	}
 	/** return all users **/
 	function getUsers(){
 		$query=$this->db->get('Users');
@@ -53,11 +50,8 @@ class User_d extends MY_Model {
         //get chidlren registered by particular user
         function getChildren($id){
             $this->db->where('donorID',$id);
-            $query = $this->db->get('Children');
+            $query = $this->db->get('children');
             $result = $query->result();
             return $result;
         }
-
-
-
 	}

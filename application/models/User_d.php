@@ -1,4 +1,4 @@
-U<?php
+<?php
 class User_d extends MY_Model {
 	
 	

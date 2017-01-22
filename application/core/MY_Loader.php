@@ -40,7 +40,7 @@ class MY_Loader extends CI_Loader {
 
             $this->view('templates/header', $vars);
             $this->view($template_name, $vars);
-            $this->view('templates/footer', $vars);
+            //$this->view('templates/footer', $vars);
 
         }
 

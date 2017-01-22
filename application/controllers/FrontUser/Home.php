@@ -11,27 +11,15 @@ class Home extends Frontend_Controller {
 
         public function index()
 	{
+            $data['users']=$this->User_d->getUsers();
 
+            if(count($data) > 0)
+            {
+                $this->load->template('FrontUser/home',$data);
+            }else {
 
-                //load children of user
-                $username = $this->session->userdata('username');
-                $this->id = $this->User_d->getUserID($username);
-                $data['children'] = $this->User_d->getChildren($this->id);
-                //load children of user ends
-
-
-                $data['users']=$this->User_d->getUsers();
-                
-
-
-		        if(count($data) > 0)
-		        {
-		            $this->load->template('FrontUser/home',$data);
-		        }else {
-
-		            $this->load->template('FrontUser/home');
-		        }
-
+                $this->load->template('FrontUser/home');
+            }
 	}
 
 	public function register()
@@ -41,6 +29,19 @@ class Home extends Frontend_Controller {
 
 	public function profile()
 	{
-		$this->load->customizeTemplate('header','FrontUser/profile');
+                //load children of user
+                $username = $this->session->userdata('username');
+                $this->id = $this->User_d->getUserID($username);
+                $data['children'] = $this->User_d->getChildren($this->id);
+                //load children of user ends
+                $data['users']=$this->User_d->getUsers();
+                if(count($data) > 0)
+		{
+                    $this->load->customizeTemplate('header',NULL,'FrontUser/profile',$data);
+                }
+                else
+                {
+                    $this->load->customizeTemplate('header',NULL,'FrontUser/profile');
+                }
 	}
 }

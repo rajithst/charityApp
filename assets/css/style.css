@@ -1,11 +1,18 @@
 .navbar {
     position: relative;
     min-height: 50px;
+<<<<<<< HEAD
     margin-bottom: 0px;
     background-color: #27ae60;
     border: 0px solid transparent;
     border-radius: 0px;
     width: 100%;
+=======
+    margin-bottom: 20px;
+    background-color: #27ae60;
+    border: 0px solid transparent;
+    border-radius: 0px;
+>>>>>>> 5ba168bc253faf74e967c9775c9e835cba3e49fd
 }
 
 .navbar .nav > li > a > .label {
@@ -30,6 +37,10 @@
     background-color: none;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5ba168bc253faf74e967c9775c9e835cba3e49fd
 .navbar .nav > li > i {
   position: absolute;
   top: 9px;
@@ -40,6 +51,12 @@
   line-height: .9;
 }
 
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> 5ba168bc253faf74e967c9775c9e835cba3e49fd
 .btn {
     box-shadow: none;
     background-color: #1c934e;
@@ -53,6 +70,11 @@
   background-color:white;
   border: none;
   color: green;
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 5ba168bc253faf74e967c9775c9e835cba3e49fd
 }
 
 textarea::-webkit-input-placeholder {
@@ -79,6 +101,7 @@ input[type=text]:focus, textarea:focus {
 .form-control:focus {
   border-color: #FF0000;
   box-shadow: inset 0 1px 1px rgb(8, 211, 94), 0 0 8px rgb(3, 150, 65);
+<<<<<<< HEAD
 }
 
 #footer{
@@ -211,4 +234,6 @@ input[type=text]:focus, textarea:focus {
 #timeline .timeline-movement .timeline-item .timeline-panel.debits .timeline-panel-ul span.importo {
     color: #e2001a;
     font-size: 1.3em;
+=======
+>>>>>>> 5ba168bc253faf74e967c9775c9e835cba3e49fd
 }

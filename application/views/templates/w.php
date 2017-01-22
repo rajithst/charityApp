@@ -5,44 +5,35 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css');?>">
-<<<<<<< HEAD
-   <link rel="stylesheet" href="<?php echo base_url('assets/css/chat.css');?>">
-=======
   <link rel="stylesheet" href="<?php echo base_url('assets/css/style.css');?>">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
->>>>>>> 04d3768d2a810e75e026a5301fdd145a7e316d3d
   <script src="<?php echo base_url('assets/js/jquery.min.js');?>"></script>
   <script src="<?php echo base_url('assets/js/bootstrap.min.js');?>"></script>
-
-
 </head>
+<body>
+<div class="navbar navbar-blue navbar-static-top">
+<nav class="navbar navbar-fixed-top" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Help Me</a>
+    </div>
+    <form action="#" method="get" class="navbar-form navbar-left">
+        <div class="input-group navbar-search input-group input-group-sm" style="max-width:360px;">
+          <input type="search" name="searchbox" class="form-control" placeholder="Search...">
+              <span class="input-group-btn">
+                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search" style="color: white"></i>
+                </button>
+              </span>
+        </div>
+      </form>
 
-<div class="navbar navbar-static-top padding">  
-  <div class="navbar-header">
-      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
-        <span class="sr-only">Toggle</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a href="/" class="navbar-brand logo">Help Me</a>
-  </div>
-  <nav class="collapse navbar-collapse  container-fluid" role="navigation">
-    <form class="navbar-form navbar-left">
-      <div class="input-group input-group-sm" style="max-width:360px;">
-        <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
-          <div class="input-group-btn">
-            <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-          </div>
-          </div>
-    </form>
-      <ul class="nav navbar-nav navbar-right">
+
+  <div class="navbar-right">
         <ul class="nav navbar-nav">
-          
-          <li>
-          <a href="#"><i class="glyphicon glyphicon-home" ></i> Home</a>
-          </li>
+          <li class="active"><a href="#"><i class = "glyphicon glyphicon-home"></i>  Home</a></li>
+        </ul>
 
+        <ul class="nav navbar-nav">
           <li class="dropdown messages-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="glyphicon glyphicon-user"></i>
@@ -55,8 +46,12 @@
                 <ul class="menu">
                   <li><!-- start message -->
                     <a href="#">
-                      <div class="pull-right">
+                      <div class="pull-left">
+
+                        <img src="<?php echo base_url('img/user/user.png')?>" class="img-circle" alt="User Image">
+
                         <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+
                       </div>
                       <h4>
                         Support Team
@@ -67,9 +62,11 @@
                   </li>
                   <!-- end message -->
                   </ul>
+                
               <li class="footer"><a href="#">See All Messages</a></li>
             </ul>
           </li>
+          <!-- Notifications: style can be found in dropdown.less -->
           <li class="dropdown notifications-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-bell-o"></i>
@@ -111,8 +108,7 @@
               <li class="footer"><a href="#">View all</a></li>
             </ul>
           </li>
-
- <!-- Tasks: style can be found in dropdown.less -->
+          <!-- Tasks: style can be found in dropdown.less -->
           <li class="dropdown tasks-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-flag-o"></i>
@@ -186,10 +182,8 @@
               </li>
             </ul>
           </li>
-      </ul>
-
-      <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown user user-menu">
+          <!-- User Account: style can be found in dropdown.less -->
+          <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
               <span class="hidden-xs"><?php echo $this->session->userdata('username').'<br>';?></span>
@@ -230,8 +224,14 @@
               </li>
             </ul>
           </li>
-      </ul>
-    </ul>
-    </nav>
-  </div>
-<body>
+          <!-- Control Sidebar Toggle Button -->
+          <li>
+            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+          </li>
+        </ul>
+      </div>
+     
+      </div>
+
+</nav>
+</div>

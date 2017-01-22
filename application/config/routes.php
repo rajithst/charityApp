@@ -58,11 +58,15 @@ $route['Home']= 'FrontUser/Home';
 $route['Logout']='Login/logout';
 
 
+
 /** chat application routes **/
 
-//save meesage
+
 $route['messageSave']='FrontUser/chatController/saveMessage';
 //load messages
 $route['messageLoad']='FrontUser/chatController/loadMessage';
 
+
+
+$route['profile'] = 'FrontUser/Home/profile';
 

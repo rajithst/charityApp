@@ -23,7 +23,7 @@ email = <?php echo $this->session->userdata('email').'<br>';?>
 
 this is a temporary ui
 
-	<a href="<?php echo base_url()?>index.php/Home/profile"><button type="button" class="btn btn-primary btn-block">Profile</button><a/>
+	<a href="<?php echo base_url()?>index.php/FrontUser/Home/profile"><button type="button" class="btn btn-primary btn-block">Profile</button><a/>
 
 
 <div class="row">
@@ -143,7 +143,7 @@ this is a temporary ui
                 }
                 var arr=[];
                 var k = Object.keys(res);
-                for(var i=0;i<k.length-1;i++){
+                for(var i=0;i<k.length;i++){
                     arr.push(
                             [new Date(res[k[i]].date),parseFloat(res[k[i]].amount)]
                     );
@@ -201,11 +201,11 @@ this is a temporary ui
 <!-- children belonging to user starts here -->
     <!-- this data loads form controller home and views child profile with href using Children_c/viewChild function gets data using Children_m -->
     <div class="row"> 
-        <ul class="list-inline">
+        <ul class="list-group">
         <?php
             foreach ($children as $row){
         ?>
-            <li class="col-sm-3"><a href="<?php echo base_url()."index.php/Child/Children_c/viewChild/".$row->id; ?>"><?php echo $row->name; ?></a></li>
+            <li class="list-group-item"><a href="<?php echo base_url()."index.php/Child/Children_c/viewChild/".$row->id; ?>"><?php echo $row->name; ?></a></li>
         <?php
             }
         ?>

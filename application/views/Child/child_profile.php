@@ -85,7 +85,7 @@ this is a temporary ui
                 }
                 var arr=[];
                 var k = Object.keys(res);
-                for(var i=0;i<k.length-1;i++){
+                for(var i=0;i<k.length;i++){
                     arr.push(
                             [new Date(res[k[i]].date),parseFloat(res[k[i]].amount)]
                     );

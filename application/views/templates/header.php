@@ -36,7 +36,7 @@
         <ul class="nav navbar-nav">
           
           <li>
-          <a href="#"><i class="glyphicon glyphicon-home" ></i> Home</a>
+              <a href="#"><i class="glyphicon glyphicon-home" ></i> Home</a>
           </li>
 
           <li class="dropdown messages-menu">

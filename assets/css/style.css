@@ -1,27 +1,12 @@
 .navbar {
-<<<<<<< HEAD
     position: fixed;
     top: 0px;
     min-height: 50px;
-=======
-    position: relative;
-    min-height: 50px;
-<<<<<<< HEAD
->>>>>>> 0a1192d90615629523b6e1c30f8a66e4ae1dde51
     margin-bottom: 0px;
     background-color: #27ae60;
     border: 0px solid transparent;
     border-radius: 0px;
     width: 100%;
-<<<<<<< HEAD
-=======
-=======
-    margin-bottom: 20px;
-    background-color: #27ae60;
-    border: 0px solid transparent;
-    border-radius: 0px;
->>>>>>> 5ba168bc253faf74e967c9775c9e835cba3e49fd
->>>>>>> 0a1192d90615629523b6e1c30f8a66e4ae1dde51
 }
 
 .navbar .nav > li > a > .label {
@@ -46,13 +31,6 @@
     background-color: none;
 }
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-
->>>>>>> 5ba168bc253faf74e967c9775c9e835cba3e49fd
->>>>>>> 0a1192d90615629523b6e1c30f8a66e4ae1dde51
 .navbar .nav > li > i {
   position: absolute;
   top: 9px;
@@ -63,15 +41,6 @@
   line-height: .9;
 }
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-
-
-
->>>>>>> 5ba168bc253faf74e967c9775c9e835cba3e49fd
->>>>>>> 0a1192d90615629523b6e1c30f8a66e4ae1dde51
 .btn {
     box-shadow: none;
     background-color: #1c934e;
@@ -85,20 +54,11 @@
   background-color:white;
   border: none;
   color: green;
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 5ba168bc253faf74e967c9775c9e835cba3e49fd
->>>>>>> 0a1192d90615629523b6e1c30f8a66e4ae1dde51
 }
 
 textarea::-webkit-input-placeholder {
 color: green !important;
 }
-<<<<<<< HEAD
 
 textarea:-moz-placeholder { /* Firefox 18- */
 color: green !important;
@@ -110,19 +70,6 @@ color: green !important;
 
 textarea:-ms-input-placeholder {
 color: green !important;
-=======
- 
-textarea:-moz-placeholder { /* Firefox 18- */
-color: green !important;  
-}
- 
-textarea::-moz-placeholder {  /* Firefox 19+ */
-color: green !important;  
-}
- 
-textarea:-ms-input-placeholder {  
-color: green !important;  
->>>>>>> 0a1192d90615629523b6e1c30f8a66e4ae1dde51
 }
 
 
@@ -133,7 +80,6 @@ input[type=text]:focus, textarea:focus {
 .form-control:focus {
   border-color: #FF0000;
   box-shadow: inset 0 1px 1px rgb(8, 211, 94), 0 0 8px rgb(3, 150, 65);
-<<<<<<< HEAD
 }
 
 @media (max-width: 991px) {
@@ -463,16 +409,6 @@ input[type=text]:focus, textarea:focus {
     bottom:0;
     left:0;
     margin-bottom: 0px;
-=======
-<<<<<<< HEAD
-}
-
-#footer{
-    background-color: #c1f1d5;
-    position:fixed;
-    bottom:0;
-    left:0;
->>>>>>> 0a1192d90615629523b6e1c30f8a66e4ae1dde51
     width : 100%;
 }
 
@@ -598,9 +534,4 @@ input[type=text]:focus, textarea:focus {
 #timeline .timeline-movement .timeline-item .timeline-panel.debits .timeline-panel-ul span.importo {
     color: #e2001a;
     font-size: 1.3em;
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 5ba168bc253faf74e967c9775c9e835cba3e49fd
->>>>>>> 0a1192d90615629523b6e1c30f8a66e4ae1dde51
 }

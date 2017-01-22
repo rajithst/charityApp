@@ -5,7 +5,9 @@ class Home extends Frontend_Controller {
 
 	public function index()
 	{
-		$this->load->template('FrontUser/home');
+		$this->load->model('User_d');
+		$data['users']=$this->User_d->getUsers();
+		$this->load->template('FrontUser/home',$data);
 	}
 
 	public function register()

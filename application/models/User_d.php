@@ -31,5 +31,15 @@ class User_d extends MY_Model {
 		}
 		
 		}
+
+
+	/** return all users **/
+	function getUsers(){
+		$query=$this->db->get('Users');
+		return $query->result();
 		
+	}
+
+
+
 	}

@@ -31,6 +31,17 @@ class User_d extends MY_Model {
 		}
 		
 		}
+
+
+
+	/** return all users **/
+	function getUsers(){
+		$query=$this->db->get('Users');
+		return $query->result();
+
+	}
+		
+
         //get userID by username
         function getUserID($username){
             $this->db->where('username',$username);
@@ -46,4 +57,7 @@ class User_d extends MY_Model {
             $result = $query->result();
             return $result;
         }
+
+
+
 	}

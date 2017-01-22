@@ -11,18 +11,27 @@ class Home extends Frontend_Controller {
 
         public function index()
 	{
+
+
                 //load children of user
                 $username = $this->session->userdata('username');
                 $this->id = $this->User_d->getUserID($username);
                 $data['children'] = $this->User_d->getChildren($this->id);
                 //load children of user ends
-        if(count($data) > 0)
-        {
-            $this->load->template('FrontUser/home',$data);
-        }else {
 
-            $this->load->template('FrontUser/home');
-        }
+
+                $data['users']=$this->User_d->getUsers();
+                
+
+
+		        if(count($data) > 0)
+		        {
+		            $this->load->template('FrontUser/home',$data);
+		        }else {
+
+		            $this->load->template('FrontUser/home');
+		        }
+
 	}
 
 	public function register()

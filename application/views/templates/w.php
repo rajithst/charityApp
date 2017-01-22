@@ -47,7 +47,11 @@
                   <li><!-- start message -->
                     <a href="#">
                       <div class="pull-left">
+
+                        <img src="<?php echo base_url('img/user/user.png')?>" class="img-circle" alt="User Image">
+
                         <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+
                       </div>
                       <h4>
                         Support Team

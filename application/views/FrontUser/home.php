@@ -22,6 +22,10 @@ email = <?php echo $this->session->userdata('email').'<br>';?>
 <hr/>
 
 this is a temporary ui
+
+	<a href="<?php echo base_url()?>index.php/Home/profile"><button type="button" class="btn btn-primary btn-block">Profile</button><a/>
+
+
 <div class="row">
 <div class="col-sm-6 col-sm-offset-3">
 	<div class="form-group">
@@ -31,6 +35,8 @@ this is a temporary ui
 </div>
 </div>
 
+
+</div>
 
 
 
@@ -206,6 +212,7 @@ this is a temporary ui
         </ul>
     </div>
 <!-- children belonging to user ends here -->
+
 
 
 

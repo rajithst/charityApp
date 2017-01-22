@@ -10,10 +10,6 @@ if ($logedin != true){
 
 
 ?>
-<<<<<<< HEAD
-
-=======
->>>>>>> 5ba168bc253faf74e967c9775c9e835cba3e49fd
 <div class="container-fluid">
 
 
@@ -26,10 +22,10 @@ email = <?php echo $this->session->userdata('email').'<br>';?>
 <hr/>
 
 this is a temporary ui
-<<<<<<< HEAD
-	<a href="<?php echo base_url()?>index.php/home/profile"><button type="button" class="btn btn-primary btn-block">Profile</button><a/>
-=======
->>>>>>> 5ba168bc253faf74e967c9775c9e835cba3e49fd
+
+	<a href="<?php echo base_url()?>index.php/Home/profile"><button type="button" class="btn btn-primary btn-block">Profile</button><a/>
+
+
 <div class="row">
 <div class="col-sm-6 col-sm-offset-3">
 	<div class="form-group">
@@ -39,9 +35,8 @@ this is a temporary ui
 </div>
 </div>
 
-<<<<<<< HEAD
+
 </div>
-=======
 
 
 
@@ -199,7 +194,7 @@ this is a temporary ui
 </script>
 
 <!-- donation ends here -->
->>>>>>> 5ba168bc253faf74e967c9775c9e835cba3e49fd
+
 
 
 

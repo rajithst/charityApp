@@ -9,10 +9,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
   <script src="<?php echo base_url('assets/js/jquery.min.js');?>"></script>
   <script src="<?php echo base_url('assets/js/bootstrap.min.js');?>"></script>
-<<<<<<< HEAD
-=======
-  
->>>>>>> 5ba168bc253faf74e967c9775c9e835cba3e49fd
+
+
 </head>
 
 <div class="navbar navbar-static-top padding">  

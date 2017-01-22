@@ -15,6 +15,7 @@ class Home extends Frontend_Controller {
 
 	public function profile()
 	{
-		$this->load->view('profile');
+		$this->load->view('templates/header');
+		$this->load->view('FrontUser/profile');
 	}
 }

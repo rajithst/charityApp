@@ -1,4 +1,4 @@
-<?php include 'templates/header.php'; ?>
+
 <div class="" style="background-color: #c1f1d5">
     <div class="container" style="background-color: #c1f1d5">
         <div class="row">
@@ -211,8 +211,7 @@
     </div>
     <!-- /Timeline -->
 </div>
-</body>
-</html>
+
 
 
 

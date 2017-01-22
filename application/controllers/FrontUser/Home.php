@@ -43,4 +43,6 @@ class Home extends Frontend_Controller {
 			$this->load->customizeTemplate('header',NULL,'FrontUser/profile');
 		}
 	}
+
+
 }

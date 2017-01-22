@@ -22,7 +22,6 @@ email = <?php echo $this->session->userdata('email').'<br>';?>
 <hr/>
 
 this is a temporary ui
-
 	<a href="<?php echo base_url()?>index.php/FrontUser/Home/profile"><button type="button" class="btn btn-primary btn-block">Profile</button><a/>
 
 
@@ -41,7 +40,7 @@ this is a temporary ui
 	<div class="chat_head">chat box</div>
 	<div class="chat_body">
 		<?php foreach($users as $user):?>
-			<div class="user">
+			<div class="user-chat">
 			<?= $user->username; ?>
 			</div>
 		<?php endforeach; ?>
@@ -95,7 +94,7 @@ this is a temporary ui
 			$('.msg_box').hide();
 		});
 
-		$('.user').click(function(){
+		$('.user-chat').click(function(){
 			rec_name=$(this).text();
 			rec_name=rec_name.replace(" ","");
 

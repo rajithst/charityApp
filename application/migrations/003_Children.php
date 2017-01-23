@@ -22,6 +22,9 @@ class Migration_Children extends CI_Migration {
         'type'=> 'VARCHAR',
         'constraint'=> 150
       ),
+      'description'=>array(
+        'type'=> 'TEXT',
+      ),
         'birthDate'=>array(
               'type'=> 'DATE',
         ),

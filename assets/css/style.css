@@ -41,13 +41,6 @@
   line-height: .9;
 }
 
-.btn {
-    box-shadow: none;
-    background-color: #1c934e;
-    border: 1px solid transparent;
-    height: 35px;
-}
-
 
 .navbar-search input[type="search"], textarea {
 
@@ -401,7 +394,6 @@ input[type=text]:focus, textarea:focus {
         background: #fff;
     }
 }
-
 
 /* Footer */
 #footer{

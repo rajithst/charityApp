@@ -14,8 +14,9 @@ class Donation_c extends MY_Controller{
     public function donate(){
         $date = $this->input->post('donationdate');
         $amount = $this->input->post('donationamount');
+        $description = $this->input->post('donationdescription');
         $receiver = $this->input->post('receiver');
-        if((bool)$this->Donation_m->addDonation(array('donorID'=>$this->id,'recipientID'=>$receiver,'date'=>$date,'amount'=>$amount))){
+        if((bool)$this->Donation_m->addDonation(array('donorID'=>$this->id,'recipientID'=>$receiver,'date'=>$date,'description'=>$description,'amount'=>$amount))){
             echo 'successfully donated';
         }else{
             echo 'donation failsed';

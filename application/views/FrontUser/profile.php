@@ -7,7 +7,7 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-xs-12 col-sm-4 text-center">
-                                <img src="<?php echo base_url('img/user/user.png') ?>" alt="User" class="center-block img-circle img-thumbnail img-responsive">
+                                <img src="<?php echo base_url($this->session->userdata('picture')) ?>" alt="User" class="center-block img-circle img-thumbnail img-responsive">
                                 <ul class="list-inline ratings text-center" title="Ratings">
                                     <li><a href="#"><span class="fa fa-star fa-lg"></span></a></li>
                                     <li><a href="#"><span class="fa fa-star fa-lg"></span></a></li>
@@ -34,7 +34,7 @@
                                 </p>
                             </div>
                             <div class="col-lg-2 edit-profile-btn">
-                                <button type="button" class="btn btn-primary btn-block"><span class="fa fa-pencil-square-o"></span> Edit Profile</button>
+                                <a href="<?php echo base_url(); ?>index.php/FrontUser/EditProfile_c"><button type="button" class="btn btn-primary btn-block"><span class="fa fa-pencil-square-o"></span> Edit Profile</button><a/>
                             </div>
                             <!--/col-->
                             <div class="clearfix"></div>
@@ -226,6 +226,7 @@
         <form class="form-group col-sm-6 center-block" id="donateForm" name="donateForm" method="post">
             <input type="date" required class="form-control" placeholder="Date" id="donationdate"/>
             <input type="text" required class="form-control" placeholder="Amount" id="donationamount"/>
+            <textarea class="form-control" placeholder="Description" id="donationdescription"/></textarea> 
             <input type="text" required class="form-control" placeholder="Receiver" id="donationreceiver"/>
             <script>
                 $('[name=donationamount]').change(function (){
@@ -240,14 +241,16 @@
                 function donate(){
                     var date = document.getElementById('donationdate').value;
                     var amount = document.getElementById('donationamount').value;
+                    var description = document.getElementById('donationdescription').value;
                     var receiver = document.getElementById('donationreceiver').value;
-                    if((date==="")||(amount==="")||(receiver==="")){
+                    if((date==="")||(amount==="")||(description==="")||(receiver==="")){
                         alert('fill in the required fields');
                         return;
                     }
                     var obj = {
                             donationdate : date,
                             donationamount : amount,
+                            donationdescription : description,
                             receiver : receiver
                         };
                     jQuery.ajax({

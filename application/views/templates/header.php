@@ -4,7 +4,7 @@
   <title>charity</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css');?>">
+  <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.css');?>">
 
    <link rel="stylesheet" href="<?php echo base_url('assets/css/chat.css');?>">
 
@@ -28,7 +28,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a href="/" class="navbar-brand logo"><b style="color: #990000;">Help Me</b></a>
+      <a href="<?php echo base_url()."FrontUser/Home"; ?>" class="navbar-brand logo"><b style="color: #990000;">Help Me</b></a>
     </div>
     <nav class="collapse navbar-collapse  container-fluid" role="navigation">
       <form class="navbar-form navbar-left">
@@ -59,7 +59,7 @@
                 <li><!-- start message -->
                   <a href="#">
                     <div class="pull-right">
-                      <img src=<?php echo base_url('img/user/user.png') ?>" class="img-circle" alt="User Image">
+                      <img src=<?php echo base_url($this->session->userdata('picture')) ?>" class="img-circle" alt="User Image">
                     </div>
                     <h4>
                       Support Team
@@ -144,14 +144,13 @@
         <ul class="nav navbar-nav navbar-right">
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="<?php echo base_url('img/user/user.png') ?>" class="user-image" alt="User Image" width="160px" height="160px">
+              <img src="<?php echo base_url($this->session->userdata('picture')) ?>" class="user-image" alt="User Image" width="160px" height="160px">
               <span class="hidden-xs"><?php echo $this->session->userdata('username').'<br>';?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="<?php echo base_url('img/user/user.png') ?>" class="img-circle" alt="User Image">
-
+                <img src="<?php echo base_url($this->session->userdata('picture')) ?>" class="img-circle" alt="User Image">
                 <p>
                   <?php echo $this->session->userdata('username').'<br>';?>
                   <small>Member since Nov. 2012</small>
@@ -161,13 +160,13 @@
               <li class="user-body">
                 <div class="row">
                   <div class="col-xs-4 text-center">
-                    <a href="#">Followers</a>
+                    <a href="#" class="btn btn-info btn-flat">Followers</a>
                   </div>
                   <div class="col-xs-4 text-center">
-                    <a href="#">Sales</a>
+                    <a href="#" class="btn btn-info btn-flat">Donations</a>
                   </div>
                   <div class="col-xs-4 text-center">
-                    <a href="#">Friends</a>
+                    <a href="#" class="btn btn-info btn-flat">Friends</a>
                   </div>
                 </div>
                 <!-- /.row -->
@@ -175,10 +174,10 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="profile" class="btn btn-default btn-flat">Profile</a>
+                  <a href="<?php echo base_url(); ?>profile" class="btn btn-success btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href='Login/logout' class="btn btn-default btn-flat">logout</a>
+                  <a href='Login/logout' class="btn btn-success btn-flat">logout</a>
                 </div>
               </li>
             </ul>

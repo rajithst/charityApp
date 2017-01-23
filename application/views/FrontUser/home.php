@@ -16,13 +16,11 @@ if ($logedin != true){
 username = <?php echo $this->session->userdata('username').'<br>';?>
 name = <?php echo $this->session->userdata('name').'<br>';?>
 email = <?php echo $this->session->userdata('email').'<br>';?>
-
 <a href='Login/logout'>logout</a>
 
 <hr/>
 
 this is a temporary ui
-
 	<a href="<?php echo base_url()?>index.php/FrontUser/Home/profile"><button type="button" class="btn btn-primary btn-block">Profile</button><a/>
 
 
@@ -41,11 +39,13 @@ this is a temporary ui
 	<div class="chat_head">chat box</div>
 	<div class="chat_body">
 		<?php foreach($users as $user):?>
+
 			<?php if($user->username!=$this->session->userdata('username')): ?>
 				<div class="user-chat">
 				<?= $user->username; ?>
 				</div>
-			<?php endif; ?>
+			<?php endif; ?>		
+
 		<?php endforeach; ?>
 		
 	</div>

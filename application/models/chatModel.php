@@ -49,7 +49,7 @@ class chatModel extends MY_Model {
 
 	function loadAll(){
 		$owner=$this->session->userdata('username');
-		$query=$this->db->query("SELECT  sender from chat where receiver='".$owner."'");
+		$query=$this->db->query("SELECT  sender,COUNT(message) as numofmessages from chat where receiver='".$owner."' GROUP BY sender");
 		return $query->result();
 
 	}

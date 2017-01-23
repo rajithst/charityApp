@@ -192,43 +192,53 @@ this is a temporary ui
 
 $(document).ready(function(){
 	//load all messages
+	
 	loadAllMessages();
-	setInterval(loadAllMessages, 10000);
-	$('.ght').click(function(){
-			alert("dff");
+	setInterval(loadAllMessages, 1000);
 
-		});
 
 })
 
 
 function loadAllMessages(){
+	var count=0;
 	
 	$.ajax({
 		type: "POST",
 		url: "loadallmessages",
 		success: function( data, textStatus, jQxhr ){
 			$('.msg_menu').empty();
-			//set number of messages to head
-			$("#msg_num1,#msg_num2").text(data.length);
+			
 			var e = $('<li></li>');
 			$('.msg_menu').append(e);    
 			e.attr('class', 'msg_after');
 
 			//empty array to put names
-			var names=[];
-			for(var t=0;t<data.length;t++){
-				names.push(data[t].sender);
-			}
+			// var names=[];
+			// for(var t=0;t<data.length;t++){
+			// 	names.push(data[t].sender);
+			// }
 			
 
 			//unique names
-			var uniques=names.unique();
+			// var uniques=names.unique();
+
+			
 
 			//name append to header
-			for(var i=(uniques.length-1);i>=0;i--){
-				$("<li class='ght'><a href='#'><h3>"+uniques[i]+"</h3></a></li>").insertBefore('.msg_after');
+			for(var i=(data.length-1);i>=0;i--){
+				if (data[i].numofmessages>0){
+					$("<li onclick='getvalue(this.id)' id='"+data[i].sender+"'><a href='#'><h3>"+data[i].sender+"("+data[i].numofmessages+")"+"</h3></a></li>").insertBefore('.msg_after');
+				}
+				else{
+					$("<li onclick='getvalue(this.id)' id='"+data[i].sender+"'><a href='#'><h3>"+data[i].sender+"</h3></a></li>").insertBefore('.msg_after');
+
+				}
+				count+=parseInt(data[i].numofmessages);
 			}
+
+			//set number of messages to head
+			$("#msg_num1,#msg_num2").text(count);
 			
 			},
 		error: function( jqXhr, textStatus, errorThrown ){
@@ -241,12 +251,21 @@ function loadAllMessages(){
 
 
 //algorithm to find unique values of a array
-Array.prototype.unique = function() {
-    var o = {}, i, l = this.length, r = [];
-    for(i=0; i<l;i+=1) o[this[i]] = this[i];
-    for(i in o) r.push(o[i]);
-    return r;
-};
+// Array.prototype.unique = function() {
+//     var o = {}, i, l = this.length, r = [];
+//     for(i=0; i<l;i+=1) o[this[i]] = this[i];
+//     for(i in o) r.push(o[i]);
+//     return r;
+// };
+
+function getvalue(str) {
+  loadMessage(str);
+			
+			//alert(username);
+			$('.name').text(str);
+			$('.msg_wrap').show();
+			$('.msg_box').show();
+}
 
 
 </script>

@@ -41,13 +41,6 @@
   line-height: .9;
 }
 
-.btn {
-    box-shadow: none;
-
-    border: 1px solid transparent;
-    height: 35px;
-}
-
 
 .navbar-search input[type="search"], textarea {
 

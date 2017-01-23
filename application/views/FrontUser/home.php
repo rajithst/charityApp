@@ -88,6 +88,8 @@ this is a temporary ui
 
 		});
 
+		
+
 		$('.msg_head').click(function(){
 			$('.msg_wrap').slideToggle('slow');
 
@@ -191,7 +193,11 @@ this is a temporary ui
 $(document).ready(function(){
 	//load all messages
 	loadAllMessages();
-	setInterval(loadAllMessages, 1000);
+	setInterval(loadAllMessages, 10000);
+	$('.ght').click(function(){
+			alert("dff");
+
+		});
 
 })
 
@@ -203,13 +209,25 @@ function loadAllMessages(){
 		url: "loadallmessages",
 		success: function( data, textStatus, jQxhr ){
 			$('.msg_menu').empty();
+			//set number of messages to head
 			$("#msg_num1,#msg_num2").text(data.length);
 			var e = $('<li></li>');
 			$('.msg_menu').append(e);    
 			e.attr('class', 'msg_after');
 
-			for(var i=(data.length-1);i>=0;i--){
-				$("<li><a href='#'><h3>"+data[i].sender+"</h3></a></li>").insertBefore('.msg_after');
+			//empty array to put names
+			var names=[];
+			for(var t=0;t<data.length;t++){
+				names.push(data[t].sender);
+			}
+			
+
+			//unique names
+			var uniques=names.unique();
+
+			//name append to header
+			for(var i=(uniques.length-1);i>=0;i--){
+				$("<li class='ght'><a href='#'><h3>"+uniques[i]+"</h3></a></li>").insertBefore('.msg_after');
 			}
 			
 			},
@@ -219,6 +237,16 @@ function loadAllMessages(){
 		});
 
 }
+
+
+
+//algorithm to find unique values of a array
+Array.prototype.unique = function() {
+    var o = {}, i, l = this.length, r = [];
+    for(i=0; i<l;i+=1) o[this[i]] = this[i];
+    for(i in o) r.push(o[i]);
+    return r;
+};
 
 
 </script>

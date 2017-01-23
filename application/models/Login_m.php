@@ -45,7 +45,8 @@ class Login_m extends MY_Model{
 		
 			
 			foreach ($res as $result){
-			
+                                
+                                $id =$result->id;
 				$name =$result->name;
 				$email =$result->email;
 				$gender =$result->gender;
@@ -56,6 +57,7 @@ class Login_m extends MY_Model{
 			$this->session->set_userdata(
 		
 					array(
+                                                        'id' => $id,
 							'username' => $username,
 							'name' =>$name,
 							'email' =>$email,

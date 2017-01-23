@@ -226,6 +226,7 @@
         <form class="form-group col-sm-6 center-block" id="donateForm" name="donateForm" method="post">
             <input type="date" required class="form-control" placeholder="Date" id="donationdate"/>
             <input type="text" required class="form-control" placeholder="Amount" id="donationamount"/>
+            <textarea class="form-control" placeholder="Description" id="donationdescription"/></textarea> 
             <input type="text" required class="form-control" placeholder="Receiver" id="donationreceiver"/>
             <script>
                 $('[name=donationamount]').change(function (){
@@ -240,14 +241,16 @@
                 function donate(){
                     var date = document.getElementById('donationdate').value;
                     var amount = document.getElementById('donationamount').value;
+                    var description = document.getElementById('donationdescription').value;
                     var receiver = document.getElementById('donationreceiver').value;
-                    if((date==="")||(amount==="")||(receiver==="")){
+                    if((date==="")||(amount==="")||(description==="")||(receiver==="")){
                         alert('fill in the required fields');
                         return;
                     }
                     var obj = {
                             donationdate : date,
                             donationamount : amount,
+                            donationdescription : description,
                             receiver : receiver
                         };
                     jQuery.ajax({

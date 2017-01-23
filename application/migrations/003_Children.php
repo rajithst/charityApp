@@ -22,6 +22,9 @@ class Migration_Children extends CI_Migration {
         'type'=> 'VARCHAR',
         'constraint'=> 150
       ),
+      'description'=>array(
+        'type'=> 'TEXT',
+      ),
         'birthDate'=>array(
               'type'=> 'DATE',
         ),
@@ -34,6 +37,6 @@ class Migration_Children extends CI_Migration {
 	}
 
 	public function down() {
-		//$this->dbforge->drop_table('Children');
+		$this->dbforge->drop_table('Children');
 	}
 }

@@ -31,11 +31,11 @@
             <div class="row overview">
                 <div class="col-md-4 user-pad text-center">
                     <h3>Donations</h3>
-                    <h4>2,784</h4>
+                    <h4 id="donationcount"></h4>
                 </div>
                 <div class="col-md-4 user-pad text-center">
                     <h3>Followers</h3>
-                    <h4>456</h4>
+                    <h4 id="followercount"></h4>
                 </div>
                 <div class="col-md-4 user-pad text-center">
                     <h3>Something</h3>
@@ -67,14 +67,20 @@
                 <ul class="user-menu-list">
                     <li>
                         <h4><i class="fa fa-user coral"></i> Full Name</h4>
+                        <?php echo $child->name; ?>
                     </li>
                     <li>
                         <h4><i class="fa fa-heart-o coral"></i> Age</h4>
+                        <?php 
+                            $cdate = date_create(date("Y-m-d"));
+                            $bdate = date_create($child->birthDate);
+                            echo date_diff($cdate, $bdate)->format('%y years %m months %d days');
+                        ?>
                     </li>
                     <li>
                         <h4><i class="fa fa-paper-plane-o coral"></i>Description</h4>
                         <div id="desc" class="collapse sidebar-box">
-                        <p>"My name is Randy Patterson, and I’m currently looking for a job in youth services. I have 10 years of experience working with youth agencies. I have a bachelor’s degree in outdoor education. I raise money, train leaders, and organize units. I have raised over $100,000 each of the last six years. I consider myself a good public speaker, and I have a good sense of humor. “Who do you know who works with youth?"</p>
+                        <p><?php echo $child->description; ?></p>
                         </div>
                     </li>
                     <li>
@@ -152,8 +158,11 @@
                 </h2>
                 <center><i class="fa fa-cog" aria-hidden="true"></i></center>
                 <div class="share-links">
-                    <center><button type="button" class="btn btn-lg btn-labeled btn-success" href="#" style="margin-bottom: 15px;">
-                            <span class="btn-label"><i class="fa fa-bell-o"></i></span>Follow Her
+                    <center><button type="button" style="display:none" onclick="follow()" id="follow" class="btn btn-lg btn-labeled btn-success" href="#" style="margin-bottom: 15px;">
+                            <span class="btn-label"><i class="fa fa-bell-o"></i></span>Follow
+                    </button></center>
+                    <center><button type="button" style="display:none" onclick="unfollow()" id="unfollow" class="btn btn-lg btn-labeled btn-success" href="#" style="margin-bottom: 15px;">
+                            <span class="btn-label"><i class="fa fa-bell-o"></i></span>UnFollow
                     </button></center>
                     <center><button type="button" class="btn btn-lg btn-labeled btn-warning" data-toggle="modal" data-target="fakemodal">
                             <span class="btn-label"><i class="glyphicon glyphicon-warning-sign" aria-hidden="true"></i></span>This is Fake
@@ -181,6 +190,111 @@
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+<!--
+  following is for donation charts for received donation  
+-->
+<!-- donation with starts here -->
+
+<div class="panel col-lg-12" style="border: solid">
+
+<div class="row">
+    <div class="row">
+        <div class="col-sm-6">
+            <input type="date" id="strtdate" class="form-control">
+        </div>
+        <div class="col-sm-6">
+            <input type="date" id="enddate" class="form-control">
+        </div>
+    </div>
+    
+    <div id="chart_div" style="width: 100%; height: 500px;"></div>
+    <button id="change">Change X-axis</button>
+</div>
+    
+    
+</div>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script>
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(loadGraphOnLoad);
+    $('#strtdate,#enddate').change(function (){
+        var strtDate = $('#strtdate').val();
+        var endDate = $('#enddate').val();
+        if((strtDate !== "") && (endDate !== "")){
+             google.charts.setOnLoadCallback(loadData(strtDate,endDate));
+        }
+    });
+    function loadGraphOnLoad(){
+        var year = new Date().getFullYear();
+        loadData(year+"-01-01",year+"-12-31");
+    }
+    function loadData(startdate,endDate){
+        jQuery.ajax({
+            type: "POST",
+            url: "<?php echo base_url(); ?>" + "index.php/Donation_c/getRecievedDonationGraphData/"+<?php echo $child->id;  ?>+"/"+startdate+"/"+endDate,
+            dataType: 'json',
+            success: function (res) {
+                document.getElementById('donationcount').innerHTML = res.length;
+                if(res.length==0){
+                    document.getElementById('chart_div').innerHTML="No donations to show up";
+                    return;
+                }
+                var arr=[];
+                var k = Object.keys(res);
+                for(var i=0;i<k.length;i++){
+                    arr.push(
+                            [new Date(res[k[i]].date),parseFloat(res[k[i]].amount)]
+                    );
+                }
+
+                var data = new google.visualization.DataTable();
+                data.addColumn('date', 'Date');
+                data.addColumn('number', 'Amount');
+                data.addRows(arr);
+
+
+                var options = {
+                  title: 'Your Donations',
+                  width: 900,
+                  height: 500,
+                  hAxis: {
+                    format: 'M/d/yy',
+                    gridlines: {count: 15}
+                  },
+                  vAxis: {
+                    gridlines: {color: 'none'},
+                    minValue: 0
+                  },
+                  vAxis: {
+                      format : 'currency'
+                  }
+                };
+
+                var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+
+                chart.draw(data, options);
+
+                var button = document.getElementById('change');
+
+                button.onclick = function () {
+
+                    // If the format option matches, change it to the new option,
+                    // if not, reset it to the original format.
+                    options.hAxis.format === 'M/d/yy' ?
+                    options.hAxis.format = 'MMM dd, yyyy' :
+                    options.hAxis.format = 'M/d/yy';
+
+                    chart.draw(data, options);
+                };            
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert(jqXHR.responseText);
+            }
+        });
+    }
+</script>
+
+<!-- donation ends here -->
 
 
 <script type="text/javascript">
@@ -276,3 +390,77 @@ $( document ).ready(function() {
     ); 
 });
 </script>
+
+
+<!-- following scripts starts here -->
+<script>
+    isFollower();
+    function loadFollowers(){
+        jQuery.ajax({
+            type: "POST",
+            url: "<?php echo base_url(); ?>" + "index.php/Follow_c/getFollowers/"+<?php echo $child->id;  ?>,
+            dataType: 'json',
+            success: function (res) {
+                document.getElementById('followercount').innerHTML = res.length;
+           
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert(jqXHR.responseText);
+            }
+        });
+    }
+    function isFollower(){
+        jQuery.ajax({
+            type: "POST",
+            url: "<?php echo base_url(); ?>" + "index.php/Follow_c/isFollower/"+<?php echo $child->id; ?>,
+            success: function (res) {
+                if(res){
+                    document.getElementById('follow').style.display="none";
+                    document.getElementById('unfollow').style.display="block";
+                }
+                else{
+                    document.getElementById('unfollow').style.display="none";
+                    document.getElementById('follow').style.display="block";
+                }
+                loadFollowers();
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert(jqXHR.responseText);
+            }
+        });
+    }
+    function follow(){
+        jQuery.ajax({
+            type: "POST",
+            url: "<?php echo base_url(); ?>" + "index.php/Follow_c/follow/"+<?php echo $child->id;  ?>,
+            success: function (res) {
+                if(res){
+                    document.getElementById('follow').style.display="none";
+                    document.getElementById('unfollow').style.display="block";
+                    loadFollowers();
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert(jqXHR.responseText);
+            }
+        });
+    }
+    function unfollow(){
+        jQuery.ajax({
+            type: "POST",
+            url: "<?php echo base_url(); ?>" + "index.php/Follow_c/unfollow/"+<?php echo $child->id;  ?>,
+            success: function (res) {
+                if(res){
+                    document.getElementById('unfollow').style.display="none";
+                    document.getElementById('follow').style.display="block";
+                    loadFollowers();
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert(jqXHR.responseText);
+            }
+        });
+    }
+    
+</script>
+<!-- following scripts end`s here -->

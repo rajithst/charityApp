@@ -4,15 +4,17 @@
         <hr>
         <div class="row">
             <!-- left column -->
+            <form method="POST" id="imgForm" name="imgForm"> 
             <div class="col-md-3">
                 <div class="text-center">
-                    <img src="<?php echo base_url('img/user/user.png'); ?>" class="avatar img-circle center-block img-circle img-thumbnail img-responsive" alt="avatar">
+                    <img id="picture" src="<?php echo base_url($user->picture); ?>" class="avatar img-circle center-block img-circle img-thumbnail img-responsive" alt="avatar">
                     <h6>Upload a different photo...</h6>
 
-                    <input type="file" class="form-control">
+                    <input name="file" id="file" type="file" class="form-control">
                 </div>
             </div>
-
+            </form>
+            
             <!-- edit form column -->
             <div class="col-md-9 personal-info">
                 <div class="alert alert-info alert-dismissable">
@@ -22,73 +24,73 @@
                 </div>
                 <h3>Personal info</h3>
 
-                <form class="form-horizontal" role="form" method="POST" action="">
+                <form class="form-horizontal" role="form" method="POST" id="editForm" name="editForm" action="">
                     <div class="form-group">
                         <label class="col-lg-3 control-label">First name:</label>
                         <div class="col-lg-8">
-                            <input class="form-control" type="text" value="">
+                            <input class="form-control" required name="fname" type="text" value="<?php echo $user->name; ?>">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-3 control-label">Last name:</label>
                         <div class="col-lg-8">
-                            <input class="form-control" type="text" value="">
+                            <input class="form-control" name="lname" type="text" value="<?php echo $user->lastname; ?>">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-3 control-label">Company:</label>
                         <div class="col-lg-8">
-                            <input class="form-control" type="text" value="">
+                            <input class="form-control" name="company" type="text" value="<?php echo $user->company; ?>">
                         </div>
                     </div>
                     <hr>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Username:</label>
                         <div class="col-md-8">
-                            <input class="form-control" type="text" value="">
+                            <input class="form-control" required name="uname" type="text" value="<?php echo $user->username; ?>">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-3 control-label">Email:</label>
                         <div class="col-lg-8">
-                            <input class="form-control" type="text" value="">
+                            <input class="form-control" required name="email" type="text" value="<?php echo $user->email; ?>">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Password:</label>
                         <div class="col-md-8">
-                            <input class="form-control" type="password" value="">
+                            <input class="form-control" name="pword" type="password" value="">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Confirm password:</label>
                         <div class="col-md-8">
-                            <input class="form-control" type="password" value="">
+                            <input class="form-control" name="rpword" type="password" value="">
                         </div>
                     </div>
                     <hr>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Mobile No:</label>
                         <div class="col-md-8">
-                            <input class="form-control" type="number" value="">
+                            <input class="form-control" name="mobile" type="number" value="<?php echo $user->mobile; ?>">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Address:</label>
                         <div class="col-md-8">
-                            <textarea class="form-control" rows="5" id="address"></textarea>
+                            <textarea class="form-control" name="address" rows="5" id="address"><?php echo $user->address; ?></textarea>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Postal Code:</label>
                         <div class="col-md-8">
-                            <input class="form-control" type="number" value="">
+                            <input class="form-control" name="pcode" type="number" value="<?php echo $user->postalcode; ?>">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Country</label>
                         <div class="col-md-8 ui-select">
-                            <select id="user_country" class="form-control">
+                            <select id="user_country" name="country" class="form-control">
                                 <option value="AF">Afghanistan</option>
                                 <option value="AX">Åland Islands</option>
                                 <option value="AL">Albania</option>
@@ -298,7 +300,7 @@
                                 <option value="GS">South Georgia and the South Sandwich Islands</option>
                                 <option value="SS">South Sudan</option>
                                 <option value="ES">Spain</option>
-                                <option value="LK" selected>Sri Lanka</option>
+                                <option value="LK">Sri Lanka</option>
                                 <option value="SD">Sudan</option>
                                 <option value="SR">Suriname</option>
                                 <option value="SJ">Svalbard and Jan Mayen</option>
@@ -339,20 +341,24 @@
                                 <option value="ZM">Zambia</option>
                                 <option value="ZW">Zimbabwe</option>
                             </select>
+                            <script>
+                                document.getElementById('user_country').value = "<?php echo $user->country; ?>"
+                            </script>
+                                
                         </div>
                     </div>
                     <hr>
                     <div class="form-group">
                         <label class="col-md-3 control-label">About Me:</label>
                         <div class="col-md-8">
-                            <textarea class="form-control" rows="5" id="about_me"></textarea>
+                            <textarea class="form-control" name="about" rows="5" id="about_me"><?php echo $user->about; ?></textarea>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-md-3 control-label"></label>
                         <div class="col-md-8">
-                            <input type="button" class="btn btn-primary" value="Save Changes">
+                            <input type="submit" onclick="editInfo()" class="btn btn-primary" value="Save Changes">
                             <span></span>
                             <input type="reset" class="btn btn-primary" value="Cancel">
                         </div>
@@ -362,4 +368,104 @@
         </div>
     </div>
     <hr>
+<script>
+    //validation starts here
+    $('#editForm').submit(function(e){
+        e.preventDefault();
+    });
+    function validateEmail(email) {
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+    }
+    function editInfo() {
+                var fname = lname = company = username = email = password = repassword = mobilenumber = address = postalcode = country = about = "";
+                
+                fname = document.forms["editForm"]["fname"].value;
+                if (fname == "")
+                    return;
+                lname = document.forms["editForm"]["lname"].value;
+                uname = document.forms["editForm"]["uname"].value;
+                if (uname == "")
+                    return;
+                company = document.forms["editForm"]["company"].value;
+                email = document.forms["editForm"]["email"].value;
+                if (email == "")
+                    return;
+                password = document.forms["editForm"]["pword"].value;
+                repassword = document.forms["editForm"]["rpword"].value;
+                mobilenumber = document.forms["editForm"]["mobile"].value;
+                address = document.forms["editForm"]["address"].value;
+                postalcode = document.forms["editForm"]["pcode"].value;
+                country = document.forms["editForm"]["country"].value;
+                about = document.forms["editForm"]["about"].value;
+                if (!validateEmail(email))
+                    return;
+                if (password != repassword) {
+                    alert("Passwords are missmatch");
+                    return;
+                }
+                var obj = {fname: fname, lname: lname, company: company, username: uname, password: password, email: email, mobilenumber: mobilenumber, address: address, postalcode: postalcode, country: country, about: about};
+                edit(obj);
+
+            }
+    //validation ends here
+    //form submissions
+    function edit(obj) {
+
+                var ret = confirm("Do you want to save changes");
+                if (ret == true) {
+                    jQuery.ajax({
+                        type: "POST",
+                        url: "<?php echo base_url(); ?>" + "index.php/FrontUser/EditProfile_c/editDetails",
+                        dataType: 'json',
+                        data: obj,
+                        success: function (res) {
+                            //if success image will be uploaded
+                            var path = document.getElementById("file");
+                            if (path.value !== "") {
+                                jQuery.ajax({
+                                    //reured table input id user id path as parameters
+                                    url: "<?php echo base_url(); ?>" + "index.php/FileUpload_c/uploadPicture/users/file/<?php echo $user->id; ?>/img/user",
+                                    type: "POST", // Type of request to be send, called as method
+                                    data: new FormData(document.getElementById("imgForm")), // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+                                    contentType: false, // The content type used when sending data to the server.
+                                    cache: false, // To unable request pages to be cached
+                                    processData: false,
+                                    success: function (res) {
+                                        alert(res);
+                                        location.reload();
+                                    },
+                                    error: function (jqXHR, textStatus, errorThrown) {
+                                        alert(jqXHR.responseText);
+                                    }
+                                });
+                            }
+                            alert('saved');
+                            location.reload();
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            alert(jqXHR.responseText);
+                        }
+
+                    });
+                }
+
+            }
+    //change picture of file change
+    $('#file').change(function(){
+        readURL(this,'picture');
+    })
+    function readURL(input, imgtg) {
+
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $('#' + imgtg).attr('src', e.target.result);
+                    };
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+</script>
 </div>

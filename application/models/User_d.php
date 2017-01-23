@@ -21,7 +21,8 @@ class User_d extends MY_Model {
 				'username'=> $this->input->post('username'),
 				'password'=> $this->input->post('password'),
 				'email'=> $this->input->post('email'),
-				'gender'=> $this->input->post('reg_gender')
+				'gender'=> $this->input->post('reg_gender'),
+                                'picture'=>'img/user/user.png'
 				
 		);
 		
@@ -31,6 +32,12 @@ class User_d extends MY_Model {
 		}
 		
 	}
+        //edit profile data receive from EditProfile_c
+        function editUserDetails($id,$data){
+            $this->db->where('id',$id);
+            return (bool)$this->db->update('users',$data);
+        }
+        
 	/** return all users **/
 	function getUsers(){
 		$query=$this->db->get('Users');
@@ -47,6 +54,14 @@ class User_d extends MY_Model {
             return $result[0]->id;
         }
 	
+        //get userData
+        function getUser($username){
+            $this->db->where('username',$username);
+            $query = $this->db->get('Users');
+            $result = $query->result();
+            return $result[0];
+        }
+        
         //get chidlren registered by particular user
         function getChildren($id){
             $this->db->where('donorID',$id);

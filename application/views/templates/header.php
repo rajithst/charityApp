@@ -58,7 +58,7 @@
                 <li><!-- start message -->
                   <a href="#">
                     <div class="pull-right">
-                      <img src=<?php echo base_url('img/user/user.png') ?>" class="img-circle" alt="User Image">
+                      <img src=<?php echo base_url($this->session->userdata('picture')) ?>" class="img-circle" alt="User Image">
                     </div>
                     <h4>
                       Support Team
@@ -193,13 +193,13 @@
         <ul class="nav navbar-nav navbar-right">
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="<?php echo base_url('img/user/user.png') ?>" class="user-image" alt="User Image" width="160px" height="160px">
+              <img src="<?php echo base_url($this->session->userdata('picture')) ?>" class="user-image" alt="User Image" width="160px" height="160px">
               <span class="hidden-xs"><?php echo $this->session->userdata('username').'<br>';?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="<?php echo base_url('img/user/user.png') ?>" class="img-circle" alt="User Image">
+                <img src="<?php echo base_url($this->session->userdata('picture')) ?>" class="img-circle" alt="User Image">
                 <p>
                   <?php echo $this->session->userdata('username').'<br>';?>
                   <small>Member since Nov. 2012</small>

@@ -16,7 +16,6 @@ if ($logedin != true){
 username = <?php echo $this->session->userdata('username').'<br>';?>
 name = <?php echo $this->session->userdata('name').'<br>';?>
 email = <?php echo $this->session->userdata('email').'<br>';?>
-
 <a href='Login/logout'>logout</a>
 
 <hr/>

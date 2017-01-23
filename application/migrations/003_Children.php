@@ -34,6 +34,6 @@ class Migration_Children extends CI_Migration {
 	}
 
 	public function down() {
-		$this->dbforge->drop_table('Children');
+		//$this->dbforge->drop_table('Children');
 	}
 }

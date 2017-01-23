@@ -14,21 +14,24 @@ class Migration_Donation extends CI_Migration {
       ),
       'donorID'=>array(
         'type'=> 'INT',
-        'constraint' => 11,
+        'constraint' => 11
       ),
 
       'recipientID'=>array(
         'type'=> 'INT',
-        'constraint' => 11,
+        'constraint' => 11
+      ),
+      'description'=>array(
+        'type'=> 'TEXT'
       ),
 				
 	  'date'=>array(
-		'type'=> 'DATE',
+		'type'=> 'DATE'
 	  ),
 				
 
       'amount'=>array(
-        'type'=> 'DOUBLE',
+        'type'=> 'DOUBLE'
       ),
         ));
         $this->dbforge->add_key('id', TRUE);
@@ -36,6 +39,6 @@ class Migration_Donation extends CI_Migration {
 	}
 
 	public function down() {
-		$this->dbforge->drop_table('Donations');
+		//$this->dbforge->drop_table('Donations');
 	}
 }

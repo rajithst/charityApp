@@ -75,3 +75,7 @@ $route['updateReadStatus']='FrontUser/chatController/updateRead';
 
 $route['profile'] = 'FrontUser/Home/profile';
 
+
+/** search user profiles **/
+$route['searchProfile']='FrontUser/searchController/searchProf';
+

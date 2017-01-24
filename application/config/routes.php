@@ -67,6 +67,9 @@ $route['messageSave']='FrontUser/chatController/saveMessage';
 $route['messageLoad']='FrontUser/chatController/loadMessage';
 //laod all messages
 $route['loadallmessages']='FrontUser/chatController/loadAll';
+//update reading status
+$route['updateReadStatus']='FrontUser/chatController/updateRead';
+
 
 
 

@@ -35,4 +35,10 @@ class chatController extends Frontend_Controller {
 		$data=$this->chatModel->loadAll();
 		echo json_encode($data);
 	}
+
+
+	//update reading status
+	public function updateRead(){
+		$this->chatModel->updateRead();
+	}
 }

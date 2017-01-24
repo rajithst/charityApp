@@ -49,9 +49,18 @@ class chatModel extends MY_Model {
 
 	function loadAll(){
 		$owner=$this->session->userdata('username');
-		$query=$this->db->query("SELECT  sender,COUNT(message) as numofmessages from chat where receiver='".$owner."' GROUP BY sender");
+		$query=$this->db->query("SELECT  sender,COUNT(message) as numofmessages from chat where receiver='".$owner."' && is_read=0 GROUP BY sender");
 		return $query->result();
 
+	}
+
+
+	function updateRead(){
+		$sender=$this->input->post('name');
+		$sender=preg_replace('/\s+/', '', $sender);
+		$receiver=$this->session->userdata('username');
+		$query=$this->db->query("UPDATE chat set is_read='1' WHERE sender='".$sender."' && receiver='".$receiver."'");
+		return true;
 	}
 
 

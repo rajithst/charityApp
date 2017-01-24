@@ -104,6 +104,7 @@ this is a temporary ui
 			rec_name=rec_name.replace(" ","");
 
 			loadMessage(rec_name);
+			readingStatus(rec_name);
 			
 			//alert(username);
 			$('.name').text(rec_name);
@@ -137,7 +138,7 @@ this is a temporary ui
 		url: "messageSave",
 		data: {message:msg,receiver:rec},
 		success: function( data, textStatus, jQxhr ){
-			alert("success");
+			//alert("success");
 			
 			},
 		error: function( jqXhr, textStatus, errorThrown ){
@@ -258,6 +259,9 @@ function loadAllMessages(){
 //     return r;
 // };
 
+
+
+//open chat box using header messages
 function getvalue(str) {
   loadMessage(str);
 			
@@ -265,8 +269,25 @@ function getvalue(str) {
 			$('.name').text(str);
 			$('.msg_wrap').show();
 			$('.msg_box').show();
+			readingStatus(str);
 }
 
+//reading status update
+function readingStatus(name){
+	$.ajax({
+		type: "POST",
+		url: "updateReadStatus",
+		data: {name:name},
+		success: function( data, textStatus, jQxhr ){
+			//alert("success");
+			
+			},
+		error: function( jqXhr, textStatus, errorThrown ){
+			
+			}
+		});
+
+}
 
 </script>
 </div>

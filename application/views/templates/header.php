@@ -28,7 +28,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a href="<?php echo base_url()."FrontUser/Home"; ?>" class="navbar-brand logo"><b style="color: #990000;">Help Me</b></a>
+      <a href="<?php echo base_url()."Home"; ?>" class="navbar-brand logo"><b style="color: #990000;">Help Me</b></a>
     </div>
     <nav class="collapse navbar-collapse  container-fluid" role="navigation">
       <form class="navbar-form navbar-left">
@@ -43,7 +43,7 @@
         <ul class="nav navbar-nav">
 
           <li>
-            <a href="<?php echo base_url()."FrontUser/Home"; ?>"><i class="glyphicon glyphicon-home" ></i> Home</a>
+            <a href="<?php echo base_url()."Home"; ?>"><i class="glyphicon glyphicon-home" ></i> Home</a>
           </li>
 
           <li class="dropdown messages-menu">

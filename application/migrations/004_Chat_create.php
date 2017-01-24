@@ -9,33 +9,41 @@ class Migration_Chat_create extends CI_Migration {
 
 				
       'id'=>array(
-        'type'=> 'INT',
-        'constraint' => 11,
+        'type'=> 'BIGINT',
         'auto_increment'=> TRUE
       ),
 
 				
 	  'message'=>array(
-		'type'=> 'VARCHAR',
-		'constraint'=> 250
+		'type'=> 'TEXT',
+		'constraint'=> 1000,
 	  ),
 				
 
       'sender'=>array(
         'type'=> 'VARCHAR',
-        'constraint'=> 40
+        'constraint'=> 40,
       ),
 
       'receiver'=>array(
         'type'=> 'VARCHAR',
-        'constraint'=> 40
+        'constraint'=> 40,
       ),
 				
 				
 	  'created_at'=>array(
-		'type'=> 'TIMESTAMP'
+		'type'=> 'TIMESTAMP',
 	
 	   ),
+
+	  'is_read'=>array(
+	  	'type'=>'INT',
+	  	'constraint'=>4,
+	  	'default'=>'0'
+
+	  	),
+
+
 				
 
 		));

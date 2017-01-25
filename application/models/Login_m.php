@@ -4,60 +4,43 @@ class Login_m extends MY_Model{
 
 	protected $_table_name='adminsers';
 	protected $_order_by='id';
-	public    $rules=array(
-
-			'username'=>array(
-
-					'field'=>'username',
-					'rules'=>'required'
-
-			),
-
-			'password'=>array(
-
-					'field'=>'password',
-					'rules'=>'trim|required'
-
-			)
-
-	);
 
 
 	public function __construct(){
 		parent::__construct();
 	}
 
-	function login(){
 
-		$username = $this->input->post('username');
-		$password = $this->input->post('password');
+	function login($data){
+
+        $condition = "username =" . "'" . $data['username'] . "' AND " . "password =" . "'" . $data['password'] . "'";
+        $sql = "SELECT * FROM Adminusers WHERE $condition";
+        $query = $this->db->query($sql);
+        $res = $query->result();
+        $rows  = $query->num_rows();
 
 
-
-        $res=get_by(username = $username)
-		$rows  = $query->num_rows();
-		
-		
-		
-		if ($rows == 1) {
+        if ( $rows == 1) {
 		
 			
 			foreach ($res as $result){
 			
-				$name =$result->name;
-				$email =$result->email;
-				$gender =$result->gender;
-				
+				 $fname =$result->first_name;
+				 $lname =$result->last_name;
+				 $email = $result->email;
+				 $id = $result->id;
 				
 			}
+
 		
 			$this->session->set_userdata(
 		
 					array(
-							'username' => $username,
-							'name' =>$name,
+							'username' => $data['username'],
+							'fname' =>$fname,
+							'lname' =>$lname,
 							'email' =>$email,
-							'gender' =>$gender,
+							'id' =>$id,
 							'loggedin' =>TRUE
 		
 		
@@ -65,7 +48,12 @@ class Login_m extends MY_Model{
 		
 			return  true;
 		
-		}
+		} else {
+
+		    return false;
+        }
+
+
 		
 
     }

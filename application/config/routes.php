@@ -53,3 +53,6 @@ $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 $route['Register'] = 'welcome/register';
+$route['Login'] = 'Login/login';
+$route['Logout'] = 'Login/logout';
+$route['Dashboard'] = 'Admin/Dashboard';

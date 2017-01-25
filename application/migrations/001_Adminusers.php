@@ -48,10 +48,10 @@ class Migration_Adminusers extends CI_Migration {
 
 		));
 		$this->dbforge->add_key('id', TRUE);
-		$this->dbforge->create_table('adminusers');
+		$this->dbforge->create_table('Adminusers');
 	}
 
 	public function down() {
-		$this->dbforge->drop_table('adminusers');
+		$this->dbforge->drop_table('Adminusers');
 	}
 }

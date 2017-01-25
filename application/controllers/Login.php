@@ -9,38 +9,47 @@ class Login extends Frontend_Controller{
 
 	public function login(){
 
-	
-	     $home = 'Dashboard';
-		if ($this->Login_m->loggedin() == true) {
-			redirect($home);
-		}
 
-		$rules= $this->Login_m->rules;
-		$this->form_validation->set_rules($rules);
+            $data = array(
+                'username' => $this->input->post('username'),
+                'password' => $this->input->post('password')
+            );
 
-		if($this->form_validation->run()==TRUE) {
 
-			if ($this->Login_m->login() == true) {
-				redirect($home);
+            $home = 'Dashboard';
+            $log = $this->Login_m->login($data);
 
-			}else {
+            if ($log == true) {
+                redirect($home);
+            } else {
 
-				$this->session->set_flashdata('error','That email password combination does not exist');
-				redirect('Login','refresh');
-			}
+                $data['msg'] = "<div class='alert alert-danger'>
+                          <strong><center>Login Error !!</center></strong> <br>
+                          <center>Username Password Combination not matching</center>
+                        </div>";
 
-		} 
+                $this->load->view('templates/header');
+                $this->load->view('login', $data);
+            }
+
+
+        }
+
 		
 		
-		$this->load->view('login');
-	}
 
 
 
 	public function logout(){
 
 		$this->Login_m->logout();
-		redirect('Login');
+		$data['msg'] = "<div class='alert alert-info'>
+                          <strong><center>You're Logged out</center></strong> <br>
+                          <center></center>
+                        </div>";
+
+                $this->load->view('templates/header');
+                $this->load->view('login', $data);
 
 	}
 }

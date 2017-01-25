@@ -86,7 +86,7 @@
                  <?php echo form_close()?>
                             </div>
                             <div class="bottom text-center">
-                                <h7 style="color: black">New here ? </h7> <a href="<?php echo base_url('Register'); ?>"><button class="btn btn-success">Join Us</button></a>
+                                <h7 style="color: black">New here ? </h7> <button data-toggle="modal" data-target="#myModal" class="btn btn-success">Join Us</button>
                             </div>
                      </div>
                 </li>
@@ -126,5 +126,75 @@ $(document).ready(function(){
     $("#login-form").validationEngine('attach', {promptPosition : "centerRight", scroll: false});
    });
 </script>
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #27ae60; color: white">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Register</h4>
+      </div>
+      <div class="modal-body">
+        <form id="register-form" class="text-left" action="http://localhost/charityApp/index.php/Register/setRegister" method = "post">
+            <div class="login-form-main-message"></div>
+            <div class="main-login-form">
+                <div class="login-group">
+                    <div class="form-group">
+                        <label for="name" class="sr-only">Name</label>
+                        <input type="text" class="form-control validate[required]" id="name" name="name" placeholder="Your Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="username" class="sr-only">User Name</label>
+                        <input type="text" class="form-control validate[required]" id="username" name="username" placeholder="Username">
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="sr-only">Password</label>
+                        <input type="password" class="form-control validate[required]" id="password" name="password" placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                        <label for="password_confirm" class="sr-only">Password Confirm</label>
+                        <input type="password" class="form-control validate[required,equals[password]]" id="password_confirm" name="password_confirm" placeholder="Confirm Password">
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="sr-only">Email</label>
+                        <input type="email" class="form-control validate[required,custom[email]]" id="email" name="email" placeholder="Email">
+                    </div>
+                    <div class="form-group login-group-checkbox">
+                        <input type="radio" class="validate[required] css-checkbox" name="reg_gender" id="male" value ="male">
+                        <label for="male">male</label>
+
+                        <input type="radio" class="validate[required] css-checkbox" name="reg_gender" id="female" value = "female">
+                        <label for="female">female</label>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="etc-login-form">
+                <p>already have an account? <a href="http://localhost/charityApp/index.php/Login">login here</a></p>
+            </div>
+
+
+      </div>
+      <div class="modal-footer">
+      <button type="submit" class="btn btn-primary" id="reg_btn">Sign In </button>
+              </form>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
 </body>
 </html>
+<script>
+$(document).ready(function(){
+    $("#register-form").validationEngine('attach', {promptPosition : "centerRight", scroll: false});
+   });
+</script>
+<script>
+$(document).ready(function(){
+    $("#login-form").validationEngine('attach', {promptPosition : "Top", scroll: false});
+   });
+</script>

@@ -79,3 +79,16 @@ $route['profile'] = 'FrontUser/Home/profile';
 /** search user profiles **/
 $route['searchProfile']='FrontUser/searchController/searchProf';
 
+
+/** get all children **/
+$route['getAllChildren']='Child/Children_c/getAllChildren';
+
+/**event save**/
+$route['saveEvent']='FrontUser/eventController/saveEvent';
+
+/** show event pages **/
+$route['events/(:any)']='FrontUser/eventController/loadEvent/$1';
+
+
+
+

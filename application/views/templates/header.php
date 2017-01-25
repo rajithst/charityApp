@@ -14,6 +14,14 @@
   <script src="<?php echo base_url('assets/js/jquery.min.js');?>"></script>
   <script src="<?php echo base_url('assets/js/bootstrap.min.js');?>"></script>
 
+  <!--mention tags-->
+
+       <script src='//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js' type='text/javascript'></script>
+         <script src="<?php echo base_url('assets/js/jquery.elastic.js');?>"></script>
+    <script src="<?php echo base_url('assets/js/jquery.mentionsInput.js');?>"></script>
+
+      <!--end of mention tags-->
+
 
 </head>
 

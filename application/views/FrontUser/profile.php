@@ -51,12 +51,12 @@
                                         <div class="modal-body">
                                                 <div class="row">
                                                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 well well-sm">
-                                                        <form action="#" method="post" class="form" role="form">
+                                                        <form action="<?php echo base_url('saveEvent'); ?>" method="post" class="form" role="form">
                                                             <label>Event Name</label>
                                                             <input class="form-control" name="eventName" placeholder="Event Name" type="text" />
                                                             </br>
                                                             <label>Event Description</label>
-                                                            <textarea name="message" id="message" class="form-control" rows="9" cols="25" placeholder="Event Description" required></textarea>
+                                                            <textarea name="description" id="message" class="form-control" rows="9" cols="25" placeholder="Event Description" required></textarea>
                                                             </br>
                                                             <label>Location</label>
                                                             <div class="row">
@@ -68,7 +68,7 @@
                                                             <label>Children</label>
                                                             <div class="row">
                                                                 <div class="col-xs-12 col-md-12">
-                                                                    <textarea name="message" id="message" class="form-control" rows="9" cols="25" placeholder="type child name with @<child Name>" style="color: none;" required></textarea>
+                                                                    <textarea name="children" id="child_mention" class="form-control mention" rows="9" cols="25" placeholder="type child name with @<child Name>" style="color: none;" required></textarea>
                                                                 </div>
                                                             </div>
                                                             </br>
@@ -439,6 +439,65 @@
     </div>
 <!-- children belonging to user ends here -->
 
+
+
+<!--@ sign methion tags-->
+
+ <script>
+    // var data;
+     $(document).ready(function(){ 
+         var data;
+
+         $('textarea.mention').mentionsInput({
+
+
+        onDataRequest:function (mode, query, callback) {
+    
+    // var data = [
+    //   { id:1, name:'Kenneth Auchenberg', 'avatar':'http://cdn0.4dots.com/i/customavatars/avatar7112_1.gif', 'type':'contact' },
+    //   { id:2, name:'Jon Froda', 'avatar':'http://cdn0.4dots.com/i/customavatars/avatar7112_1.gif', 'type':'contact' },
+    //   { id:3, name:'Anders Pollas', 'avatar':'http://cdn0.4dots.com/i/customavatars/avatar7112_1.gif', 'type':'contact' },
+    //   { id:4, name:'Kasper Hulthin', 'avatar':'http://cdn0.4dots.com/i/customavatars/avatar7112_1.gif', 'type':'contact' },
+    //   { id:5, name:'Andreas Haugstrup', 'avatar':'http://cdn0.4dots.com/i/customavatars/avatar7112_1.gif', 'type':'contact' },
+    //   { id:6, name:'Pete Lacey', 'avatar':'http://cdn0.4dots.com/i/customavatars/avatar7112_1.gif', 'type':'contact' }
+    // ];
+       
+
+          $.ajax({
+              type: "POST",
+              url: "getAllChildren",
+              success: function( datas, textStatus, jQxhr ){
+              
+                data=jQuery.parseJSON(datas);
+                
+                },
+              error: function( jqXhr, textStatus, errorThrown ){
+                alert("error");
+                
+                }
+              });
+
+    
+
+
+   data = _.filter(data, function(item) { return item.name.toLowerCase().indexOf(query.toLowerCase()) > -1 });
+
+    callback.call(this, data);
+  }
+});
+
+         
+
+});
+    
+
+  </script>
+
+
+
+
+
+<!--end of @ sign mention tags-->
 
 
 

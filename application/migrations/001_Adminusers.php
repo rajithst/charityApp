@@ -1,7 +1,7 @@
 
 <?php
 
-class Migration_User_register extends CI_Migration {
+class Migration_Adminusers extends CI_Migration {
 
 	public function up() {
 		
@@ -14,12 +14,24 @@ class Migration_User_register extends CI_Migration {
         'auto_increment'=> TRUE
       ),
 
-      'name'=>array(
+      'first_name'=>array(
         'type'=> 'VARCHAR',
         'constraint'=> 150
       ),
-				
-	  'username'=>array(
+
+
+            'last_name'=>array(
+                'type'=> 'VARCHAR',
+                'constraint'=> 150
+            ),
+
+            'email'=>array(
+                'type'=> 'VARCHAR',
+                'constraint'=>25
+            ),
+
+
+            'username'=>array(
 		'type'=> 'VARCHAR',
 		'constraint'=> 150
 	  ),
@@ -30,24 +42,16 @@ class Migration_User_register extends CI_Migration {
         'constraint'=> 40
       ),
 
-      'email'=>array(
-        'type'=> 'VARCHAR',
-        'constraint'=> 40
-      ),
-				
-				
-	  'gender'=>array(
-		'type'=> 'VARCHAR',
-		'constraint'=> 40
-	   ),
+
+
 				
 
 		));
 		$this->dbforge->add_key('id', TRUE);
-		$this->dbforge->create_table('Users');
+		$this->dbforge->create_table('adminusers');
 	}
 
 	public function down() {
-		$this->dbforge->drop_table('Users');
+		$this->dbforge->drop_table('adminusers');
 	}
 }

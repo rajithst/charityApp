@@ -10,7 +10,7 @@ class Login extends Frontend_Controller{
 	public function login(){
 
 	
-	     $home = 'Home';
+	     $home = 'Dashboard';
 		if ($this->Login_m->loggedin() == true) {
 			redirect($home);
 		}

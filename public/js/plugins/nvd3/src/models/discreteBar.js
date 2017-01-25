@@ -2,7 +2,7 @@
 nv.models.discreteBar = function() {
   "use strict";
   //============================================================
-  // Public Variables with Default Settings
+  // public Variables with Default Settings
   //------------------------------------------------------------
 
   var margin = {top: 0, right: 0, bottom: 0, left: 0}
@@ -231,7 +231,7 @@ nv.models.discreteBar = function() {
 
 
   //============================================================
-  // Expose Public Variables
+  // Expose public Variables
   //------------------------------------------------------------
 
   chart.dispatch = dispatch;

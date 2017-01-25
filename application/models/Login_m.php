@@ -2,8 +2,8 @@
 
 class Login_m extends MY_Model{
 
-	protected $_table_name='Users';
-	protected $_order_by='name';
+	protected $_table_name='adminsers';
+	protected $_order_by='id';
 	public    $rules=array(
 
 			'username'=>array(
@@ -31,12 +31,10 @@ class Login_m extends MY_Model{
 
 		$username = $this->input->post('username');
 		$password = $this->input->post('password');
-			
 
-		
-		$sql = "SELECT * FROM Users WHERE username='$username' AND password ='$password'";
-		$query = $this->db->query($sql);
-		$res  = $query->result();
+
+
+        $res=get_by(username = $username)
 		$rows  = $query->num_rows();
 		
 		

@@ -5,7 +5,7 @@
 nv.models.parallelCoordinates = function() {
   "use strict";
   //============================================================
-  // Public Variables with Default Settings
+  // public Variables with Default Settings
   //------------------------------------------------------------
 
 
@@ -172,7 +172,7 @@ nv.models.parallelCoordinates = function() {
 
 
   //============================================================
-  // Expose Public Variables
+  // Expose public Variables
   //------------------------------------------------------------
 
 

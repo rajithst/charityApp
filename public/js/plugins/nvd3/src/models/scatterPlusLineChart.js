@@ -2,7 +2,7 @@
 nv.models.scatterPlusLineChart = function() {
   "use strict";
   //============================================================
-  // Public Variables with Default Settings
+  // public Variables with Default Settings
   //------------------------------------------------------------
 
   var scatter      = nv.models.scatter()
@@ -469,7 +469,7 @@ nv.models.scatterPlusLineChart = function() {
 
 
   //============================================================
-  // Expose Public Variables
+  // Expose public Variables
   //------------------------------------------------------------
 
   // expose chart's sub-components

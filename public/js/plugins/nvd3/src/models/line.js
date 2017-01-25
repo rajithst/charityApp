@@ -2,7 +2,7 @@
 nv.models.line = function() {
   "use strict";
   //============================================================
-  // Public Variables with Default Settings
+  // public Variables with Default Settings
   //------------------------------------------------------------
 
   var  scatter = nv.models.scatter()
@@ -190,7 +190,7 @@ nv.models.line = function() {
 
 
   //============================================================
-  // Expose Public Variables
+  // Expose public Variables
   //------------------------------------------------------------
 
   chart.dispatch = scatter.dispatch;

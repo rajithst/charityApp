@@ -1060,7 +1060,7 @@ _html2canvas.Parse = function (images, options, cb) {
       transparentBackground = (Util.isTransparent(background) && element === document.body),
       stack = renderElement(element, null, false, transparentBackground);
 
-    // create pseudo elements in a single pass to prevent synchronous layouts
+    // create pseudo elements in a single pass to prevent synchronous templates
     addPseudoElements(element);
 
     parseChildren(element, stack, function() {
@@ -1084,7 +1084,7 @@ _html2canvas.Parse = function (images, options, cb) {
   // with layout.
   function addPseudoElements(el) {
     // These are done in discrete steps to prevent a relayout loop caused by addClass() invalidating
-    // layouts & getPseudoElement calling getComputedStyle.
+    // templates & getPseudoElement calling getComputedStyle.
     var jobs = [], classes = [];
     getPseudoElementClasses();
     findPseudoElements(el);
@@ -1135,7 +1135,7 @@ _html2canvas.Parse = function (images, options, cb) {
     }
 
     // Adds a class to the pseudo's parent to prevent the original before/after from messing
-    // with layouts.
+    // with templates.
     // Execute the inserts & addClass() calls in a batch to prevent relayouts.
     function runJobs() {
       // Add Class

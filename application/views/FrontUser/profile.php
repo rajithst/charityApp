@@ -34,7 +34,56 @@
                                 </p>
                             </div>
                             <div class="col-lg-2 edit-profile-btn">
-                                <a href="<?php echo base_url(); ?>index.php/FrontUser/EditProfile_c"><button type="button" class="btn btn-primary btn-block"><span class="fa fa-pencil-square-o"></span> Edit Profile</button><a/>
+                                <a href="<?php echo base_url(); ?>index.php/FrontUser/EditProfile_c"><button type="button" class="btn btn-primary btn-block col-lg-2"><span class="fa fa-pencil-square-o"></span> Edit Profile</button><a/>
+                            </div>
+                            <div class="col-lg-2 edit-profile-btn">
+                                <button type="button" class="btn btn-primary btn-block col-lg-2" data-toggle="modal" data-target="#Event_modal"><span class="fa fa-plus-circle"></span> Create Event</button>
+                            </div>
+                            <div id="Event_modal" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">Add Donation Event</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                                <div class="row">
+                                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 well well-sm">
+                                                        <form action="#" method="post" class="form" role="form">
+                                                            <label>Event Name</label>
+                                                            <input class="form-control" name="eventName" placeholder="Event Name" type="text" />
+                                                            </br>
+                                                            <label>Event Description</label>
+                                                            <textarea name="message" id="message" class="form-control" rows="9" cols="25" placeholder="Event Description" required></textarea>
+                                                            </br>
+                                                            <label>Location</label>
+                                                            <div class="row">
+                                                                <div class="col-xs-12 col-md-12">
+                                                                    <input type="text" class="form-control" name="eventLocation" placeholder="Event Location">
+                                                                </div>
+                                                            </div>
+                                                            </br>
+                                                            <label>Children</label>
+                                                            <div class="row">
+                                                                <div class="col-xs-12 col-md-12">
+                                                                    <textarea name="message" id="message" class="form-control" rows="9" cols="25" placeholder="type child name with @<child Name>" style="color: none;" required></textarea>
+                                                                </div>
+                                                            </div>
+                                                            </br>
+                                                            <button class="btn btn-lg btn-primary btn-block" type="submit">
+                                                                Add Event</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+
+                                </div>
                             </div>
                             <!--/col-->
                             <div class="clearfix"></div>

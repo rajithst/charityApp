@@ -46,23 +46,6 @@
 
   background-color:white;
   border: none;
-  color: green;
-}
-
-textarea::-webkit-input-placeholder {
-color: green !important;
-}
-
-textarea:-moz-placeholder { /* Firefox 18- */
-color: green !important;
-}
-
-textarea::-moz-placeholder {  /* Firefox 19+ */
-color: green !important;
-}
-
-textarea:-ms-input-placeholder {
-color: green !important;
 }
 
 

@@ -35,8 +35,8 @@ class Login_m extends MY_Model{
 
 		
 		$sql = "SELECT * FROM Users WHERE username='$username' AND password ='$password'";
-		echo $sql;
-		die();
+		//echo $sql;
+		//die();
 		$query = $this->db->query($sql);
 		$res  = $query->result();
 		$rows  = $query->num_rows();

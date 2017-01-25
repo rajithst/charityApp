@@ -162,10 +162,10 @@ $(document).ready(function(){
                         <input type="email" class="form-control validate[required,custom[email]]" id="email" name="email" placeholder="Email">
                     </div>
                     <div class="form-group login-group-checkbox">
-                        <input type="radio" class="validate[required] css-checkbox" name="reg_gender" id="male" value ="male">
+                        <input type="radio" class="validate[required]" name="reg_gender" id="male" value ="male">
                         <label for="male">male</label>
 
-                        <input type="radio" class="validate[required] css-checkbox" name="reg_gender" id="female" value = "female">
+                        <input type="radio" class="validate[required]" name="reg_gender" id="female" value = "female">
                         <label for="female">female</label>
                     </div>
                 </div>

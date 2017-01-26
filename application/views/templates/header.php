@@ -36,7 +36,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a href="<?php echo base_url()."Home"; ?>" class="navbar-brand logo"><b style="color: #990000;">Help Me</b></a>
+      <a href="<?php echo base_url()."Home"; ?>" class="navbar-brand logo"><b style="color: white;">Help Me</b></a>
     </div>
     <nav class="collapse navbar-collapse  container-fluid" role="navigation">
       <form class="navbar-form navbar-left">

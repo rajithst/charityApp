@@ -46,23 +46,6 @@
 
   background-color:white;
   border: none;
-  color: green;
-}
-
-textarea::-webkit-input-placeholder {
-color: green !important;
-}
-
-textarea:-moz-placeholder { /* Firefox 18- */
-color: green !important;
-}
-
-textarea::-moz-placeholder {  /* Firefox 19+ */
-color: green !important;
-}
-
-textarea:-ms-input-placeholder {
-color: green !important;
 }
 
 
@@ -526,4 +509,20 @@ input[type=text]:focus, textarea:focus {
 #timeline .timeline-movement .timeline-item .timeline-panel.debits .timeline-panel-ul span.importo {
     color: #e2001a;
     font-size: 1.3em;
+}
+
+
+#srch_items{
+     width: 300px;
+     margin: 0px;
+     padding-left: 0px;
+}
+ul li{
+    list-style: none;
+ background-color: lightgray;
+ margin: 1px;
+ padding: 1px;
+ -moz-border-radius: 3px;
+ -webkit-border-radius: 3px;
+ border-radius: 3px;
 }

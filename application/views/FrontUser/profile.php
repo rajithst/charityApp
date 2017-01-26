@@ -37,7 +37,56 @@
                                 </p>
                             </div>
                             <div class="col-lg-2 edit-profile-btn">
-                                <a href="<?php echo base_url(); ?>index.php/FrontUser/EditProfile_c"><button type="button" class="btn btn-primary btn-block"><span class="fa fa-pencil-square-o"></span> Edit Profile</button><a/>
+                                <a href="<?php echo base_url(); ?>index.php/FrontUser/EditProfile_c"><button type="button" class="btn btn-primary btn-block col-lg-2"><span class="fa fa-pencil-square-o"></span> Edit Profile</button><a/>
+                            </div>
+                            <div class="col-lg-2 edit-profile-btn">
+                                <button type="button" class="btn btn-primary btn-block col-lg-2" data-toggle="modal" data-target="#Event_modal"><span class="fa fa-plus-circle"></span> Create Event</button>
+                            </div>
+                            <div id="Event_modal" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">Add Donation Event</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                                <div class="row">
+                                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 well well-sm">
+                                                        <form action="<?php echo base_url('saveEvent'); ?>" method="post" class="form" role="form">
+                                                            <label>Event Name</label>
+                                                            <input class="form-control" name="eventName" placeholder="Event Name" type="text" />
+                                                            </br>
+                                                            <label>Event Description</label>
+                                                            <textarea name="description" id="message" class="form-control" rows="9" cols="25" placeholder="Event Description" required></textarea>
+                                                            </br>
+                                                            <label>Location</label>
+                                                            <div class="row">
+                                                                <div class="col-xs-12 col-md-12">
+                                                                    <input type="text" class="form-control" name="eventLocation" placeholder="Event Location">
+                                                                </div>
+                                                            </div>
+                                                            </br>
+                                                            <label>Children</label>
+                                                            <div class="row">
+                                                                <div class="col-xs-12 col-md-12">
+                                                                    <textarea name="children" id="child_mention" class="form-control mention" rows="9" cols="25" placeholder="type child name with @<child Name>" style="color: none;" required></textarea>
+                                                                </div>
+                                                            </div>
+                                                            </br>
+                                                            <button class="btn btn-lg btn-primary btn-block" type="submit">
+                                                                Add Event</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+
+                                </div>
                             </div>
                             <!--/col-->
                             <div class="clearfix"></div>
@@ -493,3 +542,58 @@
     
 </script>
 <!-- following scripts end`s here -->
+
+<!--@ sign methion tags-->
+
+ <script>
+    // var data;
+     $(document).ready(function(){ 
+         var data;
+
+         $('textarea.mention').mentionsInput({
+
+
+        onDataRequest:function (mode, query, callback) {
+    
+    // var data = [
+    //   { id:1, name:'Kenneth Auchenberg', 'avatar':'http://cdn0.4dots.com/i/customavatars/avatar7112_1.gif', 'type':'contact' },
+    //   { id:2, name:'Jon Froda', 'avatar':'http://cdn0.4dots.com/i/customavatars/avatar7112_1.gif', 'type':'contact' },
+    //   { id:3, name:'Anders Pollas', 'avatar':'http://cdn0.4dots.com/i/customavatars/avatar7112_1.gif', 'type':'contact' },
+    //   { id:4, name:'Kasper Hulthin', 'avatar':'http://cdn0.4dots.com/i/customavatars/avatar7112_1.gif', 'type':'contact' },
+    //   { id:5, name:'Andreas Haugstrup', 'avatar':'http://cdn0.4dots.com/i/customavatars/avatar7112_1.gif', 'type':'contact' },
+    //   { id:6, name:'Pete Lacey', 'avatar':'http://cdn0.4dots.com/i/customavatars/avatar7112_1.gif', 'type':'contact' }
+    // ];
+       
+
+          $.ajax({
+              type: "POST",
+              url: "getAllChildren",
+              success: function( datas, textStatus, jQxhr ){
+              
+                data=jQuery.parseJSON(datas);
+                
+                },
+              error: function( jqXhr, textStatus, errorThrown ){
+                alert("error");
+                
+                }
+              });
+
+    
+
+
+   data = _.filter(data, function(item) { return item.name.toLowerCase().indexOf(query.toLowerCase()) > -1 });
+
+    callback.call(this, data);
+  }
+});
+
+         
+
+});
+    
+
+  </script>
+
+
+<!--end of @ sign mention tags-->

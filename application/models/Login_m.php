@@ -35,6 +35,8 @@ class Login_m extends MY_Model{
 
 		
 		$sql = "SELECT * FROM Users WHERE username='$username' AND password ='$password'";
+		//echo $sql;
+		//die();
 		$query = $this->db->query($sql);
 		$res  = $query->result();
 		$rows  = $query->num_rows();
@@ -57,12 +59,12 @@ class Login_m extends MY_Model{
 			$this->session->set_userdata(
 		
 					array(
-                                                        'id' => $id,
+                            'id' => $id,
 							'username' => $username,
 							'name' =>$name,
 							'email' =>$email,
 							'gender' =>$gender,
-                                                        'picture' =>$picture,
+                             'picture' =>$picture,
 							'loggedin' =>TRUE
 		
 		

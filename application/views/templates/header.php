@@ -14,6 +14,14 @@
   <script src="<?php echo base_url('assets/js/jquery.min.js');?>"></script>
   <script src="<?php echo base_url('assets/js/bootstrap.min.js');?>"></script>
 
+  <!--mention tags-->
+
+       <script src='//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js' type='text/javascript'></script>
+         <script src="<?php echo base_url('assets/js/jquery.elastic.js');?>"></script>
+    <script src="<?php echo base_url('assets/js/jquery.mentionsInput.js');?>"></script>
+
+      <!--end of mention tags-->
+
 
 </head>
 
@@ -33,11 +41,12 @@
     <nav class="collapse navbar-collapse  container-fluid" role="navigation">
       <form class="navbar-form navbar-left">
         <div class="input-group input-group-sm" style="max-width:360px;">
-          <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
+          <input type="text" class="form-control" placeholder="Search" name="srch-term" id="search_profile">
           <div class="input-group-btn">
             <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
           </div>
         </div>
+        <ul id="srch_items" class="list-group"></ul>
       </form>
       <ul class="nav navbar-nav navbar-right">
         <ul class="nav navbar-nav">
@@ -186,4 +195,50 @@
     </ul>
     </nav>
   </div>
+
+  <!--search for vendor-->
+  <script>
+    $(document).ready(function(){
+      $("#search_profile").keyup(function(){
+          var name=this.value;
+
+
+          $.ajax({
+              type: "POST",
+              url: "searchProfile",
+              data: {name:name},
+              success: function( data, textStatus, jQxhr ){
+               
+                        $('#srch_items').html("");
+                        var obj = data;
+                        if(obj.length>0){
+                         try{
+                          var items=[];  
+                          $.each(obj, function(i,val){           
+                              items.push($('<li class="list-group-item"/>').text(val.name ));
+                          }); 
+                          $('#srch_items').append.apply($('#srch_items'), items);
+                         }catch(e) {  
+                          alert('Exception while request..');
+                         }  
+                        }else{
+                         $('#finalResult').html($('<li/>').text("No Data Found"));  
+                        }
+                
+                },
+              error: function( jqXhr, textStatus, errorThrown ){
+                
+                }
+              });
+
+
+        
+      });
+    });
+
+  </script>
+
+  <!--end of search for vendor-->
+
+
 <body>

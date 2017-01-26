@@ -234,7 +234,9 @@
             url: "<?php echo base_url(); ?>" + "index.php/Donation_c/getRecievedDonationGraphData/"+<?php echo $child->id;  ?>+"/"+startdate+"/"+endDate,
             dataType: 'json',
             success: function (res) {
-                document.getElementById('donationcount').innerHTML = res.length;
+                var x = document.getElementById('donationcount');
+                if(x.innerHTML=="")
+                    x.innerHTML = res.length;
                 if(res.length==0){
                     document.getElementById('chart_div').innerHTML="No donations to show up";
                     return;
@@ -398,7 +400,7 @@ $( document ).ready(function() {
     function loadFollowers(){
         jQuery.ajax({
             type: "POST",
-            url: "<?php echo base_url(); ?>" + "index.php/Follow_c/getFollowers/"+<?php echo $child->id;  ?>,
+            url: "<?php echo base_url(); ?>" + "index.php/Follow_c/getFollowers/"+<?php echo $child->id; ?>+"/0",
             dataType: 'json',
             success: function (res) {
                 document.getElementById('followercount').innerHTML = res.length;
@@ -412,7 +414,7 @@ $( document ).ready(function() {
     function isFollower(){
         jQuery.ajax({
             type: "POST",
-            url: "<?php echo base_url(); ?>" + "index.php/Follow_c/isFollower/"+<?php echo $child->id; ?>,
+            url: "<?php echo base_url(); ?>" + "index.php/Follow_c/isFollower/"+<?php echo $child->id; ?>+"/0",
             success: function (res) {
                 if(res){
                     document.getElementById('follow').style.display="none";
@@ -432,7 +434,7 @@ $( document ).ready(function() {
     function follow(){
         jQuery.ajax({
             type: "POST",
-            url: "<?php echo base_url(); ?>" + "index.php/Follow_c/follow/"+<?php echo $child->id;  ?>,
+            url: "<?php echo base_url(); ?>" + "index.php/Follow_c/follow/"+<?php echo $child->id; ?>+"/0",
             success: function (res) {
                 if(res){
                     document.getElementById('follow').style.display="none";
@@ -448,7 +450,7 @@ $( document ).ready(function() {
     function unfollow(){
         jQuery.ajax({
             type: "POST",
-            url: "<?php echo base_url(); ?>" + "index.php/Follow_c/unfollow/"+<?php echo $child->id;  ?>,
+            url: "<?php echo base_url(); ?>" + "index.php/Follow_c/unfollow/"+<?php echo $child->id; ?>+"/0",
             success: function (res) {
                 if(res){
                     document.getElementById('unfollow').style.display="none";

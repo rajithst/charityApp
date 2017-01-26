@@ -23,14 +23,17 @@
                             </div>
                             <!--/col-->
                             <div class="col-xs-12 col-sm-8">
-                                <h2>Kavinda Jayakody</h2>
-                                <p><strong>About: </strong> A donator who willing to give </p>
-                                <p><strong>Hobbies: </strong> Read, out with friends, listen to music, draw and learn new things. </p>
+                                <h2><?php echo $user->name." ".$user->lastname; ?></h2>
+                                <p><strong>About: </strong> <?php echo $user->about; ?> </p>
                                 <p><strong>career: </strong>
-                                    <span class="label label-info tags">Web Designer</span>
-                                    <span class="label label-info tags">Social Worker</span>
-                                    <span class="label label-info tags">Lion Club Activist</span>
-                                    <span class="label label-info tags">Hiker</span>
+                                    <?php 
+                                    foreach($career as $row)       
+                                    {
+                                    ?>
+                                    <span class="label label-info tags"><?php echo $row->career; ?></span>
+                                    <?php
+                                    }
+                                    ?>
                                 </p>
                             </div>
                             <div class="col-lg-2 edit-profile-btn">
@@ -39,19 +42,27 @@
                             <!--/col-->
                             <div class="clearfix"></div>
                             <div class="col-xs-12 col-sm-4">
-                                <h2><strong> 1000 </strong></h2>
+                                <h2><strong id="followercount">  </strong></h2>
                                 <p><small>Followers</small></p>
-                                <button class="btn btn-success btn-block"><span class="fa fa-plus-circle"></span> Follow </button>
+                                <?php 
+                                if($this->session->userdata('id')!=$user->id)
+                                {
+                                ?>
+                                <button class="btn btn-success btn-block" style="display: none;" id="follow" onclick="follow()"><span class="fa fa-plus-circle"></span> Follow </button>
+                                <button class="btn btn-success btn-block" style="display: none;" id="unfollow" onclick="unfollow()"><span class="fa fa-plus-circle"></span> Unfollow </button>
+                                <?php
+                                }
+                                ?>
                             </div>
                             <!--/col-->
                             <div class="col-xs-12 col-sm-4">
-                                <h2><strong>245</strong></h2>
-                                <p><small>Donations</small></p>
+                                <h2><strong id="donationcount"></strong></h2>
+                                <p><small >Donations</small></p>
                                 <button class="btn btn-info btn-block"><span class="fa fa-thumbs-o-up"></span> View Donations </button>
                             </div>
                             <!--/col-->
                             <div class="col-xs-12 col-sm-4">
-                                <h2><strong>$1000</strong></h2>
+                                <h2><strong id="donatedamount"></strong></h2>
                                 <p><small>Total Donations</small></p>
                                 <button type="button" class="btn btn-primary btn-block"><span class="fa fa-money"></span> Transactions </button>
                             </div>
@@ -294,6 +305,7 @@
 </div>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script>
+             
     google.charts.load('current', {'packages':['corechart']});
     google.charts.setOnLoadCallback(loadGraphOnLoad);
     $('#strtdate,#enddate').change(function (){
@@ -307,12 +319,16 @@
         var year = new Date().getFullYear();
         loadData(year+"-01-01",year+"-12-31");
     }
+                
     function loadData(startdate,endDate){
         jQuery.ajax({
             type: "POST",
             url: "<?php echo base_url(); ?>" + "index.php/Donation_c/getGraphData/"+startdate+"/"+endDate,
             dataType: 'json',
             success: function (res) {
+                var x = document.getElementById('donationcount');
+                if(x.innerHTML=="")
+                    x.innerHTML = res.length;
                 if(res.length==0){
                     document.getElementById('chart_div').innerHTML="No donations to show up";
                     return;
@@ -370,6 +386,20 @@
             }
         });
     }
+    loadDonatedAmounts();
+    function loadDonatedAmounts(){
+        jQuery.ajax({
+            type: "POST",
+            url: "<?php echo base_url(); ?>" + "index.php/Donation_c/getTotalDonatedAmount/"+<?php echo $user->id;  ?>,
+            success: function (res) {
+                document.getElementById('donatedamount').innerHTML = "Rs. "+res;
+           
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert(jqXHR.responseText);
+            }
+        });
+    }
 </script>
 
 <!-- donation ends here -->
@@ -390,11 +420,76 @@
     </div>
 <!-- children belonging to user ends here -->
 
-
-
-
-
-
-
-
-
+<!-- following scripts starts here -->
+<script>
+    isFollower();
+    loadFollowers();
+    function loadFollowers(){
+        jQuery.ajax({
+            type: "POST",
+            url: "<?php echo base_url(); ?>" + "index.php/Follow_c/getFollowers/"+<?php echo $user->id; ?>+"/1",
+            dataType: 'json',
+            success: function (res) {
+                document.getElementById('followercount').innerHTML = res.length;
+           
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert(jqXHR.responseText);
+            }
+        });
+    }
+    function isFollower(){
+        jQuery.ajax({
+            type: "POST",
+            url: "<?php echo base_url(); ?>" + "index.php/Follow_c/isFollower/"+<?php echo $user->id; ?>+"/1",
+            success: function (res) {
+                if(res){
+                    document.getElementById('follow').style.display="none";
+                    document.getElementById('unfollow').style.display="block";
+                }
+                else{
+                    document.getElementById('unfollow').style.display="none";
+                    document.getElementById('follow').style.display="block";
+                }
+                loadFollowers();
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert(jqXHR.responseText);
+            }
+        });
+    }
+    function follow(){
+        jQuery.ajax({
+            type: "POST",
+            url: "<?php echo base_url(); ?>" + "index.php/Follow_c/follow/"+<?php echo $user->id; ?>+"/1",
+            success: function (res) {
+                if(res){
+                    document.getElementById('follow').style.display="none";
+                    document.getElementById('unfollow').style.display="block";
+                    loadFollowers();
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert(jqXHR.responseText);
+            }
+        });
+    }
+    function unfollow(){
+        jQuery.ajax({
+            type: "POST",
+            url: "<?php echo base_url(); ?>" + "index.php/Follow_c/unfollow/"+<?php echo $user->id; ?>+"/1",
+            success: function (res) {
+                if(res){
+                    document.getElementById('unfollow').style.display="none";
+                    document.getElementById('follow').style.display="block";
+                    loadFollowers();
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert(jqXHR.responseText);
+            }
+        });
+    }
+    
+</script>
+<!-- following scripts end`s here -->

@@ -21,7 +21,7 @@ email = <?php echo $this->session->userdata('email').'<br>';?>
 <hr/>
 
 this is a temporary ui
-	<a href="<?php echo base_url()?>index.php/FrontUser/Home/profile"><button type="button" class="btn btn-primary btn-block">Profile</button><a/>
+	<a href="<?php echo base_url()."index.php/FrontUser/Home/profile/".$this->session->userdata('id') ?>"><button type="button" class="btn btn-primary btn-block">Profile</button><a/>
 
 
 <div class="row">

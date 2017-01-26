@@ -55,11 +55,19 @@ class User_d extends MY_Model {
         }
 	
         //get userData
-        function getUser($username){
-            $this->db->where('username',$username);
+        function getUser($id){
+            $this->db->where('id',$id);
             $query = $this->db->get('Users');
             $result = $query->result();
             return $result[0];
+        }
+        
+        //get carers
+        function getCareer($id){
+            $this->db->where('id',$id);
+            $query = $this->db->get('Career');
+            $result = $query->result();
+            return $result;
         }
         
         //get chidlren registered by particular user

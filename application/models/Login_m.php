@@ -63,8 +63,7 @@ class Login_m extends MY_Model{
 							'name' =>$name,
 							'email' =>$email,
 							'gender' =>$gender,
-                             'picture' =>$picture,
-							'loggedin' =>TRUE
+                            				'loggedin' =>TRUE
 		
 		
 					));

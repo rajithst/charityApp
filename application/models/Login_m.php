@@ -48,7 +48,7 @@ class Login_m extends MY_Model{
 			
 			foreach ($res as $result){
                                 
-                                $id =$result->id;
+                $id =$result->id;
 				$name =$result->name;
 				$email =$result->email;
 				$gender =$result->gender;
@@ -63,7 +63,7 @@ class Login_m extends MY_Model{
 							'name' =>$name,
 							'email' =>$email,
 							'gender' =>$gender,
-                            				'loggedin' =>TRUE
+							'loggedin' =>TRUE
 		
 		
 					));

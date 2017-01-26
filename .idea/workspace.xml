@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7baa3eb0-241f-4255-be9a-75bb5961f0aa" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/config/migration.php" afterPath="$PROJECT_DIR$/application/config/migration.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/config/routes.php" afterPath="$PROJECT_DIR$/application/config/routes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/Login.php" afterPath="$PROJECT_DIR$/application/controllers/Login.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/migrations/001_Adminusers.php" afterPath="$PROJECT_DIR$/application/migrations/001_Adminusers.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/models/Login_m.php" afterPath="$PROJECT_DIR$/application/models/Login_m.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/login.php" afterPath="$PROJECT_DIR$/application/views/login.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/templates/footer.php" afterPath="$PROJECT_DIR$/application/views/templates/footer.php" />
-    </list>
+    <list default="true" id="7baa3eb0-241f-4255-be9a-75bb5961f0aa" name="Default" comment="" />
     <ignored path=".idea/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -204,8 +195,9 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
+    <option name="y" value="3" />
     <option name="width" value="1920" />
-    <option name="height" value="1046" />
+    <option name="height" value="1043" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -501,15 +493,15 @@
       <workItem from="1485333516130" duration="55000" />
       <workItem from="1485337592656" duration="15000" />
       <workItem from="1485337610273" duration="26000" />
-      <workItem from="1485337646384" duration="5373000" />
+      <workItem from="1485337646384" duration="5970000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12921000" />
+    <option name="totallyTimeSpent" value="13518000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1920" height="1046" extended-state="6" />
+    <frame x="0" y="3" width="1920" height="1043" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25773746" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />

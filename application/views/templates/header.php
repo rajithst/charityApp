@@ -180,7 +180,7 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="<?php echo base_url(); ?>profile" class="btn btn-success btn-flat">Profile</a>
+                  <a href="<?php echo base_url()."index.php/FrontUser/Home/profile/".$this->session->userdata('id') ?>" class="btn btn-success btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
                   <a href='Login/logout' class="btn btn-success btn-flat">logout</a>

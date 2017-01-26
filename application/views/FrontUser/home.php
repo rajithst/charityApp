@@ -17,6 +17,7 @@ if ($logedin != true){
 <div class="container-fluid" style="margin-top:50px;">
 <div class="row">
 
+
 <!--left side bar-->
 <div class="col-sm-3" style=" position:fixed">
   <div class="panel panel-default">
@@ -30,6 +31,8 @@ if ($logedin != true){
                                   </p>
                                 </div>
                               </div>
+
+
 
 </div>
 <!--end of left side bar-->

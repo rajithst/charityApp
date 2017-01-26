@@ -47,7 +47,7 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">Username:</label>
                         <div class="col-md-8">
-                            <input class="form-control" required name="uname" type="text" value="<?php echo $user->username; ?>">
+                            <input readonly class="form-control" required name="uname" type="text" value="<?php echo $user->username; ?>">
                         </div>
                     </div>
                     <div class="form-group">
@@ -424,8 +424,8 @@
                             var path = document.getElementById("file");
                             if (path.value !== "") {
                                 jQuery.ajax({
-                                    //reured table input id user id path as parameters
-                                    url: "<?php echo base_url(); ?>" + "index.php/FileUpload_c/uploadPicture/users/file/<?php echo $user->id; ?>/img/user",
+                                    //reured table input id user id path as parameters replace / by <>
+                                    url: "<?php echo base_url(); ?>" + "index.php/FileUpload_c/uploadPicture/users/file/<?php echo $user->id; ?>/img1br1user",
                                     type: "POST", // Type of request to be send, called as method
                                     data: new FormData(document.getElementById("imgForm")), // Data sent to server, a set of key/value pairs (i.e. form fields and values)
                                     contentType: false, // The content type used when sending data to the server.

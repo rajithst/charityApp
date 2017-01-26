@@ -51,15 +51,34 @@ class User_d extends MY_Model {
             $this->db->where('username',$username);
             $query = $this->db->get('Users');
             $result = $query->result();
-            return $result[0]->id;
+            if(count($result)>0){
+               return $result[0]->id;
+            }
+            else{
+                return false;
+            }
+            
         }
 	
         //get userData
-        function getUser($username){
-            $this->db->where('username',$username);
+        function getUser($id){
+            $this->db->where('id',$id);
             $query = $this->db->get('Users');
             $result = $query->result();
-            return $result[0];
+            if(count($result)>0){
+               return $result[0];
+            }
+            else{
+                return false;
+            }
+        }
+        
+        //get carers
+        function getCareer($id){
+            $this->db->where('id',$id);
+            $query = $this->db->get('Career');
+            $result = $query->result();
+            return $result;
         }
         
         //get chidlren registered by particular user

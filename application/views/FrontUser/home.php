@@ -174,8 +174,10 @@ if ($logedin != true){
              <a href="#aboutModal" data-toggle="modal" data-target="#myModal"><img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRbezqZpEuwGSvitKy3wrwnth5kysKdRqBW54cAszm_wiutku3R" name="aboutme" width="70" height="70" class="img-circle"></a>
         <h4 class="text-center">Joe Sixpack</h4>
         </span>
+
+
             <span class="col-xs-2 padding">
-         <a href="#aboutModal" style="margin-top: 25px"><h4 class="text-center"> Create New</h4></a>
+         <a href="#" style="margin-top: 25px"><h4 class="text-center"> &nbsp;or <button id="child_modal" type="button" class="btn btn-success">create new</button></h4></a>
     </span>
        </div> 
     </div>          
@@ -263,12 +265,36 @@ if ($logedin != true){
   </div>
 </div>
 
+<!--end of post modal-->
+<!--//////////////////////////////////////////////////////////////////////-->
 
 
+<!--add new child modal-->
+<div id="child_reg" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Register child</h4>
+      </div>
+      <div class="modal-body">
+        <p>Some text in the modal.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
 
 
+<!--end of add new child-->
 
 <!--//////////////////////////////////////////////////////////////////////-->
+
 
 
 <!--chat window-->
@@ -539,10 +565,19 @@ $(document).ready(function(){
 	});
 
 
+  $("#child_modal").click(function(){
+    $('#postModal').modal('toggle');
+    $("#child_reg").modal('show');
+
+
+  });
+
 
 });
 
 <!--//////////////////////////////end of post script//////////////////////-->
+
+
 </script>
 
 <!-- load follower count -->

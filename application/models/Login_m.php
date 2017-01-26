@@ -52,7 +52,6 @@ class Login_m extends MY_Model{
 				$name =$result->name;
 				$email =$result->email;
 				$gender =$result->gender;
-				$picture =$result->picture;
 				
 			}
 		

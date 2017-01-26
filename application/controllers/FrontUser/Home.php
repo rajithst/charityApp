@@ -45,6 +45,12 @@ class Home extends Frontend_Controller {
 			$this->load->customizeTemplate('header',NULL,'FrontUser/profile');
 		}
 	}
+        public function getPicture($id)
+	{
+		$this->id = $id;
+                $user = $this->User_d->getUser($id);
+		echo $user->picture;
+	}
 
 
 }

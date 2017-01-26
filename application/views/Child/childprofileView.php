@@ -14,10 +14,10 @@
             <div class="row coralbg white">
                 <div class="col-md-6 no-pad">
                     <div class="user-pad">
-                        <h3>Child Name</h3>
-                        <h4 class="white"><i class="fa fa-globe" aria-hidden="true"></i> Country</h4>
-                        <h5><i class="glyphicon glyphicon-map-marker"></i> City</h5>
-                        <h4 class="white"><i class="glyphicon glyphicon-chevron-right"></i>Account Number</h4>
+                        <h3><?php echo $child->name; ?></h3>
+                        <h4 class="white"><i class="fa fa-globe" aria-hidden="true"></i> <?php echo $child->country; ?></h4>
+                        <h5><i class="glyphicon glyphicon-map-marker"></i> <?php echo $child->city; ?></h5>
+                        <h4 class="white"><i class="glyphicon glyphicon-chevron-right"></i><?php echo $child->accnumber; ?></h4>
                          <button type="button" class="btn btn-labeled" style ="background-color: white;color: #298751" href="#">
                              <span class="btn-label"><i class="glyphicon glyphicon-heart"></i></span>Donate</button>
                     </div>
@@ -95,13 +95,13 @@
                 </h3>
                 <ul class="user-menu-list ">
                     <li>
-                       <h4 class="text-left"> <i class="glyphicon glyphicon-earphone"></i> <strong>  0712345678</strong> </h4>
+                       <h4 class="text-left"> <i class="glyphicon glyphicon-earphone"></i> <strong>  <?php echo $child->mobile; ?></strong> </h4>
                     </li>
                     <li>
-                        <h4  class="text-left"><i class="glyphicon glyphicon-home"></i><strong>  43/3 Baker Street</strong></h4>
+                        <h4  class="text-left"><i class="glyphicon glyphicon-home"></i><strong>  <?php echo $child->address; ?></strong></h4>
                     </li>
                     <li>
-                        <h4  class="text-left"><i class="glyphicon glyphicon-link"></i><strong>  example@gmail.com</strong></h4>
+                        <h4  class="text-left"><i class="glyphicon glyphicon-link"></i><strong>  <?php echo $child->email; ?></strong></h4>
                     </li>
 <!--                     <li>
                         <button type="button" class="btn btn-labeled" href="#" style="color: white; background-color: #1c8e1c ">

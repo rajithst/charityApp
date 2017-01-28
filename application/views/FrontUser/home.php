@@ -21,10 +21,10 @@ if ($logedin != true){
 <!--left side bar-->
 <div class="col-sm-3" style=" position:fixed">
   <div class="panel panel-default">
-                                <div class="panel-thumbnail"><img src="http://www.bootply.com/assets/example/bg_5.jpg" class="img-responsive"></div>
+                                <div class="panel-thumbnail"><img src="" class="profilepic img-responsive"></div>
                                 <div class="panel-body">
                                   <p class="lead"><?php echo $this->session->userdata('name');?></p>
-                                  <p>45 Followers, 13 Posts</p>
+                                  <p><l id="followercount"></l> Followers, 13 Posts</p>
                                   
                                   <p>
                                     <img src="https://lh3.googleusercontent.com/uFp_tsTJboUY7kue5XAsGA=s28" width="28px" height="28px">
@@ -600,3 +600,22 @@ $(document).ready(function(){
 
 </script>
 
+<!-- load follower count -->
+<script>
+    loadFollowers();
+    function loadFollowers(){
+        jQuery.ajax({
+            type: "POST",
+            url: "<?php echo base_url(); ?>" + "index.php/Follow_c/getFollowers/"+<?php echo $this->session->userdata('id'); ?>+"/1",
+            dataType: 'json',
+            success: function (res) {
+                document.getElementById('followercount').innerHTML = res.length;
+           
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert(jqXHR.responseText);
+            }
+        });
+    }
+</script>
+<!-- end load follower count -->

@@ -56,3 +56,8 @@ $route['Register'] = 'welcome/register';
 $route['Login'] = 'Login/login';
 $route['Logout'] = 'Login/logout';
 $route['Dashboard'] = 'Admin/Dashboard';
+
+//admin routes
+$route['Pending'] = 'Admin/pendingPosts';
+$route['Approved'] = 'Admin/approvedPosts';
+

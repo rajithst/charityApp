@@ -27,30 +27,25 @@
 <!-- END PLUGINS -->
 
 <!-- START THIS PAGE PLUGINS-->
-<script type='text/javascript' src="<?php echo base_url('public/js/plugins/icheck/icheck.min.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('public/js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo base_url('public/js/plugins/scrolltotop/scrolltopcontrol.js'); ?>"></script>
 
-<script type="text/javascript" src="<?php echo base_url('public/js/plugins/morris/raphael-min.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo base_url('public/js/plugins/morris/morris.min.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo base_url('public/js/plugins/rickshaw/d3.v3.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo base_url('public/js/plugins/rickshaw/rickshaw.min.js'); ?>"></script>
-<script type='text/javascript' src="<?php echo base_url('public/js/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js'); ?>"></script>
-<script type='text/javascript' src="<?php echo base_url('public/js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js'); ?>"></script>
-<script type='text/javascript' src="<?php echo base_url('public/js/plugins/bootstrap/bootstrap-datepicker.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('public/js/plugins/owl/owl.carousel.min.js'); ?>"></script>
 
 <script type="text/javascript" src="<?php echo base_url('public/js/plugins/moment.min.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo base_url('public/js/plugins/daterangepicker/daterangepicker.js'); ?>"></script>
+
+
 <!-- END THIS PAGE PLUGINS-->
 
 <script type="text/javascript" src="<?php echo base_url('public/js/plugins/datatables/jquery.dataTables.min.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('public/js/plugins/alerts/alertify.min.js'); ?>"></script>
 
 
 <script type="text/javascript" src="<?php echo base_url('public/js/plugins.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('public/js/actions.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('public/js/admin/actions.js'); ?>"></script>
 
-<script type="text/javascript" src="<?php echo base_url('public/js/demo_dashboard.js'); ?>"></script>
+
+
 <!-- END TEMPLATE -->
 <!-- END SCRIPTS -->
 </body>

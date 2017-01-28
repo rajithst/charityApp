@@ -1,4 +1,4 @@
-
+<?php echo site_url(); ?>
 <!-- START PAGE CONTAINER -->
 <div class="page-container">
 
@@ -45,8 +45,23 @@
                                 <li><a href="#" class="panel-remove"><span class="fa fa-times"></span></a></li>
                             </ul>
                         </div>
-                        <div class="panel-body">
-                            <table class="table datatable">
+                        <div class="panel-body" id="pendingtable">
+
+                            <div class="alert alert-success" id="success-alert">
+                                <button type="button" class="close" data-dismiss="alert">x</button>
+                                <center><h3>Success!</h3>
+                                 You have been publish post <br><a href="">Undo changes?</a></center>
+                            </div>
+
+                            <div class="alert alert-danger" id="delete-alert">
+                                <center> <strong><h3>Deleted</h3></strong> You have been Deleted post</center>
+                            </div>
+
+                            <div class="alert alert-info" id="draft-info">
+                                <center> <strong><h3>Drafted</h3></strong> You have been draft a post <br><a href="">Undo changes?</a></center>
+                            </div>
+
+                            <table class="table datatable" >
                                 <thead>
                                 <tr>
                                     <th>Published By</th>
@@ -58,17 +73,23 @@
 
                                 </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="tbody">
 
+                                <?php
+                                foreach ($pending as $res) {
+
+
+                                ?>
                                 <tr>
-                                    <td>Michael Bruce</td>
-                                    <td>Javascript Developer</td>
-                                    <td>Singapore</td>
-                                    <td>29</td>
+                                    <td><a href="<?php echo $res->postedby; ?>"><?php echo $res->name . " " . $res->lastname;?></a></td>
+                                    <td><a href="<?php echo $res->id; ?>"><?php echo $res->subject;?></a></td>
+                                    <td><?php echo $res->posteddate;?></td>
+                                    <td><?php echo $res->posttime;?></td>
                                     <td><span class="label label-success label-form">18 days</span></td>
-                                    <td><button type="button" class="btn btn-success btn-rounded">Publish</button> <button type="button" class="btn btn-danger btn-rounded">Delete</button><button type="button" class="btn btn-warning btn-rounded">Add to Draft</button></td>
+                                    <td><button type="button" class="btn btn-success btn-rounded publish" id="<?php echo $res->id; ?>">Publish</button> <button type="button" class="btn btn-danger btn-rounded delete" id="<?php echo $res->id; ?>">Delete</button><button type="button" class="btn btn-warning btn-rounded draft" id="<?php echo $res->id; ?>">Add to Draft</button></td>
 
                                 </tr>
+                                <?php } ?>
                                 </tbody>
                             </table>
                         </div>
@@ -88,8 +109,143 @@
     <!-- END PAGE CONTENT -->
 </div>
 <!-- END PAGE CONTAINER -->
+<?php include "templates/footer.php"; ?>
+
+<script>
 
 
+    $(document).ready(function () {
+
+        $("#success-alert").hide();
+        $("#delete-alert").hide();
+        $("#draft-info").hide();
+
+        $('button.publish').click(function () {
+
+            var postid = this.id;
+
+            alertify.confirm("You want to publish this post?", function (e) {
+                if (e) {
+
+                    $.ajax({
+
+                        type:'get',
+                        url:"<?php echo site_url(); ?>/Posts/publishPost",
+                        dataType: 'json',
+                        data: {postid: postid},
+                        success:function (data) {
+
+                            if(data) {
+                                $("#success-alert").alert();
+                                $("#success-alert").fadeTo(2000, 500).slideUp(500, function () {
+
+                                    $("#success-alert").slideUp(500);
+                                });
+                                setTimeout(location.reload.bind(location), 3000);
+
+
+                                /*  $("table#pendingtable").html("");
+                                 $("table#pendingtable").html("<center><h2>No Pending posts available</h2></center>");
+                                 }*/
+
+                            }
+                        }
+                    })
+
+
+                } else {
+
+                }
+            });
+
+        })
+
+        $('button.delete').click(function () {
+
+            var postid = this.id;
+
+            alertify.confirm("You want to delete this post?", function (e) {
+                if (e) {
+
+                    $.ajax({
+
+                        type:'get',
+                        url:"<?php echo site_url(); ?>/Posts/DeletePost",
+                        dataType: 'json',
+                        data: {postid: postid},
+                        success:function (data) {
+
+                            if(data) {
+                                $("#delete-alert").alert();
+                                $("#delete-alert").fadeTo(2000, 500).slideUp(500, function () {
+
+                                    $("#delete-alert").slideUp(500);
+                                });
+                                setTimeout(location.reload.bind(location), 3000);
+
+
+                                /*  $("table#pendingtable").html("");
+                                 $("table#pendingtable").html("<center><h2>No Pending posts available</h2></center>");
+                                 }*/
+
+                            }
+                        }
+                    })
+
+                } else {
+                    // user clicked "cancel"
+                }
+            });
+
+
+
+        })
+
+
+        $('button.draft').click(function () {
+
+            var postid = this.id;
+
+            alertify.confirm("This post will be added to draft?", function (e) {
+                if (e) {
+
+
+                    $.ajax({
+
+                        type:'get',
+                        url:"<?php echo site_url(); ?>/Posts/DraftPost",
+                        dataType: 'json',
+                        data: {postid: postid},
+                        success:function (data) {
+
+                            if(data) {
+                                $("#draft-info").alert();
+                                $("#draft-info").fadeTo(2000, 500).slideUp(500, function () {
+
+                                    $("#draft-info").slideUp(500);
+                                });
+                                setTimeout(location.reload.bind(location), 3000);
+
+
+                                /*  $("table#pendingtable").html("");
+                                 $("table#pendingtable").html("<center><h2>No Pending posts available</h2></center>");
+                                 }*/
+
+                            }
+                        }
+                    })
+
+
+                } else {
+                    // user clicked "cancel"
+                }
+            });
+
+        })
+
+
+    })
+</script>
 
 
 

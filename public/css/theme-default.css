@@ -4,14 +4,10 @@
 @import "jquery/jquery-ui.min.css";
 @import "bootstrap/bootstrap.min.css";
 @import "fontawesome/font-awesome.min.css";
-@import "summernote/summernote.css";
-@import "codemirror/codemirror.css";
-@import "nvd3/nv.d3.css";
 @import "mcustomscrollbar/jquery.mCustomScrollbar.css";
-@import "fullcalendar/fullcalendar.css";
-@import "blueimp/blueimp-gallery.min.css";
-@import "rickshaw/rickshaw.css";
-@import "dropzone/dropzone.css";
+@import "alerty/alertify.core.css";
+@import "alerty/alertify.default.css";
+
 @import "animate/animate.min.css";
 
 /* PREDEFINED CLASSES */

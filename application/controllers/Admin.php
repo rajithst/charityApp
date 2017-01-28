@@ -14,6 +14,8 @@ class Admin extends Admin_Controller {
      */
     public function __construct(){
         parent::__construct();
+
+        $this->load->model('Post_m');
     }
 
     public function index(){
@@ -32,19 +34,19 @@ class Admin extends Admin_Controller {
 
     public function pendingPosts(){
 
-
+        $data['pending']=$this->Post_m->getPendingPosts();
         $this->load->view('templates/header');
-        $this->load->view('pendingpost');
-        $this->load->view('templates/footer');
+        $this->load->view('pendingpost',$data);
+
     }
 
 
     public function approvedPosts(){
 
-
+        $data['approved']=$this->Post_m->getApprovedPosts();
         $this->load->view('templates/header');
-        $this->load->view('approved');
-        $this->load->view('templates/footer');
+        $this->load->view('approved',$data);
+
     }
 
     public function draftPosts(){

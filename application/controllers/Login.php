@@ -1,5 +1,5 @@
 <?php
-class Login extends Frontend_Controller{
+class Login extends Admin_Controller{
 
 	public function __construct(){
 		parent::__construct();

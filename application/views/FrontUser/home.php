@@ -62,14 +62,34 @@ if ($logedin != true){
                                     <p>If you're looking for help with Bootstrap code, the <code>twitter-bootstrap</code> tag at <a href="http://stackoverflow.com/questions/tagged/twitter-bootstrap">Stackoverflow</a> is a good place to find answers.</p>
                                     
                                     <hr>
-                                    <form>
-                                    <div class="input-group">
-                                      <div class="input-group-btn">
-                                      <button class="btn btn-default">+1</button><button class="btn btn-default"><i class="glyphicon glyphicon-share"></i></button>
+                                    <!--donate row-->
+                                   <div class="row">
+                                      <div class="col-sm-4">df</div>
+                                      <!--donate amount-->
+                                      <div class="col-sm-4">
+                                        <div class="input-group">
+                                          <span class="input-group-addon">$</span>
+                                          <input id="" type="text" class="form-control" name="" placeholder="Amount">
+                                        </div>
                                       </div>
-                                      <input type="text" class="form-control" placeholder="Add a comment..">
+                                      <!--end of donate ammount-->
+                                      <div class="col-sm-4"><a href="<?php echo base_url('/donations'); ?>"><button type="button" class="btn btn-success btn-block">donate</button></div>
+                                   </div>
+                                   <!--end of donate row-->
+
+                                   <!--donation current details-->
+                                   <div class="row" style="background-color: #f5f5f5;margin-top:10px;padding:2px;    border-color: #ddd;">
+                                    <div class="col-sm-6">
+                                      $8000.00 needed<br/>$3500.00 received
                                     </div>
-                                    </form>
+
+                                    <div class="col-sm-6">
+                                    56 days left<br/> 5 donations
+                                    </div>
+
+                                   </div>
+
+                                   <!--end of donation current details-->
                                     
                                   </div>
                                </div>

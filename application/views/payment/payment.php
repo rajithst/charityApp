@@ -202,9 +202,12 @@
 
             <!--paypal -->
             <div class="col-xs-12 col-md-6" id="paypal_view" style="display:none; height:400px;">
-                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+
+               <p style="margin-bottom:20px;"> Thank you for selecting Pay Pal. To proceed with your donation please click Donate Now below.</p>
+
+                <form action="<?php echo base_url('payments'); ?>" method="post" target="_top">
                 <input type="hidden" name="cmd" value="_donations">
-                <input type="hidden" name="business" value="LTJEZ9N678W8W">
+               
                 <input type="hidden" name="lc" value="LK">
                 <input type="hidden" name="item_name" value="help me">
                 <input type="hidden" name="item_number" value="123">

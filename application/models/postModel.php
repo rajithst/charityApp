@@ -27,4 +27,10 @@ class postModel extends MY_Model {
 	}
 
 
+	function loadPost(){
+		$query=$this->db->query("SELECT * FROM posts where status=1");
+		return $query->result();
+	}
+
+
 }

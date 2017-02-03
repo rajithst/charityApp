@@ -14,7 +14,14 @@ class postController extends Frontend_Controller {
 		$this->postModel->savePost();
 	}
 
-	
+
+	public function loadPost(){
+		$data=$this->postModel->loadPost();
+		header('Content-type: text/plain'); 
+		  // set json non IE
+		 header('Content-type: application/json'); 
+		 echo json_encode($data);
+	}
 
 
 

@@ -50,49 +50,9 @@ if ($logedin != true){
                  </form>
           </div>
 
+                            <div class="post_content">
 
-
-                               <div class="panel panel-default">
-                                 <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>post</h4></div>
-                                  <div class="panel-body">
-                                    <img src="//placehold.it/150x150" class="img-circle pull-right"> <a href="#">Keyword: Bootstrap</a>
-                                    <div class="clearfix"></div>
-                                    <hr>
-                                    
-                                    <p>If you're looking for help with Bootstrap code, the <code>twitter-bootstrap</code> tag at <a href="http://stackoverflow.com/questions/tagged/twitter-bootstrap">Stackoverflow</a> is a good place to find answers.</p>
-                                    
-                                    <hr>
-                                    <!--donate row-->
-                                   <div class="row">
-                                      <div class="col-sm-4">df</div>
-                                      <!--donate amount-->
-                                      <div class="col-sm-4">
-                                        <div class="input-group">
-                                          <span class="input-group-addon">$</span>
-                                          <input id="" type="text" class="form-control" name="" placeholder="Amount">
-                                        </div>
-                                      </div>
-                                      <!--end of donate ammount-->
-                                      <div class="col-sm-4"><a href="<?php echo base_url('/donations'); ?>"><button type="button" class="btn btn-success btn-block">donate</button></div>
-                                   </div>
-                                   <!--end of donate row-->
-
-                                   <!--donation current details-->
-                                   <div class="row" style="background-color: #f5f5f5;margin-top:10px;padding:2px;    border-color: #ddd;">
-                                    <div class="col-sm-6">
-                                      $8000.00 needed<br/>$3500.00 received
-                                    </div>
-
-                                    <div class="col-sm-6">
-                                    56 days left<br/> 5 donations
-                                    </div>
-
-                                   </div>
-
-                                   <!--end of donation current details-->
-                                    
-                                  </div>
-                               </div>
+                              </div>
    </div>
 
 <!--end of center scrolling area-->
@@ -593,6 +553,9 @@ $(document).ready(function(){
 
   });
 
+  postLoad();
+  //setInterval(postLoad, 2000);
+
 
 });
 
@@ -620,6 +583,58 @@ function postSave(){
       },
     error: function( jqXhr, textStatus, errorThrown ){
         console.log("error");
+      }
+    });
+
+}
+
+
+function postLoad(){
+
+  $.ajax({
+    type: "POST",
+    url: "loadPost",
+    success: function( data, textStatus, jQxhr ){
+
+      for(var i=0;i<data.length;i++){
+      $('.post_content').append(' <div class="panel panel-default">\
+           <div class="panel-heading">\
+           <a href="#" class="pull-right">View all</a> \
+           <h4>post</h4>\
+           </div>\
+          <div class="panel-body">\
+          <div class="row">\
+          <div class="col-sm-12">\
+          <img src="//placehold.it/150x150" class="img pull-left">\
+          </div>\
+          </div>\
+        <div class="row">\
+        <div class="col-sm-4">df</div>\
+        <div class="col-sm-4">\
+        <div class="input-group">\
+          <span class="input-group-addon">$</span>\
+          <input id="" type="text" class="form-control" name="" \
+            placeholder="Amount">\
+        </div>\
+        </div>\
+        <div class="col-sm-4"><a href="<?php echo base_url('/donations'); ?>"><button type="button" class="btn btn-success btn-block">donate</button>\
+        </a></div>\
+        </div>\
+          <div class="row" style="background-color: #f5f5f5;margin-top:10px;padding:2px; border-color: #ddd;">\
+             <div class="col-sm-6">\
+              $8000.00 needed<br/>$3500.00 received </div>\
+               <div class="col-sm-6">\
+              56 days left<br/> 5 donations</div>\
+                 </div>\
+        </div>\
+        </div>\
+        ');
+        }
+                                  
+      
+      },
+    error: function( jqXhr, textStatus, errorThrown ){
+        alert("error");
       }
     });
 

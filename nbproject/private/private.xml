@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/xampp/htdocs/editcharity/application/migrations/005_Follow.php</file>
+            <file>file:/C:/xampp/htdocs/editcharity/application/models/Donation_m.php</file>
+            <file>file:/C:/xampp/htdocs/editcharity/application/controllers/Donation_c.php</file>
+            <file>file:/C:/xampp/htdocs/editcharity/application/views/FrontUser/profile.php</file>
+            <file>file:/C:/xampp/htdocs/editcharity/application/migrations/006_Career.php</file>
+            <file>file:/C:/xampp/htdocs/editcharity/application/views/Child/child_profile.php</file>
+            <file>file:/C:/xampp/htdocs/editcharity/application/controllers/migration/Migration.php</file>
+            <file>file:/C:/xampp/htdocs/editcharity/application/controllers/Child/Children_c.php</file>
+            <file>file:/C:/xampp/htdocs/editcharity/application/models/Follow_m.php</file>
+            <file>file:/C:/xampp/htdocs/editcharity/application/views/FrontUser/home.php</file>
+            <file>file:/C:/xampp/htdocs/editcharity/application/config/migration.php</file>
+            <file>file:/C:/xampp/htdocs/editcharity/application/controllers/FrontUser/Home.php</file>
+            <file>file:/C:/xampp/htdocs/editcharity/application/models/User_d.php</file>
+            <file>file:/C:/xampp/htdocs/editcharity/application/controllers/Follow_c.php</file>
+            <file>file:/C:/xampp/htdocs/editcharity/application/views/Child/childprofileView.php</file>
+        </group>
+    </open-files>
+</project-private>

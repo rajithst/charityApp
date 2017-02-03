@@ -12,6 +12,7 @@ class Home extends Frontend_Controller {
     public function index()
 	{
             $data['users']=$this->User_d->getUsers();
+            //load children of user ends
 
             if(count($data) > 0)
             {
@@ -51,6 +52,13 @@ class Home extends Frontend_Controller {
                 $user = $this->User_d->getUser($id);
 		echo $user->picture;
 	}
-
+        public function loadChildren($id){
+            $children = $this->User_d->getChildren($id);
+            $result = array();
+            foreach ($children as $row){
+                array_push($result, array('name' => $row->name." ".$row->lastname, 'picture' => $row->picture));
+            }
+            echo json_encode($result);
+        }
 
 }

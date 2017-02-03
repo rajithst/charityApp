@@ -166,6 +166,8 @@ if ($logedin != true){
                 </ul>
             </div>
       </div>
+      </div>
+
       <div class="modal-body">
 
 
@@ -211,33 +213,33 @@ if ($logedin != true){
                             <div class="row">
                             <div class="col-md-6">
                                 <label for="exampleInputEmail1">What they Need</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="What they Need">
+                                <input type="text" class="form-control" id="pt_need" placeholder="What they Need">
                             </div>
                             <div class="col-md-6">
                                 <label for="exampleInputEmail1">Why they asking your help</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Why they asking your help">
+                                <input type="text" class="form-control" id="pt_why_help" placeholder="Why they asking your help">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <label for="exampleInputEmail1">Amount</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                                <input type="text" class="form-control" id="pt_amount" placeholder="Email">
                             </div>
                             <div class="col-md-6">
                                 <label for="exampleInputEmail1">Confirm Ammount</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                                <input type="text" class="form-control" id="pt_confirm_amount" placeholder="Email">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <label for="exampleInputEmail1">How can you help</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                                <input type="text" class="form-control" id="pt_how_help" placeholder="Email">
                             </div>
                             <div class="col-md-6">
                             <label for="exampleInputEmail1">Tags</label>
                                 <div class="row">
                                     <div class="col-md-9 col-xs-9">
-                                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                                        <input type="text" class="form-control" id="pt_tags" placeholder="Email">
                                     </div>
                                 </div>
                             </div>
@@ -246,7 +248,7 @@ if ($logedin != true){
                     </div>
                         <ul class="list-inline pull-right">
                             <li><button type="button" class="btn btn-default prev-step">Previous</button></li>
-                            <li><button type="button" class="btn btn-primary next-step">Save and continue</button></li>
+                            <li><button type="button" class="btn btn-primary next-step" onclick="postSave()">Save and continue</button></li>
                         </ul>
                     </div>
                     <div class="tab-pane" role="tabpanel" id="step3">
@@ -276,7 +278,6 @@ if ($logedin != true){
                 </div>
             </form>
         </div>
-      </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
@@ -594,6 +595,35 @@ $(document).ready(function(){
 
 
 });
+
+
+//add post to db
+
+function postSave(){
+
+  var need=$("#pt_need").val();
+  var whyHelp=$("#pt_why_help").val();
+  var amount=$("#pt_amount").val();
+  var confirmAmount=$("#pt_confirm_amount").val();
+  var howHelp=$("#pt_how_help").val();
+  var tags=$("#pt_tags").val();
+
+
+
+  $.ajax({
+    type: "POST",
+    url: "savePost",
+    data: {need:need,whyHelp:whyHelp,amount:amount,howHelp:howHelp,tags:tags},
+    success: function( data, textStatus, jQxhr ){
+      console.log("success");
+      
+      },
+    error: function( jqXhr, textStatus, errorThrown ){
+        console.log("error");
+      }
+    });
+
+}
 
 <!--//////////////////////////////end of post script//////////////////////-->
 

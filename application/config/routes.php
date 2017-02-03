@@ -100,5 +100,9 @@ $route['donations']='FrontUser/paymentController/index';
 $route['payments']='FrontUser/paymentController/requestResponse';
 
 
+/** post **/
+
+$route['savePost']='FrontUser/postController/savePost';
+
 
 

@@ -15,4 +15,13 @@ class profileModel extends MY_Model {
 
 	}
 
+	//current logged  user details
+
+	function getUser(){
+		$uname=$this->session->userdata('username');
+		$query=$this->db->query("SELECT * FROM users WHERE username='".$uname."'");
+	return $query->result();
+
+	}
+
 }

@@ -183,7 +183,7 @@
                   <a href="<?php echo base_url()."index.php/FrontUser/Home/profile/".$this->session->userdata('id') ?>" class="btn btn-success btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href='Login/logout' class="btn btn-success btn-flat">logout</a>
+                  <a href="<?php echo base_url()?>index.php/Login/logout" class="btn btn-success btn-flat">logout</a>
                 </div>
               </li>
             </ul>

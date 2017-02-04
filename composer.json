@@ -1,0 +1,6 @@
+{
+  "name": "DMan",
+  "require": {
+    "stripe/stripe-php": "4.*"
+  }
+}

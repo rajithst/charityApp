@@ -140,7 +140,8 @@
         <div class="page-header">
             <h1 id="">Timeline</h1>
         </div>
-        <div id="timeline"><div class="row timeline-movement timeline-movement-top">
+        <div id="timeline">
+            <div class="row timeline-movement timeline-movement-top">
                 <div class="timeline-badge timeline-future-movement">
                     <a href="#">
                         <span class="glyphicon glyphicon-plus"></span>
@@ -153,127 +154,74 @@
                 </div>
 
             </div>
+            <?php
+                $l = count($donations);
+                $predate = "";
+                $months = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
+                $placeolder = 0;
+                for($i=$l-1;$i>=0;$i--){
+                    $cdate = $donations[$i]->date;
+                    if($predate != $cdate){
+                        list($year,$month,$day) = explode("-", $cdate);
+                        $placeolder = 0;
+            ?>
             <div class="row timeline-movement">
 
                 <div class="timeline-badge">
-                    <span class="timeline-balloon-date-day">18</span>
-                    <span class="timeline-balloon-date-month">APR</span>
+                    <span class="timeline-balloon-date-day"><?php echo $day; ?></span>
+                    <span class="timeline-balloon-date-month"><?php echo $months[intval($month)-1]; ?></span>
                 </div>
-
-
-                <div class="col-sm-6  timeline-item">
-                    <div class="row">
-                        <div class="col-sm-11">
-                            <div class="timeline-panel credits">
-                                <ul class="timeline-panel-ul">
-                                    <li><span class="importo">Donation</span></li>
-                                    <li><span class="causale">To Small child a shoes worth of $100 </span> </li>
-                                    <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 18/04/2014</small></p> </li>
-                                </ul>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
+                
+            <?php
+                    }
+                    if($placeolder==1){
+            ?>
                 <div class="col-sm-6  timeline-item">
                     <div class="row">
                         <div class="col-sm-offset-1 col-sm-11">
                             <div class="timeline-panel debits">
                                 <ul class="timeline-panel-ul">
                                     <li><span class="importo">Donation</span></li>
-                                    <li><span class="causale">Cash ($250) donation to charity fund 'Hold Hands' </span> </li>
-                                    <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 18/04/2014</small></p> </li>
+                                    <li><span class="causale"><?php echo $donations[$i]->description." ".$donations[$i]->amount; ?></span> </li>
+                                    <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> <?php echo $cdate; ?></small></p> </li>
                                 </ul>
                             </div>
 
                         </div>
                     </div>
                 </div>
-            </div>
+            <?php     
+                        $placeolder = 0;
+                    }else{
+            ?>
+                <div class="col-sm-6  timeline-item">
+                    <div class="row">
+                        <div class="col-sm-11">
+                            <div class="timeline-panel credits">
+                                <ul class="timeline-panel-ul">
+                                    <li><span class="importo">Donation</span></li>
+                                    <li><span class="causale"><?php echo $donations[$i]->description." ".$donations[$i]->amount; ?></span> </li>
+                                    <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> <?php echo $cdate; ?></small></p> </li>
+                                </ul>
+                            </div>
 
+                        </div>
+                    </div>
+                </div>
+            <?php          
+                        $placeolder = 1;
+                    }
+                    if(($i==0)||(($i>0)&&($cdate!=$donations[$i-1]->date))){
+            ?>
+            </div>
+            <?php
+                    }
+                    $predate = $cdate;
+                }
+            ?>
             <!--due -->
 
-            <div class="row timeline-movement">
-
-
-                <div class="timeline-badge">
-                    <span class="timeline-balloon-date-day">13</span>
-                    <span class="timeline-balloon-date-month">APR</span>
-                </div>
-
-                <div class="col-sm-offset-6 col-sm-6  timeline-item">
-                    <div class="row">
-                        <div class="col-sm-offset-1 col-sm-11">
-                            <div class="timeline-panel debits">
-                                <ul class="timeline-panel-ul">
-                                    <li><span class="importo">Need Donation</span></li>
-                                    <li><span class="causale">A school student wants his book list </span> </li>
-                                    <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 11/09/2014</small></p> </li>
-                                </ul>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-6  timeline-item">
-                    <div class="row">
-                        <div class="col-sm-11">
-                            <div class="timeline-panel credits">
-                                <ul class="timeline-panel-ul">
-                                    <li><span class="importo">Need Donation</span></li>
-                                    <li><span class="causale">A family is waiting for a donor who can spend on their small children </span> </li>
-                                    <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 11/09/2014</small></p> </li>
-                                </ul>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-
-            </div>
-            <div class="row timeline-movement">
-
-
-                <div class="timeline-badge">
-                    <span class="timeline-balloon-date-day">10</span>
-                    <span class="timeline-balloon-date-month">APR</span>
-                </div>
-
-                <div class="col-sm-offset-6 col-sm-6  timeline-item">
-                    <div class="row">
-                        <div class="col-sm-offset-1 col-sm-11">
-                            <div class="timeline-panel debits">
-                                <ul class="timeline-panel-ul">
-                                    <li><span class="importo">Donation</span></li>
-                                    <li><span class="causale">$300 Donation to a family </span> </li>
-                                    <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 11/09/2014</small></p> </li>
-                                </ul>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-6  timeline-item">
-                    <div class="row">
-                        <div class="col-sm-11">
-                            <div class="timeline-panel credits">
-                                <ul class="timeline-panel-ul">
-                                    <li><span class="importo">Need Donation</span></li>
-                                    <li><span class="causale">A family lives in rural area with no water </br>
-                                            <a href="">View Family</a>
-                                        </span> </li>
-                                    <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 11/09/2014</small></p> </li>
-                                </ul>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
         </div>
     </div>
     <!-- /Timeline -->

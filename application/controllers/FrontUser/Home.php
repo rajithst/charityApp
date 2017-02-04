@@ -7,6 +7,7 @@ class Home extends Frontend_Controller {
 	public function __construct() {
 		parent::__construct();
 		$this->load->model('User_d');
+                $this->load->model('Donation_m');
 	}
 
     public function index()
@@ -37,6 +38,8 @@ class Home extends Frontend_Controller {
                 $data['children'] = $this->User_d->getChildren($this->id);
 		//load children of user ends
 		$data['users']=$this->User_d->getUsers();
+                $data['donations'] = $this->Donation_m->getDonations($this->id,date("Y").'-01-01',date("Y").'-12-31');
+		
 		if(count($data) > 0)
 		{
 			$this->load->customizeTemplate('header',NULL,'FrontUser/profile',$data);

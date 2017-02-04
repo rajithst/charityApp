@@ -15,7 +15,7 @@ class edit_Profile extends Frontend_Controller {
 		$data['children'] = $this->User_d->getChildren($this->id);
 		//load children of user ends
 		$data['users']=$this->User_d->getUsers();
-		if(count($data) > 0)
+                if(count($data) > 0)
 		{
 			$this->load->customizeTemplate('header',NULL,'FrontUser/edit_profile',$data);
 		}

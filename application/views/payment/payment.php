@@ -105,6 +105,7 @@
   </div>
 </div>
 
+</form>
 <?php  endforeach; ?>
 <legend>payment information</legend>
 
@@ -117,6 +118,50 @@
 
 
 <!-- CREDIT CARD FORM STARTS HERE -->
+<!-- Stripe payment starts here -->
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<script type="text/javascript">
+  Stripe.setPublishableKey('pk_test_nBSQ2RBMfHBInqDT8bFyXPmT');
+</script>
+<script>
+$(function() {
+  var $form = $('#payment-form');
+  $form.submit(function(event) {
+    // Disable the submit button to prevent repeated clicks:
+    $form.find('.submit').prop('disabled', true);
+
+    // Request a token from Stripe:
+    Stripe.card.createToken($form, stripeResponseHandler);
+
+    // Prevent the form from being submitted:
+    return false;
+  });
+});
+function stripeResponseHandler(status, response) {
+  // Grab the form:
+  var $form = $('#payment-form');
+
+  if (response.error) { // Problem!
+
+    // Show the errors on the form:
+    $form.find('.payment-errors').text(response.error.message);
+    $form.find('.submit').prop('disabled', false); // Re-enable submission
+
+  } else { // Token was created!
+
+    // Get the token ID:
+    var token = response.id;
+
+    // Insert the token ID into the form so it gets submitted to the server:
+    $form.append($('<input type="hidden" name="stripeToken">').val(token));
+
+    // Submit the form:
+    $form.get(0).submit();
+  }
+};
+</script>
+<!-- Stripe payment sends here -->
+
  <div class="col-xs-12 col-md-6" id="credit_card_view">
             <div class="panel panel-default credit-card-box" style="padding:8px;">
                 <div class="panel-heading display-table" >
@@ -128,72 +173,43 @@
                     </div>                    
                 </div>
                 <div class="panel-body">
-                    <form role="form" id="payment-form" method="POST" action="javascript:void(0);">
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="form-group">
-                                    <label for="cardNumber">CARD NUMBER</label>
-                                    <div class="input-group">
-                                        <input 
-                                            type="tel"
-                                            class="form-control"
-                                            name="cardNumber"
-                                            placeholder="Valid Card Number"
-                                            autocomplete="cc-number"
-                                            required autofocus 
-                                        />
-                                        <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
-                                    </div>
-                                </div>                            
+                    <form action="<?php echo base_url() ?>index.php/FrontUser/paymentController/stripePay" class="form-horizontal" method="POST" id="payment-form">
+                        <span class="payment-errors"></span>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Amount</label>  
+                            <div class="col-sm-6">
+                            <input placeholder="Amount" class="form-control" required="" name="transferamount"> 
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-xs-7 col-md-7">
-                                <div class="form-group">
-                                    <label for="cardExpiry"><span class="hidden-xs">EXPIRATION</span><span class="visible-xs-inline">EXP</span> DATE</label>
-                                    <input 
-                                        type="tel" 
-                                        class="form-control" 
-                                        name="cardExpiry"
-                                        placeholder="MM / YY"
-                                        autocomplete="cc-exp"
-                                        required 
-                                    />
-                                </div>
-                            </div>
-                            <div class="col-xs-5 col-md-5 pull-right">
-                                <div class="form-group">
-                                    <label for="cardCVC">CV CODE</label>
-                                    <input 
-                                        type="tel" 
-                                        class="form-control"
-                                        name="cardCVC"
-                                        placeholder="CVC"
-                                        autocomplete="cc-csc"
-                                        required
-                                    />
-                                </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Card Number</label>  
+                            <div class="col-sm-6">
+                            <input placeholder="xxxxxxxxxxxxxxxxxxxx" class="form-control" required="" size="20" data-stripe="number"> 
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="form-group">
-                                    <label for="couponCode">COUPON CODE</label>
-                                    <input type="text" class="form-control" name="couponCode" />
-                                </div>
-                            </div>                        
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <button class="subscribe btn btn-success btn-lg btn-block" type="button">Start Subscription</button>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Expiration (MM/YY)</label>  
+                            <div class="col-sm-6">
+                            <div class="form-control">
+                            <input class="col-sm-2" placeholder="MM" required="" type="text" size="2" data-stripe="exp_month">
+                            <span class="col-sm-1"> / </span>
+                            <input class="col-sm-2" placeholder="YY" required="" type="text" size="2" data-stripe="exp_year">
+                            </div>
                             </div>
                         </div>
-                        <div class="row" style="display:none;">
-                            <div class="col-xs-12">
-                                <p class="payment-errors"></p>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">CVC</label>  
+                            <div class="col-sm-6">
+                            <input placeholder="xxx" class="form-control" required="" type="text" size="4" data-stripe="cvc"> 
                             </div>
                         </div>
-                    </form>
+                        <div class="form-group">
+                            <div class="col-sm-6 center-block">
+                            <input type="submit" class="btn btn-primary submit" value="Submit Payment">
+                            </div>
+                        </div>
+                      </form>
+
                 </div>
             </div>     
             </div>       
@@ -223,7 +239,6 @@
 
 
 
-</form>
 </div>
 
 <script>

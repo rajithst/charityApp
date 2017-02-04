@@ -33,4 +33,10 @@ class Donation_c extends MY_Controller{
         //echo $id;
         echo json_encode($amounts);
     }
+    public function getTotalDonatedAmount($id){
+        echo $this->Donation_m->getTotalDonatedAmount($id);
+    }
+    public function getTotalReceivedAmount($id){
+        echo $this->Donation_m->getTotalReceivedAmount($id);
+    }
 }

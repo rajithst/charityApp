@@ -25,4 +25,18 @@ class Donation_m extends MY_Model{
         $query = $this->db->query($sql);
         return $query->result();
     }
+    public function getTotalDonatedAmount($id){
+        $where = "donorID=$id";
+        $sql = "SELECT sum(amount) AS amount FROM donations WHERE $where;";
+        $query = $this->db->query($sql);
+        $results = $query->result();
+        return $results[0]->amount;
+    }
+    public function getTotalReceivedAmount($id){
+        $where = "recipientID=$id";
+        $sql = "SELECT sum(amount) AS amount FROM donations WHERE $where;";
+        $query = $this->db->query($sql);
+        $results = $query->result();
+        return $results[0]->amount;
+    }
 }

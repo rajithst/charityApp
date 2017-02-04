@@ -76,18 +76,28 @@ $route['updateReadStatus']='FrontUser/chatController/updateRead';
 $route['profile'] = 'FrontUser/Home/profile';
 
 
-/** search user profiles **/
+/** search **/
+
+//search user profiles 
 $route['searchProfile']='FrontUser/searchController/searchProf';
-
-
-/** get all children **/
+// get all children 
 $route['getAllChildren']='Child/Children_c/getAllChildren';
 
-/**event save**/
-$route['saveEvent']='FrontUser/eventController/saveEvent';
+/** event **/
 
-/** show event pages **/
+//event save
+$route['saveEvent']='FrontUser/eventController/saveEvent';
+// show event pages
 $route['events/(:any)']='FrontUser/eventController/loadEvent/$1';
+
+
+
+/** payments **/
+
+//load payment page
+$route['donations']='FrontUser/paymentController/index';
+
+$route['payments']='FrontUser/paymentController/requestResponse';
 
 
 

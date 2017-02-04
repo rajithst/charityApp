@@ -36,7 +36,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a href="<?php echo base_url()."Home"; ?>" class="navbar-brand logo"><b style="color: #990000;">Help Me</b></a>
+      <a href="<?php echo base_url()."Home"; ?>" class="navbar-brand logo"><b style="color: white;">Help Me</b></a>
     </div>
     <nav class="collapse navbar-collapse  container-fluid" role="navigation">
       <form class="navbar-form navbar-left">
@@ -67,9 +67,6 @@
               <ul class="menu">
                 <li><!-- start message -->
                   <a href="#">
-                    <div class="pull-right">
-                      <img src=<?php echo base_url($this->session->userdata('picture')) ?>" class="img-circle" alt="User Image">
-                    </div>
                     <h4>
                       Support Team
                       <small><i class="fa fa-clock-o"></i> 5 mins</small>
@@ -153,13 +150,13 @@
         <ul class="nav navbar-nav navbar-right">
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="<?php echo base_url($this->session->userdata('picture')) ?>" class="user-image" alt="User Image" width="160px" height="160px">
+              <img src="" class="profilepic user-image" alt="User Image" width="160px" height="160px">
               <span class="hidden-xs"><?php echo $this->session->userdata('username').'<br>';?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="<?php echo base_url($this->session->userdata('picture')) ?>" class="img-circle" alt="User Image">
+                <img src="" class="profilepic img-circle" alt="User Image">
                 <p>
                   <?php echo $this->session->userdata('username').'<br>';?>
                   <small>Member since Nov. 2012</small>
@@ -183,10 +180,10 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="<?php echo base_url(); ?>profile" class="btn btn-success btn-flat">Profile</a>
+                  <a href="<?php echo base_url()."index.php/FrontUser/Home/profile/".$this->session->userdata('id') ?>" class="btn btn-success btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href='Login/logout' class="btn btn-success btn-flat">logout</a>
+                  <a href="<?php echo base_url()?>index.php/Login/logout" class="btn btn-success btn-flat">logout</a>
                 </div>
               </li>
             </ul>
@@ -239,6 +236,22 @@
   </script>
 
   <!--end of search for vendor-->
-
-
+  <!-- profile picture -->
+  <script>
+    loadProfPic();
+    function loadProfPic(){
+        jQuery.ajax({
+            type: "POST",
+            url: "<?php echo base_url(); ?>" + "index.php/FrontUser/Home/getPicture/" + "<?php echo $this->session->userdata('id'); ?>",
+            success: function (res) {
+                $('.profilepic').attr('src','<?php echo base_url(); ?>'+res);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert(jqXHR.responseText);
+            }
+        });
+    }
+    
+  </script>
+  <!-- end of profile picture -->
 <body>

@@ -9,6 +9,7 @@
    <link rel="stylesheet" href="<?php echo base_url('assets/css/chat.css');?>">
 
   <link rel="stylesheet" href="<?php echo base_url('assets/css/style.css');?>">
+  <link rel="stylesheet" href="<?php echo base_url('assets/css/event.css'); ?>">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
 
   <script src="<?php echo base_url('assets/js/jquery.min.js');?>"></script>
@@ -183,7 +184,7 @@
                   <a href="<?php echo base_url()."index.php/FrontUser/Home/profile/".$this->session->userdata('id') ?>" class="btn btn-success btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="<?php echo base_url()?>index.php/Login/logout" class="btn btn-success btn-flat">logout</a>
+                  <a href='Login/logout' class="btn btn-success btn-flat">logout</a>
                 </div>
               </li>
             </ul>

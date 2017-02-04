@@ -7,7 +7,6 @@ class Register extends Frontend_Controller {
 	function __construct() {
 		parent::__construct();
 		$this->load->model('User_d');
-                $this->load->model('Children_m');
 	}
 
     /**
@@ -36,26 +35,6 @@ class Register extends Frontend_Controller {
     	$this->User_d->register();
     	
     
-    }
-    //register child
-    function registerChild() {
-    	$arr = array(
-            'name' => $this->input->post('fname'),
-            'lastname' => $this->input->post('lname'),
-            'birthdate' => $this->input->post('bdate'),
-            'donorID' => $this->session->userdata('id'),
-            'email' => $this->input->post('email'),
-            'mobile' => $this->input->post('mobilenumber'),
-            'address' => $this->input->post('address'),
-            'postalcode' => $this->input->post('postalcode'),
-            'country' => $this->input->post('country'),
-            'country' => $this->input->post('country'),
-            'description' => $this->input->post('about'),
-            'accnumber' => $this->input->post('accnumber'),
-            'registeredDate' => date("Y-m-d"),
-            'picture' => 'img/children/child.png'
-        );
-        echo (bool)$this->Children_m->register($arr);
     }
     
     

@@ -36,16 +36,9 @@
                                     ?>
                                 </p>
                             </div>
-                            <?php 
-                            if($this->session->userdata('id')==$user->id)
-                            {
-                            ?>
                             <div class="col-lg-2 edit-profile-btn">
                                 <a href="<?php echo base_url(); ?>index.php/FrontUser/EditProfile_c"><button type="button" class="btn btn-primary btn-block col-lg-2"><span class="fa fa-pencil-square-o"></span> Edit Profile</button><a/>
                             </div>
-                            <?php 
-                            }
-                            ?>
                             <div class="col-lg-2 edit-profile-btn">
                                 <button type="button" class="btn btn-primary btn-block col-lg-2" data-toggle="modal" data-target="#Event_modal"><span class="fa fa-plus-circle"></span> Create Event</button>
                             </div>

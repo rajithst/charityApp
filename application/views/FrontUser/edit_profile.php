@@ -1,8 +1,3 @@
-<head>
-    <link rel="stylesheet" href="<?php echo base_url('assets/css/validationEngine.jquery.css')?>" type="text/css"/>
-    <script src="<?php echo base_url('assets/js/jquery.validationEngine-en.js') ?>" type="text/javascript" charset="utf-8"></script>
-    <script src="<?php echo base_url('assets/js/jquery.validationEngine.js') ?>" type="text/javascript" charset="utf-8"></script>
-</head>
 <div class="" style="background-color: #c1f1d5">
     <div class="container">
         <h1>Edit Profile</h1>
@@ -33,13 +28,13 @@
                     <div class="form-group">
                         <label class="col-lg-3 control-label">First name:</label>
                         <div class="col-lg-8">
-                            <input class="form-control validate[required]" required name="fname" type="text" value="<?php echo $user->name; ?>">
+                            <input class="form-control" required name="fname" type="text" value="<?php echo $user->name; ?>">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-3 control-label">Last name:</label>
                         <div class="col-lg-8">
-                            <input class="form-control validate[required]" name="lname" type="text" value="<?php echo $user->lastname; ?>">
+                            <input class="form-control" name="lname" type="text" value="<?php echo $user->lastname; ?>">
                         </div>
                     </div>
                     <div class="form-group">
@@ -52,50 +47,50 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">Username:</label>
                         <div class="col-md-8">
-                            <input readonly class="form-control validate[required]" required name="uname" type="text" value="<?php echo $user->username; ?>">
+                            <input readonly class="form-control" required name="uname" type="text" value="<?php echo $user->username; ?>">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-3 control-label">Email:</label>
                         <div class="col-lg-8">
-                            <input class="form-control validate[required,custom[email]]" required name="email" type="text" value="<?php echo $user->email; ?>">
+                            <input class="form-control" required name="email" type="text" value="<?php echo $user->email; ?>">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Password:</label>
                         <div class="col-md-8">
-                            <input class="form-control validate[required]" name="pword" type="password" value="">
+                            <input class="form-control" name="pword" type="password" value="">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Confirm password:</label>
                         <div class="col-md-8">
-                            <input class="form-control validate[required,equals[password]]" name="rpword" type="password" value="">
+                            <input class="form-control" name="rpword" type="password" value="">
                         </div>
                     </div>
                     <hr>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Mobile No:</label>
                         <div class="col-md-8">
-                            <input class="form-control" maxlength="10" name="mobile" type="number" value="<?php echo $user->mobile; ?>">
+                            <input class="form-control" name="mobile" type="number" value="<?php echo $user->mobile; ?>">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Address:</label>
                         <div class="col-md-8">
-                            <textarea class="form-control validate[required]" name="address" rows="5" id="address"><?php echo $user->address; ?></textarea>
+                            <textarea class="form-control" name="address" rows="5" id="address"><?php echo $user->address; ?></textarea>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Postal Code:</label>
                         <div class="col-md-8">
-                            <input class="form-control validate[required]" name="pcode" type="number" value="<?php echo $user->postalcode; ?>">
+                            <input class="form-control" name="pcode" type="number" value="<?php echo $user->postalcode; ?>">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Country</label>
                         <div class="col-md-8 ui-select">
-                            <select id="user_country" name="country" class="form-control validate[required]">
+                            <select id="user_country" name="country" class="form-control">
                                 <option value="AF">Afghanistan</option>
                                 <option value="AX">Åland Islands</option>
                                 <option value="AL">Albania</option>
@@ -403,10 +398,8 @@
                 postalcode = document.forms["editForm"]["pcode"].value;
                 country = document.forms["editForm"]["country"].value;
                 about = document.forms["editForm"]["about"].value;
-                if (!validateEmail(email)){
-                    alert("Email is incorrect");
+                if (!validateEmail(email))
                     return;
-                }
                 if (password != repassword) {
                     alert("Passwords are missmatch");
                     return;
@@ -461,7 +454,7 @@
     //change picture of file change
     $('#file').change(function(){
         readURL(this,'picture');
-    });
+    })
     function readURL(input, imgtg) {
 
                 if (input.files && input.files[0]) {

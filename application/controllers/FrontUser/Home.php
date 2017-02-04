@@ -12,7 +12,6 @@ class Home extends Frontend_Controller {
     public function index()
 	{
             $data['users']=$this->User_d->getUsers();
-            //load children of user ends
 
             if(count($data) > 0)
             {
@@ -33,7 +32,7 @@ class Home extends Frontend_Controller {
 		$this->id = $id;
                 $data['user'] = $this->User_d->getUser($id);
 		$data['career'] = $this->User_d->getCareer($this->id);
-		
+
                 $data['children'] = $this->User_d->getChildren($this->id);
 		//load children of user ends
 		$data['users']=$this->User_d->getUsers();
@@ -52,13 +51,10 @@ class Home extends Frontend_Controller {
                 $user = $this->User_d->getUser($id);
 		echo $user->picture;
 	}
-        public function loadChildren($id){
-            $children = $this->User_d->getChildren($id);
-            $result = array();
-            foreach ($children as $row){
-                array_push($result, array('name' => $row->name." ".$row->lastname, 'picture' => $row->picture));
-            }
-            echo json_encode($result);
-        }
+
+	public function event()
+	{
+		$this->load->template('FrontUser/event_page');
+	}
 
 }

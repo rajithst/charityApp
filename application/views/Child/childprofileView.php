@@ -16,7 +16,7 @@
                     <div class="user-pad">
                         <h3><?php echo $child->name; ?></h3>
                         <h4 class="white"><i class="fa fa-globe" aria-hidden="true"></i> <?php echo $child->country; ?></h4>
-                        <h5><i class="glyphicon glyphicon-map-marker"></i> <?php echo $child->address; ?></h5>
+                        <h5><i class="glyphicon glyphicon-map-marker"></i> <?php echo $child->city; ?></h5>
                         <h4 class="white"><i class="glyphicon glyphicon-chevron-right"></i><?php echo $child->accnumber; ?></h4>
                          <button type="button" class="btn btn-labeled" style ="background-color: white;color: #298751" href="#">
                              <span class="btn-label"><i class="glyphicon glyphicon-heart"></i></span>Donate</button>
@@ -24,7 +24,7 @@
                 </div>
                 <div class="col-md-6 no-pad">
                     <div class="user-image">
-                        <img src="<?php echo base_url().$child->picture; ?>" class="img-responsive thumbnail">
+                        <img src="https://farm7.staticflickr.com/6163/6195546981_200e87ddaf_b.jpg" class="img-responsive thumbnail">
                     </div>
                 </div>
             </div>

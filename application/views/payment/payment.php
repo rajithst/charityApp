@@ -225,7 +225,7 @@ function stripeResponseHandler(status, response) {
                 <input type="hidden" name="cmd" value="_donations">
                
                 <input type="hidden" name="lc" value="LK">
-                <input type="hidden" name="item_name" value="help me">
+                <input type="hidden" name="item_name" value="HelpMe-Non profit organization">
                 <input type="hidden" name="item_number" value="123">
                 <input type="hidden" name="currency_code" value="USD">
                 <input type="hidden" name="bn" value="PP-DonationsBF:btn_donateCC_LG.gif:NonHosted">

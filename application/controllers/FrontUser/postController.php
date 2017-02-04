@@ -23,6 +23,15 @@ class postController extends Frontend_Controller {
 		 echo json_encode($data);
 	}
 
+	public function loadMore(){
+		$data=$this->postModel->loadMore();
+		header('Content-type: text/plain'); 
+		  // set json non IE
+		 header('Content-type: application/json'); 
+		 echo json_encode($data);
+
+	}
+
 
 
 }

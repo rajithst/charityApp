@@ -578,7 +578,9 @@ function postSave(){
     url: "savePost",
     data: {need:need,whyHelp:whyHelp,amount:amount,howHelp:howHelp,tags:tags},
     success: function( data, textStatus, jQxhr ){
-      console.log("success");
+      //console.log("success");
+   
+
       
       },
     error: function( jqXhr, textStatus, errorThrown ){
@@ -595,12 +597,13 @@ function postLoad(){
     type: "POST",
     url: "loadPost",
     success: function( data, textStatus, jQxhr ){
+      $('.post_content').empty();
 
       for(var i=0;i<data.length;i++){
       $('.post_content').append(' <div class="panel panel-default">\
            <div class="panel-heading">\
            <a href="#" class="pull-right">View all</a> \
-           <h4>post</h4>\
+           <h4>post'+data[i].id+'</h4>\
            </div>\
           <div class="panel-body">\
           <div class="row">\
@@ -628,8 +631,78 @@ function postLoad(){
                  </div>\
         </div>\
         </div>\
+        <input type="hidden" value='+data[i].id+' class="lastid_value" />\
         ');
+
+      
         }
+
+        $('.post_content').append('<button type="button" id="load_more" onclick="loadMore()"" class="btn btn-default">Load More</button>');
+                                  
+      
+      },
+    error: function( jqXhr, textStatus, errorThrown ){
+        alert("error");
+      }
+    });
+
+}
+
+
+function loadMore(){
+  var lastid=$(".lastid_value").val();
+  lastid=parseInt(lastid)-4;
+  alert(lastid);
+  $("#load_more").text("Loading please wait..");
+
+
+   $.ajax({
+    type: "POST",
+    url: "loadMorePost",
+    data:{lastid:lastid},
+    success: function( data, textStatus, jQxhr ){
+      $("#load_more").remove();
+      $(".lastid_value").remove();
+
+      for(var i=0;i<data.length;i++){
+      $('.post_content').append(' <div class="panel panel-default">\
+           <div class="panel-heading">\
+           <a href="#" class="pull-right">View all</a> \
+           <h4>post'+data[i].id+'</h4>\
+           </div>\
+          <div class="panel-body">\
+          <div class="row">\
+          <div class="col-sm-12">\
+          <img src="//placehold.it/150x150" class="img pull-left">\
+          </div>\
+          </div>\
+        <div class="row">\
+        <div class="col-sm-4">df</div>\
+        <div class="col-sm-4">\
+        <div class="input-group">\
+          <span class="input-group-addon">$</span>\
+          <input id="" type="text" class="form-control" name="" \
+            placeholder="Amount">\
+        </div>\
+        </div>\
+        <div class="col-sm-4"><a href="<?php echo base_url('/donations'); ?>"><button type="button" class="btn btn-success btn-block">donate</button>\
+        </a></div>\
+        </div>\
+          <div class="row" style="background-color: #f5f5f5;margin-top:10px;padding:2px; border-color: #ddd;">\
+             <div class="col-sm-6">\
+              $8000.00 needed<br/>$3500.00 received </div>\
+               <div class="col-sm-6">\
+              56 days left<br/> 5 donations</div>\
+                 </div>\
+        </div>\
+        </div>\
+        <input type="hidden" value='+data[i].id+' class="lastid_value" />\
+        ');
+
+      
+        }
+
+        $('.post_content').append('<button type="button" id="load_more" onclick="loadMore()"" class="btn btn-default">Load More</button>');
                                   
       
       },

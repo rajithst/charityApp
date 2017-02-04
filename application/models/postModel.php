@@ -28,8 +28,15 @@ class postModel extends MY_Model {
 
 
 	function loadPost(){
-		$query=$this->db->query("SELECT * FROM posts where status=1");
+		$query=$this->db->query("SELECT * FROM posts where status=1 order by posttime desc limit 4");
 		return $query->result();
+	}
+
+	function loadMore(){
+		$lastid=$this->input->post('lastid');
+		$query=$this->db->query("SELECT * FROM posts where status=1 and id<='".$lastid."' order by posttime desc limit 4");
+		return $query->result();
+
 	}
 
 

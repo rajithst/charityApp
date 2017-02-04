@@ -106,6 +106,8 @@ $route['payments']='FrontUser/paymentController/requestResponse';
 $route['savePost']='FrontUser/postController/savePost';
 //load post
 $route['loadPost']='FrontUser/postController/loadPost';
+//load more post
+$route['loadMorePost']='FrontUser/postController/loadMore';
 
 
 

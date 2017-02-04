@@ -26,7 +26,7 @@
         <ul>
             <li><a href="<?php echo base_url('index.php/Pending'); ?>"><span class="fa fa-image"></span>Pending Posts</a></li>
             <li><a href="<?php echo base_url('index.php/Approved'); ?>"><span class="fa fa-user"></span>Approved</a></li>
-            <li><a href="draftPosts"><span class="fa fa-users"></span>Draft</a></li>
+            <li><a href="<?php echo base_url('index.php/Draft'); ?>"><span class="fa fa-users"></span>Draft</a></li>
         </ul>
     </li>
     <li class="xn-openable">

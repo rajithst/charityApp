@@ -20,7 +20,6 @@ class Admin extends Admin_Controller {
 
     public function index(){
 
-        $this->load->view('templates/header');
         $this->load->view('login');
     }
 
@@ -51,9 +50,11 @@ class Admin extends Admin_Controller {
 
     public function draftPosts(){
 
-
+        $data['draft']=$this->Post_m->getDraftedPosts();
         $this->load->view('templates/header');
-        $this->load->view('draft');
-        $this->load->view('templates/footer');
+        $this->load->view('draft',$data);
+
     }
+
+
 }

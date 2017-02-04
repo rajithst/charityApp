@@ -14,7 +14,7 @@ class Login_m extends MY_Model{
 	function login($data){
 
         $condition = "username =" . "'" . $data['username'] . "' AND " . "password =" . "'" . $data['password'] . "'";
-        $sql = "SELECT * FROM Adminusers WHERE $condition";
+        $sql = "SELECT * FROM adminusers WHERE $condition";
         $query = $this->db->query($sql);
         $res = $query->result();
         $rows  = $query->num_rows();

@@ -1,3 +1,12 @@
+
+<?php
+$logedin = $this->session->userdata('loggedin');
+if ($logedin != true){
+    redirect('Admin/index');
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en" class="body-full-height">
 <head>

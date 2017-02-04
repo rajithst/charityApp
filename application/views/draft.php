@@ -46,27 +46,50 @@
                             </ul>
                         </div>
                         <div class="panel-body">
+
+
+
+                            <div class="alert alert-danger" id="delete-alert">
+                                <center> <strong><h3>Deleted</h3></strong> You have been Deleted post</center>
+                            </div>
+
+                            <div class="alert alert-success" id="success-alert">
+                                <button type="button" class="close" data-dismiss="alert">x</button>
+                                <center><h3>Success!</h3>
+                                    You have been publish post <br><a href="">Undo changes?</a></center>
+                            </div>
                             <table class="table datatable">
                                 <thead>
                                 <tr>
-                                    <th>Published By</th>
+                                    <th>Posted By</th>
                                     <th>Post Subject</th>
-                                    <th>Date</th>
-                                    <th>Time</th>
-                                    <th>Actions
+                                    <th>Posted Date</th>
+                                    <th>Podted Time</th>
+                                    <th>Drafted Date</th>
+                                    <th>Drafted Time</th>
+                                    <th>Actions</th>
 
                                 </tr>
                                 </thead>
                                 <tbody>
 
+                                <?php
+                                foreach ($draft as $res) {
+
+
+                                ?>
                                 <tr>
-                                    <td>Michael Bruce</td>
-                                    <td>Javascript Developer</td>
-                                    <td>Singapore</td>
-                                    <td>29</td>
-                                    <td><button type="button" class="btn btn-success btn-rounded">Publish</button> <button type="button" class="btn btn-danger btn-rounded">Delete</button><button type="button" class="btn btn-warning btn-rounded">View Profile</button></td>
+                                    <td><a href="<?php echo $res->postedby; ?>"><?php echo $res->name . " " . $res->lastname;?></a></td>
+                                    <td><a href="<?php echo $res->id; ?>"><?php echo $res->needs;?></a></td>
+                                    <td><?php echo $res->posteddate;?></td>
+                                    <td><?php echo $res->posttime;?></td>
+                                    <td><?php echo $res->approvedate;?></td>
+                                    <td><?php echo $res->approvetime;?></td>
+                                    <td><button type="button" class="btn btn-success btn-rounded publish" id="<?php echo $res->id; ?>">Publish</button> <button type="button" class="btn btn-danger btn-rounded delete" id="<?php echo $res->id; ?>">Delete</button></td>
 
                                 </tr>
+
+                                <?php } ?>
                                 </tbody>
                             </table>
                         </div>
@@ -86,7 +109,95 @@
     <!-- END PAGE CONTENT -->
 </div>
 <!-- END PAGE CONTAINER -->
+<?php include "templates/footer.php"; ?>
 
+<script>
+
+
+    $(document).ready(function () {
+
+        $("#success-alert").hide();
+        $("#delete-alert").hide();
+
+        $('button.publish').click(function () {
+
+            var postid = this.id;
+
+            alertify.confirm("You want to publish this post?", function (e) {
+                if (e) {
+
+                    $.ajax({
+
+                        type:'get',
+                        url:"<?php echo site_url(); ?>/Posts/publishPost",
+                        dataType: 'json',
+                        data: {postid: postid},
+                        success:function (data) {
+
+                            if(data) {
+                                $("#success-alert").alert();
+                                $("#success-alert").fadeTo(2000, 500).slideUp(500, function () {
+
+                                    $("#success-alert").slideUp(500);
+                                });
+                                setTimeout(location.reload.bind(location), 3000);
+
+
+                                /*  $("table#pendingtable").html("");
+                                 $("table#pendingtable").html("<center><h2>No Pending posts available</h2></center>");
+                                 }*/
+
+                            }
+                        }
+                    })
+
+
+                } else {
+
+                }
+            });
+
+        })
+
+        $('button.delete').click(function () {
+
+            var postid = this.id;
+
+            alertify.confirm("You want to delete this post?", function (e) {
+                if (e) {
+
+                    $.ajax({
+
+                        type:'get',
+                        url:"<?php echo site_url(); ?>/Posts/DeletePost",
+                        dataType: 'json',
+                        data: {postid: postid},
+                        success:function (data) {
+
+                            if(data) {
+                                $("#delete-alert").alert();
+                                $("#delete-alert").fadeTo(2000, 500).slideUp(500, function () {
+
+                                    $("#delete-alert").slideUp(500);
+                                });
+                                setTimeout(location.reload.bind(location), 3000);
+
+
+                                /*  $("table#pendingtable").html("");
+                                 $("table#pendingtable").html("<center><h2>No Pending posts available</h2></center>");
+                                 }*/
+
+                            }
+                        }
+                    })
+
+                } else {
+                    // user clicked "cancel"
+                }
+            });
+        })
+    })
+</script>
 
 
 

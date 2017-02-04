@@ -78,7 +78,7 @@
                                 ?>
                                 <tr>
                                     <td><a href="<?php echo $res->postedby; ?>"><?php echo $res->name . " " . $res->lastname;?></a></td>
-                                    <td><a href="<?php echo $res->id; ?>"><?php echo $res->subject;?></a></td>
+                                    <td><a href="<?php echo $res->id; ?>"><?php echo $res->needs;?></a></td>
                                     <td><?php echo $res->posteddate;?></td>
                                     <td><?php echo $res->posttime;?></td>
                                     <td><?php echo $res->approvedate;?></td>

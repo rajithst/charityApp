@@ -39,42 +39,44 @@ class Home extends Frontend_Controller {
             $months = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
             $post = array();
             $i=$j=0;
-            $cdatedonation = substr($donations[$i]->date, 0, 10);
-            $cdatepost = substr($posts[$j]->posteddate, 0, 10);
-            while(($i<$n)&&($j<$m)){
-                while(($i<$n)&&($cdatedonation>=$cdatepost)){
-                    list($year,$month,$day) = explode("-", $cdatedonation);
-                    $cur = array(
-                        'type'=>"donation",
-                        'id'=>$donations[$i]->id,
-                        'day'=>$day,
-                        'month'=>$months[intval($month)-1],
-                        'content'=>$donations[$i]->description." ".$donations[$i]->amount,
-                        'date'=>$donations[$i]->date
-                    );
-                    if(!isset($post[$day.$months[intval($month)-1]]))
-                        $post[$day.$months[intval($month)-1]] = array();
-                    array_push($post[$day.$months[intval($month)-1]],$cur);
-                    $i++;
-                    if($i<$n)
-                        $cdatedonation = substr($donations[$i]->date, 0, 10);
-                }
-                while(($j<$m)&&($cdatedonation<$cdatepost)){
-                    list($year,$month,$day) = explode("-", $cdatepost);
-                    $cur = array(
-                        'type'=>"post",
-                        'id'=>$posts[$j]->id,
-                        'day'=>$day,
-                        'month'=>$months[intval($month)-1],
-                        'content'=>$posts[$j]->needs." ".$posts[$j]->amount." ".$posts[$j]->how_help." ".$posts[$j]->why_help." ".$posts[$j]->tags,
-                        'date'=>$posts[$j]->posteddate
-                    );
-                    if(!isset($post[$day.$months[intval($month)-1]]))
-                        $post[$day.$months[intval($month)-1]] = array();
-                    array_push($post[$day.$months[intval($month)-1]],$cur);
-                    $j++;
-                    if($j<$m)
-                        $cdatepost = substr($posts[$j]->posteddate, 0, 10);
+            if(($n>0)&&($m>0)){
+                $cdatedonation = substr($donations[$i]->date, 0, 10);
+                $cdatepost = substr($posts[$j]->posteddate, 0, 10);
+                while(($i<$n)&&($j<$m)){
+                    while(($i<$n)&&($cdatedonation>=$cdatepost)){
+                        list($year,$month,$day) = explode("-", $cdatedonation);
+                        $cur = array(
+                            'type'=>"donation",
+                            'id'=>$donations[$i]->id,
+                            'day'=>$day,
+                            'month'=>$months[intval($month)-1],
+                            'content'=>$donations[$i]->description." ".$donations[$i]->amount,
+                            'date'=>$donations[$i]->date
+                        );
+                        if(!isset($post[$day.$months[intval($month)-1]]))
+                            $post[$day.$months[intval($month)-1]] = array();
+                        array_push($post[$day.$months[intval($month)-1]],$cur);
+                        $i++;
+                        if($i<$n)
+                            $cdatedonation = substr($donations[$i]->date, 0, 10);
+                    }
+                    while(($j<$m)&&($cdatedonation<$cdatepost)){
+                        list($year,$month,$day) = explode("-", $cdatepost);
+                        $cur = array(
+                            'type'=>"post",
+                            'id'=>$posts[$j]->id,
+                            'day'=>$day,
+                            'month'=>$months[intval($month)-1],
+                            'content'=>$posts[$j]->needs." ".$posts[$j]->amount." ".$posts[$j]->how_help." ".$posts[$j]->why_help." ".$posts[$j]->tags,
+                            'date'=>$posts[$j]->posteddate
+                        );
+                        if(!isset($post[$day.$months[intval($month)-1]]))
+                            $post[$day.$months[intval($month)-1]] = array();
+                        array_push($post[$day.$months[intval($month)-1]],$cur);
+                        $j++;
+                        if($j<$m)
+                            $cdatepost = substr($posts[$j]->posteddate, 0, 10);
+                    }
                 }
             }
             while($i<$n){

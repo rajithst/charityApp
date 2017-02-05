@@ -1042,7 +1042,7 @@ function postLoad(){
       
       },
     error: function( jqXhr, textStatus, errorThrown ){
-        alert("error");
+        alert(jqXHR.responseText);;
       }
     });
 
@@ -1107,7 +1107,7 @@ function loadMore(){
       
       },
     error: function( jqXhr, textStatus, errorThrown ){
-        alert("error");
+        alert(jqXHR.responseText);;
       }
     });
 

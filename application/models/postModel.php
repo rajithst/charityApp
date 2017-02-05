@@ -26,7 +26,14 @@ class postModel extends MY_Model {
 
 	}
 
-
+        //get posts posted by user
+        public function getUserPosts($id,$startDate,$endDate){
+            $where = "status=1 AND postedby=$id AND posteddate >= '$startDate' AND posteddate <= '$endDate'";
+            $sql = "SELECT * FROM posts WHERE $where ORDER BY posteddate DESC;";
+            $query = $this->db->query($sql);
+            return $query->result();
+        }
+    
 	function loadPost(){
 		$query=$this->db->query("SELECT * FROM posts where status=1 order by posttime desc limit 4");
 		return $query->result();

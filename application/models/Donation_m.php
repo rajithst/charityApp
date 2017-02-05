@@ -19,6 +19,13 @@ class Donation_m extends MY_Model{
         $query = $this->db->query($sql);
         return $query->result();
     }
+    //get donations
+    public function getDonations($id,$startDate,$endDate){
+        $where = "donorID=$id AND date >= '$startDate' AND date <= '$endDate'";
+        $sql = "SELECT * FROM donations WHERE $where ORDER BY date DESC;";
+        $query = $this->db->query($sql);
+        return $query->result();
+    }
     public function getReceivedAmounts($id,$startDate,$endDate){
         $where = "recipientID=$id AND date >= '$startDate' AND date <= '$endDate'";
         $sql = "SELECT date,sum(amount) AS amount FROM donations WHERE $where GROUP BY date;";

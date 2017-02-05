@@ -1,11 +1,13 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
+define('STRIPE_PRIVATE_KEY', 'las;dkjf2l3;nslkj');
+define('STRIPE_PUBLIC_KEY', 'Lln;4k2;(jas;ldfkj)');
 class paymentController extends CI_Controller {
-
+        
 	public function index(){
 		$this->load->model('profileModel');
 		$data['user']=$this->profileModel->getUser();
+                $data['STRIPE_PUBLIC_KEY']=STRIPE_PUBLIC_KEY;
 		$this->load->template('payment/payment',$data);
 	}
 
@@ -61,6 +63,25 @@ class paymentController extends CI_Controller {
 				}
 	}
 
+        //direct payments //stripe
+        function stripePay(){
+            require_once('vendor/autoload.php');
+            // Set your secret key: remember to change this to your live secret key in production
+            // See your keys here: https://dashboard.stripe.com/account/apikeys
+            \Stripe\Stripe::setApiKey("sk_test_bxLXwdpc8fiFJAj8Jxbh5L3X");
+
+            // Token is created using Stripe.js or Checkout!
+            // Get the payment token submitted by the form:
+            $token = $this->input->post('stripeToken');
+            $amount = $this->input->post('transferamount');
+            // Charge the user's card:
+            $charge = \Stripe\Charge::create(array(
+              "amount" => $amount,
+              "currency" => "usd",
+              "description" => "Example charge",
+              "source" => $token,
+            ));
+        }
 
 
 }

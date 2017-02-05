@@ -1,0 +1,106 @@
+.event-cover{
+    width: 100%;
+    height : 295px;
+    position: relative;
+}
+
+.event-cover-text{
+    position: absolute;
+    top : 250px;
+    width: 100%;
+    color : whitesmoke !important;
+}
+
+.event-cover-place{
+    position: absolute;
+    top : 10px;
+    width: 100%;
+    color : whitesmoke !important;
+}
+
+.event-cover-day{
+    position: absolute;
+    top : 60px;
+    width: 100%;
+    color : whitesmoke !important;
+}
+
+.event-cover-time{
+    position: absolute;
+    top : 110px;
+    width: 100%;
+    color : whitesmoke !important;
+}
+
+.event-cover-image-span{
+    color: white;
+    font: bold 24px/45px Helvetica, Sans-Serif;
+    letter-spacing: -1px;
+    background: rgb(0, 0, 0); /* fallback color */
+    background: rgba(0, 0, 0, 0.3);
+    padding: 10px;
+}
+
+.hostname{
+    display: block;
+    padding: 5px;
+}
+
+.hostname a{
+    color: dodgerblue;;
+}
+
+.post-share-box {
+    width: 100%;
+}
+.post-share-box .share {
+    -webkit-transition: 0.1s ease-out height;
+    -moz-transition: 0.1s ease-out height;
+    -ms-transition: 0.1s ease-out height;
+    -o-transition: 0.1s ease-out height;
+    transition: 0.1s ease-out height;
+    clear: both;
+    background: white;
+    border: 2px solid #dddddd;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.post-share-box .post-types li a.active {
+    color: #404040;
+}
+
+.post-share-box .post-types {
+    padding-left: 5px;
+}
+
+.post-share-box ul {
+    list-style: none;
+    margin-bottom: 9px;
+}
+
+.post-share-box .post-types li {
+    display: inline;
+    margin-right: 10px;
+}
+
+.message {
+    border-radius: 0;
+    border: none;
+}
+.panel {
+    border-radius: 0;
+    border: none;
+    margin-bottom: 0;
+}
+
+
+#add-post{
+    background-color: white;
+    padding-top: 10px;
+}
+
+#event-desc{
+    background-color: white;
+
+}

@@ -89,6 +89,8 @@ $route['getAllChildren']='Child/Children_c/getAllChildren';
 $route['saveEvent']='FrontUser/eventController/saveEvent';
 // show event pages
 $route['events/(:any)']='FrontUser/eventController/loadEvent/$1';
+//show all events
+$route['events']='FrontUser/eventController/loadAll';
 
 
 

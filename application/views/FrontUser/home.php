@@ -30,11 +30,19 @@ if ($logedin != true){
                                     <img src="https://lh3.googleusercontent.com/uFp_tsTJboUY7kue5XAsGA=s28" width="28px" height="28px">
                                   </p>
                                 </div>
-                              </div>
+    </div>
 
+    <div class="panel panel-default"  style="margin-top:10px">
+      <div class="panel-body">
+      <img src="<?php echo base_url('img/events/calendar.png')?>" width=20px>
+     <a href="<?php echo base_url('events');?>"> events</a>
+    </div>
+    </div>
 
 
 </div>
+
+
 <!--end of left side bar-->
 
 

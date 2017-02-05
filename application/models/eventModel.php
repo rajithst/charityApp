@@ -39,4 +39,11 @@ class eventModel extends MY_Model {
 	}
 
 
+	//get all events
+	function getAll(){
+		$query=$this->db->query("SELECT * FROM events");
+		return $query->result();
+
+	}
+
 }

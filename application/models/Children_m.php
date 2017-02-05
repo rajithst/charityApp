@@ -3,6 +3,11 @@ class Children_m extends MY_Model{
     function __construct() {
         parent::__construct();
     }
+    //edit profile data receive from Register
+    function register($data){
+        return (bool)$this->db->insert('children',$data);
+    }
+        
     //get all the data fileds in children table
     public function getChildData($id){
         $this->db->where('id',$id);

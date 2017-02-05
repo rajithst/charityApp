@@ -74,7 +74,7 @@ $route['updateReadStatus']='FrontUser/chatController/updateRead';
 
 
 $route['profile'] = 'FrontUser/Home/profile';
-$route['event'] = 'FrontUser/Home/event';
+
 
 /** search **/
 
@@ -98,6 +98,16 @@ $route['events/(:any)']='FrontUser/eventController/loadEvent/$1';
 $route['donations']='FrontUser/paymentController/index';
 
 $route['payments']='FrontUser/paymentController/requestResponse';
+
+
+/** post **/
+
+//save post
+$route['savePost']='FrontUser/postController/savePost';
+//load post
+$route['loadPost']='FrontUser/postController/loadPost';
+//load more post
+$route['loadMorePost']='FrontUser/postController/loadMore';
 
 
 

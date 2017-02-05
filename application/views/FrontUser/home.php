@@ -61,6 +61,10 @@ if ($logedin != true){
                             <div class="post_content">
 
                               </div>
+
+                              <div class="post_loadmore_content">
+
+                              </div>
    </div>
 
 <!--end of center scrolling area-->
@@ -940,6 +944,8 @@ function readingStatus(name){
 <script >
 <!--/////////////////////////script of posts////////////////////////////////-->
 $(document).ready(function(){
+  
+
 	$("#post_txt").click(function(){
 		$('#postModal').modal('show');
 
@@ -954,7 +960,7 @@ $(document).ready(function(){
   });
 
   postLoad();
-  //setInterval(postLoad, 2000);
+  setInterval(postLoad, 2000);
 
 
 });
@@ -997,22 +1003,37 @@ function postLoad(){
     type: "POST",
     url: "loadPost",
     success: function( data, textStatus, jQxhr ){
+
+      if(data.length>0){
       $('.post_content').empty();
 
       for(var i=0;i<data.length;i++){
-      $('.post_content').append(' <div class="panel panel-default">\
+      $('.post_content').append(' <div class="panel panel-default" style="margin-bottom:10px;">\
            <div class="panel-heading">\
            <a href="#" class="pull-right">View all</a> \
+           <img src="http://1plusx.com/app/mu-plugins/all-in-one-seo-pack-pro/images/default-user-image.png" width="30px"/>'+data[i].postedby+'\
            <h4>post'+data[i].id+'</h4>\
            </div>\
           <div class="panel-body">\
           <div class="row">\
-          <div class="col-sm-12">\
+          <div class="col-sm-4">\
           <img src="//placehold.it/150x150" class="img pull-left">\
+          </div>\
+          <div class="col-sm-8">\
+          <h4>what they want</h4><p>'+data[i].needs+'</p>\
+          <h4>How can you help</h4><p>'+data[i].how_help+'</p>\
+          <h4>Why they asking your help</h4><p>'+data[i].why_help+'</p>\
           </div>\
           </div>\
         <div class="row">\
-        <div class="col-sm-4">df</div>\
+        <div class="col-sm-4">\
+        <div class="progress">\
+          <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar"\
+          aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">\
+            40% Complete (success)\
+          </div>\
+        </div>\
+        </div>\
         <div class="col-sm-4">\
         <div class="input-group">\
           <span class="input-group-addon">$</span>\
@@ -1024,10 +1045,11 @@ function postLoad(){
         </a></div>\
         </div>\
           <div class="row" style="background-color: #f5f5f5;margin-top:10px;padding:2px; border-color: #ddd;">\
-             <div class="col-sm-6">\
+             <div class="col-sm-4">\
               $8000.00 needed<br/>$3500.00 received </div>\
-               <div class="col-sm-6">\
+               <div class="col-sm-4">\
               56 days left<br/> 5 donations</div>\
+              <div class="col-sm-4"><button type="button" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-share-alt"></span></button></div>\
                  </div>\
         </div>\
         </div>\
@@ -1037,12 +1059,15 @@ function postLoad(){
       
         }
 
+        if($('.post_loadmore_content').text()==0){
+
         $('.post_content').append('<button type="button" id="load_more" onclick="loadMore()"" class="btn btn-default">Load More</button>');
-                                  
+        }
+        }                          
       
       },
     error: function( jqXhr, textStatus, errorThrown ){
-        alert("error");
+       // alert("errortest");
       }
     });
 
@@ -1065,19 +1090,31 @@ function loadMore(){
       $(".lastid_value").remove();
 
       for(var i=0;i<data.length;i++){
-      $('.post_content').append(' <div class="panel panel-default">\
+      $('.post_loadmore_content').append(' <div class="panel panel-default">\
            <div class="panel-heading">\
            <a href="#" class="pull-right">View all</a> \
            <h4>post'+data[i].id+'</h4>\
            </div>\
           <div class="panel-body">\
           <div class="row">\
-          <div class="col-sm-12">\
+          <div class="col-sm-4">\
           <img src="//placehold.it/150x150" class="img pull-left">\
+          </div>\
+           <div class="col-sm-8">\
+          <h4>what they want</h4><p>'+data[i].needs+'</p>\
+          <h4>How can you help</h4><p>'+data[i].how_help+'</p>\
+          <h4>Why they asking your help</h4><p>'+data[i].why_help+'</p>\
           </div>\
           </div>\
         <div class="row">\
-        <div class="col-sm-4">df</div>\
+        <div class="col-sm-4">\
+        <div class="progress">\
+          <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar"\
+          aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">\
+            40% Complete (success)\
+          </div>\
+        </div>\
+        </div>\
         <div class="col-sm-4">\
         <div class="input-group">\
           <span class="input-group-addon">$</span>\
@@ -1089,10 +1126,13 @@ function loadMore(){
         </a></div>\
         </div>\
           <div class="row" style="background-color: #f5f5f5;margin-top:10px;padding:2px; border-color: #ddd;">\
-             <div class="col-sm-6">\
+             <div class="col-sm-4">\
               $8000.00 needed<br/>$3500.00 received </div>\
-               <div class="col-sm-6">\
+               <div class="col-sm-4">\
               56 days left<br/> 5 donations</div>\
+                 </div>\
+                 <div class="col-sm-4">\
+                 <button type="button" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-share-alt"></span></button>\
                  </div>\
         </div>\
         </div>\
@@ -1102,7 +1142,7 @@ function loadMore(){
       
         }
 
-        $('.post_content').append('<button type="button" id="load_more" onclick="loadMore()"" class="btn btn-default">Load More</button>');
+        $('.post_loadmore_content').append('<button type="button" id="load_more" onclick="loadMore()"" class="btn btn-default">Load More</button>');
                                   
       
       },

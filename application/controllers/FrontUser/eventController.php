@@ -29,5 +29,10 @@ class eventController extends Frontend_Controller {
 
 	}
 
+	public function loadAll(){
+		$data['events']=$this->eventModel->getAll();
+		$this->load->template('FrontUser/allEvents.php',$data);
+	}
+
 
 }

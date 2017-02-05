@@ -22,7 +22,7 @@ class Donation_m extends MY_Model{
     //get donations
     public function getDonations($id,$startDate,$endDate){
         $where = "donorID=$id AND date >= '$startDate' AND date <= '$endDate'";
-        $sql = "SELECT * FROM donations WHERE $where ORDER BY date ASC;";
+        $sql = "SELECT * FROM donations WHERE $where ORDER BY date DESC;";
         $query = $this->db->query($sql);
         return $query->result();
     }

@@ -178,13 +178,18 @@ function stripeResponseHandler(status, response) {
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Amount</label>  
                             <div class="col-sm-6">
-                            <input placeholder="Amount" class="form-control" required="" name="transferamount"> 
+                                <input placeholder="Amount" readonly="" class="form-control" required="" id="stripeamnt" name="transferamount"> 
                             </div>
                         </div>
+                        <script>
+                            $('#State').keyup(function (){
+                                document.getElementById("stripeamnt").value = $('#State').val();
+                            });
+                        </script>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Card Number</label>  
                             <div class="col-sm-6">
-                            <input placeholder="xxxxxxxxxxxxxxxxxxxx" class="form-control" required="" size="20" data-stripe="number"> 
+                            <input placeholder="XXXX XXXX XXXX XXXX" class="form-control" required="" size="20" data-stripe="number"> 
                             </div>
                         </div>
                         <div class="form-group">
@@ -200,7 +205,7 @@ function stripeResponseHandler(status, response) {
                         <div class="form-group">
                             <label class="col-sm-2 control-label">CVC</label>  
                             <div class="col-sm-6">
-                            <input placeholder="xxx" class="form-control" required="" type="text" size="4" data-stripe="cvc"> 
+                            <input placeholder="XXX" class="form-control" required="" type="text" size="4" data-stripe="cvc"> 
                             </div>
                         </div>
                         <div class="form-group">

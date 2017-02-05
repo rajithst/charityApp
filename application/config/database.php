@@ -80,13 +80,13 @@ $db['default'] = array(
 	'hostname' => 'localhost',
 	'username' => 'root',
 	'password' => 'rajith',*/
-	'hostname' => 'eu-cdbr-azure-west-a.cloudapp.net',
-	'username' => 'b15558e9c0342b',
-	'password' => '3343d3cc',
+	//'hostname' => 'eu-cdbr-azure-west-a.cloudapp.net',
+	//'username' => 'b15558e9c0342b',
+	//'password' => '3343d3cc',
 
-	// 'hostname' => 'localhost',
-	// 'username' => 'root',
-	// 'password' => null,
+	 'hostname' => 'localhost',
+	 'username' => 'root',
+	 'password' => '',
 
 	'database' => 'charity',
 	'dbdriver' => 'mysqli',

@@ -155,68 +155,57 @@
 
             </div>
             <?php
-                $l = count($donations);
-                $predate = "";
-                $months = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
-                $placeolder = 0;
-                for($i=$l-1;$i>=0;$i--){
-                    $cdate = $donations[$i]->date;
-                    if($predate != $cdate){
-                        list($year,$month,$day) = explode("-", $cdate);
-                        $placeolder = 0;
+                foreach ($timelinecontent as $row){
             ?>
             <div class="row timeline-movement">
 
                 <div class="timeline-badge">
-                    <span class="timeline-balloon-date-day"><?php echo $day; ?></span>
-                    <span class="timeline-balloon-date-month"><?php echo $months[intval($month)-1]; ?></span>
+                    <span class="timeline-balloon-date-day"><?php echo $row[0]['day']; ?></span>
+                    <span class="timeline-balloon-date-month"><?php echo $row[0]['month']; ?></span>
                 </div>
-                
             <?php
-                    }
-                    if($placeolder==1){
+                    $i=0;
+                    foreach($row as $column){
+                        if($i%2==0){
             ?>
                 <div class="col-sm-6  timeline-item">
                     <div class="row">
                         <div class="col-sm-offset-1 col-sm-11">
                             <div class="timeline-panel debits">
                                 <ul class="timeline-panel-ul">
-                                    <li><span class="importo">Donation</span></li>
-                                    <li><span class="causale"><?php echo $donations[$i]->description." ".$donations[$i]->amount; ?></span> </li>
-                                    <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> <?php echo $cdate; ?></small></p> </li>
+                                    <li><span class="importo"><?php echo $column['type']; ?></span></li>
+                                    <li><span class="causale"><?php echo $column['content']; ?></span></li>
+                                    <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> <?php echo $column['date']; ?></small></p> </li>
                                 </ul>
                             </div>
 
                         </div>
                     </div>
                 </div>
-            <?php     
-                        $placeolder = 0;
-                    }else{
+            <?php
+                        }else{
             ?>
                 <div class="col-sm-6  timeline-item">
                     <div class="row">
                         <div class="col-sm-11">
                             <div class="timeline-panel credits">
                                 <ul class="timeline-panel-ul">
-                                    <li><span class="importo">Donation</span></li>
-                                    <li><span class="causale"><?php echo $donations[$i]->description." ".$donations[$i]->amount; ?></span> </li>
-                                    <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> <?php echo $cdate; ?></small></p> </li>
+                                    <li><span class="importo"><?php echo $column['type']; ?></span></li>
+                                    <li><span class="causale"><?php echo $column['content']; ?></span></li>
+                                    <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> <?php echo $column['date']; ?></small></p> </li>
                                 </ul>
                             </div>
 
                         </div>
                     </div>
                 </div>
-            <?php          
-                        $placeolder = 1;
+            <?php
+                        }
+                        $i++;
                     }
-                    if(($i==0)||(($i>0)&&($cdate!=$donations[$i-1]->date))){
             ?>
             </div>
             <?php
-                    }
-                    $predate = $cdate;
                 }
             ?>
             <!--due -->

@@ -106,9 +106,9 @@ if ($logedin != true){
                 <ul class="nav nav-tabs" role="tablist">
 
                     <li role="presentation" class="active">
-                        <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Step 1">
+                        <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Pick one child or more">
                             <span class="round-tab">
-                                <i class="glyphicon glyphicon-folder-open"></i>
+                                <i class="glyphicon glyphicons-user-add"></i>
                             </span>
                         </a>
                     </li>
@@ -146,7 +146,7 @@ if ($logedin != true){
             <form role="form">
                 <div class="tab-content">
                     <div class="tab-pane active" role="tabpanel" id="step1">
-                        <h3>Step 1</h3>
+                        <h3>Pick one child or more</h3>
                       <div class="row padding">
                       <div class="form-group">
         <div id="children">

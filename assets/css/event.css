@@ -25,6 +25,13 @@
     color : whitesmoke !important;
 }
 
+.eventlist-cover-day{
+    position: absolute;
+    top : 65px;
+    width: 100%;
+    color : whitesmoke !important;
+}
+
 .event-cover-time{
     position: absolute;
     top : 110px;
@@ -103,4 +110,13 @@
 #event-desc{
     background-color: white;
 
+}
+
+.event-list-event-name{
+    color: forestgreen !important;
+}
+
+.event-list-event-cover{
+    width: 200px;
+    height: 130px;
 }

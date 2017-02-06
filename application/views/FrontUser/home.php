@@ -44,20 +44,7 @@ if ($logedin != true){
 
 
 <!--end of left side bar-->
-<div class="se-pre-con"><div class="blobs">
-    <div class="blob"></div>
-    <div class="blob"></div>
-</div>
 
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-        <filter id="goo">
-            <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10" />
-            <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
-            <feBlend in2="goo" in="SourceGraphic" result="mix" />
-        </filter>
-    </defs>
-</svg></div>
 
 <!--center scrolling area-->
 <div class="col-sm-6 col-sm-offset-3" style="height:2400px;">

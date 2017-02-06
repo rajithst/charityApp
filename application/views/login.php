@@ -22,6 +22,7 @@
 		<!-- skin -->
 		<link rel="stylesheet" href="<?php echo base_url('assets/css/stylenew.css') ?>">
 		<link rel="stylesheet" href="<?php echo base_url('assets/css/default.css') ?>">
+		<link rel="stylesheet" href="<?php echo base_url('assets/css/loader.css') ?>">
         <!-- =======================================================
             Theme Name: Green
             Theme URL: https://bootstrapmade.com/green-free-one-page-bootstrap-template/
@@ -103,6 +104,21 @@
 	</section>
 	</div>
 	
+<div class="se-pre-con"><div class="blobs">
+	<div class="blob"></div>
+	<div class="blob"></div>
+</div>
+
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg">
+	<defs>
+		<filter id="goo">
+			<feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10" />
+			<feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
+			<feBlend in2="goo" in="SourceGraphic" result="mix" />
+		</filter>
+	</defs>
+</svg></div>
+
 
 <div class="slider">		
 		<div id="about-slider">
@@ -253,27 +269,6 @@
 	<!--/about-->
 		
 	<!-- spacer section:testimonial -->
-		<section id="testimonials-3" class="section" data-stellar-background-ratio="0.5">
-		<div class="container">
-			<div class="row">				
-					<div class="col-lg-12">
-							<div class="align-center">
-										<div class="testimonial pad-top40 pad-bot40 clearfix">
-											<h5>
-												How wonderful it is that nobody need wait a single moment before starting to improve the world. 
-											</h5>
-											<br/>
-											<span class="author">&mdash;Anne Frank <a href="#">Unknown</a></span>
-										</div>
-
-								</div>
-							</div>
-					</div>
-				
-			</div>	
-		
-		</section>
-		
 		<!-- services -->
 		<section id="services" class="section pad-bot5 bg-white">
 		<div class="container"> 
@@ -486,7 +481,15 @@ $(document).ready(function(){
     $("#login-form").validationEngine('attach', {promptPosition : "Top", scroll: false});
    });
 </script>
-
-
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js"></script>
+<script type="text/javascript">
+//paste this code under the head tag or in a separate js file.
+	// Wait for window load
+	$(window).load(function() {
+		// Animate loader off screen
+		$(".se-pre-con").fadeOut("slow");;
+	});
+</script>
 </body>
 </html>

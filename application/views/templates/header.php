@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.css');?>">
-
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/loader.css') ?>">
    <link rel="stylesheet" href="<?php echo base_url('assets/css/chat.css');?>">
 
   <link rel="stylesheet" href="<?php echo base_url('assets/css/style.css');?>">
@@ -514,5 +514,14 @@ function readingStatus(name){
 <!--end of msg box-->
 <input type="hidden" name="userdata" value="<?php echo $this->session->userdata('username'); ?>" id="ses_name">
 
-
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js"></script>
+<script type="text/javascript">
+//paste this code under the head tag or in a separate js file.
+  // Wait for window load
+  $(window).load(function() {
+    // Animate loader off screen
+    $(".se-pre-con").fadeOut("slow");;
+  });
+</script>
 <body>

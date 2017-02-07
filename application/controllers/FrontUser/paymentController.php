@@ -15,7 +15,7 @@ class paymentController extends CI_Controller {
 
 	public function requestResponse(){
 
-		//$this->load->model('Donation_m');
+		$this->load->model('Donation_m');
 		// PayPal settings
 				$paypal_email = 'dulaj.san-facilitator-1@gmail.com';
 				$return_url = 'http://charityapp.azurewebsites.net/payment-successful';

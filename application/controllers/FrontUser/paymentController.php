@@ -4,11 +4,13 @@ class paymentController extends CI_Controller {
         parent::__construct();
         $this->load->model('Donation_m');
         $this->load->model('profileModel');
+        $this->load->model('User_d');
     }
 
     public function index($postid){
                 $data['alert']='';
                 $data['postid']=$postid;
+                $data['users']=$this->User_d->getUsers();
                 $data['user']=$this->profileModel->getUser();
                 $this->load->template('payment/payment',$data);
 	}
@@ -202,6 +204,7 @@ class paymentController extends CI_Controller {
             }
             $data['postid']=$postid;
             $data['user']=$this->profileModel->getUser();
+            $data['users']=$this->User_d->getUsers();
             $this->load->template('payment/payment',$data);
         }
 }

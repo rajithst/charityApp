@@ -256,6 +256,104 @@
   </script>
   <!-- end of profile picture -->
 
+<script>
+
+$(document).ready(function(){
+  //load all messages
+  
+  loadAllMessages();
+  setInterval(loadAllMessages, 1000);
+
+
+});
+
+
+function loadAllMessages(){
+  var count=0;
+  $.ajax({
+    type: "POST",
+    url: "<?php echo base_url(); ?>" + "index.php/FrontUser/chatController/loadAll/",
+    success: function( data, textStatus, jQxhr ){
+      $('.msg_menu').empty();
+      
+      var e = $('<li></li>');
+      $('.msg_menu').append(e);    
+      e.attr('class', 'msg_after');
+
+      //empty array to put names
+      // var names=[];
+      // for(var t=0;t<data.length;t++){
+      //  names.push(data[t].sender);
+      // }
+      
+
+      //unique names
+      // var uniques=names.unique();
+
+      //name append to header
+      for(var i=(data.length-1);i>=0;i--){
+        if (data[i].numofmessages>0){
+          $("<li onclick='getvalue(this.id)' id='"+data[i].sender+"'><a href='#'><h3>"+data[i].sender+"("+data[i].numofmessages+")"+"</h3></a></li>").insertBefore('.msg_after');
+        }
+        else{
+          $("<li onclick='getvalue(this.id)' id='"+data[i].sender+"'><a href='#'><h3>"+data[i].sender+"</h3></a></li>").insertBefore('.msg_after');
+
+        }
+        count+=parseInt(data[i].numofmessages);
+      }
+
+      //set number of messages to head
+      $("#msg_num1,#msg_num2").text(count);
+      
+      },
+    error: function( jqXhr, textStatus, errorThrown ){
+        alert(jqXHR.responseText);
+      }
+    });
+
+}
+
+
+
+//algorithm to find unique values of a array
+// Array.prototype.unique = function() {
+//     var o = {}, i, l = this.length, r = [];
+//     for(i=0; i<l;i+=1) o[this[i]] = this[i];
+//     for(i in o) r.push(o[i]);
+//     return r;
+// };
+
+
+
+//open chat box using header messages
+function getvalue(str) {
+  loadMessage(str);
+      
+      //alert(username);
+      $('.name').text(str);
+      $('.msg_wrap').show();
+      $('.msg_box').show();
+      readingStatus(str);
+}
+
+//reading status update
+function readingStatus(name){
+  $.ajax({
+    type: "POST",
+    url: "<?php echo base_url(); ?>" + "index.php/FrontUser/chatController/updateRead",
+    data: {name:name},
+    success: function( data, textStatus, jQxhr ){
+      //alert("success");
+      
+      },
+    error: function( jqXhr, textStatus, errorThrown ){
+        alert(jqXHR.responseText);
+      }
+    });
+
+}
+
+</script>
 
 
   <script>
@@ -320,14 +418,14 @@
     ///alert(msg);
   $.ajax({
     type: "POST",
-    url: "messageSave",
+    url: "<?php echo base_url(); ?>" + "index.php/FrontUser/chatController/saveMessage/",
     data: {message:msg,receiver:rec},
     success: function( data, textStatus, jQxhr ){
       //alert("success");
       
       },
     error: function( jqXhr, textStatus, errorThrown ){
-      
+        alert(jqXHR.responseText);
       }
     });
   }
@@ -338,7 +436,7 @@
 
     $.ajax({
     type: "POST",
-    url: "messageLoad",
+    url: "<?php echo base_url(); ?>" + "index.php/FrontUser/chatController/loadMessage/",
     data: {receiver:rec},
     success: function( data, textStatus, jQxhr ){
       var ses_name=$('#ses_name').val();
@@ -362,7 +460,7 @@
 
       },
     error: function( jqXhr, textStatus, errorThrown ){
-      
+        alert(jqXHR.responseText);
       }
     });
 
@@ -372,110 +470,6 @@
 
 
 </script>
-
-
-<script>
-
-$(document).ready(function(){
-  //load all messages
-  
-  loadAllMessages();
-  setInterval(loadAllMessages, 1000);
-
-
-})
-
-
-function loadAllMessages(){
-  var count=0;
-  
-  $.ajax({
-    type: "POST",
-    url: "loadallmessages",
-    success: function( data, textStatus, jQxhr ){
-      $('.msg_menu').empty();
-      
-      var e = $('<li></li>');
-      $('.msg_menu').append(e);    
-      e.attr('class', 'msg_after');
-
-      //empty array to put names
-      // var names=[];
-      // for(var t=0;t<data.length;t++){
-      //  names.push(data[t].sender);
-      // }
-      
-
-      //unique names
-      // var uniques=names.unique();
-
-      
-
-      //name append to header
-      for(var i=(data.length-1);i>=0;i--){
-        if (data[i].numofmessages>0){
-          $("<li onclick='getvalue(this.id)' id='"+data[i].sender+"'><a href='#'><h3>"+data[i].sender+"("+data[i].numofmessages+")"+"</h3></a></li>").insertBefore('.msg_after');
-        }
-        else{
-          $("<li onclick='getvalue(this.id)' id='"+data[i].sender+"'><a href='#'><h3>"+data[i].sender+"</h3></a></li>").insertBefore('.msg_after');
-
-        }
-        count+=parseInt(data[i].numofmessages);
-      }
-
-      //set number of messages to head
-      $("#msg_num1,#msg_num2").text(count);
-      
-      },
-    error: function( jqXhr, textStatus, errorThrown ){
-      //alert("eror");
-      }
-    });
-
-}
-
-
-
-//algorithm to find unique values of a array
-// Array.prototype.unique = function() {
-//     var o = {}, i, l = this.length, r = [];
-//     for(i=0; i<l;i+=1) o[this[i]] = this[i];
-//     for(i in o) r.push(o[i]);
-//     return r;
-// };
-
-
-
-//open chat box using header messages
-function getvalue(str) {
-  loadMessage(str);
-      
-      //alert(username);
-      $('.name').text(str);
-      $('.msg_wrap').show();
-      $('.msg_box').show();
-      readingStatus(str);
-}
-
-//reading status update
-function readingStatus(name){
-  $.ajax({
-    type: "POST",
-    url: "updateReadStatus",
-    data: {name:name},
-    success: function( data, textStatus, jQxhr ){
-      //alert("success");
-      
-      },
-    error: function( jqXhr, textStatus, errorThrown ){
-      
-      }
-    });
-
-}
-
-</script>
-
 
 <!--chat window-->
 <div class="chat_box" style="z-index:1">
@@ -524,4 +518,4 @@ function readingStatus(name){
     $(".se-pre-con").fadeOut("slow");;
   });
 </script>
-<body>
+</body>

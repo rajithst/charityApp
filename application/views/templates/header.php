@@ -334,6 +334,7 @@
   }
 
   function loadMessage(rec){
+    
 
     $(".msg_body").empty();
 
@@ -342,6 +343,7 @@
     url: "messageLoad",
     data: {receiver:rec},
     success: function( data, textStatus, jQxhr ){
+      if(data.length>0){
       var ses_name=$('#ses_name').val();
       
       var e = $('<div></div>');
@@ -360,6 +362,7 @@
         }
 
       }
+    }
 
       },
     error: function( jqXhr, textStatus, errorThrown ){

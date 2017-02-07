@@ -6,6 +6,7 @@ class eventController extends Frontend_Controller {
 	public function __construct(){
 		parent::__construct();
 		$this->load->model('eventModel');
+		$this->load->model('User_d');
 
 	}
 
@@ -23,6 +24,7 @@ class eventController extends Frontend_Controller {
 
 
 	public function loadEvent($id){
+		$data['users']=$this->User_d->getUsers();
 		$data['events']=$this->eventModel->getEventData($id);		
 		//$data['name']=$name;
 		$this->load->template('FrontUser/events',$data);
@@ -30,6 +32,7 @@ class eventController extends Frontend_Controller {
 	}
 
 	public function loadAll(){
+		$data['users']=$this->User_d->getUsers();
 		$data['events']=$this->eventModel->getAll();
 		$this->load->template('FrontUser/allEvents.php',$data);
 	}

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -383,7 +384,7 @@ $(document).ready(function(){
   setInterval(loadAllMessages, 1000);
 
 
-})
+});
 
 
 function loadAllMessages(){
@@ -393,6 +394,7 @@ function loadAllMessages(){
     type: "POST",
     url: "loadallmessages",
     success: function( data, textStatus, jQxhr ){
+      if(data.length>0){
       $('.msg_menu').empty();
       
       var e = $('<li></li>');
@@ -415,16 +417,19 @@ function loadAllMessages(){
       for(var i=(data.length-1);i>=0;i--){
         if (data[i].numofmessages>0){
           $("<li onclick='getvalue(this.id)' id='"+data[i].sender+"'><a href='#'><h3>"+data[i].sender+"("+data[i].numofmessages+")"+"</h3></a></li>").insertBefore('.msg_after');
+          count+=parseInt(data[i].numofmessages);
         }
         else{
-          $("<li onclick='getvalue(this.id)' id='"+data[i].sender+"'><a href='#'><h3>"+data[i].sender+"</h3></a></li>").insertBefore('.msg_after');
+          // $("<li onclick='getvalue(this.id)' id='"+data[i].sender+"'><a href='#'><h3>"+data[i].sender+"</h3></a></li>").insertBefore('.msg_after');
 
         }
-        count+=parseInt(data[i].numofmessages);
+        
       }
 
       //set number of messages to head
-      $("#msg_num1,#msg_num2").text(count);
+      
+    }
+    $("#msg_num1,#msg_num2").text(count);
       
       },
     error: function( jqXhr, textStatus, errorThrown ){

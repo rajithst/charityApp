@@ -691,7 +691,6 @@ if ($logedin != true){
 <!--/////////////////////////script of posts////////////////////////////////-->
 $(document).ready(function(){
   
-
 	$("#post_txt").click(function(){
 		$('#postModal').modal('show');
 

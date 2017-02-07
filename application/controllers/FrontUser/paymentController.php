@@ -107,7 +107,7 @@ class paymentController extends CI_Controller {
         				while (!feof($fp)) {
           					  $res = fgets ($fp, 1024);
             						if (strcmp($res, "VERIFIED") == 0) {
-     //        							// Used for debugging
+           							// Used for debugging
             							// mail('user@domain.com', 'PAYPAL POST - VERIFIED RESPONSE', print_r($post, true));
 
             							// Validate payment (Check unique txnid & correct price)

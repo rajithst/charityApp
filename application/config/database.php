@@ -84,9 +84,9 @@ $db['default'] = array(
 	'username' => 'b15558e9c0342b',
 	'password' => '3343d3cc',
 
-	// 'hostname' => 'localhost',
-	// 'username' => 'root',
-	// 'password' => '',
+	//'hostname' => 'localhost',
+	//'username' => 'root',
+	//'password' => '',
 
 	'database' => 'charity',
 	'dbdriver' => 'mysqli',

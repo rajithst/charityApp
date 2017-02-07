@@ -1,17 +1,19 @@
 <div class="container-fluid" style="margin-top:12px;">
 
-<form class="form-horizontal">
-
+<form action="<?php echo base_url() ?>index.php/FrontUser/paymentController/stripePay" class="form-horizontal" method="POST" id="payment-form">                    
 <legend>Amount of donation</legend>
-
+<?php
+    echo $alert;
+?>
 <!-- amunt-->
 <div class="form-group">
   <label class="col-sm-2 control-label" for="State">Enter your own amount</label>  
   <div class="col-sm-2">
-  <input id="State" name="State" type="text"  class="form-control " required="">
+  <input id="amount" name="amount" type="text"  class="form-control " required="">
   </div>
 </div>
 
+<input name="postid" type="hidden"  class="form-control " value="<?php echo $postid; ?>" required="">
 
 <!-- Form Name -->
 <legend>Billing information</legend>
@@ -22,7 +24,7 @@
 <div class="form-group">
   <label class="col-sm-2 control-label" for="State">First name</label>  
   <div class="col-sm-6">
-  <input id="State" name="State" type="text" placeholder="first name" class="form-control " required="" value="<?= $users->name?>">
+  <input id="fname" name="fname" type="text" placeholder="first name" class="form-control " required="" value="<?= $users->name?>">
   </div>
 </div>
 
@@ -32,7 +34,7 @@
 <div class="form-group">
   <label class="col-sm-2 control-label" for="State">last name</label>  
   <div class="col-sm-6">
-  <input id="State" name="State" type="text" placeholder="last name" class="form-control" required="" value="<?= $users->lastname?>"> 
+  <input id="lname" name="lname" type="text" placeholder="last name" class="form-control" required="" value="<?= $users->lastname?>"> 
   </div>
 </div>
 
@@ -101,11 +103,10 @@
 <div class="form-group">
   <label class="col-sm-2 control-label" for="State">email</label>  
   <div class="col-sm-6">
-  <input id="State" name="State" type="text" placeholder="last name" class="form-control" required="" value="<?=$users->email ?>"> 
+  <input id="email" name="email" type="text" placeholder="last name" class="form-control" required="" value="<?=$users->email ?>"> 
   </div>
 </div>
 
-</form>
 <?php  endforeach; ?>
 <legend>payment information</legend>
 
@@ -144,6 +145,7 @@ function stripeResponseHandler(status, response) {
   if (response.error) { // Problem!
 
     // Show the errors on the form:
+    alert(response.error.message);
     $form.find('.payment-errors').text(response.error.message);
     $form.find('.submit').prop('disabled', false); // Re-enable submission
 
@@ -173,14 +175,8 @@ function stripeResponseHandler(status, response) {
                     </div>                    
                 </div>
                 <div class="panel-body">
-                    <form action="<?php echo base_url() ?>index.php/FrontUser/paymentController/stripePay" class="form-horizontal" method="POST" id="payment-form">
+                    <div class="form-horizontal">
                         <span class="payment-errors"></span>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">Amount</label>  
-                            <div class="col-sm-6">
-                                <input placeholder="Amount" readonly="" class="form-control" required="" id="stripeamnt" name="transferamount"> 
-                            </div>
-                        </div>
                         <script>
                             $('#State').keyup(function (){
                                 document.getElementById("stripeamnt").value = $('#State').val();
@@ -213,11 +209,12 @@ function stripeResponseHandler(status, response) {
                             <input type="submit" class="btn btn-primary submit" value="Submit Payment">
                             </div>
                         </div>
-                      </form>
+                      </div>
 
                 </div>
             </div>     
-            </div>       
+            </div>
+</form>
             <!-- CREDIT CARD FORM ENDS HERE -->
 
 

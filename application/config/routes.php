@@ -97,7 +97,7 @@ $route['events']='FrontUser/eventController/loadAll';
 /** payments **/
 
 //load payment page
-$route['donations']='FrontUser/paymentController/index';
+$route['donations/(:any)']='FrontUser/paymentController/index/$1';
 
 $route['payments']='FrontUser/paymentController/requestResponse';
 

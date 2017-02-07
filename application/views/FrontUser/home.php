@@ -1020,7 +1020,7 @@ function postLoad(){
             placeholder="Amount">\
         </div>\
         </div>\
-        <div class="col-sm-4"><a href="<?php echo base_url('/donations'); ?>"><button type="button" class="btn btn-success btn-block">donate</button>\
+        <div class="col-sm-4"><a href="<?php echo base_url('/donations'); ?>/'+data[i].id+'"><button type="button" class="btn btn-success btn-block">donate</button>\
         </a></div>\
         </div>\
           <div class="row" style="background-color: #f5f5f5;margin-top:10px;padding:2px; border-color: #ddd;">\
@@ -1085,7 +1085,7 @@ function loadMore(){
             placeholder="Amount">\
         </div>\
         </div>\
-        <div class="col-sm-4"><a href="<?php echo base_url('/donations'); ?>"><button type="button" class="btn btn-success btn-block">donate</button>\
+        <div class="col-sm-4"><a href="<?php echo base_url('/donations'); ?>"/'+data[i].id+'"><button type="button" class="btn btn-success btn-block">donate</button>\
         </a></div>\
         </div>\
           <div class="row" style="background-color: #f5f5f5;margin-top:10px;padding:2px; border-color: #ddd;">\

@@ -14,7 +14,7 @@ class Profile extends  Admin_Controller {
      */
     public function __construct(){
         parent::__construct();
-        $this->load->Profile_m();
+        $this->load->model('Profile_m');
 
     }
 
@@ -24,6 +24,32 @@ class Profile extends  Admin_Controller {
         $this->load->view('templates/header');
         $this->load->view('profile',$data);
     }
+
+
+    public function deleteProfile(){
+
+        $id = $this->input->get('accid');
+        $cb = $this->Profile_m->deleteProfile($id);
+
+        echo $cb;
+    }
+
+    public function suspend(){
+
+        $id = $this->input->get('accid');
+        $cb = $this->Profile_m->suspendProfile($id);
+
+        echo $cb;
+    }
+
+    public function setActive(){
+
+        $id = $this->input->get('accid');
+        $cb = $this->Profile_m->activeProfile($id);
+
+        echo $cb;
+    }
+
 
 
 }

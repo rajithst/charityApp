@@ -25,4 +25,37 @@ class Profile_m extends MY_Model{
 
     }
 
+    public function deleteProfile($key){
+
+        $sql = "DELETE FROM users WHERE id=$key";
+        $query = $this->db->query($sql);
+        if ($query)
+            return TRUE;
+        else
+            return FALSE;
+
+    }
+
+    public function suspendProfile($key){
+
+        $sql = "UPDATE users SET profilestatus=0 WHERE id=$key";
+        $query = $this->db->query($sql);
+        if ($query)
+            return TRUE;
+        else
+            return FALSE;
+
+    }
+
+    public function activeProfile($key){
+
+        $sql = "UPDATE users SET profilestatus=1 WHERE id=$key";
+        $query = $this->db->query($sql);
+        if ($query)
+            return TRUE;
+        else
+            return FALSE;
+
+    }
+
 }

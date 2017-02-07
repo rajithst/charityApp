@@ -31,7 +31,11 @@ class postController extends Frontend_Controller {
 		 echo json_encode($data);
 
 	}
-
-
+        
+        function neededAmount($postid){
+            $ramnt = floatval($this->postModel->receivedAmount($postid));
+            $namnt = floatval($this->postModel->neededAmount($postid));
+            echo $namnt - $ramnt;
+        }
 
 }

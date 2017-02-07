@@ -13,7 +13,7 @@
   </div>
 </div>
 
-<input name="postid" type="hidden"  class="form-control " value="<?php echo $postid; ?>" required="">
+<input id="postid" name="postid" type="hidden"  class="form-control " value="<?php echo $postid; ?>" required="">
 
 <!-- Form Name -->
 <legend>Billing information</legend>
@@ -125,15 +125,39 @@
   Stripe.setPublishableKey('pk_test_nBSQ2RBMfHBInqDT8bFyXPmT');
 </script>
 <script>
+function makePayment(){
+    var postid = $('#postid').val();
+    var amount = $('#amount').val();
+    var $form = $('#payment-form');
+  
+    jQuery.ajax({
+        type: "POST",
+        url: "<?php echo base_url(); ?>" + "index.php/FrontUser/postController/neededAmount/"+postid,
+        dataType: 'json',
+        success: function (recamnt) {
+            if(parseFloat(amount)<=parseFloat(recamnt)){
+                // Request a token from Stripe:
+                Stripe.card.createToken($form, stripeResponseHandler);
+            }else{
+                alert("amount exceeded need");
+                $form.find('.payment-errors').text("amount exceeded need");
+                $form.find('.submit').prop('disabled', false); // Re-enable submission
+            }
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            alert(jqXHR.responseText);
+        }
+    });
+}
 $(function() {
   var $form = $('#payment-form');
   $form.submit(function(event) {
     // Disable the submit button to prevent repeated clicks:
-    $form.find('.submit').prop('disabled', true);
-
-    // Request a token from Stripe:
-    Stripe.card.createToken($form, stripeResponseHandler);
-
+  
+  //$form.find('.submit').prop('disabled', true);
+   // Request a token from Stripe:
+   makePayment();
+   
     // Prevent the form from being submitted:
     return false;
   });

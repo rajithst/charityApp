@@ -5,6 +5,7 @@ class paymentController extends CI_Controller {
         $this->load->model('Donation_m');
         $this->load->model('profileModel');
         $this->load->model('User_d');
+        $this->load->model('postModel');
     }
 
     public function index($postid){
@@ -195,6 +196,7 @@ class paymentController extends CI_Controller {
                     'payment_method'=>$payment_method
                     )))
                 {
+                    $this->postModel->updateReceived($postid,$amount);
                     $data['alert']='<script>alert("successfully donated");</script>';
                 }else{
                     $data['alert']='<script>alert("data update failed");</script>';

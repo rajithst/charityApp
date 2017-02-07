@@ -31,7 +31,7 @@ class eventModel extends MY_Model {
 	}
 
 
-	//get ebvent data by event name
+	//get event data by event name
 	function getEventData($id){
 		$query=$this->db->query("SELECT * FROM events where id='".$id."'");
 		return $query->result();

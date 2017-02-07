@@ -12,9 +12,9 @@ class postModel extends MY_Model {
 		
 				'postedby'=>$this->session->userdata('id'),
 				'needs'=> $this->input->post('need'),
-				'amount'=> $this->input->post('whyHelp'),
-				'how_help'=>$this->input->post('amount'),
-				'why_help'=>$this->input->post('howHelp'),
+				'amount'=> $this->input->post('amount'),
+				'how_help'=>$this->input->post('howHelp'),
+				'why_help'=>$this->input->post('whyHelp'),
 				'tags'=>$this->input->post('tags')
 				
 		);

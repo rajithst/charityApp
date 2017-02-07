@@ -83,7 +83,6 @@ $db['default'] = array(
 	'hostname' => 'eu-cdbr-azure-west-a.cloudapp.net',
 	'username' => 'b15558e9c0342b',
 	'password' => '3343d3cc',
-
 	//'hostname' => 'localhost',
 	//'username' => 'root',
 	//'password' => '',

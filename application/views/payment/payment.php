@@ -178,7 +178,7 @@ function stripeResponseHandler(status, response) {
                     <div class="form-horizontal">
                         <span class="payment-errors"></span>
                         <script>
-                            $('#State').keyup(function (){
+                            $('#amount').keyup(function (){
                                 document.getElementById("stripeamnt").value = $('#State').val();
                             });
                         </script>
@@ -228,7 +228,8 @@ function stripeResponseHandler(status, response) {
                
                 <input type="hidden" name="lc" value="LK">
                 <input type="hidden" name="item_name" value="HelpMe-Non profit organization">
-                <input type="hidden" name="item_number" value="123">
+                <input type="hidden" name="item_number" id="paypal_val" value="">
+
                 <input type="hidden" name="currency_code" value="USD">
                 <input type="hidden" name="bn" value="PP-DonationsBF:btn_donateCC_LG.gif:NonHosted">
                 <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
@@ -247,7 +248,7 @@ function stripeResponseHandler(status, response) {
 
 $(document).ready(function(){
  
-
+  //payment selection paypal or direct
    $('input:radio[name="payment_option"]').change(function(){
 
     if($(this).val() == 'credit_card'){
@@ -263,7 +264,40 @@ $(document).ready(function(){
     }
 });
 
+   //-----paypal parameter set scripts
+
+   //auto para
+   $("#paypal_val").val($("#amount").val());
+   // $("#paypal_fname").val($("#amount").val());
+   // $("#paypal_lname").val($("#amount").val());
+   // $("#paypal_email").val($("#amount").val());
+  
+   //manual edit para
+$('#amount').keyup(function (){
+  $("#paypal_val").val($("#amount").val());
+  
+   });
+
+// $('#fname').keyup(function (){
+//   $("#paypal_fname").val($("#amount").val());
+  
+//    });
+
+// $('#lname').keyup(function (){
+//   $("#paypal_lname").val($("#amount").val());
+  
+//    });
+
+// $('#email').keyup(function (){
+//   $("#paypal_email").val($("#amount").val());
+  
+//    });
+
 
 });
+
+
+
+                     
 
 </script>

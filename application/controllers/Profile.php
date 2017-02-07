@@ -50,6 +50,12 @@ class Profile extends  Admin_Controller {
         echo $cb;
     }
 
+    public function getPosts(){
+
+        $id = $this->input->get('accid');
+        $cb = $this->Profile_m->getPosts($id);
+    }
+
 
 
 }

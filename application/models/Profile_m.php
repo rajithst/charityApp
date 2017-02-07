@@ -17,9 +17,11 @@ class Profile_m extends MY_Model{
 
     public function getProfileData($id){
 
-        $sql = "SELECT * FROM users WHERE id=$id";
+        $sql = "SELECT posts.id,posts.postedby,posts.posteddate,posts.posttime,posts.needs,posts.status, users.name, users.lastname,users.picture,users.email,users.profilestatus FROM posts INNER JOIN users WHERE posts.postedby=$id";
+
         $query = $this->db->query($sql);
         $res = $query->result();
+
         return $res;
 
 
@@ -55,6 +57,14 @@ class Profile_m extends MY_Model{
             return TRUE;
         else
             return FALSE;
+
+    }
+
+
+    public function getPosts($id){
+
+
+
 
     }
 

@@ -61,6 +61,7 @@ $route['Dashboard'] = 'Admin/Dashboard';
 $route['Pending'] = 'Admin/pendingPosts';
 $route['Approved'] = 'Admin/approvedPosts';
 $route['Draft'] = 'Admin/draftPosts';
+$route['Post/read/(:any)/(:any)'] = 'Posts/readPost/$1/$2';
 $route['Post/read/(:any)'] = 'Posts/readPost/$1';
 $route['Profile/view/(:any)'] = 'Profile/viewProfile/$1';
 

@@ -44,64 +44,123 @@
                     </div>
 
                     <?php
+
+                    $count=0;
+
+                        $rows = 0;
                     foreach ($profile as $res){
-                    
-                    ?>
-                    <div class="panel panel-default">
-                        <div class="panel-body profile" style="background-color:#a7adb5;">
-                            <div class="profile-image">
-                                <img src="<?php echo $res->picture; ?>" alt="Nadia Ali"/>
-                            </div>
-                            <div class="profile-data">
-                                <div class="profile-data-name"><?php echo $res->name . " ". $res->lastname; ?></div>
-                                <div class="profile-data-title" style="color: #FFF;"><?php echo $res->email; ?></div>
-                            </div>
-                        </div>
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <button class="btn btn-info btn-rounded btn-block delete" id="<?php echo $res->id; ?>"><span class="fa fa-check"></span> Delete</button>
-                                </div>
+                        $rows++;
+                    }
+                        foreach ($profile as $res){
 
-                                <div class="col-md-4">
-                                    <?php 
-                                    
-                                    if($res->profilestatus == 1) 
-                                            echo "<span class='label label-success label-form'>Active Profile</span>";
-                                    else
-                                        echo "<span class='label label-warning label-form'>Suspended Profile</span>";
-                                    ?>
-                                </div>
+                            if($count==0){
 
-                               <?php
-                               if($res->profilestatus == 1)
-                                echo "<div class='col-md-4'>
+                            ?>
+                            <div class="panel panel-default">
+                                <div class="panel-body profile" style="background-color:#a7adb5;">
+                                    <div class="profile-image">
+                                        <img src="<?php echo $res->picture; ?>" alt="Nadia Ali"/>
+                                    </div>
+                                    <div class="profile-data">
+                                        <div class="profile-data-name"><?php echo $res->name . " ". $res->lastname; ?></div>
+                                        <div class="profile-data-title" style="color: #FFF;"><?php echo $res->email; ?></div>
+                                    </div>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <button class="btn btn-info btn-rounded btn-block delete" id="<?php echo $res->id; ?>"><span class="fa fa-check"></span> Delete</button>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <?php
+
+                                            if($res->profilestatus == 1)
+                                                echo "<span class='label label-success label-form'>Active Profile</span>";
+                                            else
+                                                echo "<span class='label label-warning label-form'>Suspended Profile</span>";
+                                            ?>
+                                        </div>
+
+                                        <?php
+                                        if($res->profilestatus == 1)
+                                            echo "<div class='col-md-4'>
                                     <button class='btn btn-primary btn-rounded btn-block suspend' id='". $res->id . "'><span class='fa fa-comments'></span> Suspend</button>
                                 </div>";
 
-                               else
-                                   echo "<div class='col-md-4'>
+                                        else
+                                            echo "<div class='col-md-4'>
                                     <button class='btn btn-warning btn-rounded btn-block setactive' id='". $res->id ."'><span class='fa fa-comments'></span> Active</button>
                                 </div>";
-                               ?>
+                                        ?>
 
+                                    </div>
+                                </div>
+                                <div class="panel-body list-group border-bottom">
+
+                                    <a href="#" class="list-group-item reports" id="<?php echo $res->id; ?>"><span class="fa fa-coffee"></span> Profile Reports <span class="badge badge-default">18</span></a>
+                                    <a href="#" class="list-group-item posts" id="<?php echo $res->id; ?>"><span class="fa fa-users"></span> Posts <span class="badge badge-danger"><?php echo $rows; ?></span></a>
+                                    <a href="#" class="list-group-item donations" id="<?php echo $res->id; ?>"><span class="fa fa-users"></span> Donations <span class="badge badge-danger">+7</span></a>
+                                    <a href="#" class="list-group-item settings" id="<?php echo $res->id; ?>"><span class="fa fa-cog"></span> Settings</a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="panel-body list-group border-bottom">
+                        <?php }
 
-                            <a href="#" class="list-group-item" id="<?php echo $res->id; ?>"><span class="fa fa-coffee"></span> Profile Reports <span class="badge badge-default">18</span></a>
-                            <a href="#" class="list-group-item" id="<?php echo $res->id; ?>"><span class="fa fa-users"></span> Posts <span class="badge badge-danger">+7</span></a>
-                            <a href="#" class="list-group-item" id="<?php echo $res->id; ?>"><span class="fa fa-cog"></span> Settings</a>
-                        </div>
-                    </div>
-                    <?php } ?>
+                        $count++;
+
+                    }
+
+                    ?>
 
                 </div>
 
                 <div class="col-md-9">
 
                     <!-- START TIMELINE -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Profile</h3>
+                        </div>
+                        <div class="panel-body">
+                            <table class="table datatable">
+                                <thead>
+                                <tr>
+                                    <th>Posted Date</th>
+                                    <th>Posted Time</th>
+                                    <th>Subject</th>
+                                    <th>Status</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <?php
 
+                                foreach ($profile as $res) {
+                                    if ($res->status==1){
+                                        $token="/read";
+                                    }else{
+                                        $token= NULL;
+                                    }
+                                echo "<tr>
+                                    <td>$res->posteddate</td>
+                                    <td>$res->posttime</td>
+                                    <td><a href=".base_url()."index.php/Post/read/$res->id$token>$res->needs</a></td>";
+
+                                     if ($res->status==1){
+                                        echo "<td><span class=\"label label-success label-form\">Approved</span></td> ";
+                                    }else if ($res->status==0){
+                                         echo "<td><span class=\"label label-warning label-form\">Pending</span></td> ";
+                                    }else{
+                                         echo "<td><span class=\"label label-danger label-form\">Drafted</span></td> ";
+                                     }
+                                 echo "   
+                                  
+                                </tr>";
+                                 } ?>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                     <!-- END TIMELINE -->
 
                 </div>
@@ -247,8 +306,8 @@
 
             })
 
-
         })
+
     </script>
 
 

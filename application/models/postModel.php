@@ -46,6 +46,24 @@ class postModel extends MY_Model {
 		return $query->result();
 
 	}
-
+        
+        function receivedAmount($postid){
+            $this->db->where('id',$postid);
+            $query = $this->db->get('posts');
+            $result = $query->result();
+            return $result[0]->received_amount;
+        }
+        
+        function neededAmount($postid){
+            $this->db->where('id',$postid);
+            $query = $this->db->get('posts');
+            $result = $query->result();
+            return $result[0]->amount;
+        }
+        
+        function updateReceived($postid,$amount){
+            $sql = "UPDATE posts SET received_amount = received_amount+$amount WHERE id = $postid;";
+            $this->db->query($sql);
+        }
 
 }

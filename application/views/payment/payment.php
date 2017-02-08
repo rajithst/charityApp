@@ -9,11 +9,23 @@
 <div class="form-group">
   <label class="col-sm-2 control-label" for="State">Enter your own amount</label>  
   <div class="col-sm-2">
-  <input id="amount" name="amount" type="text"  class="form-control " required="">
+  <input id="amount" name="amount" type="text" value="" class="form-control " required="">
   </div>
 </div>
 
+
+<script>
+  
+   $('#amount').keyup(function (){
+      $("#paypal_val").val($("#amount").val());
+    });
+
+</script>
+
+
+
 <input id="postid" name="postid" type="hidden"  class="form-control " value="<?php echo $postid; ?>" required="">
+
 
 <!-- Form Name -->
 <legend>Billing information</legend>
@@ -291,31 +303,12 @@ $(document).ready(function(){
    //-----paypal parameter set scripts
 
    //auto para
-   $("#paypal_val").val($("#amount").val());
-   // $("#paypal_fname").val($("#amount").val());
-   // $("#paypal_lname").val($("#amount").val());
-   // $("#paypal_email").val($("#amount").val());
+  
   
    //manual edit para
-$('#amount').keyup(function (){
-  $("#paypal_val").val($("#amount").val());
-  
-   });
 
-// $('#fname').keyup(function (){
-//   $("#paypal_fname").val($("#amount").val());
-  
-//    });
 
-// $('#lname').keyup(function (){
-//   $("#paypal_lname").val($("#amount").val());
-  
-//    });
 
-// $('#email').keyup(function (){
-//   $("#paypal_email").val($("#amount").val());
-  
-//    });
 
 
 });

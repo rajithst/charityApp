@@ -15,7 +15,8 @@ class postModel extends MY_Model {
 				'amount'=> $this->input->post('amount'),
 				'how_help'=>$this->input->post('howHelp'),
 				'why_help'=>$this->input->post('whyHelp'),
-				'tags'=>$this->input->post('tags')
+				'tags'=>$this->input->post('tags'),
+				'child_profiles'=>$this->input->post('profiles')
 				
 		);
 		

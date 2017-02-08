@@ -146,9 +146,21 @@ class Home extends Frontend_Controller {
             $children = $this->User_d->getChildren($id);
             $result = array();
             foreach ($children as $row){
-                array_push($result, array('name' => $row->name." ".$row->lastname, 'picture' => $row->picture));
+                array_push($result, array('id'=>$row->id,'name' => $row->name." ".$row->lastname, 'picture' => $row->picture));
             }
             echo json_encode($result);
+        }
+
+
+        public function searchChildren(){
+            $children=$this->User_d->searchChildren();
+            header('Content-type: text/plain'); 
+          // set json non IE
+            header('Content-type: application/json'); 
+            echo json_encode($children);
+
+
+
         }
 
 }

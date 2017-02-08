@@ -88,4 +88,11 @@ class User_d extends MY_Model {
             $result = $query->result();
             return $result;
         }
+
+        function searchChildren(){
+            $name=$this->input->post('name');
+            $owner=$this->session->userData('id');
+            $query=$this->db->query("SELECT * FROM children where name='$name' and donorID='$owner'");
+            return $query->result();
+        }
 	}

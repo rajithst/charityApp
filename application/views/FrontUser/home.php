@@ -98,6 +98,7 @@ if ($logedin != true){
 
     <!-- Modal content-->
     <div class="modal-content">
+    <!--post modal header-->
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <div class="wizard">
@@ -139,53 +140,113 @@ if ($logedin != true){
             </div>
       </div>
       </div>
-
+      <!--end of post modal header-->
       <div class="modal-body">
 
 
             <form role="form">
                 <div class="tab-content">
+
+                    <!--step 1 of post modal-->
                     <div class="tab-pane active" role="tabpanel" id="step1">
                         <h3>Pick one child or more</h3>
                       <div class="row padding">
                       <div class="form-group">
-        <div id="children">
-            <!--load children in the post modal starts here-->
-            <script>
-                loadChildren();
-                function loadChildren(){
-                    jQuery.ajax({
-                        type: "POST",
-                        url: "<?php echo base_url(); ?>" + "index.php/FrontUser/Home/loadChildren/<?php echo $this->session->userdata('id'); ?>",
-                        dataType: 'json',
-                        success: function (res) {
-                            var out = "";
-                            for(var i=0;i<res.length;i++){
-				out = out + "<span class=\"col-xs-2\">" +
-                                        "<a href=\"#aboutModal\" data-toggle=\"modal\" data-target=\"#myModal\"><img src=\"<?php echo base_url(); ?>" + res[i].picture + "\" name=\"aboutme\" width=\"70\" height=\"70\" class=\"img-circle\"></a>" +
-                                        "<h4 class=\"text-center\" >" + res[i].name + "</h4>" +
-                                        "</span>"
-                            }
-                            document.getElementById('children').innerHTML = out;
-                        },
-                        error: function (jqXHR, textStatus, errorThrown) {
-                            alert(jqXHR.responseText);
-                        }
+                      <span>
+                        <div class="row">
+                            <div class="col-sm-8">
+                            <input type="text" id="child_search" class="form-control">
+                            </div>
+                            <div class="col-sm-4">
+                            <button type="button" class="btn btn-success" id="child_search_btn">Search</button>
+                            </div>
+                            </div>
+                        </span>
+                      </div>
+                      <div class="form-group">
+                    <div id="children">
+                        <!--load children in the post modal starts here-->
+                        <script>
+                            $(document).ready(function(){
+                                $("#child_search_btn").click(function(){
+                                    searchChildren($("#child_search").val());
+                                })
 
-                    });
-                }
-            </script>
-            <!--load children in the post modal ends here-->
-        </div>
-    <span class="col-xs-2 padding">
-         <a href="#" style="margin-top: 25px"><h4 class="text-center"> &nbsp;or <button id="child_modal" type="button" class="btn btn-success">create new</button></h4></a>
-    </span>
-       </div> 
-    </div>          
+                            });
+
+                            function searchChildren(name){
+                                var name=name;
+                                if(!name){
+                                    alert("enter a child name to search");
+                                    return false;
+                                }
+                                $.ajax({
+                                    type: "POST",
+                                    url: "<?php echo base_url(); ?>" +"index.php/FrontUser/Home/searchChildren",
+                                    data:{name:name},
+                                    success: function (data) {
+                                        if(data.length>0){
+                                        var data=data;
+                                        var outs = "";
+                                        for(var i=0;i<data.length;i++){
+                            outs = outs + "<span class=\"col-xs-2\">" +
+                                                    "<a href=\"#aboutModal\" data-toggle=\"modal\" data-target=\"#myModal\"><img src=\"<?php echo base_url(); ?>" + data[i].picture + "\" name=\"aboutme\" width=\"70\" height=\"70\" class=\"img-circle\"></a>" +
+                                                    "<h4 class=\"text-center\" >" + data[i].name + "</h4>" +
+                                                    "<div id=\"c_p\" style=\"text-align:center\"><input type=\"checkbox\" name=\"ch_prof\" value="+data[i].id+"></div>"+
+                                                    "</span>"
+                                        }
+                                        document.getElementById('children').innerHTML = outs;
+                                        }
+                                    },
+
+                                    error:function(jqXHR, textStatus, errorThrown){
+                                        console.log("error");
+
+                                    }
+
+                                });
+
+                            }
+
+                        </script>
+                        <script>
+                            loadChildren();
+                            function loadChildren(){
+                                jQuery.ajax({
+                                    type: "POST",
+                                    url: "<?php echo base_url(); ?>" + "index.php/FrontUser/Home/loadChildren/<?php echo $this->session->userdata('id'); ?>",
+                                    dataType: 'json',
+                                    success: function (res) {
+                                        var out = "";
+                                        for(var i=0;i<res.length;i++){
+            				out = out + "<span class=\"col-xs-2\">" +
+                                                    "<a href=\"#aboutModal\" data-toggle=\"modal\" data-target=\"#myModal\"><img src=\"<?php echo base_url(); ?>" + res[i].picture + "\" name=\"aboutme\" width=\"70\" height=\"70\" class=\"img-circle\"></a>" +
+                                                    "<h4 class=\"text-center\" >" + res[i].name + "</h4>" +
+                                                    "<div id=\"c_p\" style=\"text-align:center\"><input type=\"checkbox\" name=\"ch_prof\" value="+res[i].id+"></div>"+
+                                                    "</span>"
+                                        }
+                                        document.getElementById('children').innerHTML = out;
+                                    },
+                                    error: function (jqXHR, textStatus, errorThrown) {
+                                        alert(jqXHR.responseText);
+                                    }
+
+                                });
+                            }
+                        </script>
+                        <!--load children in the post modal ends here-->
+                    </div>
+                    <span class="col-xs-2 padding">
+                         <a href="#" style="margin-top: 25px"><h4 class="text-center"> &nbsp;or <button id="child_modal" type="button" class="btn btn-success">create new</button></h4></a>
+                    </span>
+                       </div> 
+                    </div>          
                         <ul class="list-inline pull-right">
                             <li><button type="button" class="btn btn-primary next-step">Save and continue</button></li>
                         </ul>
                     </div>
+
+                    <!--step 2 of post modal-->
                     <div class="tab-pane" role="tabpanel" id="step2">
                         <div class="tab-pane active" role="tabpanel" id="step1">
                         <div class="step1">
@@ -230,17 +291,21 @@ if ($logedin != true){
                             <li><button type="button" class="btn btn-primary next-step" onclick="postSave()">Save and continue</button></li>
                         </ul>
                     </div>
+
+                    <!--step 3 of post modal-->
                     <div class="tab-pane" role="tabpanel" id="step3">
                         <h3>Step 3</h3>
                         <div class="row">
-                        <div class="col">
+                        <div class="col-sm-6">
                         <a class="btn btn-social-icon btn-facebook" onclick="_gaq.push(['_trackEvent', 'btn-social-icon', 'click', 'btn-facebook']);"><span class="fa fa-facebook"></span></a>
                         </div>
-                        <div class="col">
+                        <div class="col-sm-6">
                         <a class="btn btn-social-icon btn-google" onclick="_gaq.push(['_trackEvent', 'btn-social-icon', 'click', 'btn-google']);"><span class="fa fa-google"></span></a>
 
                         </div>
-                        <div class="col">
+                        <div class="col-sm-6">
+                        <!--face book share button-->
+                         <iframe src="https://www.facebook.com/plugins/share_button.php?href=http%3A%2F%2Fcharityapp.azurewebsites.net%2FHome%23step2&layout=button&size=small&mobile_iframe=true&appId=307324332804525&width=58&height=20" width="58" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
                         </div>
                         </div>
                         <ul class="list-inline pull-right">
@@ -249,10 +314,13 @@ if ($logedin != true){
                             <li><button type="button" class="btn btn-primary btn-info-full next-step">Save and continue</button></li>
                         </ul>
                     </div>
+
+                    <!--final step of post modal-->
                     <div class="tab-pane" role="tabpanel" id="complete">
                         <h3>Complete</h3>
                         <p>You have successfully completed all steps.</p>
                     </div>
+
                     <div class="clearfix"></div>
                 </div>
             </form>
@@ -713,6 +781,8 @@ $(document).ready(function(){
 
 //add post to db
 
+
+
 function postSave(){
 
   var need=$("#pt_need").val();
@@ -721,15 +791,33 @@ function postSave(){
   var confirmAmount=$("#pt_confirm_amount").val();
   var howHelp=$("#pt_how_help").val();
   var tags=$("#pt_tags").val();
+  if(!need || !whyHelp || !amount || !confirmAmount || !howHelp || !tags){
+    alert("fill all fields");
+    return false;
+    
+  }
+
+  if(amount!=confirmAmount){
+    alert("amount mismatch");
+    return false;
+  }
+ 
+  var p = [];
+            $.each($("input[name='ch_prof']:checked"), function(){            
+                p.push($(this).val());
+            });
+    var pr=p.join();
+  
 
 
 
   $.ajax({
     type: "POST",
     url: "savePost",
-    data: {need:need,whyHelp:whyHelp,amount:amount,howHelp:howHelp,tags:tags},
+    data: {need:need,whyHelp:whyHelp,amount:amount,howHelp:howHelp,tags:tags,profiles:pr},
     success: function( data, textStatus, jQxhr ){
       //console.log("success");
+      alert("added to database");
    
 
       

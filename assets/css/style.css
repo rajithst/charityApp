@@ -523,3 +523,19 @@ input[type=text]:focus, textarea:focus {
      margin: 0px;
      padding-left: 0px;
 }
+
+
+
+.stitched {
+   padding: 20px;
+   margin: 10px;
+   background: white;
+   color: #95a5a6;
+   font-size: 21px;
+   font-weight: bold;
+   line-height: 1.3em;
+   border: 2px dashed #95a5a6;
+   border-radius: 10px;
+   box-shadow: 0 0 0 4px white, 2px 1px 6px 4px rgba(10, 10, 0, 0.5);
+   font-weight: normal;
+}

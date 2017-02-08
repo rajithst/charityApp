@@ -30,10 +30,11 @@ class Home extends Frontend_Controller {
 	}
         
         //set the view of timeline in profile
-        public function setTimeline()
-        {
-            $donations = $this->Donation_m->getDonations($this->id,date("Y").'-01-01',date("Y").'-12-31');
-            $posts = $this->postModel->getUserPosts($this->id,date("Y").'-01-01',date("Y").'-12-31');
+        public function setTimeline($id,$start,$bound)
+        {   
+            $this->id = $id;
+            $donations = $this->Donation_m->getDonations($this->id,(date("Y")-10).'-01-01',(date("Y")+10).'-12-31');
+            $posts = $this->postModel->getUserPosts($this->id,(date("Y")-10).'-01-01',(date("Y")+10).'-12-31');
             $n = count($donations);
             $m = count($posts);
             $months = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
@@ -111,8 +112,7 @@ class Home extends Frontend_Controller {
                 array_push($post[$day.$months[intval($month)-1]],$cur);
                 $j++;
             }
-            
-            return $post;
+            echo json_encode(array_slice($post, $start, $bound));
         }
         
 	public function profile($id)
@@ -125,8 +125,7 @@ class Home extends Frontend_Controller {
                 $data['children'] = $this->User_d->getChildren($this->id);
 		//load children of user ends
 		$data['users']=$this->User_d->getUsers();
-                $data['timelinecontent'] = $this->setTimeline();
-		
+                
 		if(count($data) > 0)
 		{
 			$this->load->customizeTemplate('header',NULL,'FrontUser/profile',$data);

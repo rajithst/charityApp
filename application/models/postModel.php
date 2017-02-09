@@ -36,13 +36,13 @@ class postModel extends MY_Model {
         }
     
 	function loadPost(){
-		$query=$this->db->query("SELECT * FROM posts where status=1 and amount>received_amount order by posteddate desc limit 20");
+		$query=$this->db->query("SELECT p.id,p.imagepaths,p.needs,p.how_help,p.why_help,p.amount,p.received_amount,u.username,u.picture,u.id as ids FROM posts as p inner join users as u on p.postedby=u.id where p.status=1 and p.amount>p.received_amount order by p.id desc limit 6");
 		return $query->result();
 	}
 
 	function loadMore(){
 		$lastid=$this->input->post('lastid');
-		$query=$this->db->query("SELECT * FROM posts where status=1 and id<='$lastid' and amount>received_amount order by posteddate desc limit 20");
+		$query=$this->db->query("SELECT p.id,p.imagepaths,p.needs,p.how_help,p.why_help,p.amount,p.received_amount,u.username,u.picture,u.id as ids FROM posts as p inner join users as u on p.postedby=u.id where p.status=1 and p.id<='$lastid' and p.amount>p.received_amount order by p.id desc limit 6");
 		return $query->result();
 
 	}

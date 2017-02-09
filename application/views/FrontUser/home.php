@@ -49,7 +49,7 @@ if ($logedin != true){
 <!--center scrolling area-->
 
 
-<div class="col-sm-6 col-sm-offset-3" style="height:2400px;">
+<div class="col-sm-6 col-sm-offset-3">
                 <div class="stitched text-center button" id="post_txt">
                     Create New
                 </div>
@@ -103,7 +103,7 @@ if ($logedin != true){
                 <ul class="nav nav-tabs" role="tablist">
 
                     <li role="presentation" class="active">
-                        <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Pick one child or more">
+                        <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Pick one child or more" id="st1">
                             <span class="round-tab">
                                 <i class="glyphicon glyphicons-user-add"></i>
                             </span>
@@ -111,14 +111,15 @@ if ($logedin != true){
                     </li>
 
                     <li role="presentation" class="disabled">
-                        <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Step 2">
+                        <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Step 2" id="st2">
                             <span class="round-tab">
                                 <i class="glyphicon glyphicon-pencil"></i>
                             </span>
                         </a>
                     </li>
-                    <li role="presentation" class="disabled">
-                        <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Step 3">
+
+                     <li role="presentation" class="disabled">
+                        <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Step 3" id="st3">
                             <span class="round-tab">
                                 <i class="glyphicon glyphicon-picture"></i>
                             </span>
@@ -126,7 +127,15 @@ if ($logedin != true){
                     </li>
 
                     <li role="presentation" class="disabled">
-                        <a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Complete">
+                        <a href="#step4" data-toggle="tab" aria-controls="step4" role="tab" title="Step 4" id="st4">
+                            <span class="round-tab">
+                                <i class="glyphicon glyphicon-picture"></i>
+                            </span>
+                        </a>
+                    </li>
+
+                    <li role="presentation" class="disabled">
+                        <a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Complete" id="st4">
                             <span class="round-tab">
                                 <i class="glyphicon glyphicon-ok"></i>
                             </span>
@@ -140,7 +149,7 @@ if ($logedin != true){
       <div class="modal-body">
 
 
-            <form role="form">
+           
                 <div class="tab-content">
 
                     <!--step 1 of post modal-->
@@ -191,7 +200,7 @@ if ($logedin != true){
                                                     "<div id=\"c_p\" style=\"text-align:center\"><input type=\"checkbox\" name=\"ch_prof\" value="+data[i].id+"></div>"+
                                                     "</span>"
                                         }
-                                        document.getElementById('children').innerHTML = outs;
+                                        $("#children").append(outs);
                                         }
                                     },
 
@@ -233,29 +242,28 @@ if ($logedin != true){
                         <!--load children in the post modal ends here-->
                     </div>
                     <span class="col-xs-2 padding">
-                         <a href="#" style="margin-top: 25px"><h4 class="text-center"> &nbsp;or <button id="child_modal" type="button" class="btn btn-success">create new</button></h4></a>
+                          <a><img src="https://cdn0.iconfinder.com/data/icons/toolbar-signs-1/512/add_create_cross_healthcare_help_hospital_medic_medical_new_pharmacy_plus_icon_add_aid_care_chemist_clinic_create_creation_cure_drug_drugs_drugstore_farmacia_farmacy_health_healthcare_help_hospital_me-512.png" width="40px" id="child_modal" style="margin-top:20px;" /></a>
                     </span>
                        </div> 
                     </div>          
                         <ul class="list-inline pull-right">
-                            <li><button type="button" class="btn btn-primary next-step">Save and continue</button></li>
+                           <li><button type="button" class="btn btn-success next-step" onclick="next1() ">Save and continue</button></li>
                         </ul>
                     </div>
 
                     <!--step 2 of post modal-->
                     <div class="tab-pane" role="tabpanel" id="step2">
-                        <div class="tab-pane active" role="tabpanel" id="step1">
-                        <div class="step1">
+                        
                             <div class="row">
-                            <div class="col-md-6">
-                                <label for="exampleInputEmail1">What they Need</label>
-                                <input type="text" class="form-control" id="pt_need" placeholder="What they Need">
+                                <div class="col-md-6">
+                                    <label for="exampleInputEmail1">What they Need</label>
+                                    <input type="text" class="form-control" id="pt_need" placeholder="What they Need">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="exampleInputEmail1">Why they asking your help</label>
+                                    <input type="text" class="form-control" id="pt_why_help" placeholder="Why they asking your help">
+                                </div>
                             </div>
-                            <div class="col-md-6">
-                                <label for="exampleInputEmail1">Why they asking your help</label>
-                                <input type="text" class="form-control" id="pt_why_help" placeholder="Why they asking your help">
-                            </div>
-                        </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <label for="exampleInputEmail1">Amount</label>
@@ -280,17 +288,43 @@ if ($logedin != true){
                                 </div>
                             </div>
                         </div>
-                        </div>
-                    </div>
+                      
+                   
                         <ul class="list-inline pull-right">
-                            <li><button type="button" class="btn btn-default prev-step">Previous</button></li>
-                            <li><button type="button" class="btn btn-primary next-step" onclick="postSave()">Save and continue</button></li>
+                            <li><button type="button" class="btn btn-success prev-step" onclick="prev1()">Previous</button></li>
+                            <li><button type="button" class="btn btn-success next-step" onclick="postSave()">Save and continue</button></li>
                         </ul>
                     </div>
 
-                    <!--step 3 of post modal-->
-                    <div class="tab-pane" role="tabpanel" id="step3">
+
+                     <!--step 3 of post modal-->
+                    <div class="tab-pane" role="tabpane3" id="step3">
                         <h3>Step 3</h3>
+                        <div class="row">
+                                <div id="image_preview"><img id="previewing" src="noimage.png" /></div>
+                                <label>Select Your Image</label><br/>
+                                <form id="uploadimage" name="uploadimage" method="post">
+                                    
+                                    
+                                    <input type="file" name="file" id="file" required />
+                                    <input type="button" id="postimgupload" value="Upload" class="submit" />
+                                   
+                                </form>
+                        </div>
+                        <div class="row">
+                                    <h4 id='loading' >loading..</h4>
+                                    <div id="message"></div>
+                        </div>
+                        <ul class="list-inline pull-right">
+                            <li><button type="button" class="btn btn-success prev-step">Previous</button></li>
+                            <li><button type="button" class="btn btn-success next-step">Skip</button></li>
+                            <li><button type="button" class="btn btn-success btn-info-full next-step" onclick="next3()">Save and continue</button></li>
+                        </ul>
+                    </div>
+
+                    <!--step 4 of post modal-->
+                    <div class="tab-pane" role="tabpane4" id="step4">
+                        <h3>Step 4</h3>
                         <div class="row">
                         <div class="col-sm-6">
                         <a class="btn btn-social-icon btn-facebook" onclick="_gaq.push(['_trackEvent', 'btn-social-icon', 'click', 'btn-facebook']);"><span class="fa fa-facebook"></span></a>
@@ -305,9 +339,9 @@ if ($logedin != true){
                         </div>
                         </div>
                         <ul class="list-inline pull-right">
-                            <li><button type="button" class="btn btn-default prev-step">Previous</button></li>
-                            <li><button type="button" class="btn btn-default next-step">Skip</button></li>
-                            <li><button type="button" class="btn btn-primary btn-info-full next-step">Save and continue</button></li>
+                            <li><button type="button" class="btn btn-success prev-step">Previous</button></li>
+                            <li><button type="button" class="btn btn-success next-step">Skip</button></li>
+                            <li><button type="button" class="btn btn-success btn-info-full next-step" onclick="next3()">Save and continue</button></li>
                         </ul>
                     </div>
 
@@ -319,7 +353,7 @@ if ($logedin != true){
 
                     <div class="clearfix"></div>
                 </div>
-            </form>
+          
         </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -769,7 +803,7 @@ $(document).ready(function(){
   });
 
   postLoad();
-  setInterval(postLoad, 2000);
+  setInterval(postLoad, 10000);
 
 
 });
@@ -814,6 +848,7 @@ function postSave(){
     success: function( data, textStatus, jQxhr ){
       //console.log("success");
       alert("added to database");
+      $("#st3").click();
    
 
       
@@ -837,16 +872,17 @@ function postLoad(){
       $('.post_content').empty();
 
       for(var i=0;i<data.length;i++){
+        $(".lastid_value").remove();
       $('.post_content').append(' <div class="panel panel-default" style="margin-bottom:10px;">\
            <div class="panel-heading">\
            <a href="#" class="pull-right">View all</a> \
-           <img src="http://1plusx.com/app/mu-plugins/all-in-one-seo-pack-pro/images/default-user-image.png" width="30px"/>'+data[i].postedby+'\
+           <img src="<?php echo base_url(); ?>'+data[i].picture+'" width="35px" height="35px"/><span><a href="<?php echo base_url(); ?>FrontUser/Home/profile/'+data[i].ids+'">'+data[i].username+'</a></span>\
            <h4>post'+data[i].id+'</h4>\
            </div>\
           <div class="panel-body">\
           <div class="row">\
           <div class="col-sm-4">\
-          <img src="//placehold.it/150x150" class="img pull-left">\
+          <img src="<?php echo base_url(); ?>'+data[i].imagepaths+'" width="150px" height="150px" class="img pull-left">\
           </div>\
           <div class="col-sm-8">\
           <h4>what they want</h4><p>'+data[i].needs+'</p>\
@@ -858,8 +894,8 @@ function postLoad(){
         <div class="col-sm-4">\
         <div class="progress">\
           <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar"\
-          aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">\
-            40% Complete (success)\
+          aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:'+(data[i].received_amount/data[i].amount)*100+'%">\
+            '+(data[i].received_amount/data[i].amount)*100+'% \
           </div>\
         </div>\
         </div>\
@@ -875,7 +911,7 @@ function postLoad(){
         </div>\
           <div class="row" style="background-color: #f5f5f5;margin-top:10px;padding:2px; border-color: #ddd;">\
              <div class="col-sm-4">\
-              $8000.00 needed<br/>$3500.00 received </div>\
+               '+data[i].amount+'needed<br/>'+data[i].received_amount+' received </div>\
                <div class="col-sm-4">\
               56 days left<br/> 5 donations</div>\
               <div class="col-sm-4"><button type="button" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-share-alt"></span></button></div>\
@@ -908,32 +944,43 @@ function postLoad(){
 
 
 function loadMore(){
-  var lastid=$(".lastid_value").val();
-  lastid=parseInt(lastid)-4;
-  alert(lastid);
+    if($('.post_loadmore_content').text()==0){
+        var lastid=$(".lastid_value").val();
+    }
+
+    else{
+        var lastid=$(".lastid_val").val();
+
+    }
+  
+  lastid=parseInt(lastid)-1;
+  //alert(lastid);
   $("#load_more").text("Loading please wait..");
 
-
+  if(lastid>0){
    $.ajax({
     type: "POST",
     url: "loadMorePost",
     data:{lastid:lastid},
     success: function( data, textStatus, jQxhr ){
       $("#load_more").remove();
-      $(".lastid_value").remove();
+      
 
+      
       for(var i=0;i<data.length;i++){
-      $('.post_loadmore_content').append(' <div class="panel panel-default">\
+        $(".lastid_val").remove();
+      $('.post_loadmore_content').append(' <div class="panel panel-default" style="margin-bottom:10px;">\
            <div class="panel-heading">\
            <a href="#" class="pull-right">View all</a> \
+           <img src="<?php echo base_url(); ?>'+data[i].picture+'" width="35px" height="35px"/><span><a href="<?php echo base_url(); ?>FrontUser/Home/profile/'+data[i].ids+'">'+data[i].username+'</a></span>\
            <h4>post'+data[i].id+'</h4>\
            </div>\
           <div class="panel-body">\
           <div class="row">\
           <div class="col-sm-4">\
-          <img src="//placehold.it/150x150" class="img pull-left">\
+          <img src="<?php echo base_url(); ?>'+data[i].imagepaths+'" width="150px" height="150px" class="img pull-left">\
           </div>\
-           <div class="col-sm-8">\
+          <div class="col-sm-8">\
           <h4>what they want</h4><p>'+data[i].needs+'</p>\
           <h4>How can you help</h4><p>'+data[i].how_help+'</p>\
           <h4>Why they asking your help</h4><p>'+data[i].why_help+'</p>\
@@ -943,8 +990,8 @@ function loadMore(){
         <div class="col-sm-4">\
         <div class="progress">\
           <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar"\
-          aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">\
-            40% Complete (success)\
+          aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:'+(data[i].received_amount/data[i].amount)*100+'%">\
+            '+(data[i].received_amount/data[i].amount)*100+'% \
           </div>\
         </div>\
         </div>\
@@ -955,21 +1002,19 @@ function loadMore(){
             placeholder="Amount">\
         </div>\
         </div>\
-        <div class="col-sm-4"><a href="<?php echo base_url('/donations'); ?>"/'+data[i].id+'"><button type="button" class="btn btn-success btn-block">donate</button>\
+        <div class="col-sm-4"><a href="<?php echo base_url('/donations'); ?>/'+data[i].id+'"><button type="button" class="btn btn-success btn-block">donate</button>\
         </a></div>\
         </div>\
           <div class="row" style="background-color: #f5f5f5;margin-top:10px;padding:2px; border-color: #ddd;">\
              <div class="col-sm-4">\
-              $8000.00 needed<br/>$3500.00 received </div>\
+               '+data[i].amount+'needed<br/>'+data[i].received_amount+' received </div>\
                <div class="col-sm-4">\
               56 days left<br/> 5 donations</div>\
-                 </div>\
-                 <div class="col-sm-4">\
-                 <button type="button" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-share-alt"></span></button>\
+              <div class="col-sm-4"><button type="button" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-share-alt"></span></button></div>\
                  </div>\
         </div>\
         </div>\
-        <input type="hidden" value='+data[i].id+' class="lastid_value" />\
+        <input type="hidden" value='+data[i].id+' class="lastid_val" />\
         ');
 
       
@@ -983,8 +1028,79 @@ function loadMore(){
         alert(jqXHR.responseText);;
       }
     });
+ }
 
 }
+
+
+function next1(){
+    $("#st2").click();
+}
+
+
+function prev1(){
+    $("#st1").click();
+}
+function next3(){
+    $("#st4").click();
+}
+
+
+
+//image upload of post
+
+$(document).ready(function () {
+$("#postimgupload").click(function() {
+$("#message").empty();
+$('#loading').show();
+$.ajax({
+url: "<?php echo base_url(); ?>" + "index.php/FileUpload_c/uploadPicture/posts/file/<?php echo $this->session->userdata('id'); ?>/img1br1posts", // Url to which the request is send
+type: "POST",             // Type of request to be send, called as method
+data: new FormData(document.getElementById("uploadimage")), // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+contentType: false,       // The content type used when sending data to the server.
+cache: false,             // To unable request pages to be cached
+processData:false,        // To send DOMDocument or non processed data file it is set to false
+success: function(data)   // A function to be called if request succeeds
+{
+alert(data);
+$('#loading').hide();
+$("#message").html(data);
+},error:function(xhr, textStatus, errorThrown){
+    alert("error");
+
+}
+});
+});
+
+// Function to preview image after validation
+$(function() {
+$("#file").change(function() {
+$("#message").empty(); // To remove the previous error message
+var file = this.files[0];
+var imagefile = file.type;
+var match= ["image/jpeg","image/png","image/jpg"];
+if(!((imagefile==match[0]) || (imagefile==match[1]) || (imagefile==match[2])))
+{
+$('#previewing').attr('src','noimage.png');
+$("#message").html("<p id='error'>Please Select A valid Image File</p>"+"<h4>Note</h4>"+"<span id='error_message'>Only jpeg, jpg and png Images type allowed</span>");
+return false;
+}
+else
+{
+var reader = new FileReader();
+reader.onload = imageIsLoaded;
+reader.readAsDataURL(this.files[0]);
+}
+});
+});
+function imageIsLoaded(e) {
+$("#file").css("color","green");
+$('#image_preview').css("display", "block");
+$('#previewing').attr('src', e.target.result);
+$('#previewing').attr('width', '250px');
+$('#previewing').attr('height', '230px');
+};
+});
 
 <!--//////////////////////////////end of post script//////////////////////-->
 
@@ -1010,3 +1126,5 @@ function loadMore(){
     }
 </script>
 <!-- end load follower count -->
+
+

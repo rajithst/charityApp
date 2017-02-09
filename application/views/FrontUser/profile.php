@@ -154,63 +154,107 @@
                 </div>
 
             </div>
-            <?php
-                foreach ($timelinecontent as $row){
-            ?>
-            <div class="row timeline-movement">
-
-                <div class="timeline-badge">
-                    <span class="timeline-balloon-date-day"><?php echo $row[0]['day']; ?></span>
-                    <span class="timeline-balloon-date-month"><?php echo $row[0]['month']; ?></span>
-                </div>
-            <?php
-                    $i=0;
-                    foreach($row as $column){
-                        if($i%2==0){
-            ?>
-                <div class="col-sm-6  timeline-item">
-                    <div class="row">
-                        <div class="col-sm-offset-1 col-sm-11">
-                            <div class="timeline-panel debits">
-                                <ul class="timeline-panel-ul">
-                                    <li><span class="importo"><?php echo $column['type']; ?></span></li>
-                                    <li><span class="causale"><?php echo $column['content']; ?></span></li>
-                                    <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> <?php echo $column['date']; ?></small></p> </li>
-                                </ul>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            <?php
-                        }else{
-            ?>
-                <div class="col-sm-6  timeline-item">
-                    <div class="row">
-                        <div class="col-sm-11">
-                            <div class="timeline-panel credits">
-                                <ul class="timeline-panel-ul">
-                                    <li><span class="importo"><?php echo $column['type']; ?></span></li>
-                                    <li><span class="causale"><?php echo $column['content']; ?></span></li>
-                                    <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> <?php echo $column['date']; ?></small></p> </li>
-                                </ul>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            <?php
-                        }
-                        $i++;
-                    }
-            ?>
-            </div>
-            <?php
+            <div id="timelinecontent"></div>
+            <div id="timelineend" class="timelineend"></div>
+            <script>
+                $('.timelineend').click(function(e){
+                    var trgt = e.target.id;
+                    if (trgt=="down")
+                        loadMore(c);
+                    else if (trgt=="up")
+                        loadLess(0);
+                });
+                
+                var c = 0;
+                loadMore(0);
+                function loadLess(){
+                    $('#timelinecontent').html("");
+                    loadTimeline(0);
+                    c = 0;
                 }
-            ?>
+                function loadMore(start){
+                    loadTimeline(start);
+                    c += 5;
+                }
+                function loadTimeline(start,bound=5){
+                    jQuery.ajax({
+                        type: "POST",
+                        url: "<?php echo base_url(); ?>" + "index.php/FrontUser/Home/setTimeLine/<?php echo $user->id; ?>/"+start+"/"+bound,
+                        dataType: 'json',
+                        success: function (res) {
+                            content = "";
+                            if(res!=""){
+                                for(var k in res){
+                                   var row = res[k];
+                                   content = content+'<div class="row timeline-movement">'+
+                                        '<div class="timeline-badge">'+
+                                            '<span class="timeline-balloon-date-day">'+row[0]['day']+'</span><br>'+
+                                            '<span class="timeline-balloon-date-month">'+row[0]['month']+'</span>'+
+                                        '</div>';
+                                    var i=0;
+                                    for(var k2 in row){
+                                        var column = row[k2];
+                                        if(i%2==0){
+                                            content = content+'<div class="col-sm-6  timeline-item">'+
+                                                '<div class="row">'+
+                                                    '<div class="col-sm-offset-1 col-sm-11">'+
+                                                        '<div class="timeline-panel debits">'+
+                                                            '<ul class="timeline-panel-ul">'+
+                                                                '<li><span class="importo">'+column['type']+'</span></li>'+
+                                                                '<li><span class=\"causale\">'+column['content']+'</span></li>'+
+                                                                '<li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> '+column['date']+'</small></p> </li>'
+                                                            '</ul>';
+                                            content = content+'</div>'+
+                                                    '</div>'+
+                                                '</div>'+
+                                            '</div>';
+                                        }else{
+                                            content = content+'<div class="col-sm-6  timeline-item">'+
+                                                '<div class="row">'+
+                                                    '<div class="col-sm-11">'+
+                                                        '<div class="timeline-panel credits">'+
+                                                            '<ul class="timeline-panel-ul">'+
+                                                                '<li><span class="importo">'+column['type']+'</span></li>'+
+                                                                '<li><span class="causale">'+column['content']+'</span></li>'+
+                                                                '<li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i>'+column['date']+'</small></p> </li>'+
+                                                            '</ul>';
+                                            content = content+'</div>'+
+                                                    '</div>'+
+                                                '</div>'+
+                                            '</div>';
+                                        }
+                                        i++;
+                                    }
+                                    content = content+'</div>';
+                                }
+                                $('#timelinecontent').append(content);
+                                var end = '<div class="timeline-movement timeline-movement-top">'+
+                                            '<div style="cursor: pointer;" class="moretimeline timeline-badge timeline-filter-movement">'+
+                                                '<a>'+
+                                                    '<span id="down" class="fa fa-chevron-down"></span>'+
+                                                '</a>'+
+                                            '</div>'+
+                                        '</div>';
+                                    $('#timelineend').html(end);
+                            }else{
+                                var end = '<div class="timeline-movement timeline-movement-top">'+
+                                        '<div style="cursor: pointer;" class="moretimeline timeline-badge timeline-filter-movement">'+
+                                            '<a>'+
+                                                '<span id="up" class="fa fa-chevron-up"></span>'+
+                                            '</a>'+
+                                        '</div>'+
+                                    '</div>';
+                                 $('#timelineend').html(end);
+                            }
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            alert(jqXHR.responseText);
+                        }
+                    });
+                }
+            </script>
+            <br><br>
             <!--due -->
-
-            
         </div>
     </div>
     <!-- /Timeline -->

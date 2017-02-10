@@ -49,9 +49,11 @@ if ($logedin != true){
 <!--center scrolling area-->
 
 
-<div class="col-sm-6 col-sm-offset-3">
-                <div class="stitched text-center button" id="post_txt">
+<div class="col-sm-6 col-sm-offset-3" style="height:2400px;">
+                <div class="stitched text-center animated bounceIn " id="post_txt" style="cursor:pointer;">
+                   <div class=" hvr-pop">
                     Create New
+                    </div>
                 </div>
 
                             <div class="post_content">
@@ -1129,4 +1131,7 @@ $('#previewing').attr('height', '230px');
 </script>
 <!-- end load follower count -->
 
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes

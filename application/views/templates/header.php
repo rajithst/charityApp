@@ -8,6 +8,8 @@
   <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.css');?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/loader.css') ?>">
    <link rel="stylesheet" href="<?php echo base_url('assets/css/chat.css');?>">
+  <link rel="stylesheet" href="<?php echo base_url('assets/css/animate.css');?>">
+  <link rel="stylesheet" href="<?php echo base_url('assets/css/hover.css');?>">
 
   <link rel="stylesheet" href="<?php echo base_url('assets/css/style.css');?>">
    <link rel="stylesheet" href="<?php echo base_url('assets/css/event.css'); ?>">
@@ -30,6 +32,10 @@
 <!-- Navbar -->
 
 <body style="padding-top: 50px;">
+<div class="se-pre-con"><div class="blobs">
+  <div class="blob"></div>
+  <div class="blob"></div>
+</div>
   <div class="navbar padding navbar-fixed-top">
     <div class="navbar-header">
       <button class="navbar-toggle navbar-tog" type="button" data-toggle="collapse" data-target=".navbar-collapse" style="color : black;">
@@ -520,12 +526,13 @@ function readingStatus(name){
 
 
 <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js"></script>
+<!-- loader -->
 <script type="text/javascript">
 //paste this code under the head tag or in a separate js file.
-  // Wait for window load
-  $(window).load(function() {
-    // Animate loader off screen
-    $(".se-pre-con").fadeOut("slow");;
-  });
+    // Wait for window load
+    $(window).load(function() {
+        // Animate loader off screen
+        $(".se-pre-con").fadeOut("slow");;
+    });
 </script>
 </body>

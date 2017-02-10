@@ -27,10 +27,21 @@ class Donation_m extends MY_Model{
         return $query->result();
     }
     public function getReceivedAmounts($id,$startDate,$endDate){
-        $where = "recipientID=$id AND date >= '$startDate' AND date <= '$endDate'";
-        $sql = "SELECT date,sum(amount) AS amount FROM donations WHERE $where GROUP BY date;";
+        $where = "pc.childid=$id AND d.date >= '$startDate' AND d.date <= '$endDate'";
+        $sql = "SELECT CAST(d.date AS DATE) AS date,sum(d.amount) AS amount,p.n_of_children AS n_of_children FROM donations d INNER JOIN postchildren pc INNER JOIN posts p WHERE d.postID=pc.postid AND pc.postid=p.id AND $where GROUP BY CAST(d.date AS DATE)";
         $query = $this->db->query($sql);
-        return $query->result();
+        $result = $query->result();
+        $data = array();
+        foreach ($result as $row){
+            $amount = floatval($row->amount);
+            $date = $row->date;
+            $nc = intval($row->n_of_children);
+            if($nc>1){
+                $amount = $amount/$nc;
+            }
+            array_push($data, array('date' => $date, 'amount' => $amount));
+        }
+        return $data;
     }
     public function getTotalDonatedAmount($id){
         $where = "donorID=$id";
@@ -40,11 +51,21 @@ class Donation_m extends MY_Model{
         return $results[0]->amount;
     }
     public function getTotalReceivedAmount($id){
-        $where = "recipientID=$id";
-        $sql = "SELECT sum(amount) AS amount FROM donations WHERE $where;";
+        $where = "pc.childid=$id";
+        $sql = "SELECT sum(d.amount) AS amount,p.n_of_children AS n_of_children FROM donations d INNER JOIN postchildren pc INNER JOIN posts p WHERE d.postID=pc.postid AND pc.postid=p.id AND $where";
         $query = $this->db->query($sql);
-        $results = $query->result();
-        return $results[0]->amount;
+        $result = $query->result();
+        $data = array();
+        foreach ($result as $row){
+            $amount = floatval($row->amount);
+            $date = $row->date;
+            $nc = intval($row->n_of_children);
+            if($nc>1){
+                $amount = $amount/$nc;
+            }
+            array_push($data, array('date' => $date, 'amount' => $amount));
+        }
+        return $data[0]->amount;
     }
 
     //paypal queries
@@ -86,7 +107,7 @@ class Donation_m extends MY_Model{
 
         
         if (is_array($data)) {
-            $query=$this->db->query("INSERT INTO donations (donorID, recipientID,description,amount, payment_status, txnid,payment_method,postid) VALUES (
+            $query=$this->db->query("INSERT INTO donations (donorID, recipientID, description,amount, payment_status, txnid,payment_method,postid) VALUES (
                 '1','2',null,
                     '".$data['payment_amount']."' ,
                     '".$data['payment_status']."' ,

@@ -854,7 +854,7 @@ function postSave(){
       
       },
     error: function( jqXhr, textStatus, errorThrown ){
-        console.log("error");
+        alert(jqXhr.responseText);
       }
     });
 

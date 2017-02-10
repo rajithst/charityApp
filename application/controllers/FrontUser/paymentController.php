@@ -181,14 +181,12 @@ class paymentController extends CI_Controller {
             //if transfer successed response will be returned
             if(isset($charge->amount)){
                 $description = "fughkbijh";
-                $receiver = 1;
                 $payment_status = "stripe";
                 $txnid = "";
                 $payment_method = "";
                 if((bool)$this->Donation_m->addDonation(array(
                     'donorID'=>$this->session->userdata('id'),
                     'postID'=>$postid,
-                    'recipientID'=>$receiver,
                     'description'=>$description,
                     'amount'=>$amount,
                     'payment_status'=>$payment_status,

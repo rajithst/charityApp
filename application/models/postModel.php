@@ -7,21 +7,42 @@ class postModel extends MY_Model {
 
 	function savePost(){
 
-
+                $postedby = $this->session->userdata('id');
+                $needs = $this->input->post('need');
+                $amount = $this->input->post('amount');
+                $how_help = $this->input->post('howHelp');
+                $why_help = $this->input->post('whyHelp');
+                $tags = $this->input->post('tags');
+                $childprofiles = explode(",", $this->input->post('profiles'));
 		$post_data = array(
 		
-				'postedby'=>$this->session->userdata('id'),
-				'needs'=> $this->input->post('need'),
-				'amount'=> $this->input->post('amount'),
-				'how_help'=>$this->input->post('howHelp'),
-				'why_help'=>$this->input->post('whyHelp'),
-				'tags'=>$this->input->post('tags'),
-				'child_profiles'=>$this->input->post('profiles')
+				'postedby'=>$postedby,
+				'needs'=> $needs,
+				'amount'=> $amount,
+				'how_help'=>$how_help,
+				'why_help'=>$why_help,
+				'tags'=>$tags
 				
 		);
-		
+		$n_of_children = count($childprofiles);
+                $post_data['n_of_children'] = $n_of_children;
 		$res = $this->db->insert('posts', $post_data);
-		if ($res) {
+                if ($res) {
+                        $this->db->where(array(
+                            'postedby'=>$postedby,
+                            'needs'=> $needs,
+                            'amount'=> $amount,
+                            'how_help'=>$how_help,
+                            'why_help'=>$why_help,
+                            'tags'=>$tags,
+                            'n_of_children' => $n_of_children
+                        ));
+                        $query = $this->db->get('posts');
+                        $result = $query->result();
+                        $postid = $result[0]->id;
+                        foreach($childprofiles as $cid){
+                            $this->db->insert('postchildren', array('postid'=>$postid,'childid'=>$cid));
+                        }		
 			return true;
 		}
 

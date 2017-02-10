@@ -837,6 +837,7 @@ function postLoad(){
       $('.post_content').empty();
 
       for(var i=0;i<data.length;i++){
+      var amountprogress = (parseFloat(data[i].received_amount)/parseFloat(data[i].amount))*100;
       $('.post_content').append(' <div class="panel panel-default" style="margin-bottom:10px;">\
            <div class="panel-heading">\
            <a href="#" class="pull-right">View all</a> \
@@ -858,15 +859,15 @@ function postLoad(){
         <div class="col-sm-4">\
         <div class="progress">\
           <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar"\
-          aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">\
-            40% Complete (success)\
+          aria-valuenow="'+amountprogress+'" aria-valuemin="0" aria-valuemax="100" style="color:black; width:'+amountprogress+'%">\
+            '+amountprogress+'% Complete (success)\
           </div>\
         </div>\
         </div>\
         <div class="col-sm-4">\
         <div class="input-group">\
           <span class="input-group-addon">$</span>\
-          <input id="" type="text" class="form-control" name="" \
+          <input id="" type="text" value="'+data[i].amount+'" class="form-control" name="" \
             placeholder="Amount">\
         </div>\
         </div>\
@@ -875,7 +876,7 @@ function postLoad(){
         </div>\
           <div class="row" style="background-color: #f5f5f5;margin-top:10px;padding:2px; border-color: #ddd;">\
              <div class="col-sm-4">\
-              $8000.00 needed<br/>$3500.00 received </div>\
+              $'+data[i].amount+' needed<br/>$'+data[i].received_amount+' received </div>\
                <div class="col-sm-4">\
               56 days left<br/> 5 donations</div>\
               <div class="col-sm-4"><button type="button" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-share-alt"></span></button></div>\
@@ -923,6 +924,7 @@ function loadMore(){
       $(".lastid_value").remove();
 
       for(var i=0;i<data.length;i++){
+      var amountprogress = (parseFloat(data[i].received_amount)/parseFloat(data[i].amount))*100;
       $('.post_loadmore_content').append(' <div class="panel panel-default">\
            <div class="panel-heading">\
            <a href="#" class="pull-right">View all</a> \
@@ -943,15 +945,15 @@ function loadMore(){
         <div class="col-sm-4">\
         <div class="progress">\
           <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar"\
-          aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">\
-            40% Complete (success)\
+          aria-valuenow="'+amountprogress+'" aria-valuemin="0" aria-valuemax="100" style="width:'+amountprogress+'%">\
+            '+amountprogress+'% Complete (success)\
           </div>\
         </div>\
         </div>\
         <div class="col-sm-4">\
         <div class="input-group">\
           <span class="input-group-addon">$</span>\
-          <input id="" type="text" class="form-control" name="" \
+          <input id="" type="text" value="'+data[i].amount+'" class="form-control" name="" \
             placeholder="Amount">\
         </div>\
         </div>\
@@ -960,7 +962,7 @@ function loadMore(){
         </div>\
           <div class="row" style="background-color: #f5f5f5;margin-top:10px;padding:2px; border-color: #ddd;">\
              <div class="col-sm-4">\
-              $8000.00 needed<br/>$3500.00 received </div>\
+              $'+data[i].amount+' needed<br/>$'+data[i].received_amount+' received </div>\
                <div class="col-sm-4">\
               56 days left<br/> 5 donations</div>\
                  </div>\

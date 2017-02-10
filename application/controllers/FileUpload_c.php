@@ -24,7 +24,12 @@ class FileUpload_c extends MY_Controller{
             {
                 $name = $targtid."pic.".$file_extension;
                 $sourcePath = $_FILES[$id]['tmp_name']; // Storing source path of the file in a variable
-                $targetPath = str_replace("1br1", "/", $path)."/$name"; // Target path where file is to be stored
+                $targetPath="dfgd";
+                if(strcmp($dbtable,"posts")==0){
+                    $targetPath = str_replace("1br1", "/", $path)."/".$_FILES['file']['name'];
+                }else{
+                     $targetPath = str_replace("1br1", "/", $path)."/$name"; // Target path where file is to be stored
+                }
                 move_uploaded_file($sourcePath,$targetPath);
                 //set path in the database
                 if($this->Upload_m->setPicturePath($userid,$dbtable,$targetPath)){

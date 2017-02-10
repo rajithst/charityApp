@@ -1,27 +1,98 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class edit_Profile extends Frontend_Controller {
+class Profile extends Frontend_Controller {
+        private $id = null;
 	public function __construct() {
 		parent::__construct();
 		$this->load->model('User_d');
+                $this->load->model('Donation_m');
+                $this->load->model('postModel');
 	}
 
-    public function index()
-	{
-		//load children of user
-		$username = $this->session->userdata('username');
-		$this->id = $this->User_d->getUserID($username);
-		$data['children'] = $this->User_d->getChildren($this->id);
-		//load children of user ends
-		$data['users']=$this->User_d->getUsers();
-                if(count($data) > 0)
-		{
-			$this->load->customizeTemplate('header',NULL,'FrontUser/edit_profile',$data);
-		}
-		else
-		{
-			$this->load->customizeTemplate('header',NULL,'FrontUser/edit_profile');
-		}
-	}
+        //set the view of timeline in profile
+        public function setTimeline($id,$start,$bound)
+        {   
+            $this->id = $id;
+            $donations = $this->Donation_m->getDonations($this->id,(date("Y")-10).'-01-01',(date("Y")+10).'-12-31');
+            $posts = $this->postModel->getUserPosts($this->id,(date("Y")-10).'-01-01',(date("Y")+10).'-12-31');
+            $n = count($donations);
+            $m = count($posts);
+            $months = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
+            $post = array();
+            $i=$j=0;
+            if(($n>0)&&($m>0)){
+                $cdatedonation = substr($donations[$i]->date, 0, 10);
+                $cdatepost = substr($posts[$j]->posteddate, 0, 10);
+                while(($i<$n)&&($j<$m)){
+                    while(($i<$n)&&($cdatedonation>=$cdatepost)){
+                        list($year,$month,$day) = explode("-", $cdatedonation);
+                        $cur = array(
+                            'type'=>"donation",
+                            'id'=>$donations[$i]->id,
+                            'day'=>$day,
+                            'month'=>$months[intval($month)-1],
+                            'content'=>$donations[$i]->description." ".$donations[$i]->amount,
+                            'date'=>$donations[$i]->date
+                        );
+                        if(!isset($post[$day.$months[intval($month)-1]]))
+                            $post[$day.$months[intval($month)-1]] = array();
+                        array_push($post[$day.$months[intval($month)-1]],$cur);
+                        $i++;
+                        if($i<$n)
+                            $cdatedonation = substr($donations[$i]->date, 0, 10);
+                    }
+                    while(($j<$m)&&($cdatedonation<$cdatepost)){
+                        list($year,$month,$day) = explode("-", $cdatepost);
+                        $cur = array(
+                            'type'=>"post",
+                            'id'=>$posts[$j]->id,
+                            'day'=>$day,
+                            'month'=>$months[intval($month)-1],
+                            'content'=>$posts[$j]->needs." ".$posts[$j]->amount." ".$posts[$j]->how_help." ".$posts[$j]->why_help." ".$posts[$j]->tags,
+                            'date'=>$posts[$j]->posteddate
+                        );
+                        if(!isset($post[$day.$months[intval($month)-1]]))
+                            $post[$day.$months[intval($month)-1]] = array();
+                        array_push($post[$day.$months[intval($month)-1]],$cur);
+                        $j++;
+                        if($j<$m)
+                            $cdatepost = substr($posts[$j]->posteddate, 0, 10);
+                    }
+                }
+            }
+            while($i<$n){
+                $cdatedonation = substr($donations[$i]->date, 0, 10);
+                list($year,$month,$day) = explode("-", $cdatedonation);
+                $cur = array(
+                    'type'=>"donation",
+                    'id'=>$donations[$i]->id,
+                    'day'=>$day,
+                    'month'=>$months[intval($month)-1],
+                    'content'=>$donations[$i]->description." ".$donations[$i]->amount,
+                    'date'=>$donations[$i]->date
+                );
+                if(!isset($post[$day.$months[intval($month)-1]]))
+                    $post[$day.$months[intval($month)-1]] = array();
+                array_push($post[$day.$months[intval($month)-1]],$cur);
+                $i++;
+            }
+            while($j<$m){
+                $cdatepost = substr($posts[$j]->posteddate, 0, 10);
+                list($year,$month,$day) = explode("-", $cdatepost);
+                $cur = array(
+                    'type'=>"post",
+                    'id'=>$posts[$j]->id,
+                    'day'=>$day,
+                    'month'=>$months[intval($month)-1],
+                    'content'=>$posts[$j]->needs." ".$posts[$j]->amount." ".$posts[$j]->how_help." ".$posts[$j]->why_help." ".$posts[$j]->tags,
+                    'date'=>$posts[$j]->posteddate
+                );
+                if(!isset($post[$day.$months[intval($month)-1]]))
+                    $post[$day.$months[intval($month)-1]] = array();
+                array_push($post[$day.$months[intval($month)-1]],$cur);
+                $j++;
+            }
+            echo json_encode(array_slice($post, $start, $bound));
+        }
 }

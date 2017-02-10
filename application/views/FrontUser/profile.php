@@ -149,7 +149,7 @@
                 </div>
                 <div class="timeline-badge timeline-filter-movement">
                     <a href="#">
-                        <span class="fa fa-chevron-up"></span>
+                        <span class="glyphicon glyphicon-chevron-up"></span>
                     </a>
                 </div>
 
@@ -179,7 +179,7 @@
                 function loadTimeline(start,bound=5){
                     jQuery.ajax({
                         type: "POST",
-                        url: "<?php echo base_url(); ?>" + "index.php/FrontUser/Home/setTimeLine/<?php echo $user->id; ?>/"+start+"/"+bound,
+                        url: "<?php echo base_url(); ?>" + "index.php/FrontUser/Profile/setTimeLine/<?php echo $user->id; ?>/"+start+"/"+bound,
                         dataType: 'json',
                         success: function (res) {
                             content = "";
@@ -231,7 +231,7 @@
                                 var end = '<div class="timeline-movement timeline-movement-top">'+
                                             '<div style="cursor: pointer;" class="moretimeline timeline-badge timeline-filter-movement">'+
                                                 '<a>'+
-                                                    '<span id="down" class="fa fa-chevron-down"></span>'+
+                                                    '<span id="down" class="glyphicon glyphicon-chevron-down"></span>'+
                                                 '</a>'+
                                             '</div>'+
                                         '</div>';
@@ -240,7 +240,7 @@
                                 var end = '<div class="timeline-movement timeline-movement-top">'+
                                         '<div style="cursor: pointer;" class="moretimeline timeline-badge timeline-filter-movement">'+
                                             '<a>'+
-                                                '<span id="up" class="fa fa-chevron-up"></span>'+
+                                                '<span id="up" class="glyphicon glyphicon-chevron-up"></span>'+
                                             '</a>'+
                                         '</div>'+
                                     '</div>';
@@ -286,7 +286,6 @@
 </div>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script>
-             
     google.charts.load('current', {'packages':['corechart']});
     google.charts.setOnLoadCallback(loadGraphOnLoad);
     $('#strtdate,#enddate').change(function (){
@@ -300,7 +299,6 @@
         var year = new Date().getFullYear();
         loadData(year+"-01-01",year+"-12-31");
     }
-                
     function loadData(startdate,endDate){
         jQuery.ajax({
             type: "POST",

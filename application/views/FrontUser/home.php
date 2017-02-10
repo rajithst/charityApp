@@ -49,9 +49,11 @@ if ($logedin != true){
 <!--center scrolling area-->
 
 
-<div class="col-sm-6 col-sm-offset-3">
-                <div class="stitched text-center button" id="post_txt">
+<div class="col-sm-6 col-sm-offset-3" style="height:2400px;">
+                <div class="stitched text-center animated bounceIn " id="post_txt" style="cursor:pointer;">
+                   <div class=" hvr-pop">
                     Create New
+                    </div>
                 </div>
 
                             <div class="post_content">
@@ -854,7 +856,7 @@ function postSave(){
       
       },
     error: function( jqXhr, textStatus, errorThrown ){
-        console.log("error");
+        alert(jqXhr.responseText);
       }
     });
 
@@ -872,6 +874,7 @@ function postLoad(){
       $('.post_content').empty();
 
       for(var i=0;i<data.length;i++){
+      var amountprogress = (parseFloat(data[i].received_amount)/parseFloat(data[i].amount))*100;
         $(".lastid_value").remove();
       $('.post_content').append(' <div class="panel panel-default" style="margin-bottom:10px;">\
            <div class="panel-heading">\
@@ -894,15 +897,15 @@ function postLoad(){
         <div class="col-sm-4">\
         <div class="progress">\
           <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar"\
-          aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:'+(data[i].received_amount/data[i].amount)*100+'%">\
-            '+(data[i].received_amount/data[i].amount)*100+'% \
+          aria-valuenow="'+amountprogress+'" aria-valuemin="0" aria-valuemax="100" style="color:black; width:'+amountprogress+'%">\
+            '+amountprogress+'% Complete (success)\
           </div>\
         </div>\
         </div>\
         <div class="col-sm-4">\
         <div class="input-group">\
           <span class="input-group-addon">$</span>\
-          <input id="" type="text" class="form-control" name="" \
+          <input id="" type="text" value="'+data[i].amount+'" class="form-control" name="" \
             placeholder="Amount">\
         </div>\
         </div>\
@@ -911,7 +914,7 @@ function postLoad(){
         </div>\
           <div class="row" style="background-color: #f5f5f5;margin-top:10px;padding:2px; border-color: #ddd;">\
              <div class="col-sm-4">\
-               '+data[i].amount+'needed<br/>'+data[i].received_amount+' received </div>\
+              $'+data[i].amount+' needed<br/>$'+data[i].received_amount+' received </div>\
                <div class="col-sm-4">\
               56 days left<br/> 5 donations</div>\
               <div class="col-sm-4"><button type="button" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-share-alt"></span></button></div>\
@@ -968,6 +971,7 @@ function loadMore(){
 
       
       for(var i=0;i<data.length;i++){
+      var amountprogress = (parseFloat(data[i].received_amount)/parseFloat(data[i].amount))*100;
         $(".lastid_val").remove();
       $('.post_loadmore_content').append(' <div class="panel panel-default" style="margin-bottom:10px;">\
            <div class="panel-heading">\
@@ -990,15 +994,15 @@ function loadMore(){
         <div class="col-sm-4">\
         <div class="progress">\
           <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar"\
-          aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:'+(data[i].received_amount/data[i].amount)*100+'%">\
-            '+(data[i].received_amount/data[i].amount)*100+'% \
+          aria-valuenow="'+amountprogress+'" aria-valuemin="0" aria-valuemax="100" style="width:'+amountprogress+'%">\
+            '+amountprogress+'% Complete (success)\
           </div>\
         </div>\
         </div>\
         <div class="col-sm-4">\
         <div class="input-group">\
           <span class="input-group-addon">$</span>\
-          <input id="" type="text" class="form-control" name="" \
+          <input id="" type="text" value="'+data[i].amount+'" class="form-control" name="" \
             placeholder="Amount">\
         </div>\
         </div>\
@@ -1007,7 +1011,7 @@ function loadMore(){
         </div>\
           <div class="row" style="background-color: #f5f5f5;margin-top:10px;padding:2px; border-color: #ddd;">\
              <div class="col-sm-4">\
-               '+data[i].amount+'needed<br/>'+data[i].received_amount+' received </div>\
+              $'+data[i].amount+' needed<br/>$'+data[i].received_amount+' received </div>\
                <div class="col-sm-4">\
               56 days left<br/> 5 donations</div>\
               <div class="col-sm-4"><button type="button" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-share-alt"></span></button></div>\
@@ -1127,4 +1131,7 @@ $('#previewing').attr('height', '230px');
 </script>
 <!-- end load follower count -->
 
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes

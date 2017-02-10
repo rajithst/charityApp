@@ -200,7 +200,7 @@
     $(document).ready(function(){
       $("#search_profile").keyup(function(){
           var name=this.value;
-
+          if(name.length>=2){
 
           $.ajax({
               type: "POST",
@@ -214,7 +214,7 @@
                          try{
                           var items=[];  
                           $.each(obj, function(i,val){           
-                              items.push($('<li class="list-group-item"/>').text(val.name ));
+                              items.push($('<a class="list-group-item" href="<?php echo base_url();?>FrontUser/Home/profile/'+val.id+'"><li class="list-group-item"/></a>').html('<img src="<?php echo base_url();?>'+val.picture+'" width="15px" height="15px"/>'+' '+val.name));
                           }); 
                           $('#srch_items').append.apply($('#srch_items'), items);
                          }catch(e) {  
@@ -230,7 +230,9 @@
                 }
               });
 
-
+          }else{
+            $('#srch_items').html("");
+          }
         
       });
     });

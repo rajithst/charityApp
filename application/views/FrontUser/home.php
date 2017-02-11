@@ -855,8 +855,8 @@ function postSave(){
 
       
       },
-    error: function( jqXhr, textStatus, errorThrown ){
-        alert(jqXhr.responseText);
+    error: function( jQXhr, textStatus, errorThrown ){
+        alert(jQXhr.responseText);
       }
     });
 
@@ -1131,7 +1131,4 @@ $('#previewing').attr('height', '230px');
 </script>
 <!-- end load follower count -->
 
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes

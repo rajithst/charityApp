@@ -36,6 +36,15 @@ class Login extends Frontend_Controller{
 	}
 
 
+	public function facebook(){
+		if($this->Login_m->facebook()==true){
+			return true;
+		}
+
+
+	}
+
+
 
 	public function logout(){
 

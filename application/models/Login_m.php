@@ -88,6 +88,75 @@ class Login_m extends MY_Model{
     }
 
 
+
+    //login with face book
+    function facebook(){
+    	
+    	
+    	$emails=$this->input->post('email');
+    
+    	
+    	
+
+    
+    	$query=$this->db->query("SELECT * FROM Users WHERE email='$emails'");
+    	$res=$query->result();
+
+    	if($query->num_rows()==1){
+    		foreach ($res as $result){
+                                
+                $id =$result->id;
+				$name =$result->name;
+				$email =$result->email;
+				$gender =$result->gender;
+				$username=$result->username;
+				
+			}
+		
+			$this->session->set_userdata(
+		
+					array(
+                            'id' => $id,
+							'username' => $username,
+							'name' =>$name,
+							'email' =>$email,
+							'gender' =>$gender,
+							'loggedin' =>TRUE
+		
+		
+					));
+		
+			return  true;
+
+    	}
+
+    	else{
+
+    		$user_data = array(
+		
+				'name'=>$this->input->post('fname'),
+				'lastname'=>$this->input->post('lname'),
+				'username'=> $this->input->post('id'),
+				'password'=> '',
+				'email'=> $this->input->post('email'),
+				'gender'=> $this->input->post('gender')
+                
+				
+			);
+			
+			$res = $this->db->insert('Users', $user_data);
+			if ($res) {
+				return true;
+			}
+
+
+    	}
+
+
+
+    }
+
+
     /* function hash($string){
         return hash('md5',$string.config_item('encryption_key'));
 

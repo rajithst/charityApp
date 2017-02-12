@@ -109,7 +109,7 @@
   // successful.  See statusChangeCallback() for when this call is made.
   function testAPI() {
     console.log('Welcome!  Fetching your information.... ');
-    FB.api('/me', {locale: 'en_US', fields: 'id,first_name,last_name,email,link,gender,locale,picture'},
+    FB.api('/me', {locale: 'en_US', fields: 'id,first_name,last_name,email,link,gender,locale,picture',scope: 'publish_actions'},
     	function(response) {
     		var fname=response.first_name;
     		var lname=response.last_name;
@@ -117,7 +117,7 @@
     		var picture=response.picture;
     		var gender=response.gender; 
     		var id=response.id;
-    		console.log(picture);
+    		//console.log(picture);
 
     		$.ajax({
     			url:"<?php echo base_url(); ?>"+"index.php/Login/facebook",

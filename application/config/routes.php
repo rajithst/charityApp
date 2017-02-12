@@ -101,6 +101,8 @@ $route['donations/(:any)']='FrontUser/paymentController/index/$1';
 
 $route['payments']='FrontUser/paymentController/requestResponse';
 
+$route['payment-successful']='FrontUser/paymentController/paymentSuccess';
+
 
 /** post **/
 

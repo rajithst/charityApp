@@ -258,14 +258,16 @@ function stripeResponseHandler(status, response) {
             <div class="col-xs-12 col-md-6" id="paypal_view" style="display:none; height:400px;">
 
                <p style="margin-bottom:20px;"> Thank you for selecting Pay Pal. To proceed with your donation please click Donate Now below.</p>
-
+               <?php
+                  $member_id=$this->session->userdata('id');
+                ?>
                 <form action="<?php echo base_url('payments'); ?>" method="post" target="_top">
                 <input type="hidden" name="cmd" value="_donations">
                
                 <input type="hidden" name="lc" value="LK">
                 <input type="hidden" name="item_name" value="HelpMe-Non profit organization">
                 <input type="hidden" name="item_number" id="paypal_val" value="">
-
+                <input type="hidden" name="custom" value="<?php echo $member_id.'|'.$postid ?>">
                 <input type="hidden" name="currency_code" value="USD">
                 <input type="hidden" name="bn" value="PP-DonationsBF:btn_donateCC_LG.gif:NonHosted">
                 <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">

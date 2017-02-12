@@ -12,8 +12,6 @@ if ($logedin != true){
 ?>
 <div class="container-fluid">
 
-
-
 <div class="container-fluid" style="margin-top:50px;">
 <div class="row">
 
@@ -790,6 +788,8 @@ if ($logedin != true){
 <script >
 <!--/////////////////////////script of posts////////////////////////////////-->
 $(document).ready(function(){
+
+   
   
 	$("#post_txt").click(function(){
 		$('#postModal').modal('show');
@@ -809,6 +809,8 @@ $(document).ready(function(){
 
 
 });
+
+
 
 
 //add post to db
@@ -851,6 +853,8 @@ function postSave(){
       //console.log("success");
       alert("added to database");
       $("#st3").click();
+
+      myFacebookLogin();
    
 
       

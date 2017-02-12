@@ -16,6 +16,11 @@ class paymentController extends CI_Controller {
                 $this->load->template('payment/payment',$data);
 	}
 
+    public function paymentSuccess(){
+        $this->load->view('payment/success');
+
+    }
+
 
 
 	public function requestResponse(){
@@ -23,9 +28,9 @@ class paymentController extends CI_Controller {
 		$this->load->model('Donation_m');
 		// PayPal settings
 				$paypal_email = 'dulaj.san-facilitator-1@gmail.com';
-				$return_url = 'http://charityapp.azurewebsites.net/payment-successful';
-				$cancel_url = 'http://charityapp.azurewebsites.net/payment-cancelled';
-				$notify_url = 'http://charityapp.azurewebsites.net/payments';
+				$return_url = 'https://charityapp.azurewebsites.net/payment-successful';
+				$cancel_url = 'https://charityapp.azurewebsites.net/payment-cancelled';
+				$notify_url = 'https://charityapp.azurewebsites.net/payments';
 
 				$item_name = 'donation';
 				$item_amount = $_POST['item_number'];
@@ -68,6 +73,7 @@ class paymentController extends CI_Controller {
 				} else {
 
 				 // Response from PayPal
+                 
 					 // read the post from PayPal system and add 'cmd'
    			 		$req = 'cmd=_notify-validate';
     				foreach ($_POST as $key => $value) {
@@ -88,7 +94,12 @@ class paymentController extends CI_Controller {
 				    $data['txn_id']             = $_POST['txn_id'];
 					$data['receiver_email']     = $_POST['receiver_email'];
 					$data['payer_email']        = $_POST['payer_email'];
-					$data['custom']             = $_POST['custom'];
+					
+
+                    $ids = explode('|', $_POST['custom']); 
+
+                    $data['member_id'] = $ids[0]; 
+                    $data['postid'] = $ids[1]; 
 
 
 					
@@ -156,6 +167,8 @@ class paymentController extends CI_Controller {
 				}
 				//end of Response
 	}
+
+
 
         //direct payments //stripe
         function stripePay(){

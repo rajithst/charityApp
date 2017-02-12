@@ -107,19 +107,19 @@ class Donation_m extends MY_Model{
 
         
         if (is_array($data)) {
-            $query=$this->db->query("INSERT INTO donations (donorID, recipientID, description,amount, payment_status, txnid,payment_method,postid) VALUES (
-                '1','2',null,
+            $query=$this->db->query("INSERT INTO donations (donorID, postID,recipientID, description,amount, payment_status, txnid,payment_method) VALUES (
+                '".$data['member_id']."','".$data['postid']."',null,null,
                     '".$data['payment_amount']."' ,
                     '".$data['payment_status']."' ,
                     '".$data['txn_id']."',
-                    'paypal','11'                               
+                    'paypal'                              
 
                 )");
             $query->result();
 
             $query2=$this->db->query("SELECT MAX('id') FROM donations");
             $data=$query2->result();
-            return $query2[0]->id;
+            return $data[0]->id;
         
             
         }

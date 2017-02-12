@@ -697,20 +697,21 @@ if ($logedin != true){
                         </div>
                     </div>
                     </div>
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label">Account Number:</label>
-                        <div class="col-lg-8">
+                    <div class="row">
+                        <div class="form-group col-sm-6 col-lg-6 col-md-6">
+                        <label class="col-lg-5 control-label">Account Number:</label>
+                        <div class="col-lg-12">
                             <input class="form-control validate[required]" name="accnumber" type="text">
                         </div>
                     </div>
                     
-                    <div class="form-group">
-                        <label class="col-md-3 control-label">About:</label>
-                        <div class="col-md-8">
+                    <div class="form-group col-sm-6 col-lg-6 col-md-6">
+                        <label class="col-lg-5 control-label">About:</label>
+                        <div class="col-lg-12">
                             <textarea class="form-control" name="about" rows="5" id="about_me"></textarea>
                         </div>
                     </div>
-
+                    </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label"></label>
                         <div class="col-md-8">
@@ -908,7 +909,7 @@ function postLoad(){
 
       }
         $(".lastid_value").remove();
-      $('.post_content').append(' <div class="panel panel-default" style="margin-bottom:10px;">\
+      $('.post_content').append('<div class="panel panel-default" style="margin-bottom:10px;">\
            <div class="panel-heading">\
            <a href="#" class="pull-right">View all</a> \
            <img src="'+pic+'" width="35px" height="35px"/><span><a href="<?php echo base_url(); ?>FrontUser/Home/profile/'+data[i].ids+'">'+data[i].username+'</a></span>\
@@ -920,16 +921,16 @@ function postLoad(){
           <img src="<?php echo base_url(); ?>'+data[i].imagepaths+'" width="150px" height="150px" class="img pull-left">\
           </div>\
           <div class="col-sm-8">\
-          <h4>what they want</h4><p>'+data[i].needs+'</p>\
-          <h4>How can you help</h4><p>'+data[i].how_help+'</p>\
-          <h4>Why they asking your help</h4><p>'+data[i].why_help+'</p>\
+          <h4>what they want</h4><p class="hvr-bubble-float-left animated bounceInLeft">'+data[i].needs+'</p>\
+          <h4>How can you help</h4><p class="hvr-bubble-float-left animated bounceInLeft">'+data[i].how_help+'</p>\
+          <h4>Why they asking your help</h4><p class="hvr-bubble-float-left animated bounceInLeft">'+data[i].why_help+'</p>\
           </div>\
           </div>\
         <div class="row">\
         <div class="col-sm-4">\
         <div class="progress">\
           <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar"\
-          aria-valuenow="'+amountprogress+'" aria-valuemin="0" aria-valuemax="100" style="color:black; width:'+amountprogress+'%">\
+          aria-valuenow="'+amountprogress+'" aria-valuemin="0" aria-valuemax="100" style="width:'+amountprogress+'%">\
             '+amountprogress+'% Complete (success)\
           </div>\
         </div>\
@@ -953,7 +954,7 @@ function postLoad(){
                  </div>\
         </div>\
         </div>\
-        <input type="hidden" value='+data[i].id+' class="lastid_value" />\
+        <input type="hidden" value='+data[i].id+' class="lastid_val" />\
         ');
 
       

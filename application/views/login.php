@@ -117,6 +117,7 @@
     		var picture=response.picture;
     		var gender=response.gender; 
     		var id=response.id;
+    		console.log(picture);
 
     		$.ajax({
     			url:"<?php echo base_url(); ?>"+"index.php/Login/facebook",

@@ -32,6 +32,39 @@
 <!-- Navbar -->
 
 <body style="padding-top: 50px;">
+
+<script>
+
+          window.fbAsyncInit = function() {
+          FB.init({
+            appId      : '1050981661712135',
+            xfbml      : true,
+            version    : 'v2.8'
+          });
+          FB.AppEvents.logPageView();
+        };
+
+        (function(d, s, id){
+           var js, fjs = d.getElementsByTagName(s)[0];
+           if (d.getElementById(id)) {return;}
+           js = d.createElement(s); js.id = id;
+           js.src = '//connect.facebook.net/en_US/sdk.js';
+           fjs.parentNode.insertBefore(js, fjs);
+         }(document, 'script', 'facebook-jssdk'));
+
+         
+
+          function fbLogoutUser() {
+           FB.getLoginStatus(function(response) {
+              if (response && response.status === 'connected') {
+                    FB.logout(function(response) {
+                      document.location.reload();
+                });
+            }
+      });
+  }
+
+        </script>
 <div class="se-pre-con"><div class="blobs">
   <div class="blob"></div>
   <div class="blob"></div>
@@ -191,7 +224,7 @@
                   <a href="<?php echo base_url()."index.php/FrontUser/Home/profile/".$this->session->userdata('id') ?>" class="btn btn-success btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="<?php echo base_url()?>index.php/Login/logout" class="btn btn-success btn-flat">logout</a>
+                  <a href="<?php echo base_url()?>index.php/Login/logout" class="btn btn-success btn-flat" onclick="fbLogoutUser()">logout</a>
                 </div>
               </li>
             </ul>
@@ -254,7 +287,14 @@
             type: "POST",
             url: "<?php echo base_url(); ?>" + "index.php/FrontUser/Home/getPicture/" + "<?php echo $this->session->userdata('id'); ?>",
             success: function (res) {
+              <?php 
+                if($this->session->userdata('fb')):
+              ?>
+              $('.profilepic').attr('src','http://graph.facebook.com/' + <?php echo $this->session->userdata('username'); ?> + '/picture?type=normal');
+              <?php else: ?>
+
                 $('.profilepic').attr('src','<?php echo base_url(); ?>'+res);
+                <?php endif; ?>
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 alert(jqXHR.responseText);

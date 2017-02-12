@@ -563,23 +563,23 @@ $(document).ready(function(){
             <div class="main-login-form">
                 <div class="login-group">
                     <div class="form-group">
-                        <label for="name" class="sr-only">Name</label>
+                        <label for="name">Name</label>
                         <input type="text" class="form-control validate[required]" id="name" name="name" placeholder="Your Name">
                     </div>
                     <div class="form-group">
-                        <label for="username" class="sr-only">User Name</label>
+                        <label for="username">User Name</label>
                         <input type="text" class="form-control validate[required]" id="username" name="username" placeholder="Username">
                     </div>
                     <div class="form-group">
-                        <label for="password" class="sr-only">Password</label>
+                        <label for="password">Password</label>
                         <input type="password" class="form-control validate[required]" id="password" name="password" placeholder="Password">
                     </div>
                     <div class="form-group">
-                        <label for="password_confirm" class="sr-only">Password Confirm</label>
+                        <label for="password_confirm">Password Confirm</label>
                         <input type="password" class="form-control validate[required,equals[password]]" id="password_confirm" name="password_confirm" placeholder="Confirm Password">
                     </div>
                     <div class="form-group">
-                        <label for="email" class="sr-only">Email</label>
+                        <label for="email">Email</label>
                         <input type="email" class="form-control validate[required,custom[email]]" id="email" name="email" placeholder="Email">
                     </div>
                     <div class="form-group login-group-checkbox">

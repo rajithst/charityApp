@@ -390,51 +390,58 @@ if ($logedin != true){
             
             <!-- register form column -->
                 <form class="form-horizontal" role="form" method="POST" id="childRegisterForm" name="childRegisterForm" action="">
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label">First name:</label>
-                        <div class="col-lg-8">
-                            <input class="form-control validate[required]" required name="fname" type="text">
+                    <div class="row">
+                        <div class="form-group col-sm-6 col-lg-6 col-md-6">
+                            <label class="col-lg-5 control-label">First name:</label>
+                            <div class="col-lg-12">
+                                <input class="form-control validate[required]" required name="fname" type="text">
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6 col-lg-6 col-md-6">
+                            <label class="col-lg-5 control-label">Last name:</label>
+                            <div class="col-lg-12">
+                                <input class="form-control validate[required]" name="lname" type="text">
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label">Last name:</label>
-                        <div class="col-lg-8">
-                            <input class="form-control validate[required]" name="lname" type="text">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label">Birth Date:</label>
-                        <div class="col-lg-8">
+                    <div class="row">
+                        <div class="form-group col-sm-6 col-lg-6 col-md-6">
+                        <label class="col-lg-5 control-label">Birth Date:</label>
+                        <div class="col-lg-12">
                             <input class="form-control validate[required]" name="bdate" type="date">
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label">Email:</label>
-                        <div class="col-lg-8">
+                    <div class="form-group col-sm-6 col-lg-6 col-md-6">
+                        <label class="col-lg-5 control-label">Email:</label>
+                        <div class="col-lg-12">
                             <input class="form-control validate[required,custom[email]]" required name="email" type="text">
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label">Mobile No:</label>
-                        <div class="col-md-8">
+                    </div>
+                   <div class="row">
+                        <div class="form-group col-sm-6 col-lg-6 col-md-6">
+                        <label class="col-lg-5 control-label">Mobile No:</label>
+                        <div class="col-lg-12">
                             <input class="form-control" maxlength="10" name="mobile" type="number" value="">
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label">Address:</label>
-                        <div class="col-md-8">
+                     <div class="form-group col-sm-6 col-lg-6 col-md-6">
+                        <label class="col-lg-5 control-label">Address:</label>
+                        <div class="col-lg-12">
                             <textarea class="form-control validate[required]" name="address" rows="5" id="address"></textarea>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label">Postal Code:</label>
-                        <div class="col-md-8">
+                    </div>
+                   <div class="row">
+                        <div class="form-group col-sm-6 col-lg-6 col-md-6">
+                        <label class="col-lg-6 control-label">Postal Code:</label>
+                        <div class="col-lg-12">
                             <input class="form-control validate[required]" name="pcode" type="number">
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label">Country</label>
-                        <div class="col-md-8 ui-select">
+                    <div class="form-group col-sm-6 col-lg-6 col-md-6">
+                        <label class="col-lg-5 control-label">Country</label>
+                        <div class="col-lg-12 ui-select">
                             <select id="user_country" name="country" class="form-control validate[required]">
                                 <option value="AF">Afghanistan</option>
                                 <option value="AX">Åland Islands</option>
@@ -688,6 +695,7 @@ if ($logedin != true){
                             </select>
                                 
                         </div>
+                    </div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-3 control-label">Account Number:</label>

@@ -8,8 +8,8 @@
                         <div class="row">
                             <div class="col-xs-12 col-sm-4 text-center">
                                 <img src="<?php
-                                if(($user->id == $this->session->userdata('id')) && ($this->session->userdata('google'))){
-                                    echo $this->session->userdata('picture');
+                                if($user->type == 'google'){
+                                    echo $user->picture;
                                 }else{
                                     echo base_url($user->picture);
                                 } ?>" alt="User" class="center-block img-circle img-thumbnail img-responsive">

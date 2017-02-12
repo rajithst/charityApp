@@ -32,8 +32,116 @@
     </head>
 	 
     <body>
-	
+    <!--face book sdk-->
 
+<script>
+  // This is called with the results from from FB.getLoginStatus().
+  function statusChangeCallback(response) {
+    console.log('statusChangeCallback');
+    console.log(response);
+    // The response object is returned with a status field that lets the
+    // app know the current login status of the person.
+    // Full docs on the response object can be found in the documentation
+    // for FB.getLoginStatus().
+    if (response.status === 'connected') {
+      // Logged into your app and Facebook.
+      testAPI();
+      
+     
+    } else if (response.status === 'not_authorized') {
+      // The person is logged into Facebook, but not your app.
+      document.getElementById('status').innerHTML = 'Please log ' +
+        'into this app.';
+    } else {
+      // The person is not logged into Facebook, so we're not sure if
+      // they are logged into this app or not.
+      document.getElementById('status').innerHTML = 'Please log ' +
+        'into Facebook.';
+    }
+  }
+
+  // This function is called when someone finishes with the Login
+  // Button.  See the onlogin handler attached to it in the sample
+  // code below.
+  function checkLoginState() {
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
+  }
+
+  window.fbAsyncInit = function() {
+  FB.init({
+    appId      : '1050981661712135',
+    cookie     : true,  // enable cookies to allow the server to access 
+                        // the session
+    xfbml      : true,  // parse social plugins on this page
+    version    : 'v2.8' // use graph api version 2.8
+  });
+
+  // Now that we've initialized the JavaScript SDK, we call 
+  // FB.getLoginStatus().  This function gets the state of the
+  // person visiting this page and can return one of three states to
+  // the callback you provide.  They can be:
+  //
+  // 1. Logged into your app ('connected')
+  // 2. Logged into Facebook, but not your app ('not_authorized')
+  // 3. Not logged into Facebook and can't tell if they are logged into
+  //    your app or not.
+  //
+  // These three cases are handled in the callback function.
+
+  // FB.getLoginStatus(function(response) {
+  //   statusChangeCallback(response);
+  // });
+
+  };
+
+  // Load the SDK asynchronously
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
+  // Here we run a very simple test of the Graph API after login is
+  // successful.  See statusChangeCallback() for when this call is made.
+  function testAPI() {
+    console.log('Welcome!  Fetching your information.... ');
+    FB.api('/me', {locale: 'en_US', fields: 'id,first_name,last_name,email,link,gender,locale,picture'},
+    	function(response) {
+    		var fname=response.first_name;
+    		var lname=response.last_name;
+    		var email=response.email;
+    		var picture=response.picture;
+    		var gender=response.gender; 
+    		var id=response.id;
+    		console.log(picture);
+
+    		$.ajax({
+    			url:"<?php echo base_url(); ?>"+"index.php/Login/facebook",
+    			type:"POST",
+    			data:{fname:fname,lname:lname,email:email,picture:picture,gender:gender,id:id},
+    			success:function(data, textStatus, jQxhr){
+    				window.top.location = "Home";
+
+    			},
+    			error:function(xhr, textStatus, errorThrown){
+    				var err = eval("(" + xhr.responseText + ")");
+  					console.log(err.Message);
+
+    			}
+
+
+    			});         
+      
+    });
+  }
+</script>
+
+	
+	<!--end of face book sdk-->
 	<div class="header">
 	<section id="header" class="appear">
 		
@@ -60,17 +168,19 @@
                             <div class="col-md-12">
                                 Login via
                                 <div class="social-buttons">
-                                    <a href="#" class="btn btn-fb"><i class="fa fa-facebook"></i> Facebook</a>
-                                    <a href="#" class="btn btn-tw"><i class="fa fa-twitter"></i> Twitter</a>
+                                   	<!--face book login button-->
+                                    <fb:login-button class="fb-login-button btn-fb btn" scope="public_profile,email" onlogin="checkLoginState();">
+</fb:login-button>
+                                    <!--end of face book login button-->
+                                    <a href="#" class="btn"><i class="g-signin2" data-onsuccess="onSignIn"></i></a>
                                     <!-- google login starts here -->
                                     <script src="https://apis.google.com/js/platform.js" async defer></script>
                                     <meta name="google-signin-client_id" content="760126013179-gafn70enmd5f2ejfb4if83akv2422phk.apps.googleusercontent.com">
                   
-                                    <div class="g-signin2" data-onsuccess="onSignIn"></div>
                                     <script>
                                         function onSignIn(googleUser) {
                                             var profile = googleUser.getBasicProfile();
-                                            var obj = {id: profile.getId(), name: profile.getName(), username: profile.getEmail(), password: '', email: profile.getEmail(), reg_gender: '', picture: profile.getImageUrl()};
+                                            var obj = {id: profile.getId(), name: profile.getName(), username: profile.getEmail(), password: '', email: profile.getEmail(), reg_gender: '', picture: profile.getImageUrl(),type: 'google'};
                                             gsign(obj);
                                         }
                                         function gsign(obj) {
@@ -519,5 +629,7 @@ $(document).ready(function(){
 		$(".se-pre-con").fadeOut("slow");;
 	});
 </script>
+
+
 </body>
 </html>

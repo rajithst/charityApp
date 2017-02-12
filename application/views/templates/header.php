@@ -31,6 +31,39 @@
 <!-- Navbar -->
 
 <body style="padding-top: 50px;">
+
+<script>
+
+          window.fbAsyncInit = function() {
+          FB.init({
+            appId      : '1050981661712135',
+            xfbml      : true,
+            version    : 'v2.8'
+          });
+          FB.AppEvents.logPageView();
+        };
+
+        (function(d, s, id){
+           var js, fjs = d.getElementsByTagName(s)[0];
+           if (d.getElementById(id)) {return;}
+           js = d.createElement(s); js.id = id;
+           js.src = '//connect.facebook.net/en_US/sdk.js';
+           fjs.parentNode.insertBefore(js, fjs);
+         }(document, 'script', 'facebook-jssdk'));
+
+         
+
+          function fbLogoutUser() {
+           FB.getLoginStatus(function(response) {
+              if (response && response.status === 'connected') {
+                    FB.logout(function(response) {
+                      document.location.reload();
+                });
+            }
+      });
+  }
+
+        </script>
 <div class="se-pre-con"><div class="blobs">
   <div class="blob"></div>
   <div class="blob"></div>
@@ -222,6 +255,7 @@
                           gapi.auth2.init();
                         });
                       }
+					  
                   </script>
                   <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
                 </div>
@@ -237,7 +271,7 @@
   <script>
     $(document).ready(function(){
       $("#search_profile").keyup(function(){
-          var name=this.value;
+		  var name=this.value;
           $('#srch_items').html("");
           if(name!=""){
               showResults(name);
@@ -261,20 +295,24 @@
       });
     });
     function showResults(name){
-        $.ajax({
+          $.ajax({
               type: "POST",
               url: "searchProfile",
               data: {name:name},
               success: function( data, textStatus, jQxhr ){
-                        var obj = data;
+						var obj = data;
                         if((obj.users.length>0)||(obj.children.length>0)){
                          try{
                           var items=[];  
-                          $.each(obj.users, function(i,val){           
-                              items.push($('<li class="list-group-item resitem"/ id="user$'+val.id+'">').text(val.name ));
+                          $.each(obj.users, function(i,val){  
+                              var pic = '<?php echo base_url();?>'+val.picture;
+                              if(val.type=='google'){
+                                  var pic = val.picture;
+                              }
+                              items.push($('<a class="list-group-item" href="<?php echo base_url();?>FrontUser/Home/profile/'+val.id+'"><li class="list-group-item"/></a>').html('<img src="'+pic+'" width="15px" height="15px"/>'+' '+val.name));
                           });
-                          $.each(obj.children, function(i,val){           
-                              items.push($('<li class="list-group-item resitem"/ id="child$'+val.id+'">').text(val.name ));
+                        $.each(obj.children, function(i,val){           
+                              items.push($('<a class="list-group-item" href="<?php echo base_url();?>index.php/Child/Children_c/viewChild/'+val.id+'"><li class="list-group-item"/></a>').html('<img src="<?php echo base_url();?>'+val.picture+'" width="15px" height="15px"/>'+' '+val.name));
                           });
                           $('#srch_items').append.apply($('#srch_items'), items);
                          }catch(e) {  
@@ -288,14 +326,12 @@
               error: function( jqXhr, textStatus, errorThrown ){
                   //alert(jqXhr.responseText);
                 }
-              });
-          }
+              });        
+    };
 
   </script>
 
   <!--end of search for vendor-->
-  
-
 <script>
 $(document).ready(function(){
   //load all messages

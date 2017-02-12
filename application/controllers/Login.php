@@ -34,7 +34,6 @@ class Login extends Frontend_Controller{
 		
 		$this->load->view('login');
 	}
-        
         function googleLogin(){
             $username = $this->input->post('username');
             $name = $this->input->post('name');
@@ -58,8 +57,19 @@ class Login extends Frontend_Controller{
                 'picture' => $picture
             ));
         }
-        
-        public function logout(){
+
+
+	public function facebook(){
+		if($this->Login_m->facebook()==true){
+			return true;
+		}
+
+
+	}
+
+
+
+	public function logout(){
 
 		$this->Login_m->logout();
 		redirect('Login');

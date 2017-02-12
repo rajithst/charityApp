@@ -13,19 +13,21 @@ class User_d extends MY_Model {
 	}
 	
 	function register() {
-		
-		
-		$user_data = array(
+                $user_data = array(
 		
 				'name'=>$this->input->post('name'),
 				'username'=> $this->input->post('username'),
 				'password'=> $this->input->post('password'),
 				'email'=> $this->input->post('email'),
 				'gender'=> $this->input->post('reg_gender'),
-                                'picture'=>'img/user/user.png'
-				
+                                'picture'=> 'img/user/user.png',
+				'type'=>'none'
 		);
-		
+		if($this->input->post('picture'))
+                    $user_data['picture'] = $this->input->post('picture');
+                if($this->input->post('type'))
+                    $user_data['type'] = $this->input->post('type');
+                
 		$res = $this->db->insert('Users', $user_data);
 		if ($res) {
 			return true;

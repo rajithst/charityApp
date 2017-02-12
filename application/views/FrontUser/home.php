@@ -19,7 +19,15 @@ if ($logedin != true){
 <!--left side bar-->
 <div class="col-sm-3" style=" position:fixed">
   <div class="panel panel-default">
-                                <div class="panel-thumbnail"><img src="" class="profilepic img-responsive" width="80px"></div>
+                                <div class="panel-thumbnail"><img src="<?php 
+                                   if($this->session->userdata('google')){
+                                          echo $this->session->userdata('picture');
+                                    }else if($this->session->userdata('fb')){
+                                           echo 'http://graph.facebook.com/' . $this->session->userdata('username') . '/picture?type=normal';
+                                     }else{
+                                            echo base_url().$this->session->userdata('picture');
+                                      }
+                                        ?>" class="profilepic img-responsive" width="80px"></div>
                                 <div class="panel-body">
                                   <p class="lead"><?php echo $this->session->userdata('name');?></p>
                                   <p><l id="followercount"></l> Followers, 13 Posts</p>
@@ -174,8 +182,9 @@ if ($logedin != true){
                         <script>
                             $(document).ready(function(){
                                 $("#child_search_btn").click(function(){
+                                    $("#children").html("");
                                     searchChildren($("#child_search").val());
-                                })
+                                });
 
                             });
 
@@ -381,51 +390,58 @@ if ($logedin != true){
             
             <!-- register form column -->
                 <form class="form-horizontal" role="form" method="POST" id="childRegisterForm" name="childRegisterForm" action="">
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label">First name:</label>
-                        <div class="col-lg-8">
-                            <input class="form-control validate[required]" required name="fname" type="text">
+                    <div class="row">
+                        <div class="form-group col-sm-6 col-lg-6 col-md-6">
+                            <label class="col-lg-5 control-label">First name:</label>
+                            <div class="col-lg-12">
+                                <input class="form-control validate[required]" required name="fname" type="text">
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6 col-lg-6 col-md-6">
+                            <label class="col-lg-5 control-label">Last name:</label>
+                            <div class="col-lg-12">
+                                <input class="form-control validate[required]" name="lname" type="text">
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label">Last name:</label>
-                        <div class="col-lg-8">
-                            <input class="form-control validate[required]" name="lname" type="text">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label">Birth Date:</label>
-                        <div class="col-lg-8">
+                    <div class="row">
+                        <div class="form-group col-sm-6 col-lg-6 col-md-6">
+                        <label class="col-lg-5 control-label">Birth Date:</label>
+                        <div class="col-lg-12">
                             <input class="form-control validate[required]" name="bdate" type="date">
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label">Email:</label>
-                        <div class="col-lg-8">
+                    <div class="form-group col-sm-6 col-lg-6 col-md-6">
+                        <label class="col-lg-5 control-label">Email:</label>
+                        <div class="col-lg-12">
                             <input class="form-control validate[required,custom[email]]" required name="email" type="text">
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label">Mobile No:</label>
-                        <div class="col-md-8">
+                    </div>
+                   <div class="row">
+                        <div class="form-group col-sm-6 col-lg-6 col-md-6">
+                        <label class="col-lg-5 control-label">Mobile No:</label>
+                        <div class="col-lg-12">
                             <input class="form-control" maxlength="10" name="mobile" type="number" value="">
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label">Address:</label>
-                        <div class="col-md-8">
+                     <div class="form-group col-sm-6 col-lg-6 col-md-6">
+                        <label class="col-lg-5 control-label">Address:</label>
+                        <div class="col-lg-12">
                             <textarea class="form-control validate[required]" name="address" rows="5" id="address"></textarea>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label">Postal Code:</label>
-                        <div class="col-md-8">
+                    </div>
+                   <div class="row">
+                        <div class="form-group col-sm-6 col-lg-6 col-md-6">
+                        <label class="col-lg-6 control-label">Postal Code:</label>
+                        <div class="col-lg-12">
                             <input class="form-control validate[required]" name="pcode" type="number">
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label">Country</label>
-                        <div class="col-md-8 ui-select">
+                    <div class="form-group col-sm-6 col-lg-6 col-md-6">
+                        <label class="col-lg-5 control-label">Country</label>
+                        <div class="col-lg-12 ui-select">
                             <select id="user_country" name="country" class="form-control validate[required]">
                                 <option value="AF">Afghanistan</option>
                                 <option value="AX">Åland Islands</option>
@@ -680,6 +696,7 @@ if ($logedin != true){
                                 
                         </div>
                     </div>
+                    </div>
                     <div class="form-group">
                         <label class="col-lg-3 control-label">Account Number:</label>
                         <div class="col-lg-8">
@@ -879,11 +896,22 @@ function postLoad(){
 
       for(var i=0;i<data.length;i++){
       var amountprogress = (parseFloat(data[i].received_amount)/parseFloat(data[i].amount))*100;
+      var pic="";
+      if(data[i].type=='google'){
+        pic=data[i].picture;
+      }
+      else if(data[i].type=='facebook'){
+        pic="http://graph.facebook.com/"+ data[i].username+ "/picture?type=normal";
+      }
+      else{
+        pic="<?php echo base_url(); ?>"+data[i].picture;
+
+      }
         $(".lastid_value").remove();
       $('.post_content').append(' <div class="panel panel-default" style="margin-bottom:10px;">\
            <div class="panel-heading">\
            <a href="#" class="pull-right">View all</a> \
-           <img src="<?php echo base_url(); ?>'+data[i].picture+'" width="35px" height="35px"/><span><a href="<?php echo base_url(); ?>FrontUser/Home/profile/'+data[i].ids+'">'+data[i].username+'</a></span>\
+           <img src="'+pic+'" width="35px" height="35px"/><span><a href="<?php echo base_url(); ?>FrontUser/Home/profile/'+data[i].ids+'">'+data[i].username+'</a></span>\
            <h4>post'+data[i].id+'</h4>\
            </div>\
           <div class="panel-body">\
@@ -976,11 +1004,22 @@ function loadMore(){
       
       for(var i=0;i<data.length;i++){
       var amountprogress = (parseFloat(data[i].received_amount)/parseFloat(data[i].amount))*100;
+      var pic="";
+      if(data[i].type=='google'){
+        pic=data[i].picture;
+      }
+      else if(data[i].type=='facebook'){
+        pic="http://graph.facebook.com/"+ data[i].username+ "/picture?type=normal";
+      }
+      else{
+        pic="<?php echo base_url(); ?>"+data[i].picture;
+
+      }
         $(".lastid_val").remove();
       $('.post_loadmore_content').append(' <div class="panel panel-default" style="margin-bottom:10px;">\
            <div class="panel-heading">\
            <a href="#" class="pull-right">View all</a> \
-           <img src="<?php echo base_url(); ?>'+data[i].picture+'" width="35px" height="35px"/><span><a href="<?php echo base_url(); ?>FrontUser/Home/profile/'+data[i].ids+'">'+data[i].username+'</a></span>\
+           <img src="'+pic+'" width="35px" height="35px"/><span><a href="<?php echo base_url(); ?>FrontUser/Home/profile/'+data[i].ids+'">'+data[i].username+'</a></span>\
            <h4>post'+data[i].id+'</h4>\
            </div>\
           <div class="panel-body">\

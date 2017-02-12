@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -84,7 +83,7 @@
         <div class="input-group input-group-sm" style="max-width:360px;">
           <input type="text" class="form-control" placeholder="Search" name="srch-term" id="search_profile">
           <div class="input-group-btn">
-            <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+              <button class="btn btn-default" id="searchbtn" type="button"><i class="glyphicon glyphicon-search"></i></button>
           </div>
         </div>
         <ul id="srch_items" class="list-group"></ul>
@@ -191,13 +190,32 @@
         <ul class="nav navbar-nav navbar-right">
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="" class="profilepic user-image" alt="User Image" width="160px" height="160px">
+              <img src="<?php 
+                if($this->session->userdata('google')){
+                    echo $this->session->userdata('picture');
+                }
+                else if($this->session->userdata('fb')){
+                    echo 'http://graph.facebook.com/' . $this->session->userdata('username') . '/picture?type=normal';
+                }
+                else{
+                    echo base_url().$this->session->userdata('picture');
+                }
+                 ?>" class="profilepic user-image" alt="User Image" width="160px" height="160px">
               <span class="hidden-xs"><?php echo $this->session->userdata('username').'<br>';?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="" class="profilepic img-circle" alt="User Image">
+                <img src="<?php 
+                if($this->session->userdata('google')){
+                    echo $this->session->userdata('picture');
+                }else if($this->session->userdata('fb')){
+                    echo 'http://graph.facebook.com/' . $this->session->userdata('username') . '/picture?type=normal';
+                }
+                else{
+                    echo base_url().$this->session->userdata('picture');
+                }
+                 ?>" class="profilepic img-circle" alt="User Image">
                 <p>
                   <?php echo $this->session->userdata('username').'<br>';?>
                   <small>Member since Nov. 2012</small>
@@ -224,7 +242,29 @@
                   <a href="<?php echo base_url()."index.php/FrontUser/Home/profile/".$this->session->userdata('id') ?>" class="btn btn-success btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="<?php echo base_url()?>index.php/Login/logout" class="btn btn-success btn-flat" onclick="fbLogoutUser()">logout</a>
+                  <!-- google sign in -->
+                  <script src="https://apis.google.com/js/platform.js" async defer></script>
+                  <meta name="google-signin-client_id" content="760126013179-gafn70enmd5f2ejfb4if83akv2422phk.apps.googleusercontent.com">
+                                    
+                  <a onclick="signOut();" class="btn btn-success btn-flat">logout</a>
+                  <script>
+                    function signOut() {
+                        if("<?php echo $this->session->userdata('google'); ?>"){
+                            var auth2 = gapi.auth2.getAuthInstance();
+                            auth2.signOut().then(function () {
+                                
+                            });
+                        }
+                        window.location = "<?php echo base_url()?>index.php/Login/logout";
+                    }
+                    function onLoad() {
+                        gapi.load('auth2', function() {
+                          gapi.auth2.init();
+                        });
+                      }
+					  
+                  </script>
+                  <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
                 </div>
               </li>
             </ul>
@@ -238,23 +278,52 @@
   <script>
     $(document).ready(function(){
       $("#search_profile").keyup(function(){
-          var name=this.value;
-          if(name.length>=2){
-
+		  var name=this.value;
+          $('#srch_items').html("");
+          if(name!=""){
+              showResults(name);
+          }
+      });
+      $("#searchbtn").click(function(){
+          var name=$("#search_profile").val();
+          $('#srch_items').html("");
+          if(name!=""){
+              showResults(name);
+          }
+      });
+      $('#srch_items').click(function(e){
+          var id = e.target.id;
+          var x = id.split("$");
+          if(x[0] == "child"){
+              window.location = "<?php echo base_url(); ?>index.php/Child/Children_c/viewChild/"+x[1];
+          }else if(x[0] == "user"){
+              window.location = "<?php echo base_url(); ?>index.php/FrontUser/Home/profile/"+x[1];
+          }
+      });
+    });
+    function showResults(name){
           $.ajax({
               type: "POST",
               url: "searchProfile",
               data: {name:name},
               success: function( data, textStatus, jQxhr ){
-               
-                        $('#srch_items').html("");
-                        var obj = data;
-                        if(obj.length>0){
+						var obj = data;
+                        if((obj.users.length>0)||(obj.children.length>0)){
                          try{
                           var items=[];  
-                          $.each(obj, function(i,val){           
-                              items.push($('<a class="list-group-item" href="<?php echo base_url();?>FrontUser/Home/profile/'+val.id+'"><li class="list-group-item"/></a>').html('<img src="<?php echo base_url();?>'+val.picture+'" width="15px" height="15px"/>'+' '+val.name));
-                          }); 
+                          $.each(obj.users, function(i,val){  
+                              var pic = '<?php echo base_url();?>'+val.picture;
+                              if(val.type=='google'){
+                                  var pic = val.picture;
+                              }
+                              else if(val.type=='facebook'){
+                                  var pic="http://graph.facebook.com/"+val.username+"/picture?type=normal";
+                              }
+                              items.push($('<a class="list-group-item" href="<?php echo base_url();?>FrontUser/Home/profile/'+val.id+'"><li class="list-group-item"/></a>').html('<img src="'+pic+'" width="15px" height="15px"/>'+' '+val.name));
+                          });
+                        $.each(obj.children, function(i,val){           
+                              items.push($('<a class="list-group-item" href="<?php echo base_url();?>index.php/Child/Children_c/viewChild/'+val.id+'"><li class="list-group-item"/></a>').html('<img src="<?php echo base_url();?>'+val.picture+'" width="15px" height="15px"/>'+' '+val.name));
+                          });
                           $('#srch_items').append.apply($('#srch_items'), items);
                          }catch(e) {  
                           alert('Exception while request..');
@@ -265,48 +334,15 @@
                 
                 },
               error: function( jqXhr, textStatus, errorThrown ){
-                
+                  //alert(jqXhr.responseText);
                 }
-              });
-
-          }else{
-            $('#srch_items').html("");
-          }
-        
-      });
-    });
+              });        
+    };
 
   </script>
 
   <!--end of search for vendor-->
-  <!-- profile picture -->
-  <script>
-    loadProfPic();
-    function loadProfPic(){
-        jQuery.ajax({
-            type: "POST",
-            url: "<?php echo base_url(); ?>" + "index.php/FrontUser/Home/getPicture/" + "<?php echo $this->session->userdata('id'); ?>",
-            success: function (res) {
-              <?php 
-                if($this->session->userdata('fb')):
-              ?>
-              $('.profilepic').attr('src','http://graph.facebook.com/' + <?php echo $this->session->userdata('username'); ?> + '/picture?type=normal');
-              <?php else: ?>
-
-                $('.profilepic').attr('src','<?php echo base_url(); ?>'+res);
-                <?php endif; ?>
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-                alert(jqXHR.responseText);
-            }
-        });
-    }
-    
-  </script>
-  <!-- end of profile picture -->
-
 <script>
-
 $(document).ready(function(){
   //load all messages
   

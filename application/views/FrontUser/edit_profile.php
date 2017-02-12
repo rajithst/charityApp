@@ -12,7 +12,12 @@
             <form method="POST" id="imgForm" name="imgForm"> 
             <div class="col-md-3">
                 <div class="text-center">
-                    <img id="picture" src="<?php echo base_url($user->picture); ?>" class="avatar img-circle center-block img-circle img-thumbnail img-responsive" alt="avatar">
+                    <img id="picture" src="<?php 
+                                if(($user->id == $this->session->userdata('id')) && ($this->session->userdata('google'))){
+                                    echo $this->session->userdata('picture');
+                                }else{
+                                    echo base_url($user->picture);
+                                } ?>" class="avatar img-circle center-block img-circle img-thumbnail img-responsive" alt="avatar">
                     <h6>Upload a different photo...</h6>
 
                     <input name="file" id="file" type="file" class="form-control">

@@ -9,9 +9,10 @@ class profileModel extends MY_Model {
 
 	function searchProf(){
 		$name=$this->input->post('name');
-	
-		$query=$this->db->query("SELECT name,id,picture FROM users WHERE  name like '%".$name."%'"." UNION "."SELECT name,id,picture FROM children WHERE name like '%".$name."%' ");
-		return $query->result();
+		$query1=$this->db->query("SELECT name,id,picture,type,username FROM users WHERE  name like '%".$name."%';");
+		$query2=$this->db->query("SELECT name,id,picture FROM children WHERE name like '%".$name."%';");
+		$data = array('users'=>$query1->result(),'children'=>$query2->result());
+		return $data;
 
 	}
 

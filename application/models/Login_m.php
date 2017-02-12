@@ -48,11 +48,11 @@ class Login_m extends MY_Model{
 			
 			foreach ($res as $result){
                                 
-                $id =$result->id;
+                                $id =$result->id;
 				$name =$result->name;
 				$email =$result->email;
 				$gender =$result->gender;
-				
+				$picture =$result->picture;
 			}
 		
 			$this->session->set_userdata(
@@ -63,9 +63,10 @@ class Login_m extends MY_Model{
 							'name' =>$name,
 							'email' =>$email,
 							'gender' =>$gender,
+                            'picture' => $picture,
 							'loggedin' =>TRUE,
+                            'google' => FALSE,
 							'fb'=>false
-		
 		
 					));
 		
@@ -87,8 +88,6 @@ class Login_m extends MY_Model{
         return (bool)$this->session->userdata('loggedin');
 
     }
-
-
 
     //login with face book
     function facebook(){
@@ -139,6 +138,7 @@ class Login_m extends MY_Model{
 				'name'=>$this->input->post('fname'),
 				'lastname'=>$this->input->post('lname'),
 				'username'=> $this->input->post('id'),
+				'type'=>'facebook',
 				'password'=> '',
 				'email'=> $this->input->post('email'),
 				'gender'=> $this->input->post('gender')
@@ -188,8 +188,6 @@ class Login_m extends MY_Model{
 
 
     }
-
-
     /* function hash($string){
         return hash('md5',$string.config_item('encryption_key'));
 

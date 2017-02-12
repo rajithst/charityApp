@@ -7,7 +7,16 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-xs-12 col-sm-4 text-center">
-                                <img src="<?php echo base_url($user->picture); ?>" alt="User" class="center-block img-circle img-thumbnail img-responsive">
+                                <img src="<?php
+                                if($user->type == 'google'){
+                                    echo $user->picture;
+                                }
+                                else if($user->type=='facebook'){
+                                    echo 'http://graph.facebook.com/' . $user->username . '/picture?type=normal';
+                                }
+                                else{
+                                    echo base_url($user->picture);
+                                } ?>" alt="User" class="center-block img-circle img-thumbnail img-responsive">
                                 <ul class="list-inline ratings text-center" title="Ratings">
                                     <li><a href="#"><span class="fa fa-star fa-lg"></span></a></li>
                                     <li><a href="#"><span class="fa fa-star fa-lg"></span></a></li>
@@ -149,7 +158,7 @@
                 </div>
                 <div class="timeline-badge timeline-filter-movement">
                     <a href="#">
-                        <span class="glyphicon glyphicon-chevron-up"></span>
+                        <span class="fa fa-chevron-up"></span>
                     </a>
                 </div>
 
@@ -170,7 +179,7 @@
                 function loadLess(){
                     $('#timelinecontent').html("");
                     loadTimeline(0);
-                    c = 0;
+                    c = 5;
                 }
                 function loadMore(start){
                     loadTimeline(start);
@@ -231,7 +240,7 @@
                                 var end = '<div class="timeline-movement timeline-movement-top">'+
                                             '<div style="cursor: pointer;" class="moretimeline timeline-badge timeline-filter-movement">'+
                                                 '<a>'+
-                                                    '<span id="down" class="glyphicon glyphicon-chevron-down"></span>'+
+                                                    '<span id="down" class="fa fa-chevron-down"></span>'+
                                                 '</a>'+
                                             '</div>'+
                                         '</div>';
@@ -240,7 +249,7 @@
                                 var end = '<div class="timeline-movement timeline-movement-top">'+
                                         '<div style="cursor: pointer;" class="moretimeline timeline-badge timeline-filter-movement">'+
                                             '<a>'+
-                                                '<span id="up" class="glyphicon glyphicon-chevron-up"></span>'+
+                                                '<span id="up" class="fa fa-chevron-up"></span>'+
                                             '</a>'+
                                         '</div>'+
                                     '</div>';

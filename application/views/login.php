@@ -172,7 +172,34 @@
                                     <fb:login-button class="fb-login-button btn-fb btn" scope="public_profile,email" onlogin="checkLoginState();">
 </fb:login-button>
                                     <!--end of face book login button-->
-                                    <a href="#" class="btn btn-tw"><i class="fa fa-twitter"></i> Twitter</a>
+                                    <a href="#" class="btn"><i class="g-signin2" data-onsuccess="onSignIn"></i></a>
+                                    <!-- google login starts here -->
+                                    <script src="https://apis.google.com/js/platform.js" async defer></script>
+                                    <meta name="google-signin-client_id" content="760126013179-gafn70enmd5f2ejfb4if83akv2422phk.apps.googleusercontent.com">
+                  
+                                    <script>
+                                        function onSignIn(googleUser) {
+                                            var profile = googleUser.getBasicProfile();
+                                            var obj = {id: profile.getId(), name: profile.getName(), username: profile.getEmail(), password: '', email: profile.getEmail(), reg_gender: '', picture: profile.getImageUrl(),type: 'google'};
+                                            gsign(obj);
+                                        }
+                                        function gsign(obj) {
+                                            jQuery.ajax({
+                                                type: "POST",
+                                                url: "<?php echo base_url(); ?>" + "index.php/Login/googleLogin",
+                                                dataType: 'json',
+                                                data: obj,
+                                                success: function (res) {
+                                                    window.location = "<?php echo base_url(); ?>"+"Home";
+                                                },
+                                                error: function (jqXHR, textStatus, errorThrown) {
+                                                    alert(jqXHR.responseText);
+                                                }
+                                            });
+                                        }
+                                    </script>
+                                    <!-- google login ends here -->
+                                    
                                 </div>
                                 or
 
@@ -536,23 +563,23 @@ $(document).ready(function(){
             <div class="main-login-form">
                 <div class="login-group">
                     <div class="form-group">
-                        <label for="name" class="sr-only">Name</label>
+                        <label for="name">Name</label>
                         <input type="text" class="form-control validate[required]" id="name" name="name" placeholder="Your Name">
                     </div>
                     <div class="form-group">
-                        <label for="username" class="sr-only">User Name</label>
+                        <label for="username">User Name</label>
                         <input type="text" class="form-control validate[required]" id="username" name="username" placeholder="Username">
                     </div>
                     <div class="form-group">
-                        <label for="password" class="sr-only">Password</label>
+                        <label for="password">Password</label>
                         <input type="password" class="form-control validate[required]" id="password" name="password" placeholder="Password">
                     </div>
                     <div class="form-group">
-                        <label for="password_confirm" class="sr-only">Password Confirm</label>
+                        <label for="password_confirm">Password Confirm</label>
                         <input type="password" class="form-control validate[required,equals[password]]" id="password_confirm" name="password_confirm" placeholder="Confirm Password">
                     </div>
                     <div class="form-group">
-                        <label for="email" class="sr-only">Email</label>
+                        <label for="email">Email</label>
                         <input type="email" class="form-control validate[required,custom[email]]" id="email" name="email" placeholder="Email">
                     </div>
                     <div class="form-group login-group-checkbox">

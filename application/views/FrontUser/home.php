@@ -21,7 +21,13 @@ if ($logedin != true){
 <!--left side bar-->
 <div class="col-sm-3" style=" position:fixed">
   <div class="panel panel-default">
-                                <div class="panel-thumbnail"><img src="" class="profilepic img-responsive" width="80px"></div>
+                                <div class="panel-thumbnail"><img src="<?php 
+                                                                        if($this->session->userdata('google')){
+                                                                            echo $this->session->userdata('picture');
+                                                                        }else{
+                                                                            echo base_url().$this->session->userdata('picture');
+                                                                        }
+                                                                       ?>" class="profilepic img-responsive" width="80px"></div>
                                 <div class="panel-body">
                                   <p class="lead"><?php echo $this->session->userdata('name');?></p>
                                   <p><l id="followercount"></l> Followers, 13 Posts</p>
@@ -176,8 +182,9 @@ if ($logedin != true){
                         <script>
                             $(document).ready(function(){
                                 $("#child_search_btn").click(function(){
+                                    $("#children").html("");
                                     searchChildren($("#child_search").val());
-                                })
+                                });
 
                             });
 

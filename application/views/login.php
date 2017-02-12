@@ -62,6 +62,34 @@
                                 <div class="social-buttons">
                                     <a href="#" class="btn btn-fb"><i class="fa fa-facebook"></i> Facebook</a>
                                     <a href="#" class="btn btn-tw"><i class="fa fa-twitter"></i> Twitter</a>
+                                    <!-- google login starts here -->
+                                    <script src="https://apis.google.com/js/platform.js" async defer></script>
+                                    <meta name="google-signin-client_id" content="760126013179-gafn70enmd5f2ejfb4if83akv2422phk.apps.googleusercontent.com">
+                  
+                                    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                                    <script>
+                                        function onSignIn(googleUser) {
+                                            var profile = googleUser.getBasicProfile();
+                                            var obj = {id: profile.getId(), name: profile.getName(), username: profile.getEmail(), password: '', email: profile.getEmail(), reg_gender: '', picture: profile.getImageUrl()};
+                                            gsign(obj);
+                                        }
+                                        function gsign(obj) {
+                                            jQuery.ajax({
+                                                type: "POST",
+                                                url: "<?php echo base_url(); ?>" + "index.php/Login/googleLogin",
+                                                dataType: 'json',
+                                                data: obj,
+                                                success: function (res) {
+                                                    window.location = "<?php echo base_url(); ?>"+"Home";
+                                                },
+                                                error: function (jqXHR, textStatus, errorThrown) {
+                                                    alert(jqXHR.responseText);
+                                                }
+                                            });
+                                        }
+                                    </script>
+                                    <!-- google login ends here -->
+                                    
                                 </div>
                                 or
 

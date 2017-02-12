@@ -4,7 +4,7 @@ class Login extends Frontend_Controller{
 	public function __construct(){
 		parent::__construct();
 		$this->load->model('Login_m');
-
+                $this->load->model('User_d');
 	}
 
 	public function login(){
@@ -34,10 +34,32 @@ class Login extends Frontend_Controller{
 		
 		$this->load->view('login');
 	}
-
-
-
-	public function logout(){
+        
+        function googleLogin(){
+            $username = $this->input->post('username');
+            $name = $this->input->post('name');
+            $email = $this->input->post('email');
+            $gender = $this->input->post('reg_gender');
+            $picture = $this->input->post('picture');
+            $existid = $this->User_d->getUserID($username);
+            if(!$existid){
+                $this->User_d->register();
+            }
+            $id = $this->User_d->getUserID($username);
+            $this->session->set_userdata(
+            array(
+                'id' => $id,
+                'username' => $username,
+                'name' =>$name,
+                'email' =>$email,
+                'gender' =>$gender,
+                'loggedin' =>TRUE,
+                'google' => TRUE,
+                'picture' => $picture
+            ));
+        }
+        
+        public function logout(){
 
 		$this->Login_m->logout();
 		redirect('Login');

@@ -48,11 +48,11 @@ class Login_m extends MY_Model{
 			
 			foreach ($res as $result){
                                 
-                $id =$result->id;
+                                $id =$result->id;
 				$name =$result->name;
 				$email =$result->email;
 				$gender =$result->gender;
-				
+				$picture =$result->picture;
 			}
 		
 			$this->session->set_userdata(
@@ -63,8 +63,9 @@ class Login_m extends MY_Model{
 							'name' =>$name,
 							'email' =>$email,
 							'gender' =>$gender,
-							'loggedin' =>TRUE
-		
+                                                        'picture' => $picture,
+							'loggedin' =>TRUE,
+                                                        'google' => FALSE
 		
 					));
 		
@@ -86,8 +87,7 @@ class Login_m extends MY_Model{
         return (bool)$this->session->userdata('loggedin');
 
     }
-
-
+    
     /* function hash($string){
         return hash('md5',$string.config_item('encryption_key'));
 

@@ -64,10 +64,7 @@
   }
 
         </script>
-<div class="se-pre-con"><div class="blobs">
-  <div class="blob"></div>
-  <div class="blob"></div>
-</div>
+
   <div class="navbar padding navbar-fixed-top">
     <div class="navbar-header">
       <button class="navbar-toggle navbar-tog" type="button" data-toggle="collapse" data-target=".navbar-collapse" style="color : black;">
@@ -563,7 +560,11 @@ function readingStatus(name){
 
 
 </script>
-
+<div class="se-pre-con"><div class="blobs">
+  <div class="blob"></div>
+  <div class="blob"></div>
+  
+</div>
 <!--chat window-->
 <div class="chat_box" style="z-index:1">
   <div class="chat_head">chat box</div>

@@ -921,9 +921,9 @@ function postLoad(){
           <img src="<?php echo base_url(); ?>'+data[i].imagepaths+'" width="150px" height="150px" class="img pull-left">\
           </div>\
           <div class="col-sm-8">\
-          <h4>what they want</h4><p class="hvr-bubble-float-left animated bounceInLeft">'+data[i].needs+'</p>\
-          <h4>How can you help</h4><p class="hvr-bubble-float-left animated bounceInLeft">'+data[i].how_help+'</p>\
-          <h4>Why they asking your help</h4><p class="hvr-bubble-float-left animated bounceInLeft">'+data[i].why_help+'</p>\
+          <h4>what they want</h4><p class="hvr-bubble-float-left">'+data[i].needs+'</p>\
+          <h4>How can you help</h4><p class="hvr-bubble-float-left">'+data[i].how_help+'</p>\
+          <h4>Why they asking your help</h4><p class="hvr-bubble-float-left">'+data[i].why_help+'</p>\
           </div>\
           </div>\
         <div class="row">\

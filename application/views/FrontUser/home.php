@@ -910,52 +910,45 @@ function postLoad(){
       }
         $(".lastid_value").remove();
       $('.post_content').append('<div class="panel panel-default" style="margin-bottom:10px;">\
-           <div class="panel-heading">\
-           <a href="#" class="pull-right">View all</a> \
-           <img src="'+pic+'" width="35px" height="35px"/><span><a href="<?php echo base_url(); ?>FrontUser/Home/profile/'+data[i].ids+'">'+data[i].username+'</a></span>\
-           <h4>post'+data[i].id+'</h4>\
            </div>\
-          <div class="panel-body">\
-          <div class="row">\
-          <div class="col-sm-4">\
-          <img src="<?php echo base_url(); ?>'+data[i].imagepaths+'" width="150px" height="150px" class="img pull-left">\
-          </div>\
-          <div class="col-sm-8">\
-          <h4>what they want</h4><p class="hvr-bubble-float-left">'+data[i].needs+'</p>\
-          <h4>How can you help</h4><p class="hvr-bubble-float-left">'+data[i].how_help+'</p>\
-          <h4>Why they asking your help</h4><p class="hvr-bubble-float-left">'+data[i].why_help+'</p>\
-          </div>\
-          </div>\
-        <div class="row">\
-        <div class="col-sm-4">\
-        <div class="progress">\
-          <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar"\
-          aria-valuenow="'+amountprogress+'" aria-valuemin="0" aria-valuemax="100" style="width:'+amountprogress+'%">\
-            '+amountprogress+'% Complete (success)\
-          </div>\
-        </div>\
-        </div>\
-        <div class="col-sm-4">\
-        <div class="input-group">\
-          <span class="input-group-addon">$</span>\
-          <input id="" type="text" value="'+data[i].amount+'" class="form-control" name="" \
-            placeholder="Amount">\
-        </div>\
-        </div>\
-        <div class="col-sm-4"><a href="<?php echo base_url('/donations'); ?>/'+data[i].id+'"><button type="button" class="btn btn-success btn-block">donate</button>\
-        </a></div>\
-        </div>\
-          <div class="row" style="background-color: #f5f5f5;margin-top:10px;padding:2px; border-color: #ddd;">\
-             <div class="col-sm-4">\
-              $'+data[i].amount+' needed<br/>$'+data[i].received_amount+' received </div>\
-               <div class="col-sm-4">\
-              56 days left<br/> 5 donations</div>\
-              <div class="col-sm-4"><button type="button" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-share-alt"></span></button></div>\
-                 </div>\
-        </div>\
-        </div>\
-        <input type="hidden" value='+data[i].id+' class="lastid_val" />\
-        ');
+           </div>\
+           <div class="panel-body">\
+            <div class="row">\
+                <div class="col-sm-4 pull-left">\
+                    <img src="<?php echo base_url(); ?>'+data[i].imagepaths+'" width="150px" height="150px" class="img img-responsive">\
+                </div>\
+                <div class="col-sm-8 col-lg-8 col-md-4 pull-right">\
+                    <div class="list-group">\
+                        <div class="list-group-item clearfix"><span class="pull-left"><h5>What they needs </h5></span><span><p class="hvr-bubble-float-left pull-right">'+data[i].needs+'</p> </span></div>\
+                        <div class="list-group-item clearfix"><span class="pull-left"><h5>How we can help them</h5></span><span><p class="hvr-bubble-float-left pull-right">'+data[i].how_help+'</p></span></div>\
+                        <div class="list-group-item clearfix"><span class="pull-left"><h5>Why we need to help them</h5></span><span><p class="hvr-bubble-float-left  pull-right">'+data[i].why_help+'</p></span></div>\
+         \
+                    </div>\
+                </div>\
+            </div>\
+            <div class="row">\
+                <div class="col-sm-8">\
+                    <div class="progress">\
+                        <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="'+amountprogress+'" aria-valuemin="0" aria-valuemax="100" style="width:'+amountprogress+'%">\
+                            '+amountprogress+'% Complete (success)\
+                        </div>\
+                    </div>\
+                </div>\
+                <div class="col-sm-4 pull-right">\
+                    <div class="input-group">\
+                        <span class="input-group-addon">$</span>\
+                        <input id="" type="text" value="'+data[i].amount+'" class="form-control" name="" placeholder="Amount">\
+                    </div>\
+                </div>\
+        \
+            </div>\
+           <div class="panel-footer">\
+                <div class="col-sm-4 pull-right"><a href="<?php echo base_url('/donations'); ?>/'+data[i].id+'"><button type="button" class="btn btn-success btn-block">donate</button>\
+                </a></div>\
+\
+                <div class="col-sm-4 pull-right"><button type="button" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-share-alt"></span>Share</button></div>\
+            </div>\
+</div>');
 
       
         }

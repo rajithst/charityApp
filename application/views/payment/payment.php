@@ -1,6 +1,7 @@
-<div class="container-fluid" style="margin-top:12px;">
+<div class="container-fluid" style="margin-top:12px; ">
+<div class="panel panel-default">
 
-<form action="<?php echo base_url() ?>index.php/FrontUser/paymentController/stripePay" class="form-horizontal" method="POST" id="payment-form">                    
+<form action="<?php echo base_url() ?>index.php/FrontUser/paymentController/stripePay" class="form-horizontal" method="POST" id="payment-form" style = " margin-bottom :2%; padding:2%;">                    
 <legend>Amount of donation</legend>
 <?php
     echo $alert;
@@ -44,7 +45,7 @@
 
 <!-- last name-->
 <div class="form-group">
-  <label class="col-sm-2 control-label" for="State">last name</label>  
+  <label class="col-sm-2 control-label" for="State">Last name</label>  
   <div class="col-sm-6">
   <input id="lname" name="lname" type="text" placeholder="last name" class="form-control" required="" value="<?= $users->lastname?>"> 
   </div>
@@ -314,9 +315,4 @@ $(document).ready(function(){
 
 
 });
-
-
-
-                     
-
 </script>

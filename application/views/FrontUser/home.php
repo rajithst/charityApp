@@ -697,20 +697,21 @@ if ($logedin != true){
                         </div>
                     </div>
                     </div>
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label">Account Number:</label>
-                        <div class="col-lg-8">
+                    <div class="row">
+                        <div class="form-group col-sm-6 col-lg-6 col-md-6">
+                        <label class="col-lg-5 control-label">Account Number:</label>
+                        <div class="col-lg-12">
                             <input class="form-control validate[required]" name="accnumber" type="text">
                         </div>
                     </div>
                     
-                    <div class="form-group">
-                        <label class="col-md-3 control-label">About:</label>
-                        <div class="col-md-8">
+                    <div class="form-group col-sm-6 col-lg-6 col-md-6">
+                        <label class="col-lg-5 control-label">About:</label>
+                        <div class="col-lg-12">
                             <textarea class="form-control" name="about" rows="5" id="about_me"></textarea>
                         </div>
                     </div>
-
+                    </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label"></label>
                         <div class="col-md-8">
@@ -1027,7 +1028,6 @@ function postLoad(){
             ';
         }
       $('.post_content').append(out);
-
       
         }
 

@@ -110,8 +110,9 @@ $route['payment-successful']='FrontUser/paymentController/paymentSuccess';
 $route['savePost']='FrontUser/postController/savePost';
 //load post
 $route['loadPost']='FrontUser/postController/loadPost';
-//load more post
-$route['loadMorePost']='FrontUser/postController/loadMore';
+//load more posts
+$route['loadMorePost/(:any)']='FrontUser/postController/loadMore/$1';
+
 
 
 

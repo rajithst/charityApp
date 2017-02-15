@@ -1,4 +1,5 @@
 <?php echo base_url('assets/css/stylenew.css') ?>
+    <?php echo $this->session->flashdata('error'); ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -558,7 +559,7 @@ $(document).ready(function(){
         <h4 class="modal-title">Register</h4>
       </div>
       <div class="modal-body">
-        <form id="register-form" class="text-left" action="http://localhost/charityApp/index.php/Register/setRegister" method = "post">
+          <form id="register-form" class="text-left" action="<?php echo base_url(); ?>index.php/Register/setRegister" method = "post">
             <div class="login-form-main-message"></div>
             <div class="main-login-form">
                 <div class="login-group">

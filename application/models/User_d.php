@@ -27,8 +27,13 @@ class User_d extends MY_Model {
                     $user_data['picture'] = $this->input->post('picture');
                 if($this->input->post('type'))
                     $user_data['type'] = $this->input->post('type');
-                
-		$res = $this->db->insert('Users', $user_data);
+                $this->db->where('username',$user_data['username']);
+                $query=$this->db->get('Users');
+                if(count($query->result())){
+                    return false;
+                }
+                $res = $this->db->insert('Users', $user_data);
+                    
 		if ($res) {
 			return true;
 		}

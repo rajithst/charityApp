@@ -201,16 +201,30 @@
                                             '<span class="timeline-balloon-date-month">'+row[0]['month']+'</span>'+
                                         '</div>';
                                     var i=0;
-                                    for(var k2 in row){
-                                        var column = row[k2];
+                                    for(var k2 in row[1]){
+                                        var column = row[1][k2];
+                                        if(column['needs']==null || column['needs']=='NULL' || column['needs']=='1'){
+                                            column['needs']
+                                        }
+                                        if(column['amount']==null || column['amount']=='NULL' || column['amount']=='1'){
+                                            column['amount']
+                                        }
+                                        if(column['how_help']==null || column['how_help']=='NULL' || column['how_help']=='1'){
+                                            column['how_help']
+                                        }
+                                        if(column['why_help']==null || column['why_help']=='NULL' || column['why_help']=='1'){
+                                            column['why_help']
+                                        }
+                                        
+                                        var description = column['needs']+" "+column['amount']+" "+column['how_help']+" "+column['why_help'];
                                         if(i%2==0){
                                             content = content+'<div class="col-sm-6  timeline-item">'+
                                                 '<div class="row">'+
                                                     '<div class="col-sm-offset-1 col-sm-11">'+
                                                         '<div class="timeline-panel debits">'+
                                                             '<ul class="timeline-panel-ul">'+
-                                                                '<li><span class="importo">'+column['type']+'</span></li>'+
-                                                                '<li><span class=\"causale\">'+column['content']+'</span></li>'+
+                                                                '<li><span class="importo">'+column['Shared Post']+'</span></li>'+
+                                                                '<li><span class=\"causale\">'+description+'</span></li>'+
                                                                 '<li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> '+column['date']+'</small></p> </li>'
                                                             '</ul>';
                                             content = content+'</div>'+
@@ -223,8 +237,8 @@
                                                     '<div class="col-sm-11">'+
                                                         '<div class="timeline-panel credits">'+
                                                             '<ul class="timeline-panel-ul">'+
-                                                                '<li><span class="importo">'+column['type']+'</span></li>'+
-                                                                '<li><span class="causale">'+column['content']+'</span></li>'+
+                                                                '<li><span class="importo">'+column['Shared Post']+'</span></li>'+
+                                                                '<li><span class="causale">'+description+'</span></li>'+
                                                                 '<li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i>'+column['date']+'</small></p> </li>'+
                                                             '</ul>';
                                             content = content+'</div>'+
@@ -311,16 +325,9 @@
     function loadData(startdate,endDate){
         jQuery.ajax({
             type: "POST",
-            url: "<?php echo base_url(); ?>" + "index.php/Donation_c/getGraphData/"+startdate+"/"+endDate,
+            url: "<?php echo base_url(); ?>" + "index.php/Donation_c/getGraphData/<?php echo $user->id;  ?>/"+startdate+"/"+endDate,
             dataType: 'json',
             success: function (res) {
-                var x = document.getElementById('donationcount');
-                if(x.innerHTML=="")
-                    x.innerHTML = res.length;
-                if(res.length==0){
-                    document.getElementById('chart_div').innerHTML="No donations to show up";
-                    return;
-                }
                 var arr=[];
                 var k = Object.keys(res);
                 for(var i=0;i<k.length;i++){
@@ -381,6 +388,20 @@
             url: "<?php echo base_url(); ?>" + "index.php/Donation_c/getTotalDonatedAmount/"+<?php echo $user->id;  ?>,
             success: function (res) {
                 document.getElementById('donatedamount').innerHTML = "Rs. "+res;
+           
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert(jqXHR.responseText);
+            }
+        });
+    }
+    loadDonatedCount();
+    function loadDonatedCount(){
+        jQuery.ajax({
+            type: "POST",
+            url: "<?php echo base_url(); ?>" + "index.php/Donation_c/getTotalDonatedCount/"+<?php echo $user->id;  ?>,
+            success: function (res) {
+                document.getElementById('donationcount').innerHTML = res;
            
             },
             error: function (jqXHR, textStatus, errorThrown) {

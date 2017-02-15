@@ -25,7 +25,7 @@ class Login extends Frontend_Controller{
 
 			}else {
 
-				$this->session->set_flashdata('error','That email password combination does not exist');
+				$this->session->set_flashdata('error','<script>alert("That email password combination does not exist");</script>');
 				redirect('Login','refresh');
 			}
 

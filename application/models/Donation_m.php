@@ -26,6 +26,15 @@ class Donation_m extends MY_Model{
         $query = $this->db->query($sql);
         return $query->result();
     }
+    
+    public function getTotalDonatedCount($id){
+        $where = "donorID=$id";
+        $sql = "SELECT COUNT(*) AS count FROM donations WHERE $where;";
+        $query = $this->db->query($sql);
+        $results = $query->result();
+        return $results[0]->count;
+    }
+    
     public function getReceivedAmounts($id,$startDate,$endDate){
         $where = "pc.childid=$id AND d.date >= '$startDate' AND d.date <= '$endDate'";
         $sql = "SELECT CAST(d.date AS DATE) AS date,sum(d.amount) AS amount,p.n_of_children AS n_of_children FROM donations d INNER JOIN postchildren pc INNER JOIN posts p WHERE d.postID=pc.postid AND pc.postid=p.id AND $where GROUP BY CAST(d.date AS DATE)";

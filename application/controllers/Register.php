@@ -33,8 +33,12 @@ class Register extends Frontend_Controller {
     
     function setRegister() {
     	
-    	$this->User_d->register();
-    	
+    	if((bool)$this->User_d->register()){
+            redirect('Login','refresh');
+        }else{
+            $this->session->set_flashdata('error','<script>alert("Username already exist");</script>');
+            redirect('Login','refresh');
+        }
     
     }
     //register child

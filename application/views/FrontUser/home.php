@@ -15,7 +15,6 @@ if ($logedin != true){
 <div class="container-fluid" style="margin-top:50px;">
 <div class="row">
 
-
 <!--left side bar-->
 <div class="col-sm-3" style=" position:fixed">
   <div class="panel panel-default">
@@ -923,60 +922,62 @@ function postLoad(){
 
             }
             
-            out = ' <div class="panel panel-default" style="margin-bottom:10px;">\
-               <div class="panel-heading">\
-               <a href="#" class="pull-right">View all</a> \
-               <img src="'+spic+'" width="35px" height="35px"/><span><a href="<?php echo base_url(); ?>FrontUser/Home/profile/'+data[i].sids+'">'+data[i].susername+'</a></span>\
-               <h4>post'+data[i].id+'</h4>\
+            out = '<div class="panel panel-default">\
+           <div class="panel-heading"> \
+           <div class="row">\
+                <div class="col col-sm-6 col-lg-6 col-md-4">\
+                   <img style="position: relative;" src="'+spic+'"  width="35px" height="35px"/><span><a href="<?php echo base_url(); ?>FrontUser/Home/profile/'+data[i].ids+'">'+data[i].username+'</a></span>\
+                   <h4>post'+data[i].id+'</h4>\
                </div>\
-              <div class="panel-body">\
-              <div class="panel panel-default" style="margin-bottom:10px;">\
-               <div class="panel-heading">\
-               <a href="#" class="pull-right">View all</a> \
-               <img src="'+pic+'" width="35px" height="35px"/><span><a href="<?php echo base_url(); ?>FrontUser/Home/profile/'+data[i].ids+'">'+data[i].username+'</a></span>\
-               <h4>post'+data[i].id+'</h4>\
+               <div class="col pull-right col-sm-4">\
+                    <div class="row" style="background-color: #f5f5f5; border-color: #ddd;">\
+                         <div class="col-sm-4">\
+                          $'+data[i].amount+' needed<br/>$'+data[i].received_amount+' received </div>\
+                           <div class="col-sm-4">\
+                          56 days left<br/> 5 donations</div>\
+                    </div>\
                </div>\
-              <div class="panel-body">\
-              <div class="row">\
-              <div class="col-sm-4">\
-              <img src="<?php echo base_url(); ?>'+data[i].imagepaths+'" width="150px" height="150px" class="img pull-left">\
-              </div>\
-              <div class="col-sm-8">\
-              <h4>what they want</h4><p>'+data[i].needs+'</p>\
-              <h4>How can you help</h4><p>'+data[i].how_help+'</p>\
-              <h4>Why they asking your help</h4><p>'+data[i].why_help+'</p>\
-              </div>\
-              </div>\
-            <div class="row">\
-            <div class="col-sm-4">\
-            <div class="progress">\
-              <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar"\
-              aria-valuenow="'+amountprogress+'" aria-valuemin="0" aria-valuemax="100" style="color:black; width:'+amountprogress+'%">\
-                '+amountprogress+'% Complete (success)\
-              </div>\
+           </div>\
+           </div>\
+           <div class="panel-body">\
+                <div class="row">\
+                        <div class="col-sm-4">\
+                            <img src="<?php echo base_url(); ?>'+data[i].imagepaths+'" width="150px" height="150px" class="img pull-left">\
+                        </div>\
+                        <div class="col-sm-8 col-lg-8 col-md-4">\
+                            <div class="list-group">\
+                                <div class="list-group-item clearfix"><span class="pull-left"><h3>What they needs </h3></span><span><p class="hvr-bubble-float-left  pull-right">'+data[i].needs+'</p> </span></div>\
+                                <div class="list-group-item clearfix"><span class="pull-left"><h3>How we can help them</h3></span><span><p class="hvr-bubble-float-left  pull-right">'+data[i].how_help+'</p></span></div>\
+                                <div class="list-group-item clearfix"><span class="pull-left"><h3>Why we need to help them</h3></span><span><p class="hvr-bubble-float-left  pull-right">'+data[i].why_help+'</p></span></div>\
+                 \
+                            </div>\
+                        </div>\
+                    </div>\
+                <div class="row">\
+                    <div class="col-sm-8">\
+                        <div class="progress">\
+                            <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="'+amountprogress+'" aria-valuemin="0" aria-valuemax="100" style="width:'+amountprogress+'%">\
+                                '+amountprogress+'% Complete (success)\
+                            </div>\
+                        </div>\
+                    </div>\
+                    <div class="col-sm-4 pull-right">\
+                        <div class="input-group">\
+                            <span class="input-group-addon">$</span>\
+                            <input id="" type="text" value="'+data[i].amount+'" class="form-control" name="" placeholder="Amount">\
+                        </div>\
+                    </div>\
+            \
+                </div>\
             </div>\
+           <div class="panel-footer">\
+                <div class="col-sm-4 pull-right"><a href="<?php echo base_url('/donations'); ?>/'+data[i].id+'"><button type="button" class="btn btn-success btn-block">donate</button>\
+                </a></div>\
+\
+                <div class="col-sm-4 pull-right"><button type="button" class="btn btn-primary btn-block" onclick="share('+data[i].id+');"><span class="glyphicon glyphicon-share-alt"></span>Share</button></div>\
             </div>\
-            <div class="col-sm-4">\
-            <div class="input-group">\
-              <span class="input-group-addon">$</span>\
-              <input id="" type="text" value="'+data[i].amount+'" class="form-control" name="" \
-                placeholder="Amount">\
-            </div>\
-            </div>\
-            <div class="col-sm-4"><a href="<?php echo base_url('/donations'); ?>/'+data[i].id+'"><button type="button" class="btn btn-success btn-block">donate</button>\
-            </a></div>\
-            </div>\
-              <div class="row" style="background-color: #f5f5f5;margin-top:10px;padding:2px; border-color: #ddd;">\
-                 <div class="col-sm-4">\
-                  $'+data[i].amount+' needed<br/>$'+data[i].received_amount+' received </div>\
-                   <div class="col-sm-4">\
-                  56 days left<br/> 5 donations</div>\
-                  <div class="col-sm-4"><button type="button" class="btn btn-primary btn-xs" onclick="share('+data[i].id+');"><span class="glyphicon glyphicon-share-alt"></span></button></div>\
-                     </div>\
-              </div>\
-            </div>\
-            <input type="hidden" value='+data[i].id+' class="lastid_value" />\
-            ';
+</div>\
+';
               
         }else{
             out = ' <div class="panel panel-default" style="margin-bottom:10px;">\
@@ -1341,16 +1342,18 @@ $('#previewing').attr('height', '230px');
 <!-- share starts here -->
 <script>
     function share(postid){
-        var ret = confirm("Do you want to share this post");
+        var ret = true;
         if (ret == true) {
             jQuery.ajax({
                 type: "POST",
                 url: "<?php echo base_url(); ?>" + "index.php/FrontUser/postController/sharePost/"+<?php echo $this->session->userdata('id'); ?>+"/"+postid,
                 success: function () {
-                    alert("post shared on your timeline"); 
+                    $.bootstrapGrowl("post shared on your timeline", { type: 'success', align: 'center',
+                        width: 'auto' });
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
-                    alert(jqXHR.responseText);
+                    $.bootstrapGrowl(jqXHR.responseText, { type: 'success', align: 'center',
+                        width: 'auto' });
                 }
             });
         }

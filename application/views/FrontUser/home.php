@@ -314,10 +314,16 @@ if ($logedin != true){
                                 <label>Select Your Image</label><br/>
                                 <form id="uploadimage" name="uploadimage" method="post">
                                     
-                                    
+                                    <div class="slim"
+                                        data-service="<?php echo base_url(); ?>index.php/FileUpload_c/slimasync/<?php echo $this->session->userdata('id'); ?>/img1br1posts1br1/posts"
+                                        data-ratio="9:9"
+                                        data-size="640,640">
+                                       <input type="file" name="slim[]"/>
+                                    </div>
+                                    <!--
                                     <input type="file" name="file" id="file" required />
                                     <input type="button" id="postimgupload" value="Upload" class="submit" />
-                                   
+                                    -->
                                 </form>
                         </div>
                         <div class="row">

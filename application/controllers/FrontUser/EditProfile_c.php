@@ -43,7 +43,6 @@ class EditProfile_c extends Frontend_Controller {
             $password = $this->input->post('password');
             if(trim($password) != "")    
                 $arr['password'] = $password;
-                
             echo (bool)$this->User_d->editUserDetails($this->id,$arr);
             
         }

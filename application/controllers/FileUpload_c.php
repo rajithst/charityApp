@@ -40,4 +40,44 @@ class FileUpload_c extends MY_Controller{
                 return;
             }
     }
+    function slimasync($name,$path,$dbtable){
+
+        // Uncomment if you want to allow posts from other domains
+        // header('Access-Control-Allow-Origin: *');
+
+        require_once('slim.php');
+        
+        // get posted data, if something is wrong, exit
+        try {
+            $images = Slim::getImages();
+        }
+        catch (Exception $e) {
+            Slim::outputJSON(SlimStatus::Failure);
+            return;
+        }
+        
+        // if no images found
+        if (count($images)===0) {
+            Slim::outputJSON(SlimStatus::Failure);
+            return;
+        }
+
+        // should always be one file (when posting async)
+        $image = $images[0];
+        $targetpath = str_replace("1br1", "/", $path);
+        $extention = end(explode('.', $image['input']['name']));
+        $targetname = "";
+        if(strcmp($dbtable,"posts")==0){
+            $targetname = uniqid().".".$extention;
+        }else{
+            $targetname = $name.".".$extention;
+        }
+        $file = Slim::saveFile($image['output']['data'], $targetname, $targetpath);
+        $this->Upload_m->setPicturePath($name,$dbtable,$targetpath.$targetname);
+        if($this->session->userdata(id)==$name){
+            $this->session->set_userdata('picture',$targetpath.$targetname);
+        }
+        // echo results
+        Slim::outputJSON(SlimStatus::Success, $file['name'], $file['path']);
+    }
 }

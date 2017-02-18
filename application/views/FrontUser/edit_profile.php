@@ -2,6 +2,7 @@
     <link rel="stylesheet" href="<?php echo base_url('assets/css/validationEngine.jquery.css')?>" type="text/css"/>
     <script src="<?php echo base_url('assets/js/jquery.validationEngine-en.js') ?>" type="text/javascript" charset="utf-8"></script>
     <script src="<?php echo base_url('assets/js/jquery.validationEngine.js') ?>" type="text/javascript" charset="utf-8"></script>
+
 </head>
 <div class="" style="background-color: #c1f1d5">
     <div class="container">
@@ -18,9 +19,19 @@
                                 }else{
                                     echo base_url($user->picture);
                                 } ?>" class="avatar img-circle center-block img-circle img-thumbnail img-responsive" alt="avatar">
-                    <h6>Upload a different photo...</h6>
-
-                    <input name="file" id="file" type="file" class="form-control">
+                    <h6>Upload a different photo...<?php $this->session->userdata('picture');?></h6>
+                    <?php if($user->type == 'none')
+                    {
+                    ?>
+                    <div class="slim"
+                        data-service="<?php echo base_url(); ?>index.php/FileUpload_c/slimasync/<?php echo $user->id; ?>/img1br1user1br1/users"
+                        data-ratio="9:9"
+                        data-size="640,640">
+                       <input type="file" name="slim[]"/>
+                    </div>
+                    <?php
+                    }
+                    ?>
                 </div>
             </div>
             </form>
@@ -432,27 +443,6 @@
                         dataType: 'json',
                         data: obj,
                         success: function (res) {
-                            //if success image will be uploaded
-                            var path = document.getElementById("file");
-                            if (path.value !== "") {
-                                jQuery.ajax({
-                                    //reured table input id user id path as parameters replace / by <>
-                                    url: "<?php echo base_url(); ?>" + "index.php/FileUpload_c/uploadPicture/users/file/<?php echo $user->id; ?>/img1br1user",
-                                    type: "POST", // Type of request to be send, called as method
-                                    data: new FormData(document.getElementById("imgForm")), // Data sent to server, a set of key/value pairs (i.e. form fields and values)
-                                    contentType: false, // The content type used when sending data to the server.
-                                    cache: false, // To unable request pages to be cached
-                                    processData: false,
-                                    success: function (res) {
-                                        alert(res);
-                                        location.reload();
-                                    },
-                                    error: function (jqXHR, textStatus, errorThrown) {
-                                        alert(jqXHR.responseText);
-                                    }
-                                });
-                            }
-                            alert('saved');
                             location.reload();
                         },
                         error: function (jqXHR, textStatus, errorThrown) {

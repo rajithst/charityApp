@@ -22,7 +22,6 @@
   <script src="<?php echo base_url('assets/js/bootstrap.min.js');?>"></script>
   <script src="<?php echo base_url('assets/js/bootstrap-confirmation.js');?>"></script>
 
-  <script src="<?php echo base_url('assets/js/jquery.bootstrap-growl.js');?>"></script>
   <!--mention tags-->
 
        <script src='//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js' type='text/javascript'></script>

@@ -379,7 +379,7 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label"></label>
                         <div class="col-md-8">
-                            <input type="submit" onclick="editInfo()" class="btn btn-primary" value="Save Changes">
+                            <input type="submit" class="btn btn-primary" data-toggle="modal" data-target="#confirm-edit" onclick="confirmEdit();" value="Save Changes">
                             <span></span>
                             <input type="reset" class="btn btn-primary" value="Cancel">
                         </div>
@@ -389,6 +389,30 @@
         </div>
     </div>
     <hr>
+<!-- confirm modal -->
+<div class="modal fade" id="confirm-edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                Edit confirmation
+            </div>
+            <div class="modal-body">
+                Do you want to edit your details
+            </div>
+            <div id="editit"></div>
+        </div>
+    </div>
+</div>
+<script>
+    function confirmEdit(){
+        $('#editit').html('\
+                <div class="modal-footer">\
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>\
+                <a class="btn btn-primary btn-ok" data-dismiss="modal" onclick="editInfo()">Ok</a>\
+                </div>')
+    }
+</script>
+<!-- confirmation ends here -->
 <script>
     //validation starts here
     $('#editForm').submit(function(e){
@@ -435,20 +459,23 @@
     //form submissions
     function edit(obj) {
 
-                var ret = confirm("Do you want to save changes");
+                var ret = true;
                 if (ret == true) {
                     jQuery.ajax({
                         type: "POST",
                         url: "<?php echo base_url(); ?>" + "index.php/FrontUser/EditProfile_c/editDetails",
                         dataType: 'json',
                         data: obj,
-                        success: function (res) {
+                        success: function () {
+                            $.bootstrapGrowl("Successfully edited your details", { type: 'success', align: 'center',
+                                width: 'auto' });
+                            $('#shareit').html('');
                             location.reload();
                         },
                         error: function (jqXHR, textStatus, errorThrown) {
-                            alert(jqXHR.responseText);
+                            $.bootstrapGrowl(jqXHR.responseText, { type: 'success', align: 'center',
+                                width: 'auto' });
                         }
-
                     });
                 }
 

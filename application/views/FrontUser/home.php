@@ -15,7 +15,6 @@ if ($logedin != true){
 <div class="container-fluid" style="margin-top:50px;">
 <div class="row">
 
-
 <!--left side bar-->
 <div class="col-sm-3" style=" position:fixed">
   <div class="panel panel-default">
@@ -891,7 +890,6 @@ function postSave(){
 
 }
 
-
 function postLoad(){
 
   $.ajax({
@@ -977,7 +975,7 @@ function postLoad(){
                   $'+data[i].amount+' needed<br/>$'+data[i].received_amount+' received </div>\
                    <div class="col-sm-4">\
                   56 days left<br/> 5 donations</div>\
-                  <div class="col-sm-4"><button type="button" class="btn btn-primary btn-xs" onclick="share('+data[i].id+');"><span class="glyphicon glyphicon-share-alt"></span></button></div>\
+                  <div class="col-sm-4"><button data-toggle="modal" data-target="#confirm-share" type="button" class="btn btn-primary btn-xs" onclick="confirmShare('+data[i].id+');"><span class="glyphicon glyphicon-share-alt"></span> Share</button></div>\
                      </div>\
               </div>\
             </div>\
@@ -1026,7 +1024,7 @@ function postLoad(){
                   $'+data[i].amount+' needed<br/>$'+data[i].received_amount+' received </div>\
                    <div class="col-sm-4">\
                   56 days left<br/> 5 donations</div>\
-                  <div class="col-sm-4"><button type="button" class="btn btn-primary btn-xs" onclick="share('+data[i].id+');"><span class="glyphicon glyphicon-share-alt"></span></button></div>\
+                  <div class="col-sm-4"><button data-toggle="modal" data-target="#confirm-share" type="button" class="btn btn-primary btn-xs" onclick="confirmShare('+data[i].id+');"><span class="glyphicon glyphicon-share-alt"></span> Share</button></div>\
                      </div>\
             </div>\
             </div>\
@@ -1157,7 +1155,7 @@ function loadMore(){
                   $'+data[i].amount+' needed<br/>$'+data[i].received_amount+' received </div>\
                    <div class="col-sm-4">\
                   56 days left<br/> 5 donations</div>\
-                  <div class="col-sm-4"><button type="button" class="btn btn-primary btn-xs" onclick="share('+data[i].id+');"><span class="glyphicon glyphicon-share-alt"></span></button></div>\
+                  <div class="col-sm-4"><button data-toggle="modal" data-target="#confirm-share" type="button" class="btn btn-primary btn-xs" onclick="confirmShare('+data[i].id+');"><span class="glyphicon glyphicon-share-alt"></span> Share</button></div>\
                      </div>\
               </div>\
             </div>\
@@ -1206,7 +1204,7 @@ function loadMore(){
                   $'+data[i].amount+' needed<br/>$'+data[i].received_amount+' received </div>\
                    <div class="col-sm-4">\
                   56 days left<br/> 5 donations</div>\
-                  <div class="col-sm-4"><button type="button" class="btn btn-primary btn-xs" onclick="share('+data[i].id+');"><span class="glyphicon glyphicon-share-alt"></span></button></div>\
+                  <div class="col-sm-4"><button data-toggle="modal" data-target="#confirm-share" type="button" class="btn btn-primary btn-xs" onclick="confirmShare('+data[i].id+');"><span class="glyphicon glyphicon-share-alt"></span> Share</button></div>\
                      </div>\
             </div>\
             </div>\
@@ -1345,18 +1343,41 @@ $('#previewing').attr('height', '230px');
 <!-- end load post count -->
 
 <!-- share starts here -->
+<div class="modal fade" id="confirm-share" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                Share on the wall
+            </div>
+            <div class="modal-body">
+                This post will be shared on your timeline
+            </div>
+            <div id="shareit"></div>
+        </div>
+    </div>
+</div>
 <script>
+    function confirmShare(postid){
+        $('#shareit').html('\
+                <div class="modal-footer">\
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>\
+                <a class="btn btn-primary btn-ok" data-dismiss="modal" onclick="share('+postid+');">Ok</a>\
+                </div>')
+    }
     function share(postid){
-        var ret = confirm("Do you want to share this post");
+        var ret = true;
         if (ret == true) {
             jQuery.ajax({
                 type: "POST",
                 url: "<?php echo base_url(); ?>" + "index.php/FrontUser/postController/sharePost/"+<?php echo $this->session->userdata('id'); ?>+"/"+postid,
                 success: function () {
-                    alert("post shared on your timeline"); 
+                    $.bootstrapGrowl("post shared on your timeline", { type: 'success', align: 'center',
+                        width: 'auto' });
+                    $('#shareit').html('');
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
-                    alert(jqXHR.responseText);
+                    $.bootstrapGrowl(jqXHR.responseText, { type: 'success', align: 'center',
+                        width: 'auto' });
                 }
             });
         }

@@ -112,7 +112,7 @@ if ($logedin != true){
                     <li role="presentation" class="active">
                         <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Pick one child or more" id="st1">
                             <span class="round-tab">
-                                <i class="glyphicon glyphicons-user-add"></i>
+                                <i class="glyphicon glyphicon-user"></i>
                             </span>
                         </a>
                     </li>
@@ -140,20 +140,12 @@ if ($logedin != true){
                             </span>
                         </a>
                     </li>
-
-                    <li role="presentation" class="disabled">
-                        <a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Complete" id="st4">
-                            <span class="round-tab">
-                                <i class="glyphicon glyphicon-ok"></i>
-                            </span>
-                        </a>
-                    </li>
                 </ul>
             </div>
       </div>
       </div>
       <!--end of post modal header-->
-      <div class="modal-body">
+      <div class="modal-body padding">
 
 
            
@@ -166,7 +158,7 @@ if ($logedin != true){
                       <div class="form-group">
                       <span>
                         <div class="row">
-                            <div class="col-sm-8">
+                            <div class="col-sm-6">
                             <input type="text" id="child_search" class="form-control">
                             </div>
                             <div class="col-sm-4">
@@ -261,40 +253,44 @@ if ($logedin != true){
 
                     <!--step 2 of post modal-->
                     <div class="tab-pane" role="tabpanel" id="step2">
-                        
+                        <div class="col">
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-6" style="margin-top: 12px;">
                                     <label for="exampleInputEmail1">What they Need</label>
                                     <input type="text" class="form-control" id="pt_need" placeholder="What they Need">
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-6" style="margin-top: 12px;">
                                     <label for="exampleInputEmail1">Why they asking your help</label>
                                     <input type="text" class="form-control" id="pt_why_help" placeholder="Why they asking your help">
                                 </div>
                             </div>
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-6" style="margin-top: 12px;">
                                 <label for="exampleInputEmail1">Amount</label>
-                                <input type="text" class="form-control" id="pt_amount" placeholder="Email">
+                                <input type="text" class="form-control" id="pt_amount" placeholder="Amount">
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6" style="margin-top: 12px;">
                                 <label for="exampleInputEmail1">Confirm Ammount</label>
-                                <input type="text" class="form-control" id="pt_confirm_amount" placeholder="Email">
+                                <input type="text" class="form-control" id="pt_confirm_amount" placeholder="Amount">
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-6" style="margin-top: 12px;">
                                 <label for="exampleInputEmail1">How can you help</label>
-                                <input type="text" class="form-control" id="pt_how_help" placeholder="Email">
+                                <input type="text" class="form-control" id="pt_how_help" placeholder="How can we help you">
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6" style="margin-top: 12px;">
                             <label for="exampleInputEmail1">Tags</label>
                                 <div class="row">
                                     <div class="col-md-9 col-xs-9">
-                                        <input type="text" class="form-control" id="pt_tags" placeholder="Email">
+                                        <input type="text" class="form-control" id="pt_tags" placeholder="Tags Like Books Computer Etc">
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                        <div class="row">
+                        <div class="col-md-6" style="margin-top: 12px;"><label>Display this</label><input type="checkbox" name="diplayContent" class="required" /> </div>
                         </div>
                       
                    
@@ -1001,14 +997,14 @@ function postLoad(){
              </div>\
             </div>\
         <div class="panel-body">\
-            <div class="row" style="width: 630px; position: absolute;">\
-               <div class="col col-sm-3 overimage resize"><h4 class="text-center" style="font-size: 1em;">What</\
+            <div class="row" style="width: 630px; min-width:auto; position: absolute;">\
+               <div class="col-sm-3 col-xs-3 overimage resize animated fadeIn "><h4 class="text-center" style="font-size: 1em;">What</\
                h4>\
-               <h6 class="text-center" >Content</h6></div>\
-               <div class="col col-sm-3 overimage resize"><h4 class="text-center" style="font-size: 1em;">why</h4>\
-               <h6 class="text-center" >Content</h6></div>\
-               <div class="col col-sm-4 overimage resize"><h4 class="text-center" style="font-size: 1em;">How</h4>\
-               <h6 class="text-center" >Content</h6></div>\
+               <h6 class="text-center" >'+data[i].needs+'</h6></div>\
+               <div class="col-sm-3 col-xs-3 overimage resize  animated fadeIn "><h4 class="text-center" style="font-size: 1em;">why</h4>\
+               <h6 class="text-center" >'+data[i].why_help+'</h6></div>\
+               <div class="col-sm-4 col-xs-4 overimage resize animated fadeIn "><h4 class="text-center" style="font-size: 1em;">How</h4>\
+               <h6 class="text-center" >'+data[i].how_help+'</h6></div>\
             </div>\
             <img src="<?php echo base_url(); ?>'+data[i].imagepaths+'" alt="" class="img-responsive center-block" />\
         </div>\

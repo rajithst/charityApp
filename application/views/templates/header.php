@@ -24,7 +24,8 @@
 
   <script src="<?php echo base_url('assets/js/jquery.bootstrap-growl.js');?>"></script>
   <!--mention tags-->
-
+  <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
        <script src='//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js' type='text/javascript'></script>
          <script src="<?php echo base_url('assets/js/jquery.elastic.js');?>"></script>
     <script src="<?php echo base_url('assets/js/jquery.mentionsInput.js');?>"></script>

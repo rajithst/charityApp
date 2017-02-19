@@ -136,7 +136,7 @@ if ($logedin != true){
                     <li role="presentation" class="disabled">
                         <a href="#step4" data-toggle="tab" aria-controls="step4" role="tab" title="Step 4" id="st4">
                             <span class="round-tab">
-                                <i class="glyphicon glyphicon-picture"></i>
+                                <i class="glyphicon glyphicon-share"></i>
                             </span>
                         </a>
                     </li>
@@ -149,7 +149,7 @@ if ($logedin != true){
 
 
            
-                <div class="tab-content">
+                <div class="tab-content" style="margin-left: 5px;">
 
                     <!--step 1 of post modal-->
                     <div class="tab-pane active" role="tabpanel" id="step1">
@@ -157,7 +157,7 @@ if ($logedin != true){
                       <div class="row padding">
                       <div class="form-group">
                       <span>
-                        <div class="row">
+                        <div class="row" style="margin-left: 3px;">
                             <div class="col-sm-6">
                             <input type="text" id="child_search" class="form-control">
                             </div>
@@ -242,7 +242,7 @@ if ($logedin != true){
                         <!--load children in the post modal ends here-->
                     </div>
                     <span class="col-xs-2 padding">
-                          <a><img src="https://cdn0.iconfinder.com/data/icons/toolbar-signs-1/512/add_create_cross_healthcare_help_hospital_medic_medical_new_pharmacy_plus_icon_add_aid_care_chemist_clinic_create_creation_cure_drug_drugs_drugstore_farmacia_farmacy_health_healthcare_help_hospital_me-512.png" width="40px" id="child_modal" style="margin-top:20px;" /></a>
+                          <a><img src="http://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/sign-add-icon.png" width="40px" id="child_modal" style="margin-top:20px;" /></a>
                     </span>
                        </div> 
                     </div>          
@@ -289,8 +289,9 @@ if ($logedin != true){
                             </div>
                         </div>
                     </div>
-                        <div class="row">
-                        <div class="col-md-6" style="margin-top: 12px;"><label>Display this</label><input type="checkbox" name="diplayContent" class="required" /> </div>
+                        <div class="row" style="margin-top: 13px; margin-left: 8px;"><label class="checkbox-inline">
+                            <input type="checkbox" checked data-toggle="toggle" name="diplayContent" > Display this
+                                </label>
                         </div>
                       
                    
@@ -334,7 +335,7 @@ if ($logedin != true){
 
                     <!--step 4 of post modal-->
                     <div class="tab-pane" role="tabpane4" id="step4">
-                        <h3>Step 4</h3>
+                        <h3>Share </h3>
                         <div class="row">
                         <div class="col-sm-6">
                         <a class="btn btn-social-icon btn-facebook" onclick="_gaq.push(['_trackEvent', 'btn-social-icon', 'click', 'btn-facebook']);"><span class="fa fa-facebook"></span></a>

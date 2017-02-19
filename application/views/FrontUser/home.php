@@ -304,7 +304,7 @@ if ($logedin != true){
 
                      <!--step 3 of post modal-->
                     <div class="tab-pane" role="tabpane3" id="step3">
-                        <h3>Step 3</h3>
+                        <h3>Upload Image</h3>
                         <div class="row">
                                 <div id="image_preview"><img id="previewing" src="noimage.png" /></div>
                                 <label>Select Your Image</label><br/>
@@ -313,7 +313,7 @@ if ($logedin != true){
                                     <div class="slim"
                                         data-service="<?php echo base_url(); ?>index.php/FileUpload_c/slimasync/<?php echo $this->session->userdata('id'); ?>/img1br1posts1br1/posts"
                                         data-ratio="9:9"
-                                        data-size="640,640">
+                                        data-size="640,640" style="width: 320px;height: 209px;">
                                        <input type="file" name="slim[]"/>
                                     </div>
                                     <!--

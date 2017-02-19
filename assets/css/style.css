@@ -546,6 +546,113 @@ input[type=text]:focus, textarea:focus {
     
 }
 
+
+.circle {
+  width: 100px;
+  height: 100px;
+  background:#2ecc71;
+  -moz-border-radius: 50px;
+  -webkit-border-radius: 50px;
+  border-radius: 50px;
+  color: white;
+  padding: 37px 8px 19px 8px;
+  position: relative;
+  overflow: hidden;
+}
+
+
+.bubble {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  width: 59%;
+  height: 24%;
+  position: relative;
+  top: 17%;
+  left: 0;
+  margin: 2% 2% 2% 2%;
+  padding: 1%;
+  border: none;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  font: normal 208%/normal Arial, Helvetica, sans-serif;
+  color: rgba(0,0,0,1);
+  -o-text-overflow: clip;
+  text-overflow: clip;
+  background: #27ae60;
+  -webkit-box-shadow: 2px 2px 5px 0 rgba(0,0,0,0.2) ;
+  box-shadow: 2px 2px 5px 0 rgba(0,0,0,0.2) ;
+  color: white;
+  float: left;
+}
+
+.bubble:active {
+}
+
+.bubble::before {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  width: 0;
+  height: 0;
+  position: absolute;
+  content: "";
+  top: 16%;
+  right: 98%;
+  padding: auto;
+  border: 13px solid rgba(0,0,0,0);
+  border-right: 26px solid #27ae60;
+  border-left: 0 solid;
+  font: normal 100%/normal Arial, Helvetica, sans-serif;
+  color: rgba(0,0,0,1);
+  -o-text-overflow: clip;
+  text-overflow: clip;
+  text-shadow: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.rcorners {
+    border-radius: 25px;
+    background: #2ecc71;
+    padding: 20px; 
+    width: auto;
+    height: auto; 
+    color: white;
+}
+.rectangle-box{
+    position: relative;
+    width: 50%;
+    overflow: hidden;
+    background: #4679BD;
+   -webkit-box-shadow: 2px 2px 5px 0 rgba(0,0,0,0.2) ;
+  box-shadow: 2px 2px 5px 0 rgba(0,0,0,0.2) ;   
+}
+.rectangle-box:before{
+    content: "";
+    display: block;
+    padding-top: 50%;
+}
+.rectangle-content{
+    position:  absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    color: white;
+}
+.rectangle-content div {
+   display: table;
+   width: 100%;
+   height: 100%;
+}
+.rectangle-content span {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    color: white
+}
+
 [class^="hvr-"] {
   margin: .4em;
   padding: 1em;
@@ -569,9 +676,39 @@ input[type=text]:focus, textarea:focus {
     left: 0;
     border-style: solid;
     border-width: 10px 10px 10px 0;
-    border-color: transparent  #2ecc71 transparent transparent !important;
+    border-color: transparent  #2ecc71 transparent transparent;
     -webkit-transition-duration: 0.3s;
     transition-duration: 0.3s;
     -webkit-transition-property: transform;
     transition-property: transform;
+}
+
+
+.overimage {
+position: relative;
+    padding: 1px;
+    margin: 4.2px;
+    background: overlay;
+    color: white;
+    font-weight: bold;
+    line-height: 1.3em;
+    border: 2px dashed white;
+    border-radius: 10px;
+    font-weight: normal;
+    margin-bottom: 12%;
+    cursor: pointer;
+    left: 40px;
+    top: 251px;
+    width: fixed;
+    height: auto;
+      resize: vertical;
+    text-align: center;
+    max-height: 155px;
+}
+
+
+.resize {
+    height: auto;
+    font-size: 15px;
+    max-height: 155px;
 }

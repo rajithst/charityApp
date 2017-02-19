@@ -79,5 +79,26 @@ class Post_m extends MY_Model {
 
     }
 
+    function getstat(){
+
+        $sql = "SELECT * FROM users";
+        $query = $this->db->query($sql);
+        $res = $query->num_rows();
+        return $res;
+
+
+    }
+
+
+    function getpending(){
+
+        $sql = "SELECT * FROM posts WHERE status=0";
+        $query = $this->db->query($sql);
+        $res = $query->num_rows();
+        return $res;
+
+
+    }
+
 
 	}

@@ -25,9 +25,10 @@ class Admin extends Admin_Controller {
 
     public function Dashboard(){
 
-
+        $data['users']=$this->Post_m->getstat();
+        $data['pending']=$this->Post_m->getstat();
         $this->load->view('templates/header');
-        $this->load->view('home');
+        $this->load->view('home',$data);
         $this->load->view('templates/footer');
     }
 

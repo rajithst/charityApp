@@ -316,7 +316,7 @@ if ($logedin != true){
                                     <div class="slim"
                                         data-service="<?php echo base_url(); ?>index.php/FileUpload_c/slimasync/<?php echo $this->session->userdata('id'); ?>/img1br1posts1br1/posts"
                                         data-ratio="9:9"
-                                        data-size="640,640">
+                                        data-size="640,418">
                                        <input type="file" name="slim[]"/>
                                     </div>
                                     <!--

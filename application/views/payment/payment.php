@@ -135,7 +135,7 @@
 <!-- Stripe payment starts here -->
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 <script type="text/javascript">
-  Stripe.setPublishableKey('pk_test_nBSQ2RBMfHBInqDT8bFyXPmT');
+  Stripe.setPublishableKey('pk_test_Bm0VTPyKgBX3uPlrf89BOvAt');
 </script>
 <script>
 function makePayment(){

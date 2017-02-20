@@ -112,7 +112,7 @@ if ($logedin != true){
                     <li role="presentation" class="active">
                         <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Pick one child or more" id="st1">
                             <span class="round-tab">
-                                <i class="glyphicon glyphicons-user-add"></i>
+                                <i class="glyphicon glyphicon-user"></i>
                             </span>
                         </a>
                     </li>
@@ -136,15 +136,7 @@ if ($logedin != true){
                     <li role="presentation" class="disabled">
                         <a href="#step4" data-toggle="tab" aria-controls="step4" role="tab" title="Step 4" id="st4">
                             <span class="round-tab">
-                                <i class="glyphicon glyphicon-picture"></i>
-                            </span>
-                        </a>
-                    </li>
-
-                    <li role="presentation" class="disabled">
-                        <a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Complete" id="st4">
-                            <span class="round-tab">
-                                <i class="glyphicon glyphicon-ok"></i>
+                                <i class="glyphicon glyphicon-share"></i>
                             </span>
                         </a>
                     </li>
@@ -153,11 +145,11 @@ if ($logedin != true){
       </div>
       </div>
       <!--end of post modal header-->
-      <div class="modal-body">
+      <div class="modal-body padding">
 
 
            
-                <div class="tab-content">
+                <div class="tab-content" style="margin-left: 5px;">
 
                     <!--step 1 of post modal-->
                     <div class="tab-pane active" role="tabpanel" id="step1">
@@ -165,8 +157,8 @@ if ($logedin != true){
                       <div class="row padding">
                       <div class="form-group">
                       <span>
-                        <div class="row">
-                            <div class="col-sm-8">
+                        <div class="row" style="margin-left: 3px;">
+                            <div class="col-sm-6">
                             <input type="text" id="child_search" class="form-control">
                             </div>
                             <div class="col-sm-4">
@@ -250,7 +242,7 @@ if ($logedin != true){
                         <!--load children in the post modal ends here-->
                     </div>
                     <span class="col-xs-2 padding">
-                          <a><img src="https://cdn0.iconfinder.com/data/icons/toolbar-signs-1/512/add_create_cross_healthcare_help_hospital_medic_medical_new_pharmacy_plus_icon_add_aid_care_chemist_clinic_create_creation_cure_drug_drugs_drugstore_farmacia_farmacy_health_healthcare_help_hospital_me-512.png" width="40px" id="child_modal" style="margin-top:20px;" /></a>
+                          <a><img src="http://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/sign-add-icon.png" width="40px" id="child_modal" style="margin-top:20px;" /></a>
                     </span>
                        </div> 
                     </div>          
@@ -261,40 +253,45 @@ if ($logedin != true){
 
                     <!--step 2 of post modal-->
                     <div class="tab-pane" role="tabpanel" id="step2">
-                        
+                        <div class="col">
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-6" style="margin-top: 12px;">
                                     <label for="exampleInputEmail1">What they Need</label>
                                     <input type="text" class="form-control" id="pt_need" placeholder="What they Need">
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-6" style="margin-top: 12px;">
                                     <label for="exampleInputEmail1">Why they asking your help</label>
                                     <input type="text" class="form-control" id="pt_why_help" placeholder="Why they asking your help">
                                 </div>
                             </div>
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-6" style="margin-top: 12px;">
                                 <label for="exampleInputEmail1">Amount</label>
-                                <input type="text" class="form-control" id="pt_amount" placeholder="Email">
+                                <input type="text" class="form-control" id="pt_amount" placeholder="Amount">
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6" style="margin-top: 12px;">
                                 <label for="exampleInputEmail1">Confirm Ammount</label>
-                                <input type="text" class="form-control" id="pt_confirm_amount" placeholder="Email">
+                                <input type="text" class="form-control" id="pt_confirm_amount" placeholder="Amount">
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-6" style="margin-top: 12px;">
                                 <label for="exampleInputEmail1">How can you help</label>
-                                <input type="text" class="form-control" id="pt_how_help" placeholder="Email">
+                                <input type="text" class="form-control" id="pt_how_help" placeholder="How can we help you">
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6" style="margin-top: 12px;">
                             <label for="exampleInputEmail1">Tags</label>
                                 <div class="row">
                                     <div class="col-md-9 col-xs-9">
-                                        <input type="text" class="form-control" id="pt_tags" placeholder="Email">
+                                        <input type="text" class="form-control" id="pt_tags" placeholder="Tags Like Books Computer Etc">
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                        <div class="row" style="margin-top: 13px; margin-left: 8px;"><label class="checkbox-inline">
+                            <input type="checkbox" checked data-toggle="toggle" name="diplayContent" > Display this
+                                </label>
                         </div>
                       
                    
@@ -307,7 +304,7 @@ if ($logedin != true){
 
                      <!--step 3 of post modal-->
                     <div class="tab-pane" role="tabpane3" id="step3">
-                        <h3>Step 3</h3>
+                        <h3>Upload Image</h3>
                         <div class="row">
                                 <div id="image_preview"><img id="previewing" src="noimage.png" /></div>
                                 <label>Select Your Image</label><br/>
@@ -316,7 +313,7 @@ if ($logedin != true){
                                     <div class="slim"
                                         data-service="<?php echo base_url(); ?>index.php/FileUpload_c/slimasync/<?php echo $this->session->userdata('id'); ?>/img1br1posts1br1/posts"
                                         data-ratio="9:9"
-                                        data-size="640,640">
+                                        data-size="640,640" style="width: 320px;height: 209px;">
                                        <input type="file" name="slim[]"/>
                                     </div>
                                     <!--
@@ -338,7 +335,7 @@ if ($logedin != true){
 
                     <!--step 4 of post modal-->
                     <div class="tab-pane" role="tabpane4" id="step4">
-                        <h3>Step 4</h3>
+                        <h3>Share </h3>
                         <div class="row">
                         <div class="col-sm-6">
                         <a class="btn btn-social-icon btn-facebook" onclick="_gaq.push(['_trackEvent', 'btn-social-icon', 'click', 'btn-facebook']);"><span class="fa fa-facebook"></span></a>
@@ -983,53 +980,64 @@ function postLoad(){
             ';
               
         }else{
-            out = ' <div class="panel panel-default" style="margin-bottom:10px;">\
-               <div class="panel-heading">\
-               <a href="#" class="pull-right">View all</a> \
-               <img src="'+pic+'" width="35px" height="35px"/><span><a href="<?php echo base_url(); ?>FrontUser/Home/profile/'+data[i].ids+'">'+data[i].username+'</a></span>\
-               <h4>post'+data[i].id+'</h4>\
-               </div>\
-              <div class="panel-body">\
-              <div class="row">\
-              <div class="col-sm-4">\
-              <img src="<?php echo base_url(); ?>'+data[i].imagepaths+'" width="150px" height="150px" class="img pull-left">\
-              </div>\
-              <div class="col-sm-8">\
-              <h4>what they want</h4><p>'+data[i].needs+'</p>\
-              <h4>How can you help</h4><p>'+data[i].how_help+'</p>\
-              <h4>Why they asking your help</h4><p>'+data[i].why_help+'</p>\
-              </div>\
-              </div>\
+            out = '<div class="panel panel-default" style="width:630px; margin-bottom:14px;">\
+            <div class="panel-heading">\
+             <div class="row">\
+                       <div class="col-sm-6 pull-right" style="background-color: #f5f5f5;margin-top:10px;padding:2px; border-color: #ddd;">\
+                       <div class="col-sm-6">\
+                        $'+data[i].amount+' needed<br/>$'+data[i].received_amount+' received \
+                        </div>\
+                        <div class="col-sm-6">\
+                        56 days left<br/> 5 donations\
+                        </div>\
+                       </div>\
+                        <div class="col-sm-6 pull-left">\
+                        <img src="'+pic+'" width="35px" height="35px"/>\
+                        <span><a href="<?php echo base_url(); ?>FrontUser/Home/profile/'+data[i].ids+'">'+data[i].username+'</a></span>\
+                        </div>\
+             </div>\
+            </div>\
+        <div class="panel-body">\
+            <div class="row" style="width: 630px; min-width:auto; position: absolute;">\
+               <div class="col-sm-3 col-xs-3 overimage resize animated fadeIn "><h4 class="text-center" style="font-size: 1em;">What</\
+               h4>\
+               <h6 class="text-center" >'+data[i].needs+'</h6></div>\
+               <div class="col-sm-3 col-xs-3 overimage resize  animated fadeIn "><h4 class="text-center" style="font-size: 1em;">why</h4>\
+               <h6 class="text-center" >'+data[i].why_help+'</h6></div>\
+               <div class="col-sm-4 col-xs-4 overimage resize animated fadeIn "><h4 class="text-center" style="font-size: 1em;">How</h4>\
+               <h6 class="text-center" >'+data[i].how_help+'</h6></div>\
+            </div>\
+            <img src="<?php echo base_url(); ?>'+data[i].imagepaths+'" alt="" class="img-responsive center-block" />\
+        </div>\
+        <div class="panel-footer">\
             <div class="row">\
-            <div class="col-sm-4">\
-            <div class="progress">\
-              <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar"\
-              aria-valuenow="'+amountprogress+'" aria-valuemin="0" aria-valuemax="100" style="color:black; width:'+amountprogress+'%">\
-                '+amountprogress+'% Complete (success)\
-              </div>\
+                <div class="col-sm-12">\
+                    <div class="progress">\
+                        <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="'+amountprogress+'" aria-valuemin="0" aria-valuemax="100" style="width:'+amountprogress+'%">\
+                            '+amountprogress+'% Complete (success)\
+                        </div>\
+                    </div>\
+                </div>\
+                </div>\
+                <div class="row">\
+                <div class="col-sm-12" style="margin-bottom: 5px">\
+                    <div class="input-group">\
+                        <span class="input-group-addon">$</span>\
+                        <input id="" type="text" value="'+data[i].amount+'" class="form-control" name="" placeholder="Amount">\
+                    </div>\
+                </div>\
             </div>\
+        <div class="row">\
+            <div class="col-sm-6 pull-left">\
+                <a href="<?php echo base_url('/donations'); ?>/'+data[i].id+'"><button type="button" class="btn btn-success btn-block">Donate</button>\
+                </a>\
             </div>\
-            <div class="col-sm-4">\
-            <div class="input-group">\
-              <span class="input-group-addon">$</span>\
-              <input id="" type="text" value="'+data[i].amount+'" class="form-control" name="" \
-                placeholder="Amount">\
-            </div>\
-            </div>\
-            <div class="col-sm-4"><a href="<?php echo base_url('/donations'); ?>/'+data[i].id+'"><button type="button" class="btn btn-success btn-block">donate</button>\
-            </a></div>\
-            </div>\
-              <div class="row" style="background-color: #f5f5f5;margin-top:10px;padding:2px; border-color: #ddd;">\
-                 <div class="col-sm-4">\
-                  $'+data[i].amount+' needed<br/>$'+data[i].received_amount+' received </div>\
-                   <div class="col-sm-4">\
-                  56 days left<br/> 5 donations</div>\
-                  <div class="col-sm-4"><button data-toggle="modal" data-target="#confirm-share" type="button" class="btn btn-primary btn-xs" onclick="confirmShare('+data[i].id+');"><span class="glyphicon glyphicon-share-alt"></span> Share</button></div>\
-                     </div>\
-            </div>\
-            </div>\
-            <input type="hidden" value='+data[i].id+' class="lastid_value" />\
-            ';
+                <div class="col-sm-6 pull-right"><button data-toggle="modal" data-target="#confirm-share" type="button" class="btn btn-primary btn-xs" onclick="confirmShare('+data[i].id+');"><span class="glyphicon glyphicon-share-alt"></span>Share</button></div>\
+        </div>\
+        </div>\
+</div> \
+ <input type="hidden" value='+data[i].id+' class="lastid_value" />\
+';
         }
       $('.post_content').append(out);
       

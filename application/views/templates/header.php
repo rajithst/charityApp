@@ -282,7 +282,7 @@
   <script>
     $(document).ready(function(){
       $("#search_profile").keyup(function(){
-		  var name=this.value;
+          var name=this.value;
           $('#srch_items').html("");
           if(name!=""){
               showResults(name);
@@ -308,10 +308,10 @@
     function showResults(name){
           $.ajax({
               type: "POST",
-              url: "searchProfile",
+              url: "<?php echo base_url(); ?>index.php/FrontUser/searchController/searchProf",
               data: {name:name},
               success: function( data, textStatus, jQxhr ){
-						var obj = data;
+                  				var obj = data;
                         if((obj.users.length>0)||(obj.children.length>0)){
                          try{
                           var items=[];  
@@ -333,12 +333,12 @@
                           alert('Exception while request..');
                          }  
                         }else{
-                         $('#finalResult').html($('<li/>').text("No Data Found"));  
+                         $('#srch_items').html($('<a class="list-group-item"><li class="list-group-item"/></a>').html('No data found'));  
                         }
                 
                 },
               error: function( jqXhr, textStatus, errorThrown ){
-                  //alert(jqXhr.responseText);
+                  alert(jqXhr.responseText);
                 }
               });        
     };

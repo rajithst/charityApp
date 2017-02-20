@@ -62,6 +62,8 @@ if ($logedin != true){
                 </div>
 
                 <div class="col-sm-12 col-xs-12 post_content">
+                    
+                    
 
                 </div>
 
@@ -909,7 +911,62 @@ function postLoad(){
       }
         $(".lastid_value").remove();
         var out = '';
-        if(data[i].sharedpost=='sharedpost'){
+        if(data[i].sharedpost!='sharedpost'){
+            
+            out = '<div class="panel panel-default" style="width:630px; margin-bottom:14px;">\
+                        <div class="panel-heading">\
+                            <div class="row">\
+                                <div class="col-sm-6 pull-right" style="background-color: #f5f5f5;margin-top:10px;padding:2px; border-color: #ddd;">\
+                                    <div class="col-sm-6">$'+data[i].amount+' needed<br/>$'+data[i].received_amount+' received</div>\
+                                    <div class="col-sm-6">\
+                                    56 days left<br/> 5 donations\
+                                    </div>\
+                                </div>\
+                                <div class="col-sm-6 pull-left">\
+                                    <img src="'+pic+'" width="35px" height="35px"/>\
+                                    <span><a href="<?php echo base_url(); ?>FrontUser/Home/profile/'+data[i].ids+'">'+data[i].username+'</a></span>\
+                                </div>\
+                            </div>\
+                        </div>\
+                        <div class="panel-body">\
+                            <div class="row" style="width: 630px; min-width:auto; position: absolute;">\
+                               <div class="col-sm-3 col-xs-3 overimage resize animated fadeIn "><h4 class="text-center" style="font-size: 1em;">What</h4>\
+                               <h6 class="text-center" >'+data[i].needs+'</h6></div>\
+                               <div class="col-sm-3 col-xs-3 overimage resize  animated fadeIn "><h4 class="text-center" style="font-size: 1em;">why</h4>\
+                               <h6 class="text-center" >'+data[i].why_help+'</h6></div>\
+                               <div class="col-sm-4 col-xs-4 overimage resize animated fadeIn "><h4 class="text-center" style="font-size: 1em;">How</h4>\
+                               <h6 class="text-center" >'+data[i].how_help+'</h6></div>\
+                            </div>\
+                            <img src="<?php echo base_url(); ?>'+data[i].imagepaths+'" alt="" class="img-responsive center-block" />\
+                        </div>\
+                        <div class="panel-footer">\
+                            <div class="row">\
+                                <div class="col-sm-12">\
+                                    <div class="progress">\
+                                        <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="'+amountprogress+'" aria-valuemin="0" aria-valuemax="100" style="width:'+amountprogress+'%">'+amountprogress+'% Complete (success)\
+                                        </div>\
+                                    </div>\
+                                </div>\
+                            </div>\
+                            <div class="row">\
+                                <div class="col-sm-12" style="margin-bottom: 5px">\
+                                    <div class="input-group">\
+                                        <span class="input-group-addon">$</span>\
+                                        <input id="" type="text" value="'+data[i].amount+'" class="form-control" name="" placeholder="Amount">\
+                                    </div>\
+                                </div>\
+                            </div>\
+                            <div class="row">\
+                                <div class="col-sm-6 pull-left">\
+                                    <a href="<?php echo base_url('/donations'); ?>/'+data[i].id+'"><button type="button" class="btn btn-success btn-block">Donate</button>\
+                                    </a>\
+                                </div>\
+                                <div class="col-sm-6 pull-right"><button data-toggle="modal" data-target="#confirm-share" type="button" class="btn btn-primary btn-xs" onclick="confirmShare('+data[i].id+');"><span class="glyphicon glyphicon-share-alt"></span>Share</button></div>\
+                            </div>\
+                        </div>\
+                    </div>';
+              
+        }else{
             var spic="";
             if(data[i].stype=='google'){
               spic=data[i].spicture;
@@ -922,120 +979,69 @@ function postLoad(){
 
             }
             
-            out = ' <div class="panel panel-default" style="margin-bottom:10px;">\
-               <div class="panel-heading">\
-               <a href="#" class="pull-right">View all</a> \
-               <img src="'+spic+'" width="35px" height="35px"/><span><a href="<?php echo base_url(); ?>FrontUser/Home/profile/'+data[i].sids+'">'+data[i].susername+'</a></span>\
-               <h4>post'+data[i].id+'</h4>\
-               </div>\
-              <div class="panel-body">\
-              <div class="panel panel-default" style="margin-bottom:10px;">\
-               <div class="panel-heading">\
-               <a href="#" class="pull-right">View all</a> \
-               <img src="'+pic+'" width="35px" height="35px"/><span><a href="<?php echo base_url(); ?>FrontUser/Home/profile/'+data[i].ids+'">'+data[i].username+'</a></span>\
-               <h4>post'+data[i].id+'</h4>\
-               </div>\
-              <div class="panel-body">\
-              <div class="row">\
-              <div class="col-sm-4">\
-              <img src="<?php echo base_url(); ?>'+data[i].imagepaths+'" width="150px" height="150px" class="img pull-left">\
-              </div>\
-              <div class="col-sm-8">\
-              <h4>what they want</h4><p>'+data[i].needs+'</p>\
-              <h4>How can you help</h4><p>'+data[i].how_help+'</p>\
-              <h4>Why they asking your help</h4><p>'+data[i].why_help+'</p>\
-              </div>\
-              </div>\
-            <div class="row">\
-            <div class="col-sm-4">\
-            <div class="progress">\
-              <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar"\
-              aria-valuenow="'+amountprogress+'" aria-valuemin="0" aria-valuemax="100" style="color:black; width:'+amountprogress+'%">\
-                '+amountprogress+'% Complete (success)\
-              </div>\
-            </div>\
-            </div>\
-            <div class="col-sm-4">\
-            <div class="input-group">\
-              <span class="input-group-addon">$</span>\
-              <input id="" type="text" value="'+data[i].amount+'" class="form-control" name="" \
-                placeholder="Amount">\
-            </div>\
-            </div>\
-            <div class="col-sm-4"><a href="<?php echo base_url('/donations'); ?>/'+data[i].id+'"><button type="button" class="btn btn-success btn-block">donate</button>\
-            </a></div>\
-            </div>\
-              <div class="row" style="background-color: #f5f5f5;margin-top:10px;padding:2px; border-color: #ddd;">\
-                 <div class="col-sm-4">\
-                  $'+data[i].amount+' needed<br/>$'+data[i].received_amount+' received </div>\
-                   <div class="col-sm-4">\
-                  56 days left<br/> 5 donations</div>\
-                  <div class="col-sm-4"><button data-toggle="modal" data-target="#confirm-share" type="button" class="btn btn-primary btn-xs" onclick="confirmShare('+data[i].id+');"><span class="glyphicon glyphicon-share-alt"></span> Share</button></div>\
-                     </div>\
-              </div>\
-            </div>\
-            <input type="hidden" value='+data[i].id+' class="lastid_value" />\
-            ';
-              
-        }else{
             out = '<div class="panel panel-default" style="width:630px; margin-bottom:14px;">\
-            <div class="panel-heading">\
-             <div class="row">\
-                       <div class="col-sm-6 pull-right" style="background-color: #f5f5f5;margin-top:10px;padding:2px; border-color: #ddd;">\
-                       <div class="col-sm-6">\
-                        $'+data[i].amount+' needed<br/>$'+data[i].received_amount+' received \
+                        <div class="panel-heading">\
+                            <div class="row">\
+                                <div class="col-sm-6 pull-right" style="background-color: #f5f5f5;margin-top:10px;padding:2px; border-color: #ddd;">\
+                                </div>\
+                                <div class="col-sm-6 pull-left">\
+                                    <img src="'+spic+'" width="35px" height="35px"/>\
+                                    <span><a href="<?php echo base_url(); ?>FrontUser/Home/profile/'+data[i].sids+'">'+data[i].susername+'</a></span>\
+                                </div>\
+                            </div>\
                         </div>\
-                        <div class="col-sm-6">\
-                        56 days left<br/> 5 donations\
+                        <div class="panel-body">\
+                            <div class="panel panel-default" style="width:600px; margin-bottom:14px;">\
+                                <div class="panel-heading">\
+                                    <div class="row">\
+                                        <div class="col-sm-6 pull-right" style="background-color: #f5f5f5;margin-top:10px;padding:2px; border-color: #ddd;">\
+                                            <div class="col-sm-6">$'+data[i].amount+' needed<br/>$'+data[i].received_amount+' received</div>\
+                                            <div class="col-sm-6">56 days left<br/> 5 donations</div>\
+                                        </div>\
+                                        <div class="col-sm-6 pull-left">\
+                                            <img src="'+pic+'" width="35px" height="35px"/>\
+                                            <span><a href="<?php echo base_url(); ?>FrontUser/Home/profile/'+data[i].ids+'">'+data[i].username+'</a></span>\
+                                        </div>\
+                                    </div>\
+                                </div>\
+                                <div class="panel-body">\
+                                    <div class="row" style="width: 600px; min-width:auto; position: absolute;">\
+                                       <div class="col-sm-3 col-xs-3 overimage resize animated fadeIn "><h4 class="text-center" style="font-size: 1em;">What</h4>\
+                                       <h6 class="text-center" >'+data[i].needs+'</h6></div>\
+                                       <div class="col-sm-3 col-xs-3 overimage resize  animated fadeIn "><h4 class="text-center" style="font-size: 1em;">why</h4>\
+                                       <h6 class="text-center" >'+data[i].why_help+'</h6></div>\
+                                       <div class="col-sm-4 col-xs-4 overimage resize animated fadeIn "><h4 class="text-center" style="font-size: 1em;">How</h4>\
+                                       <h6 class="text-center" >'+data[i].how_help+'</h6></div>\
+                                    </div>\
+                                    <img src="<?php echo base_url(); ?>'+data[i].imagepaths+'" alt="" class="img-responsive center-block" />\
+                                </div>\
+                                <div class="panel-footer">\
+                                    <div class="row">\
+                                        <div class="col-sm-12">\
+                                            <div class="progress">\
+                                                <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="'+amountprogress+'" aria-valuemin="0" aria-valuemax="100" style="width:'+amountprogress+'%">'+amountprogress+'% Complete (success)</div>\
+                                            </div>\
+                                        </div>\
+                                    </div>\
+                                    <div class="row">\
+                                        <div class="col-sm-12" style="margin-bottom: 5px">\
+                                            <div class="input-group">\
+                                                <span class="input-group-addon">$</span>\
+                                                <input id="" type="text" value="'+data[i].amount+'" class="form-control" name="" placeholder="Amount">\
+                                            </div>\
+                                        </div>\
+                                    </div>\
+                                    <div class="row">\
+                                        <div class="col-sm-6 pull-left">\
+                                            <a href="<?php echo base_url('/donations'); ?>/'+data[i].id+'"><button type="button" class="btn btn-success btn-block">Donate</button>\
+                                            </a>\
+                                        </div>\
+                                        <div class="col-sm-6 pull-right"><button data-toggle="modal" data-target="#confirm-share" type="button" class="btn btn-primary btn-xs" onclick="confirmShare('+data[i].id+');"><span class="glyphicon glyphicon-share-alt"></span>Share</button></div>\
+                                    </div>\
+                                </div>\
+                            </div>\
                         </div>\
-                       </div>\
-                        <div class="col-sm-6 pull-left">\
-                        <img src="'+pic+'" width="35px" height="35px"/>\
-                        <span><a href="<?php echo base_url(); ?>FrontUser/Home/profile/'+data[i].ids+'">'+data[i].username+'</a></span>\
-                        </div>\
-             </div>\
-            </div>\
-        <div class="panel-body">\
-            <div class="row" style="width: 630px; min-width:auto; position: absolute;">\
-               <div class="col-sm-3 col-xs-3 overimage resize animated fadeIn "><h4 class="text-center" style="font-size: 1em;">What</\
-               h4>\
-               <h6 class="text-center" >'+data[i].needs+'</h6></div>\
-               <div class="col-sm-3 col-xs-3 overimage resize  animated fadeIn "><h4 class="text-center" style="font-size: 1em;">why</h4>\
-               <h6 class="text-center" >'+data[i].why_help+'</h6></div>\
-               <div class="col-sm-4 col-xs-4 overimage resize animated fadeIn "><h4 class="text-center" style="font-size: 1em;">How</h4>\
-               <h6 class="text-center" >'+data[i].how_help+'</h6></div>\
-            </div>\
-            <img src="<?php echo base_url(); ?>'+data[i].imagepaths+'" alt="" class="img-responsive center-block" />\
-        </div>\
-        <div class="panel-footer">\
-            <div class="row">\
-                <div class="col-sm-12">\
-                    <div class="progress">\
-                        <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="'+amountprogress+'" aria-valuemin="0" aria-valuemax="100" style="width:'+amountprogress+'%">\
-                            '+amountprogress+'% Complete (success)\
-                        </div>\
-                    </div>\
-                </div>\
-                </div>\
-                <div class="row">\
-                <div class="col-sm-12" style="margin-bottom: 5px">\
-                    <div class="input-group">\
-                        <span class="input-group-addon">$</span>\
-                        <input id="" type="text" value="'+data[i].amount+'" class="form-control" name="" placeholder="Amount">\
-                    </div>\
-                </div>\
-            </div>\
-        <div class="row">\
-            <div class="col-sm-6 pull-left">\
-                <a href="<?php echo base_url('/donations'); ?>/'+data[i].id+'"><button type="button" class="btn btn-success btn-block">Donate</button>\
-                </a>\
-            </div>\
-                <div class="col-sm-6 pull-right"><button data-toggle="modal" data-target="#confirm-share" type="button" class="btn btn-primary btn-xs" onclick="confirmShare('+data[i].id+');"><span class="glyphicon glyphicon-share-alt"></span>Share</button></div>\
-        </div>\
-        </div>\
-</div> \
- <input type="hidden" value='+data[i].id+' class="lastid_value" />\
-';
+                    </div>';
         }
       $('.post_content').append(out);
       
@@ -1100,7 +1106,62 @@ function loadMore(){
       }
         $(".lastid_val").remove();
         var out = '';
-        if(data[i].sharedpost=='sharedpost'){
+        if(data[i].sharedpost!='sharedpost'){
+            
+            out = '<div class="panel panel-default" style="width:630px; margin-bottom:14px;">\
+                        <div class="panel-heading">\
+                            <div class="row">\
+                                <div class="col-sm-6 pull-right" style="background-color: #f5f5f5;margin-top:10px;padding:2px; border-color: #ddd;">\
+                                    <div class="col-sm-6">$'+data[i].amount+' needed<br/>$'+data[i].received_amount+' received</div>\
+                                    <div class="col-sm-6">\
+                                    56 days left<br/> 5 donations\
+                                    </div>\
+                                </div>\
+                                <div class="col-sm-6 pull-left">\
+                                    <img src="'+pic+'" width="35px" height="35px"/>\
+                                    <span><a href="<?php echo base_url(); ?>FrontUser/Home/profile/'+data[i].ids+'">'+data[i].username+'</a></span>\
+                                </div>\
+                            </div>\
+                        </div>\
+                        <div class="panel-body">\
+                            <div class="row" style="width: 630px; min-width:auto; position: absolute;">\
+                               <div class="col-sm-3 col-xs-3 overimage resize animated fadeIn "><h4 class="text-center" style="font-size: 1em;">What</h4>\
+                               <h6 class="text-center" >'+data[i].needs+'</h6></div>\
+                               <div class="col-sm-3 col-xs-3 overimage resize  animated fadeIn "><h4 class="text-center" style="font-size: 1em;">why</h4>\
+                               <h6 class="text-center" >'+data[i].why_help+'</h6></div>\
+                               <div class="col-sm-4 col-xs-4 overimage resize animated fadeIn "><h4 class="text-center" style="font-size: 1em;">How</h4>\
+                               <h6 class="text-center" >'+data[i].how_help+'</h6></div>\
+                            </div>\
+                            <img src="<?php echo base_url(); ?>'+data[i].imagepaths+'" alt="" class="img-responsive center-block" />\
+                        </div>\
+                        <div class="panel-footer">\
+                            <div class="row">\
+                                <div class="col-sm-12">\
+                                    <div class="progress">\
+                                        <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="'+amountprogress+'" aria-valuemin="0" aria-valuemax="100" style="width:'+amountprogress+'%">'+amountprogress+'% Complete (success)\
+                                        </div>\
+                                    </div>\
+                                </div>\
+                            </div>\
+                            <div class="row">\
+                                <div class="col-sm-12" style="margin-bottom: 5px">\
+                                    <div class="input-group">\
+                                        <span class="input-group-addon">$</span>\
+                                        <input id="" type="text" value="'+data[i].amount+'" class="form-control" name="" placeholder="Amount">\
+                                    </div>\
+                                </div>\
+                            </div>\
+                            <div class="row">\
+                                <div class="col-sm-6 pull-left">\
+                                    <a href="<?php echo base_url('/donations'); ?>/'+data[i].id+'"><button type="button" class="btn btn-success btn-block">Donate</button>\
+                                    </a>\
+                                </div>\
+                                <div class="col-sm-6 pull-right"><button data-toggle="modal" data-target="#confirm-share" type="button" class="btn btn-primary btn-xs" onclick="confirmShare('+data[i].id+');"><span class="glyphicon glyphicon-share-alt"></span>Share</button></div>\
+                            </div>\
+                        </div>\
+                    </div>';
+              
+        }else{
             var spic="";
             if(data[i].stype=='google'){
               spic=data[i].spicture;
@@ -1113,109 +1174,69 @@ function loadMore(){
 
             }
             
-            out = ' <div class="panel panel-default" style="margin-bottom:10px;">\
-               <div class="panel-heading">\
-               <a href="#" class="pull-right">View all</a> \
-               <img src="'+spic+'" width="35px" height="35px"/><span><a href="<?php echo base_url(); ?>FrontUser/Home/profile/'+data[i].sids+'">'+data[i].susername+' shared </a></span>\
-               <h4>post'+data[i].id+'</h4>\
-               </div>\
-              <div class="panel-body">\
-              <div class="panel panel-default" style="margin-bottom:10px;">\
-               <div class="panel-heading">\
-               <a href="#" class="pull-right">View all</a> \
-               <img src="'+pic+'" width="35px" height="35px"/><span><a href="<?php echo base_url(); ?>FrontUser/Home/profile/'+data[i].ids+'">'+data[i].username+'</a></span>\
-               <h4>post'+data[i].id+'</h4>\
-               </div>\
-              <div class="panel-body">\
-              <div class="row">\
-              <div class="col-sm-4">\
-              <img src="<?php echo base_url(); ?>'+data[i].imagepaths+'" width="150px" height="150px" class="img pull-left">\
-              </div>\
-              <div class="col-sm-8">\
-              <h4>what they want</h4><p>'+data[i].needs+'</p>\
-              <h4>How can you help</h4><p>'+data[i].how_help+'</p>\
-              <h4>Why they asking your help</h4><p>'+data[i].why_help+'</p>\
-              </div>\
-              </div>\
-            <div class="row">\
-            <div class="col-sm-4">\
-            <div class="progress">\
-              <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar"\
-              aria-valuenow="'+amountprogress+'" aria-valuemin="0" aria-valuemax="100" style="color:black; width:'+amountprogress+'%">\
-                '+amountprogress+'% Complete (success)\
-              </div>\
-            </div>\
-            </div>\
-            <div class="col-sm-4">\
-            <div class="input-group">\
-              <span class="input-group-addon">$</span>\
-              <input id="" type="text" value="'+data[i].amount+'" class="form-control" name="" \
-                placeholder="Amount">\
-            </div>\
-            </div>\
-            <div class="col-sm-4"><a href="<?php echo base_url('/donations'); ?>/'+data[i].id+'"><button type="button" class="btn btn-success btn-block">donate</button>\
-            </a></div>\
-            </div>\
-              <div class="row" style="background-color: #f5f5f5;margin-top:10px;padding:2px; border-color: #ddd;">\
-                 <div class="col-sm-4">\
-                  $'+data[i].amount+' needed<br/>$'+data[i].received_amount+' received </div>\
-                   <div class="col-sm-4">\
-                  56 days left<br/> 5 donations</div>\
-                  <div class="col-sm-4"><button data-toggle="modal" data-target="#confirm-share" type="button" class="btn btn-primary btn-xs" onclick="confirmShare('+data[i].id+');"><span class="glyphicon glyphicon-share-alt"></span> Share</button></div>\
-                     </div>\
-              </div>\
-            </div>\
-            <input type="hidden" value='+data[i].id+' class="lastid_value" />\
-            ';
-              
-        }else{
-            out = ' <div class="panel panel-default" style="margin-bottom:10px;">\
-               <div class="panel-heading">\
-               <a href="#" class="pull-right">View all</a> \
-               <img src="'+pic+'" width="35px" height="35px"/><span><a href="<?php echo base_url(); ?>FrontUser/Home/profile/'+data[i].ids+'">'+data[i].username+'</a></span>\
-               <h4>post'+data[i].id+'</h4>\
-               </div>\
-              <div class="panel-body">\
-              <div class="row">\
-              <div class="col-sm-4">\
-              <img src="<?php echo base_url(); ?>'+data[i].imagepaths+'" width="150px" height="150px" class="img pull-left">\
-              </div>\
-              <div class="col-sm-8">\
-              <h4>what they want</h4><p>'+data[i].needs+'</p>\
-              <h4>How can you help</h4><p>'+data[i].how_help+'</p>\
-              <h4>Why they asking your help</h4><p>'+data[i].why_help+'</p>\
-              </div>\
-              </div>\
-            <div class="row">\
-            <div class="col-sm-4">\
-            <div class="progress">\
-              <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar"\
-              aria-valuenow="'+amountprogress+'" aria-valuemin="0" aria-valuemax="100" style="color:black; width:'+amountprogress+'%">\
-                '+amountprogress+'% Complete (success)\
-              </div>\
-            </div>\
-            </div>\
-            <div class="col-sm-4">\
-            <div class="input-group">\
-              <span class="input-group-addon">$</span>\
-              <input id="" type="text" value="'+data[i].amount+'" class="form-control" name="" \
-                placeholder="Amount">\
-            </div>\
-            </div>\
-            <div class="col-sm-4"><a href="<?php echo base_url('/donations'); ?>/'+data[i].id+'"><button type="button" class="btn btn-success btn-block">donate</button>\
-            </a></div>\
-            </div>\
-              <div class="row" style="background-color: #f5f5f5;margin-top:10px;padding:2px; border-color: #ddd;">\
-                 <div class="col-sm-4">\
-                  $'+data[i].amount+' needed<br/>$'+data[i].received_amount+' received </div>\
-                   <div class="col-sm-4">\
-                  56 days left<br/> 5 donations</div>\
-                  <div class="col-sm-4"><button data-toggle="modal" data-target="#confirm-share" type="button" class="btn btn-primary btn-xs" onclick="confirmShare('+data[i].id+');"><span class="glyphicon glyphicon-share-alt"></span> Share</button></div>\
-                     </div>\
-            </div>\
-            </div>\
-            <input type="hidden" value='+data[i].id+' class="lastid_value" />\
-            ';
+            out = '<div class="panel panel-default" style="width:630px; margin-bottom:14px;">\
+                        <div class="panel-heading">\
+                            <div class="row">\
+                                <div class="col-sm-6 pull-right" style="background-color: #f5f5f5;margin-top:10px;padding:2px; border-color: #ddd;">\
+                                </div>\
+                                <div class="col-sm-6 pull-left">\
+                                    <img src="'+spic+'" width="35px" height="35px"/>\
+                                    <span><a href="<?php echo base_url(); ?>FrontUser/Home/profile/'+data[i].sids+'">'+data[i].susername+'</a></span>\
+                                </div>\
+                            </div>\
+                        </div>\
+                        <div class="panel-body">\
+                            <div class="panel panel-default" style="width:600px; margin-bottom:14px;">\
+                                <div class="panel-heading">\
+                                    <div class="row">\
+                                        <div class="col-sm-6 pull-right" style="background-color: #f5f5f5;margin-top:10px;padding:2px; border-color: #ddd;">\
+                                            <div class="col-sm-6">$'+data[i].amount+' needed<br/>$'+data[i].received_amount+' received</div>\
+                                            <div class="col-sm-6">56 days left<br/> 5 donations</div>\
+                                        </div>\
+                                        <div class="col-sm-6 pull-left">\
+                                            <img src="'+pic+'" width="35px" height="35px"/>\
+                                            <span><a href="<?php echo base_url(); ?>FrontUser/Home/profile/'+data[i].ids+'">'+data[i].username+'</a></span>\
+                                        </div>\
+                                    </div>\
+                                </div>\
+                                <div class="panel-body">\
+                                    <div class="row" style="width: 600px; min-width:auto; position: absolute;">\
+                                       <div class="col-sm-3 col-xs-3 overimage resize animated fadeIn "><h4 class="text-center" style="font-size: 1em;">What</h4>\
+                                       <h6 class="text-center" >'+data[i].needs+'</h6></div>\
+                                       <div class="col-sm-3 col-xs-3 overimage resize  animated fadeIn "><h4 class="text-center" style="font-size: 1em;">why</h4>\
+                                       <h6 class="text-center" >'+data[i].why_help+'</h6></div>\
+                                       <div class="col-sm-4 col-xs-4 overimage resize animated fadeIn "><h4 class="text-center" style="font-size: 1em;">How</h4>\
+                                       <h6 class="text-center" >'+data[i].how_help+'</h6></div>\
+                                    </div>\
+                                    <img src="<?php echo base_url(); ?>'+data[i].imagepaths+'" alt="" class="img-responsive center-block" />\
+                                </div>\
+                                <div class="panel-footer">\
+                                    <div class="row">\
+                                        <div class="col-sm-12">\
+                                            <div class="progress">\
+                                                <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="'+amountprogress+'" aria-valuemin="0" aria-valuemax="100" style="width:'+amountprogress+'%">'+amountprogress+'% Complete (success)</div>\
+                                            </div>\
+                                        </div>\
+                                    </div>\
+                                    <div class="row">\
+                                        <div class="col-sm-12" style="margin-bottom: 5px">\
+                                            <div class="input-group">\
+                                                <span class="input-group-addon">$</span>\
+                                                <input id="" type="text" value="'+data[i].amount+'" class="form-control" name="" placeholder="Amount">\
+                                            </div>\
+                                        </div>\
+                                    </div>\
+                                    <div class="row">\
+                                        <div class="col-sm-6 pull-left">\
+                                            <a href="<?php echo base_url('/donations'); ?>/'+data[i].id+'"><button type="button" class="btn btn-success btn-block">Donate</button>\
+                                            </a>\
+                                        </div>\
+                                        <div class="col-sm-6 pull-right"><button data-toggle="modal" data-target="#confirm-share" type="button" class="btn btn-primary btn-xs" onclick="confirmShare('+data[i].id+');"><span class="glyphicon glyphicon-share-alt"></span>Share</button></div>\
+                                    </div>\
+                                </div>\
+                            </div>\
+                        </div>\
+                    </div>';
         }
       $('.post_loadmore_content').append(out);
 

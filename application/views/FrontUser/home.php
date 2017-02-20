@@ -16,7 +16,7 @@ if ($logedin != true){
 <div class="row">
 
 <!--left side bar-->
-<div class="col-sm-3" style=" position:fixed">
+<div class="col-sm-3 hidden-xs hidden-sm" style=" position:fixed">
   <div class="panel panel-default">
                                 <div class="panel-thumbnail"><img src="<?php 
                                    if($this->session->userdata('google')){
@@ -54,26 +54,26 @@ if ($logedin != true){
 <!--center scrolling area-->
 
 
-<div class="col-sm-6 col-sm-offset-3" style="height:2400px;">
-                <div class="stitched text-center animated bounceIn " id="post_txt" style="cursor:pointer;">
+<div class="col-sm-12 col-xs-12 col-lg-6 col-lg-offset-3" style="height:2400px;">
+                <div class="stitched text-center animated bounceIn col-sm-11 col-sm-push-0 col-xs-12 col-xs-push-5 col-lg-11 col-lg-push-0" id="post_txt" style="cursor:pointer;">
                    <div class=" hvr-pop">
                     Create New
                     </div>
                 </div>
 
-                            <div class="post_content">
+                <div class="col-sm-12 col-xs-12 post_content">
 
-                              </div>
+                </div>
 
-                              <div class="post_loadmore_content">
+                <div class="col-sm-12 col-xs-12 post_loadmore_content">
 
-                              </div>
-   </div>
+                </div>
+</div>
 
 <!--end of center scrolling area-->
 
    	<!--right side bar-->
-   <div class="col-sm-3" style="position:fixed;margin-left:72.66%">
+   <div class="col-sm-3 hidden-xs hidden-sm" style="position:fixed;margin-left:72.66%">
    				   <div class="panel panel-default">
                                 <div class="panel-thumbnail"><img src="http://www.bootply.com/assets/example/bg_4.jpg" class="img-responsive"></div>
                                 <div class="panel-body">
@@ -90,7 +90,7 @@ if ($logedin != true){
    </div>
    	<!--end of right side bar-->
 
-</div>
+    </div>
 </div>
 
 
@@ -147,8 +147,6 @@ if ($logedin != true){
       <!--end of post modal header-->
       <div class="modal-body padding">
 
-
-           
                 <div class="tab-content" style="margin-left: 5px;">
 
                     <!--step 1 of post modal-->
@@ -161,7 +159,7 @@ if ($logedin != true){
                             <div class="col-sm-6">
                             <input type="text" id="child_search" class="form-control">
                             </div>
-                            <div class="col-sm-4">
+                            <div class="col-sm-4" style="margin-top: 5px;">
                             <button type="button" class="btn btn-success" id="child_search_btn">Search</button>
                             </div>
                             </div>
@@ -283,7 +281,7 @@ if ($logedin != true){
                             <label for="exampleInputEmail1">Tags</label>
                                 <div class="row">
                                     <div class="col-md-9 col-xs-9">
-                                        <input type="text" class="form-control" id="pt_tags" placeholder="Tags Like Books Computer Etc">
+                                        <input type="text" class="form-control" id="pt_tags" placeholder="Tags Like Books, Computer Etc">
                                     </div>
                                 </div>
                             </div>
@@ -337,17 +335,17 @@ if ($logedin != true){
                     <div class="tab-pane" role="tabpane4" id="step4">
                         <h3>Share </h3>
                         <div class="row">
-                        <div class="col-sm-6">
-                        <a class="btn btn-social-icon btn-facebook" onclick="_gaq.push(['_trackEvent', 'btn-social-icon', 'click', 'btn-facebook']);"><span class="fa fa-facebook"></span></a>
-                        </div>
-                        <div class="col-sm-6">
-                        <a class="btn btn-social-icon btn-google" onclick="_gaq.push(['_trackEvent', 'btn-social-icon', 'click', 'btn-google']);"><span class="fa fa-google"></span></a>
+                            <div class="col-sm-6">
+                            <a class="btn btn-social-icon btn-facebook" onclick="_gaq.push(['_trackEvent', 'btn-social-icon', 'click', 'btn-facebook']);"><span class="fa fa-facebook"> Share on Facebook</span></a>
+                            </div>
+                            <div class="col-sm-6">
+                            <a class="btn btn-social-icon btn-google" onclick="_gaq.push(['_trackEvent', 'btn-social-icon', 'click', 'btn-google']);"><span class="fa fa-google"> Share on Google+</span></a>
 
-                        </div>
-                        <div class="col-sm-6">
-                        <!--face book share button-->
-                         <iframe src="https://www.facebook.com/plugins/share_button.php?href=http%3A%2F%2Fcharityapp.azurewebsites.net%2FHome%23step2&layout=button&size=small&mobile_iframe=true&appId=307324332804525&width=58&height=20" width="58" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
-                        </div>
+                            </div>
+                            <div class="col-sm-6">
+                            <!--face book share button-->
+                             <iframe src="https://www.facebook.com/plugins/share_button.php?href=http%3A%2F%2Fcharityapp.azurewebsites.net%2FHome%23step2&layout=button&size=small&mobile_iframe=true&appId=307324332804525&width=58&height=20" width="58" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+                            </div>
                         </div>
                         <ul class="list-inline pull-right">
                             <li><button type="button" class="btn btn-success prev-step">Previous</button></li>

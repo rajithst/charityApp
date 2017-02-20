@@ -701,7 +701,7 @@ input[type=text]:focus, textarea:focus {
     resize: vertical;
     text-align: center;
     max-height: 50px;
-    opacity:1;
+    opacity:0.5;
     cursor: default;
 }
 

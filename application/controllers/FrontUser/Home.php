@@ -76,5 +76,12 @@ class Home extends Frontend_Controller {
 
 
         }
+        
+        public function getNotifications($id){
+            echo json_encode($this->User_d->getNotifications($id));
+        }
+        public function setViewNotifications($id){
+            echo (bool)$this->User_d->setViewNotifications($id);
+        }
 
 }

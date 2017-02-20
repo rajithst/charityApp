@@ -975,3 +975,86 @@ span.round-tab:hover {
         left: 35%;
     }
 }
+
+.button-style {
+  display: inline-block;
+  margin: 0.3em;
+  padding: 1.2em 2em;
+  overflow: hidden;
+  position: relative;
+  text-decoration: none;
+  text-transform: uppercase;
+  border-radius: 3px;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -ms-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+  border: none; 
+  font-size: 9px;
+  text-align: center;
+}
+
+.button-style:hover {
+  box-shadow: 1px 2px 2px rgba(0,0,0,0.5) !important;
+  color: white !important;
+}
+
+.green {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.red {
+  background-color: #F44336;
+  color: white;
+}
+
+.blue {
+  background-color: #03A9F4;
+  color: white;
+}
+
+.ripple {
+  position: absolute;
+  background: rgba(0,0,0,.25);
+  border-radius: 100%;
+  transform: scale(0.2);
+  opacity:0;
+  pointer-events: none;
+  -webkit-animation: ripple .75s ease-out;
+  -moz-animation: ripple .75s ease-out;
+  animation: ripple .75s ease-out;
+}
+
+@-webkit-keyframes ripple {
+  from {
+    opacity:1;
+  }
+  to {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+@-moz-keyframes ripple {
+  from {
+    opacity:1;
+  }
+  to {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+@keyframes ripple {
+  from {
+    opacity:1;
+  }
+  to {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+

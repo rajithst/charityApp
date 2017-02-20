@@ -957,11 +957,11 @@ function postLoad(){
                                 </div>\
                             </div>\
                             <div class="row">\
-                                <div class="col-sm-6 pull-left">\
-                                    <a href="<?php echo base_url('/donations'); ?>/'+data[i].id+'"><button type="button" class="btn btn-success btn-block">Donate</button>\
+                                <div class="col-sm-2 pull-left">\
+                                    <a class="button-style btn green" href="<?php echo base_url('/donations'); ?>/'+data[i].id+'">Donate\
                                     </a>\
                                 </div>\
-                                <div class="col-sm-6 pull-right"><button data-toggle="modal" data-target="#confirm-share" type="button" class="btn btn-primary btn-xs" onclick="confirmShare('+data[i].id+');"><span class="glyphicon glyphicon-share-alt"></span>Share</button></div>\
+                                <div class="col-sm-2 pull-left"><button data-toggle="modal" data-target="#confirm-share" type="button" class="button-style blue" onclick="confirmShare('+data[i].id+');">Share</button></div>\
                             </div>\
                         </div>\
                     </div>';
@@ -1032,11 +1032,11 @@ function postLoad(){
                                         </div>\
                                     </div>\
                                     <div class="row">\
-                                        <div class="col-sm-6 pull-left">\
-                                            <a href="<?php echo base_url('/donations'); ?>/'+data[i].id+'"><button type="button" class="btn btn-success btn-block">Donate</button>\
+                                        <div class="col-sm-2 pull-left">\
+                                            <a href="<?php echo base_url('/donations'); ?>/'+data[i].id+'"><button type="button" class="button-style btn green">Donate</button>\
                                             </a>\
                                         </div>\
-                                        <div class="col-sm-6 pull-right"><button data-toggle="modal" data-target="#confirm-share" type="button" class="btn btn-primary btn-xs" onclick="confirmShare('+data[i].id+');"><span class="glyphicon glyphicon-share-alt"></span>Share</button></div>\
+                                        <div class="col-sm-2 pull-left"><button data-toggle="modal" data-target="#confirm-share" type="button" class="button-style blue" onclick="confirmShare('+data[i].id+');">Share</button></div>\
                                     </div>\
                                 </div>\
                             </div>\
@@ -1153,10 +1153,10 @@ function loadMore(){
                             </div>\
                             <div class="row">\
                                 <div class="col-sm-6 pull-left">\
-                                    <a href="<?php echo base_url('/donations'); ?>/'+data[i].id+'"><button type="button" class="btn btn-success btn-block">Donate</button>\
+                                    <a href="<?php echo base_url('/donations'); ?>/'+data[i].id+'"><button type="button" class="button-style btn green">Donate</button>\
                                     </a>\
                                 </div>\
-                                <div class="col-sm-6 pull-right"><button data-toggle="modal" data-target="#confirm-share" type="button" class="btn btn-primary btn-xs" onclick="confirmShare('+data[i].id+');"><span class="glyphicon glyphicon-share-alt"></span>Share</button></div>\
+                                <div class="col-sm-6 pull-right"><button data-toggle="modal" data-target="#confirm-share" type="button" class="button-style blue" onclick="confirmShare('+data[i].id+');">Share</button></div>\
                             </div>\
                         </div>\
                     </div>';
@@ -1228,10 +1228,10 @@ function loadMore(){
                                     </div>\
                                     <div class="row">\
                                         <div class="col-sm-6 pull-left">\
-                                            <a href="<?php echo base_url('/donations'); ?>/'+data[i].id+'"><button type="button" class="btn btn-success btn-block">Donate</button>\
+                                            <a  class="button-style blue btn" href="<?php echo base_url('/donations'); ?>/'+data[i].id+'">Donate\
                                             </a>\
                                         </div>\
-                                        <div class="col-sm-6 pull-right"><button data-toggle="modal" data-target="#confirm-share" type="button" class="btn btn-primary btn-xs" onclick="confirmShare('+data[i].id+');"><span class="glyphicon glyphicon-share-alt"></span>Share</button></div>\
+                                        <div class="col-sm-6 pull-left"><button data-toggle="modal" data-target="#confirm-share" type="button" class="button-style blue" onclick="confirmShare('+data[i].id+');">Share</button></div>\
                                     </div>\
                                 </div>\
                             </div>\
@@ -1411,4 +1411,21 @@ $('#previewing').attr('height', '230px');
     }
 </script>
 <!-- share ends here -->
+<script type="text/javascript">
+     $('.button-style').mousedown(function (e) {
+    var target = e.target;
+    var rect = target.getBoundingClientRect();
+    var ripple = target.querySelector('.ripple');
+    $(ripple).remove();
+    ripple = document.createElement('span');
+    ripple.className = 'ripple';
+    ripple.style.height = ripple.style.width = Math.max(rect.width, rect.height) + 'px';
+    target.appendChild(ripple);
+    var top = e.pageY - rect.top - ripple.offsetHeight / 2 -  document.body.scrollTop;
+    var left = e.pageX - rect.left - ripple.offsetWidth / 2 - document.body.scrollLeft;
+    ripple.style.top = top + 'px';
+    ripple.style.left = left + 'px';
+    return false;
+});
 
+</script>

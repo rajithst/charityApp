@@ -1,5 +1,5 @@
 <!--left side bar-->
-<div class="col-sm-3" style=" position:fixed; margin-top: 10px;">
+<div class="col-sm-3 hidden-xs hidden-sm" style=" position:fixed; margin-top: 10px;">
 	<div class="panel panel-default">
 		<div class="panel-thumbnail"><img src="" class="profilepic img-responsive" width="80px"></div>
 		<div class="panel-body">
@@ -21,8 +21,8 @@
 <div class="container">	
 
 <div class="row">
-<div class="row well well-sm col-sm-6 col-sm-offset-3" style="margin-top: 10px;">
-	<div class="col-sm-5" style="margin-top:10px">
+<div class="row well well-sm col-sm-10 col-sm-offset-1  col-lg-offset-3" style="margin-top: 10px;">
+	<div class="col-sm-12" style="margin-top:10px">
 		<div>
 			<img class="event-list-event-cover" src="<?php echo base_url('img/events/'); ?>event-cover.jpg"/>
 			<h2 class="eventlist-cover-day"><span class="event-cover-image-span">29<sup>th</sup>Feb</span></h2>

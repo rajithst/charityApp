@@ -102,4 +102,9 @@ class postModel extends MY_Model {
         public function sharePost($userid,$postid){
             $this->db->insert('postshare',array('userid'=>$userid,'postid'=>$postid));
 	}
+        public function getPostChildren($postid){
+            $q = "SELECT c.id AS id, c.name AS name, c.lastname AS lastname FROM children c INNER JOIN postchildren p ON p.childid = c.id WHERE p.postid = $postid;";
+            $query=$this->db->query($q);
+            return $query->result();
+        }
 }

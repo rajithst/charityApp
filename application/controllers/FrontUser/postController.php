@@ -19,7 +19,11 @@ class postController extends Frontend_Controller {
 		$data=$this->postModel->loadPost();
 		header('Content-type: text/plain'); 
 		  // set json non IE
-		 header('Content-type: application/json'); 
+		 header('Content-type: application/json');
+                 foreach ($data as $obj){
+                     $children = $this->postModel->getPostChildren($obj->id);
+                     $obj->children = $children;
+                 }
 		 echo json_encode($data);
 	}
 

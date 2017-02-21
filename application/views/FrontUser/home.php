@@ -922,7 +922,7 @@ function postLoad(){
             out = '<div class="panel panel-default" style="width:630px; margin-bottom:14px;">\
                         <div class="panel-heading">\
                             <div class="row">\
-                                <div class="col-sm-6 pull-right" style="color:white; padding:5px; background-color:#27ae60; margin-right:10px;">\
+                                <div class="col-sm-6 pull-right" style="color:white; padding:5px; background-color:#27ae60; ">\
                                     <div class="col-sm-6 ">$'+data[i].amount+' needed<br/>$'+data[i].received_amount+' received</div>\
                                     <div class="col-sm-6">\
                                     56 days left<br/> 5 donations\
@@ -1001,7 +1001,7 @@ function postLoad(){
                             <div class="panel panel-default" style="width:600px; margin-bottom:14px;">\
                                 <div class="panel-heading">\
                                     <div class="row">\
-                                        <div class="col-sm-6 pull-right" style="color:white; padding:5px; background-color:#27ae60; margin-right:10px;">\
+                                        <div class="col-sm-6 pull-right" style="color:white; padding:5px; background-color:#27ae60;  width:50%">\
                                             <div class="col-sm-6">$'+data[i].amount+' needed<br/>$'+data[i].received_amount+' received</div>\
                                             <div class="col-sm-6">56 days left<br/> 5 donations</div>\
                                         </div>\
@@ -1126,7 +1126,7 @@ function loadMore(){
             out = '<div class="panel panel-default" style="width:630px; margin-bottom:14px;">\
                         <div class="panel-heading">\
                             <div class="row">\
-                            <div class="col-sm-6 pull-right" style="color:white; padding:5px; background-color:#27ae60; margin-right:10px;">\
+                            <div class="col-sm-6 pull-right" style="color:white; padding:5px; background-color:#27ae60; ">\
                                     <div class="col-sm-6 ">$'+data[i].amount+' needed<br/>$'+data[i].received_amount+' received</div>\
                                     <div class="col-sm-6">\
                                     56 days left<br/> 5 donations\
@@ -1205,7 +1205,7 @@ function loadMore(){
                             <div class="panel panel-default" style="width:600px; margin-bottom:14px;">\
                                 <div class="panel-heading">\
                                     <div class="row">\
-                                    <div class="col-sm-6 pull-right" style="color:white; padding:5px; background-color:#27ae60; margin-right:10px;">\
+                                    <div class="col-sm-6 pull-right" style="color:white; padding:5px; background-color:#27ae60; ">\
                                     <div class="col-sm-6 ">$'+data[i].amount+' needed<br/>$'+data[i].received_amount+' received</div>\
                                     <div class="col-sm-6">\
                                     56 days left<br/> 5 donations\

@@ -711,7 +711,7 @@ input[type=text]:focus, textarea:focus {
     border-radius: 10px;
     font-weight: normal;
     left: 40px;
-    top: 300px;
+    top: 260px;
     height: auto;
     resize: vertical;
     text-align: center;

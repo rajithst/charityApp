@@ -204,16 +204,16 @@
                                     for(var k2 in row[1]){
                                         var column = row[1][k2];
                                         if(column['needs']==null || column['needs']=='NULL' || column['needs']=='1'){
-                                            column['needs']
+                                            column['needs']="";
                                         }
                                         if(column['amount']==null || column['amount']=='NULL' || column['amount']=='1'){
-                                            column['amount']
+                                            column['amount']="";
                                         }
                                         if(column['how_help']==null || column['how_help']=='NULL' || column['how_help']=='1'){
-                                            column['how_help']
+                                            column['how_help']="";
                                         }
                                         if(column['why_help']==null || column['why_help']=='NULL' || column['why_help']=='1'){
-                                            column['why_help']
+                                            column['why_help']="";
                                         }
                                         
                                         var description = column['needs']+" "+column['amount']+" "+column['how_help']+" "+column['why_help'];

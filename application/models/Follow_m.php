@@ -10,7 +10,17 @@ class Follow_m extends MY_Model{
         return (bool)$query->result();
     }
     function follow($followerID,$followingID,$type){
-        return (bool)$this->db->insert('follow',array('followerID'=>$followerID,'followingID'=>$followingID,'type'=>$type));
+        if((bool)$this->db->insert('follow',array('followerID'=>$followerID,'followingID'=>$followingID,'type'=>$type))){
+            if($type=='1'){
+                $this->db->where("id = '$followerID'");
+                $query=$this->db->get('users');
+                $result = $query->result();
+                $name = $result[0]->name;
+                $this->db->insert('notifications',array('donorid'=>$followingID,'notification'=>"$followerID<aba>$name is following you"));
+                return true;
+            }
+            return false;
+        }
     }
     function unfollow($followerID,$followingID,$type){
         $where = "followingID = '$followingID' AND followerID = '$followerID' AND type = '$type'";

@@ -338,15 +338,12 @@ if ($logedin != true){
                         <h3>Share </h3>
                         <div class="row">
                             <div class="col-sm-6">
-                            <a class="btn btn-social-icon btn-facebook" onclick="_gaq.push(['_trackEvent', 'btn-social-icon', 'click', 'btn-facebook']);"><span class="fa fa-facebook"> Share on Facebook</span></a>
-                            </div>
-                            <div class="col-sm-6">
                             <a class="btn btn-social-icon btn-google" onclick="_gaq.push(['_trackEvent', 'btn-social-icon', 'click', 'btn-google']);"><span class="fa fa-google"> Share on Google+</span></a>
 
                             </div>
                             <div class="col-sm-6">
                             <!--face book share button-->
-                             <iframe src="https://www.facebook.com/plugins/share_button.php?href=http%3A%2F%2Fcharityapp.azurewebsites.net%2FHome%23step2&layout=button&size=small&mobile_iframe=true&appId=307324332804525&width=58&height=20" width="58" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+                             <iframe src="https://www.facebook.com/plugins/share_button.php?href=http%3A%2F%2Fcharityapp.azurewebsites.net%2FHome%23step2&layout=button&size=small&mobile_iframe=true&appId=307324332804525&width=58&height=60" width="58" height="60" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
                             </div>
                         </div>
                         <ul class="list-inline pull-right">
@@ -847,7 +844,8 @@ function postSave(){
   var howHelp=$("#pt_how_help").val();
   var tags=$("#pt_tags").val();
   if(!need || !whyHelp || !amount || !confirmAmount || !howHelp || !tags){
-    alert("fill all fields");
+      $.bootstrapGrowl("Fill All Fileds", { type: 'danger', align: 'center',
+                        width: 'auto' });
     return false;
     
   }
@@ -872,7 +870,8 @@ function postSave(){
     data: {need:need,whyHelp:whyHelp,amount:amount,howHelp:howHelp,tags:tags,profiles:pr},
     success: function( data, textStatus, jQxhr ){
       //console.log("success");
-      alert("added to database");
+      $.bootstrapGrowl("Added Successfully", { type: 'info', align: 'center',
+                        width: 'auto' });
       $("#st3").click();
 
       myFacebookLogin();
@@ -1426,4 +1425,43 @@ $('#previewing').attr('height', '230px');
     return false;
 });
 
+</script>
+
+<!-- modal js to disable steps -->
+<script type="text/javascript">
+$(document).ready(function () {
+    //Initialize tooltips
+    $('.nav-tabs > li a[title]').tooltip();
+    
+    //Wizard
+    $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
+
+        var $target = $(e.target);
+    
+        if ($target.parent().hasClass('disabled')) {
+            return false;
+        }
+    });
+
+    $(".next-step").click(function (e) {
+
+        var $active = $('.wizard .nav-tabs li.active');
+        $active.next().removeClass('disabled');
+        nextTab($active);
+
+    });
+    $(".prev-step").click(function (e) {
+
+        var $active = $('.wizard .nav-tabs li.active');
+        prevTab($active);
+
+    });
+});
+
+function nextTab(elem) {
+    $(elem).next().find('a[data-toggle="tab"]').click();
+}
+function prevTab(elem) {
+    $(elem).prev().find('a[data-toggle="tab"]').click();
+}
 </script>

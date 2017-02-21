@@ -15,6 +15,10 @@
    <link rel="stylesheet" href="<?php echo base_url('assets/css/event.css'); ?>">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/slim.css');?>">
+  <link rel="stylesheet" type="text/css" media="all" href="<?php echo base_url('assets/css/daterangepicker.css');?>" />
+    <script type="text/javascript" src="<?php echo base_url('assets/js/moment.js');?>"></script>
+    <script type="text/javascript" src="<?php echo base_url('assets/js/daterangepicker.js');?>"></script>
+            
     <script src="<?php echo base_url('assets/js/slim.jquery.js');?>"></script>
     <script src="<?php echo base_url('assets/js/slim.kickstart.js');?>"></script>  
 
@@ -582,7 +586,6 @@ function readingStatus(name){
   </div>
 </div>
 <!--end of chat window-->
-
 <!--msg box-->
 <div class="msg_box" style="right:290px;display:none;z-index:1">
   <div class="msg_head"><span class="name"></span>
@@ -602,7 +605,27 @@ function readingStatus(name){
 <!--end of msg box-->
 <input type="hidden" name="userdata" value="<?php echo $this->session->userdata('username'); ?>" id="ses_name">
 
+<!-- post modal-->
+<div id="post_modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
 
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close postclose" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Donations</h4>
+            </div>
+            <div class="modal-body" id="postModal_body">
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default postclose" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+                            
 
 <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js"></script>
 <!-- loader -->

@@ -123,7 +123,45 @@
                             <div class="col-xs-12 col-sm-4">
                                 <h2><strong id="donationcount"></strong></h2>
                                 <p><small >Donations</small></p>
-                                <button class="btn btn-info btn-block"><span class="fa fa-thumbs-o-up"></span> View Donations </button>
+                                <button class="btn btn-info btn-block" data-toggle="modal" data-target="#donation_modal"><span class="fa fa-thumbs-o-up"></span> View Donations </button>
+                            </div>
+                            <div id="donation_modal" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">Donations</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                              <div class="row">
+                                                <div class="col-sm-6">
+                                                    <input type="date" id="donationstrtdate" class="form-control">
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <input type="date" id="donationenddate" class="form-control">
+                                                </div>
+                                            </div>
+                                              <table class="table table-hover">
+                                                <thead>
+                                                  <tr>
+                                                    <th>Date</th>
+                                                    <th>Amount</th>
+                                                    <th>Payment Status</th>
+                                                  </tr>
+                                                </thead>
+                                                <tbody id="donationtable">
+                                                  
+                                                </tbody>
+                                              </table>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+
+                                </div>
                             </div>
                             <!--/col-->
                             <div class="col-xs-12 col-sm-4">
@@ -144,6 +182,28 @@
         <!--/row-->
     </div>
     <!--/container-->
+    <!-- chart -->
+    <div class="col-lg-12 col-sm-12">
+        <div class="col-lg-3 col-sm-3">
+        </div>
+        <div class="col-lg-6 col-sm-6">
+            <div id="chart_div" style="width: 50%; min-height: 450px;"></div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <input type="date" id="strtdate" class="form-control">
+                </div>
+                <div class="col-sm-4">
+                    <input type="date" id="enddate" class="form-control">
+                </div>
+                <div class="col-sm-4">
+                    <button id="change" class="btn btn-default">Change X-axis</button>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
     <!-- Timeline -->
     <div class="container">
         <div class="page-header">
@@ -288,25 +348,129 @@
   following is for donation charts need to attach to profile  
 -->
 <!-- donation with starts here -->
+<script>
+    
+    $('#donationstrtdate,#donationenddate').change(function (){
+        var strtDate = $('#donationstrtdate').val();
+        var endDate = $('#donationenddate').val();
+        if((strtDate !== "") && (endDate !== "")){
+             getDonations(strtDate,endDate);
+        }
+    });
+    
+    var year = new Date().getFullYear();
+    getDonations(year+"-01-01",year+"-12-31");
+    function getDonations(startdate,endDate){
+        jQuery.ajax({
+            type: "POST",
+            url: "<?php echo base_url(); ?>" + "index.php/Donation_c/getDonations/<?php echo $user->id;  ?>/"+startdate+"/"+endDate,
+            dataType: 'json',
+            success: function (res) {
+                $('#donationtable').html('');
+                if(res.length==0){
+                    $('#donationtable').html('No donations to show up');
+                    return;
+                }
+                var k = Object.keys(res);
+                for(var i=0;i<k.length;i++){
+                    $('#donationtable').append('<tr id='+res[k[i]].postID+'>\
+                            <td>'+res[k[i]].date+'</td>\
+                            <td>$'+res[k[i]].amount+'</td>\\n\
+                            <td>'+res[k[i]].payment_status+'</td>\
+                          </tr>');
+                }
+                            
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert(jqXHR.responseText);
+            }
+        });
+    }
+    $('#donationtable').click(function (e){
+        var id = $(event.target).parent().attr('id');
+        if((id!='donationtable')||(id!='')){
+            jQuery.ajax({
+                type: "POST",
+                url: "<?php echo base_url(); ?>" + "index.php/FrontUser/postController/loadCurrentPost/"+id,
+                dataType: 'json',
+                success: function (data) {
+                    var amountprogress = (parseFloat(data.received_amount)/parseFloat(data.amount))*100;
+                    var pic="";
+                    if(data.type=='google'){
+                      pic=data.picture;
+                    }
+                    else if(data.type=='facebook'){
+                      pic="http://graph.facebook.com/"+ data.username+ "/picture?type=normal";
+                    }
+                    else{
+                      pic="<?php echo base_url(); ?>"+data.picture;
 
-<div class="panel col-lg-12 col-sm-12" style="border: solid;">
-
-<div class="row">
-    <div class="row">
-        <div class="col-sm-6">
-            <input type="date" id="strtdate" class="form-control">
-        </div>
-        <div class="col-sm-6">
-            <input type="date" id="enddate" class="form-control">
-        </div>
-    </div>
-    
-    <div id="chart_div" style="width: 100%; height: 500px;"></div>
-    <button id="change">Change X-axis</button>
-</div>
-    
-    
-</div>
+                    }
+      
+                    var children = data.children;
+                    var childrenstr = '';
+                    for(var j=0;j<children.length;j++){
+                        childrenstr += '<a href="<?php echo base_url(); ?>index.php/Child/Children_c/viewChild/'+children[j].id+'">'+children[j].name+' '+children[j].lastname+'</a>'
+                    }
+                    $('#postModal_body').html('<div class="panel panel-default" style="width:565px; margin-bottom:14px;">\
+                        <div class="panel-heading">\
+                            <div class="row">\
+                                <div class="col-sm-6 pull-right" style="background-color: #f5f5f5;margin-top:10px;padding:2px; border-color: #ddd;">\
+                                    <div class="col-sm-6">$'+data.amount+' needed<br/>$'+data.received_amount+' received</div>\
+                                    <div class="col-sm-6">\
+                                    56 days left<br/> 5 donations\
+                                    </div>\
+                                </div>\
+                                <div class="col-sm-6 pull-left">\
+                                    <img src="'+pic+'" width="35px" height="35px"/>\
+                                    <span><a href="<?php echo base_url(); ?>FrontUser/Home/profile/'+data.ids+'">'+data.username+'</a></span>\
+                                </div>\
+                            </div>\
+                            <div>Children : '+childrenstr+'</div>\
+                        </div>\
+                        <div class="panel-body">\
+                            <div class="row" style="width: 565px; min-width:auto; position: absolute;">\
+                               <div class="col-sm-3 col-xs-3 overimage resize animated fadeIn "><h4 class="text-center" style="font-size: 1em;">What</h4>\
+                               <h6 class="text-center" >'+data.needs+'</h6></div>\
+                               <div class="col-sm-3 col-xs-3 overimage resize  animated fadeIn "><h4 class="text-center" style="font-size: 1em;">why</h4>\
+                               <h6 class="text-center" >'+data.why_help+'</h6></div>\
+                               <div class="col-sm-4 col-xs-4 overimage resize animated fadeIn "><h4 class="text-center" style="font-size: 1em;">How</h4>\
+                               <h6 class="text-center" >'+data.how_help+'</h6></div>\
+                            </div>\
+                            <img src="<?php echo base_url(); ?>'+data.imagepaths+'" alt="" class="img-responsive center-block" />\
+                        </div>\
+                        <div class="panel-footer">\
+                            <div class="row">\
+                                <div class="col-sm-12">\
+                                    <div class="progress">\
+                                        <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="'+amountprogress+'" aria-valuemin="0" aria-valuemax="100" style="width:'+amountprogress+'%">'+amountprogress+'% Complete (success)\
+                                        </div>\
+                                    </div>\
+                                </div>\
+                            </div>\
+                            <div class="row">\
+                                <div class="col-sm-12" style="margin-bottom: 5px">\
+                                    <div class="input-group">\
+                                        <span class="input-group-addon">$</span>\
+                                        <input id="" type="text" value="'+data.amount+'" class="form-control" name="" placeholder="Amount">\
+                                    </div>\
+                                </div>\
+                            </div>\
+                        </div>\
+                    </div>');
+                    $('#donation_modal').modal('hide');
+                    $('#post_modal').modal('show');
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert(jqXHR.responseText);
+                }
+            });
+        }
+    });
+    $('.postclose').on('click',function (){
+        $('#donation_modal').modal('show');
+    });
+</script>    
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script>
     google.charts.load('current', {'packages':['corechart']});
@@ -328,6 +492,10 @@
             url: "<?php echo base_url(); ?>" + "index.php/Donation_c/getGraphData/<?php echo $user->id;  ?>/"+startdate+"/"+endDate,
             dataType: 'json',
             success: function (res) {
+                if(res.length==0){
+                    document.getElementById('chart_div').innerHTML="No donations to show up";
+                    return;
+                }
                 var arr=[];
                 var k = Object.keys(res);
                 for(var i=0;i<k.length;i++){
@@ -344,7 +512,7 @@
 
                 var options = {
                   title: 'Your Donations',
-                  width: 900,
+                  width: 625,
                   height: 500,
                   hAxis: {
                     format: 'M/d/yy',
@@ -360,7 +528,7 @@
                 };
 
                 var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
-
+                
                 chart.draw(data, options);
 
                 var button = document.getElementById('change');
@@ -387,7 +555,9 @@
             type: "POST",
             url: "<?php echo base_url(); ?>" + "index.php/Donation_c/getTotalDonatedAmount/"+<?php echo $user->id;  ?>,
             success: function (res) {
-                document.getElementById('donatedamount').innerHTML = "Rs. "+res;
+                if(res=='')
+                    res='0';
+                document.getElementById('donatedamount').innerHTML = "$ "+res;
            
             },
             error: function (jqXHR, textStatus, errorThrown) {

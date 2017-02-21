@@ -36,6 +36,13 @@ class postController extends Frontend_Controller {
 
 	}
         
+        public function loadCurrentPost($postid){
+            $data = $this->postModel->loadCurrentPost($postid);
+            $children = $this->postModel->getPostChildren($data->id);
+            $data->children = $children;	 
+            echo json_encode($data);
+        }
+
         function neededAmount($postid){
             $ramnt = floatval($this->postModel->receivedAmount($postid));
             $namnt = floatval($this->postModel->neededAmount($postid));

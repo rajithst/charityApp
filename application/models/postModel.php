@@ -98,7 +98,12 @@ class postModel extends MY_Model {
             $result = $query->result();
             return $result;
         }
-        
+        function loadCurrentPost($postid){
+            $q1 = "SELECT p.id,p.imagepaths,p.needs,p.how_help,p.why_help,p.amount,p.received_amount,u.username,u.picture,u.id as ids,u.type,1,1,1,1,p.posteddate AS date,'post' FROM posts as p inner join users as u on p.postedby=u.id where p.id = $postid";
+            $query=$this->db->query($q1);
+            $result = $query->result();
+            return $result[0];
+        }
         public function sharePost($userid,$postid){
             $this->db->insert('postshare',array('userid'=>$userid,'postid'=>$postid));
 	}

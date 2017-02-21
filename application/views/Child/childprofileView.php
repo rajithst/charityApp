@@ -201,24 +201,27 @@
 -->
 <!-- donation with starts here -->
 
-<div class="panel col-lg-12" style="border: solid">
+<!-- chart -->
+    <div class="col-lg-12 col-sm-12">
+        <div class="col-lg-3 col-sm-3">
+        </div>
+        <div class="col-lg-6 col-sm-6">
+            <div id="chart_div"></div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <input type="date" id="strtdate" class="form-control">
+                </div>
+                <div class="col-sm-4">
+                    <input type="date" id="enddate" class="form-control">
+                </div>
+                <div class="col-sm-4">
+                    <button id="change">Change X-axis</button>
+                </div>
+            </div>
+        </div>
 
-<div class="row">
-    <div class="row">
-        <div class="col-sm-6">
-            <input type="date" id="strtdate" class="form-control">
-        </div>
-        <div class="col-sm-6">
-            <input type="date" id="enddate" class="form-control">
-        </div>
+
     </div>
-    
-    <div id="chart_div" style="width: 100%; height: 500px;"></div>
-    <button id="change">Change X-axis</button>
-</div>
-    
-    
-</div>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script>
     google.charts.load('current', {'packages':['corechart']});
@@ -263,7 +266,7 @@
 
                 var options = {
                   title: 'Your Donations',
-                  width: 900,
+                  width: 625,
                   height: 500,
                   hAxis: {
                     format: 'M/d/yy',

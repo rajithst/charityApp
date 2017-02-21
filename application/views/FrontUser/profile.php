@@ -145,6 +145,26 @@
     </div>
     <!--/container-->
     <!-- Timeline -->
+
+    <!-- Chart -->
+    <div class="panel col-md-10 col-xs-11 col-lg-push-1 " style="padding:2px; margin: 10px;">
+
+
+    <div class="row">
+        <div class="col-sm-6">
+            <input type="date" id="strtdate" class="form-control">
+        </div>
+        <div class="col-sm-6">
+            <input type="date" id="enddate" class="form-control">
+        </div>
+    </div>
+    
+    <div id="chart_div"></div>
+    <button id="change">Change X-axis</button>
+</div>
+    
+    
+</div>
     <div class="container">
         <div class="page-header">
             <h1 id="">Timeline</h1>
@@ -289,24 +309,7 @@
 -->
 <!-- donation with starts here -->
 
-<div class="panel col-lg-12" style="border: solid;">
 
-<div class="row">
-    <div class="row">
-        <div class="col-sm-6">
-            <input type="date" id="strtdate" class="form-control">
-        </div>
-        <div class="col-sm-6">
-            <input type="date" id="enddate" class="form-control">
-        </div>
-    </div>
-    
-    <div id="chart_div" style="width: 100%; height: 500px;"></div>
-    <button id="change">Change X-axis</button>
-</div>
-    
-    
-</div>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script>
     google.charts.load('current', {'packages':['corechart']});

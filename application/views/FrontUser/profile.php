@@ -289,7 +289,7 @@
 -->
 <!-- donation with starts here -->
 
-<div class="panel col-lg-12" style="border: solid;">
+<div class="panel col-lg-12 col-sm-12" style="border: solid;">
 
 <div class="row">
     <div class="row">

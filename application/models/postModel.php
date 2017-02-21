@@ -72,6 +72,13 @@ class postModel extends MY_Model {
                 $query=$this->db->query("$q1 UNION ALL $q2 ORDER BY date DESC LIMIT $limit;");
                 return $query->result();
 	}
+
+
+    function loadChildPost($id){
+        $chid=$id;
+       $query=$this->db->query("SELECT * FROM posts where id IN (SELECT postid from postchildren where childid=$chid) ");
+       return $query->result();
+    }
         
         function receivedAmount($postid){
             $this->db->where('id',$postid);

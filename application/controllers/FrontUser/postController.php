@@ -45,4 +45,15 @@ class postController extends Frontend_Controller {
         public function sharePost($userid,$postid){
 		$this->postModel->sharePost($userid,$postid);
 	}
+
+
+	public function loadChildPost(){
+
+		$data=$this->postModel->loadChildPost();
+		header('Content-type: text/plain'); 
+		  // set json non IE
+		 header('Content-type: application/json'); 
+		 echo json_encode($data);
+
+	}
 }

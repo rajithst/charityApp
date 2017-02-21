@@ -12,7 +12,7 @@
     <div class="row user-menu-container square">
         <div class="col-md-7 user-details">
             <div class="row coralbg white">
-                <div class="col-md-6 no-pad">
+                <div class="col-md-6">
                     <div class="user-pad">
                         <h3><?php echo $child->name; ?></h3>
                         <h4 class="white"><i class="fa fa-globe" aria-hidden="true"></i> <?php echo $child->country; ?></h4>
@@ -109,49 +109,84 @@
                     </li> -->
                 </ul>
             </div>
+
+            <!--post content-->
             <div class="user-menu-content">
                 <h3>
                     Posts
                 </h3>
                 <div class="row">
-                    <div class="col-md-6">
+                    <!--post slider-->
+                     <div class="col-md-12">
+                  <div class="carousel slide multi-item-carousel" id="theCarousel">
+                    <div class="carousel-inner">
+                    <?php $i=0; ?>
+                   <?php foreach($posts as $post) { ?>
+                    <?php if ($i==0){ ?>
+                      <div class="item active">
+                        <div class="col-xs-4"><a href="#1">
                         <div class="view">
-                            <div class="caption">
-                                <p>47LabsDesign</p>
-                                <a href="" rel="tooltip" title="Appreciate"><span class="fa fa-heart-o fa-2x"></span></a>
-                                <a href="" rel="tooltip" title="View"><span class="fa fa-search fa-2x"></span></a>
-                            </div>
-                            <img src="http://24.media.tumblr.com/273167b30c7af4437dcf14ed894b0768/tumblr_n5waxesawa1st5lhmo1_1280.jpg" class="img-responsive">
-                        </div>
-                        <div class="info">
-                            <p class="small" style="text-overflow: ellipsis">An Awesome Title</p>
-                            <p class="small coral text-right"><i class="fa fa-clock-o"></i> Posted Today | 10:42 A.M.</small>
-                        </div>
-                        <div class="stats turqbg">
-                            <span class="fa fa-heart-o"> <strong>47</strong></span>
-                            <span class="fa fa-eye pull-right"> <strong>137</strong></span>
-                        </div>
+                                        <div class="caption">
+                                            <p>47LabsDesign</p>
+                                            <a href="" rel="tooltip" title="Appreciate"><span class="fa fa-heart-o fa-2x"></span></a>
+                                            <a href="" rel="tooltip" title="View"><span class="fa fa-search fa-2x"></span></a>
+                                        </div>
+                                        <img src="<?php echo base_url();?><?php echo $post->imagepaths; ?>" class="img-responsive">
+                                    </div>
+                                    <div class="info">
+                                        <p class="small" style="text-overflow: ellipsis"><?php echo $post->needs; ?></p>
+                                        <p class="small coral text-right"><i class="fa fa-clock-o"></i> Posted|
+                                         <?php echo $post->posteddate;?>
+                                    </div>
+                                    <div class="stats turqbg">
+                                        <span class="fa fa-heart-o"> needed<strong><?php echo $post->amount;?></strong></span>
+                                        <span class="fa fa-eye pull-right"> received<strong><?php echo $post->received_amount;?></strong></span>
+                                    </div>
+                        </a></div>
+                      </div>
+                      <?php $i++;}else{?>
+                         <div class="item">
+                        <div class="col-xs-4"><a href="#1">
+
+                            <div class="view">
+                                            <div class="caption">
+                                                <p>47LabsDesign</p>
+                                                <a href="" rel="tooltip" title="Appreciate"><span class="fa fa-heart-o fa-2x"></span></a>
+                                                <a href="" rel="tooltip" title="View"><span class="fa fa-search fa-2x"></span></a>
+                                            </div>
+                                            <img src="<?php echo base_url();?><?php echo $post->imagepaths; ?>" class="img-responsive">
+                                        </div>
+                                        <div class="info">
+                                            <p class="small" style="text-overflow: ellipsis"><?php echo $post->needs; ?></p>
+                                            <p class="small coral text-right"><i class="fa fa-clock-o"></i> Posted | <?php echo $post->posteddate;?>
+                                        </div>
+                                        <div class="stats turqbg">
+                                            <span class="fa fa-heart-o"> needed<strong><?php echo $post->amount;?></strong></span>
+                                            <span class="fa fa-eye pull-right"> Received<strong><?php echo $post->received_amount;?></strong></span>
+                                        </div>
+                                
+                            </a></div>
+                          </div>
+
+                       <?php }} ?>
+
+           
+                     
+                   
+                    
+                                          
+                   
+            
                     </div>
-                    <div class="col-md-6">
-                        <div class="view">
-                            <div class="caption">
-                                <p>47LabsDesign</p>
-                                <a href="" rel="tooltip" title="Appreciate"><span class="fa fa-heart-o fa-2x"></span></a>
-                                <a href="" rel="tooltip" title="View"><span class="fa fa-search fa-2x"></span></a>
-                            </div>
-                            <img src="http://24.media.tumblr.com/282fadab7d782edce9debf3872c00ef1/tumblr_n3tswomqPS1st5lhmo1_1280.jpg" class="img-responsive">
-                        </div>
-                        <div class="info">
-                            <p class="small" style="text-overflow: ellipsis">An Awesome Title</p>
-                            <p class="small coral text-right"><i class="fa fa-clock-o"></i> Posted Today | 10:42 A.M.</small>
-                        </div>
-                        <div class="stats turqbg">
-                            <span class="fa fa-heart-o"> <strong>47</strong></span>
-                            <span class="fa fa-eye pull-right"> <strong>137</strong></span>
-                        </div>
-                    </div>
+                    <a class="left carousel-control" href="#theCarousel" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                    <a class="right carousel-control" href="#theCarousel" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+                  </div>
+                </div>   
+                <!--end of post slider-->
                 </div>
+
             </div>
+            <!--end of post content-->
             <div class="user-menu-content">
                 <h2 class="text-center">
                     FeedBack
@@ -472,3 +507,36 @@ $( document ).ready(function() {
     
 </script>
 <!-- following scripts end`s here -->
+
+
+<!--slider script-->
+
+<script>
+    
+
+    // Instantiate the Bootstrap carousel
+$('.multi-item-carousel').carousel({
+  interval: false
+});
+
+// for every slide in carousel, copy the next slide's item in the slide.
+// Do the same for the next, next item.
+$('.multi-item-carousel .item').each(function(){
+  var next = $(this).next();
+  if (!next.length) {
+    next = $(this).siblings(':first');
+  }
+  next.children(':first-child').clone().appendTo($(this));
+  
+  if (next.next().length>0) {
+    next.next().children(':first-child').clone().appendTo($(this));
+  } else {
+    $(this).siblings(':first').children(':first-child').clone().appendTo($(this));
+  }
+});
+</script>
+
+
+<!--end of slider script-->
+
+

@@ -87,7 +87,7 @@
       <a href="<?php echo base_url()."Home"; ?>" class="navbar-brand logo"><b style="color: white;">Help Me</b></a>
     </div>
     <nav class="collapse navbar-collapse  container-fluid" role="navigation">
-      <form class="navbar-form navbar-left">
+     <!--  <form class="navbar-form navbar-left">
         <div class="input-group input-group-sm" style="max-width:360px;">
           <input type="text" class="form-control" placeholder="Search" name="srch-term" id="search_profile">
           <div class="input-group-btn">
@@ -95,7 +95,34 @@
           </div>
         </div>
         <ul id="srch_items" class="list-group"></ul>
-      </form>
+      </form> -->
+
+  <div class="container navbar-form navbar-left">
+    <div class="row">    
+        <div class="col-xs-10 col-xs-offset-1">
+        <div class="input-group">
+                <div class="input-group-btn search-panel">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                      <span id="search_concept">Filter by</span> <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                      <li><a href="#filter_donor">Donor</a></li>
+                      <li><a href="#filter_child">Child</a></li>
+                      <li><a href="#filter_all">Anything</a></li>
+                    </ul>
+                </div>
+                <input type="hidden" name="search_param" value="filter_all" id="search_param">         
+                <input type="text" class="form-control" name="x" placeholder="Search term..." id="search_profile">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" id="searchbtn" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                </span>
+            </div>
+        </div>
+  </div>
+  <ul id="srch_items" class="list-group" style="max-height:200px;overflow-y:scroll"></ul>
+</div>
+
+
       <ul class="nav navbar-nav navbar-right">
         <ul class="nav navbar-nav">
 
@@ -280,20 +307,45 @@
   </div>
 
   <!--search for vendor-->
+
   <script>
-    $(document).ready(function(){
-      $("#search_profile").keyup(function(){
-          var name=this.value;
-          $('#srch_items').html("");
-          if(name!=""){
-              showResults(name);
-          }
-      });
-      $("#searchbtn").click(function(){
+
+
+  $(document).ready(function(e){
+    $('.search-panel .dropdown-menu').find('a').click(function(e) {
+    e.preventDefault();
+    var param = $(this).attr("href").replace("#","");
+    var concept = $(this).text();
+    $('.search-panel span#search_concept').text(concept);
+    $('.input-group #search_param').val(param);
+
+     var filter_type=$('.input-group #search_param').val();
           var name=$("#search_profile").val();
           $('#srch_items').html("");
           if(name!=""){
-              showResults(name);
+              showResults(name,filter_type);
+          }
+  });
+});
+
+    $(document).ready(function(){
+      $("#search_profile").keyup(function(){
+        var filter_type=$('.input-group #search_param').val();
+        // console.log(filter_type=="filter_all");
+
+          var name=this.value;
+          $('#srch_items').html("");
+          if(name!=""){
+              showResults(name,filter_type);
+          }
+      });
+      $("#searchbtn").click(function(){
+     
+          var filter_type=$('.input-group #search_param').val();
+          var name=$("#search_profile").val();
+          $('#srch_items').html("");
+          if(name!=""){
+              showResults(name,filter_type);
           }
       });
       $('#srch_items').click(function(e){
@@ -306,7 +358,7 @@
           }
       });
     });
-    function showResults(name){
+    function showResults(name,filter_type){
           $.ajax({
               type: "POST",
               url: "<?php echo base_url(); ?>index.php/FrontUser/searchController/searchProf",
@@ -315,7 +367,9 @@
                   				var obj = data;
                         if((obj.users.length>0)||(obj.children.length>0)){
                          try{
-                          var items=[];  
+                          var items=[]; 
+                          //filter all 
+                          if(filter_type=="filter_all"){
                           $.each(obj.users, function(i,val){  
                               var pic = '<?php echo base_url();?>'+val.picture;
                               if(val.type=='google'){
@@ -329,6 +383,32 @@
                         $.each(obj.children, function(i,val){           
                               items.push($('<a class="list-group-item" href="<?php echo base_url();?>index.php/Child/Children_c/viewChild/'+val.id+'"><li class="list-group-item"/></a>').html('<img src="<?php echo base_url();?>'+val.picture+'" width="15px" height="15px"/>'+' '+val.name));
                           });
+                      }
+
+                      //filter child
+
+                      else if(filter_type=="filter_child"){
+                         $.each(obj.children, function(i,val){           
+                              items.push($('<a class="list-group-item" href="<?php echo base_url();?>index.php/Child/Children_c/viewChild/'+val.id+'"><li class="list-group-item"/></a>').html('<img src="<?php echo base_url();?>'+val.picture+'" width="15px" height="15px"/>'+' '+val.name));
+                          });
+
+                      }
+
+                      else if(filter_type=="filter_donor"){
+
+                         $.each(obj.users, function(i,val){  
+                              var pic = '<?php echo base_url();?>'+val.picture;
+                              if(val.type=='google'){
+                                  var pic = val.picture;
+                              }
+                              else if(val.type=='facebook'){
+                                  var pic="http://graph.facebook.com/"+val.username+"/picture?type=normal";
+                              }
+                              items.push($('<a class="list-group-item" href="<?php echo base_url();?>FrontUser/Home/profile/'+val.id+'"><li class="list-group-item"/></a>').html('<img src="'+pic+'" width="15px" height="15px"/>'+' '+val.name));
+                          });
+
+                      }
+
                           $('#srch_items').append.apply($('#srch_items'), items);
                          }catch(e) {  
                           alert('Exception while request..');

@@ -1348,26 +1348,6 @@ $('#previewing').attr('height', '230px');
 
 </script>
 
-<!-- load follower count -->
-<script>
-    loadFollowers();
-    function loadFollowers(){
-        jQuery.ajax({
-            type: "POST",
-            url: "<?php echo base_url(); ?>" + "index.php/Follow_c/getFollowers/"+<?php echo $this->session->userdata('id'); ?>+"/1",
-            dataType: 'json',
-            success: function (res) {
-                $('.followercount').html(res.length);
-           
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-                alert(jqXHR.responseText);
-            }
-        });
-    }
-</script>
-<!-- end load follower count -->
-
 <!-- load post count -->
 <script>
     loadPosts();

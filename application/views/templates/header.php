@@ -99,71 +99,68 @@
             <a href="<?php echo base_url()."Home"; ?>"><i class="glyphicon glyphicon-home" ></i> Home</a>
           </li>
 
-          <li class="dropdown messages-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="glyphicon glyphicon-user"></i>
-              <span class="label label-success">4</span>
-            </a>
-            <ul class="dropdown-menu">
-              <li class="header">You have 4 messages</li>
-
-              <!-- inner menu: contains the actual data -->
-              <ul class="menu">
-                <li><!-- start message -->
-                  <a href="#">
-                    <h4>
-                      Support Team
-                      <small><i class="fa fa-clock-o"></i> 5 mins</small>
-                    </h4>
-                    <p>Why not buy a new awesome theme?</p>
-                  </a>
-                </li>
-                <!-- end message -->
-              </ul>
-              <li class="footer"><a href="#">See All Messages</a></li>
-            </ul>
-          </li>
           <li class="dropdown notifications-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-bell-o"></i>
-              <span class="label label-warning">10</span>
+              <span class="label label-warning notificationcount"></span>
             </a>
             <ul class="dropdown-menu">
-              <li class="header">You have 10 notifications</li>
+                <li class="header">You have <l class="notificationcount"></l> notifications</li>
               <li>
                 <!-- inner menu: contains the actual data -->
-                <ul class="menu">
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-users text-aqua"></i> 5 new members joined today
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-warning text-yellow"></i> Very long description here that may not fit into the
-                      page and may cause design problems
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-users text-red"></i> 5 new members joined
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-shopping-cart text-green"></i> 25 sales made
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-user text-red"></i> You changed your username
-                    </a>
-                  </li>
-                </ul>
-              </li>
+                <ul class="menu" id="notifications">
+                </ul>  
+                </li>
               <li class="footer"><a href="#">View all</a></li>
             </ul>
           </li>
+          <!-- notification script starts here-->
+          <script>
+          showNotifications();
+          setInterval(showNotifications, 10000);
+          $('#notifications').click(function (e){
+              var id = e.target.id;
+              if(id!="notifications"){
+                  setViewNotfy(id);
+              }
+          });
+          function showNotifications(){
+            $.ajax({
+                type: "POST",
+                url: "<?php echo base_url(); ?>index.php/FrontUser/Home/getNotifications/<?php echo $this->session->userdata('id'); ?>",
+                dataType: 'json',
+                success: function( data, textStatus, jQxhr ){
+                    $('.notificationcount').html(data.length);
+                    $('#notifications').html("");
+                    for(var i=0;i<data.length;i++){
+                        var x = data[i].notification;
+                        var x = x.split("<aba>");
+                        $('#notifications').append('<li>\
+                                                    <a href="<?php echo base_url(); ?>index.php/FrontUser/Home/profile/'+x[0]+'" style="cursor:pointer;" id="'+data[i].id+'">\
+                                                      <i class="fa fa-users text-aqua"></i>'+x[1]+'</a>\
+                                                  </li>');
+                    }
+                },
+                error: function( jqXhr, textStatus, errorThrown ){
+                    //alert(jqXhr.responseText);
+                  }
+                });        
+          }
+          function setViewNotfy(id){
+              $.ajax({
+                type: "POST",
+                url: "<?php echo base_url(); ?>index.php/FrontUser/Home/setViewNotifications/"+id,
+                dataType: 'json',
+                success: function( data, textStatus, jQxhr ){
+                    showNotifications();
+                },
+                error: function( jqXhr, textStatus, errorThrown ){
+                    //alert(jqXhr.responseText);
+                  }
+                });
+          }
+          </script>
+          <!-- notification script ends here-->
 
  <!-- messages -->
           <li class="dropdown tasks-menu">
@@ -282,7 +279,7 @@
   <script>
     $(document).ready(function(){
       $("#search_profile").keyup(function(){
-		  var name=this.value;
+          var name=this.value;
           $('#srch_items').html("");
           if(name!=""){
               showResults(name);
@@ -308,10 +305,10 @@
     function showResults(name){
           $.ajax({
               type: "POST",
-              url: "searchProfile",
+              url: "<?php echo base_url(); ?>index.php/FrontUser/searchController/searchProf",
               data: {name:name},
               success: function( data, textStatus, jQxhr ){
-						var obj = data;
+                  				var obj = data;
                         if((obj.users.length>0)||(obj.children.length>0)){
                          try{
                           var items=[];  
@@ -333,7 +330,7 @@
                           alert('Exception while request..');
                          }  
                         }else{
-                         $('#finalResult').html($('<li/>').text("No Data Found"));  
+                         $('#srch_items').html($('<a class="list-group-item"><li class="list-group-item"/></a>').html('No data found'));  
                         }
                 
                 },

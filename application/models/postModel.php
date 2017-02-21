@@ -58,7 +58,7 @@ class postModel extends MY_Model {
     
 	function loadPost(){
 		//$query=$this->db->query("SELECT p.id,p.imagepaths,p.needs,p.how_help,p.why_help,p.amount,p.received_amount,p.posteddate,u.username,u.picture,u.id as ids,u.type FROM posts as p inner join users as u on p.postedby=u.id where p.status=1 and p.amount>p.received_amount order by p.id desc limit 6");
-                $q1 = "SELECT p.id,p.imagepaths,p.needs,p.how_help,p.why_help,p.amount,p.received_amount,u.username,u.picture,u.id as ids,u.type,su.username AS susername,su.picture AS spicture,su.id as sids,su.type AS stype,ps.date,'sharedpost' FROM users u INNER JOIN posts p ON p.postedby=u.id INNER JOIN postshare ps ON p.id=ps.postid INNER JOIN users su ON ps.userid=su.id";
+                $q1 = "SELECT p.id,p.imagepaths,p.needs,p.how_help,p.why_help,p.amount,p.received_amount,u.username,u.picture,u.id as ids,u.type,su.username AS susername,su.picture AS spicture,su.id as sids,su.type AS stype,ps.date,'sharedpost' FROM users u INNER JOIN posts p ON p.postedby=u.id INNER JOIN postshare ps ON p.id=ps.postid INNER JOIN users su ON ps.userid=su.id WHERE p.amount>p.received_amount";
 		$q2 = "SELECT p.id,p.imagepaths,p.needs,p.how_help,p.why_help,p.amount,p.received_amount,u.username,u.picture,u.id as ids,u.type,1,1,1,1,p.posteddate AS date,'post' FROM posts as p inner join users as u on p.postedby=u.id where p.status=1 and p.amount>p.received_amount";
                 $query=$this->db->query("$q1 UNION ALL $q2 ORDER BY date DESC LIMIT 6;");
                 return $query->result();
@@ -67,7 +67,7 @@ class postModel extends MY_Model {
 	function loadMore($limit){
 		//$lastrow=$this->input->post('lastid');
 		//$query=$this->db->query("SELECT p.id,p.imagepaths,p.needs,p.how_help,p.why_help,p.amount,p.received_amount,p.posteddate,u.username,u.picture,u.id as ids,u.type FROM posts as p inner join users as u on p.postedby=u.id where p.status=1 and p.id<='$lastid' and p.amount>p.received_amount order by p.id desc limit 6");
-                $q1 = "SELECT p.id,p.imagepaths,p.needs,p.how_help,p.why_help,p.amount,p.received_amount,u.username,u.picture,u.id as ids,u.type,su.username AS susername,su.picture AS spicture,su.id as sids,su.type AS stype,ps.date,'sharedpost' FROM users u INNER JOIN posts p ON p.postedby=u.id INNER JOIN postshare ps ON p.id=ps.postid INNER JOIN users su ON ps.userid=su.id";
+                $q1 = "SELECT p.id,p.imagepaths,p.needs,p.how_help,p.why_help,p.amount,p.received_amount,u.username,u.picture,u.id as ids,u.type,su.username AS susername,su.picture AS spicture,su.id as sids,su.type AS stype,ps.date,'sharedpost' FROM users u INNER JOIN posts p ON p.postedby=u.id INNER JOIN postshare ps ON p.id=ps.postid INNER JOIN users su ON ps.userid=su.id WHERE p.amount>p.received_amount";
 		$q2 = "SELECT p.id,p.imagepaths,p.needs,p.how_help,p.why_help,p.amount,p.received_amount,u.username,u.picture,u.id as ids,u.type,1,1,1,1,p.posteddate AS date,'post' FROM posts as p inner join users as u on p.postedby=u.id where p.status=1 and p.amount>p.received_amount";
                 $query=$this->db->query("$q1 UNION ALL $q2 ORDER BY date DESC LIMIT $limit;");
                 return $query->result();
@@ -102,4 +102,9 @@ class postModel extends MY_Model {
         public function sharePost($userid,$postid){
             $this->db->insert('postshare',array('userid'=>$userid,'postid'=>$postid));
 	}
+        public function getPostChildren($postid){
+            $q = "SELECT c.id AS id, c.name AS name, c.lastname AS lastname FROM children c INNER JOIN postchildren p ON p.childid = c.id WHERE p.postid = $postid;";
+            $query=$this->db->query($q);
+            return $query->result();
+        }
 }

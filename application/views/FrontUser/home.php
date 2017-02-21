@@ -911,6 +911,13 @@ function postLoad(){
       }
         $(".lastid_value").remove();
         var out = '';
+        
+        var children = data[i].children;
+        var childrenstr = '';
+        for(var j=0;j<children.length;j++){
+            childrenstr += '<a href="<?php echo base_url(); ?>index.php/Child/Children_c/viewChild/'+children[j].id+'">'+children[j].name+' '+children[j].lastname+'</a>'
+        }
+        
         if(data[i].sharedpost!='sharedpost'){
             
             out = '<div class="panel panel-default" style="width:630px; margin-bottom:14px;">\
@@ -927,6 +934,7 @@ function postLoad(){
                                     <span><a href="<?php echo base_url(); ?>FrontUser/Home/profile/'+data[i].ids+'">'+data[i].username+'</a></span>\
                                 </div>\
                             </div>\
+                            <div>Children : '+childrenstr+'</div>\
                         </div>\
                         <div class="panel-body">\
                             <div class="row" style="width: 630px; min-width:auto; position: absolute;">\
@@ -1003,6 +1011,7 @@ function postLoad(){
                                             <span><a href="<?php echo base_url(); ?>FrontUser/Home/profile/'+data[i].ids+'">'+data[i].username+'</a></span>\
                                         </div>\
                                     </div>\
+                                    <div>Children : '+childrenstr+'</div>\
                                 </div>\
                                 <div class="panel-body">\
                                     <div class="row" style="width: 600px; min-width:auto; position: absolute;">\
@@ -1106,6 +1115,13 @@ function loadMore(){
       }
         $(".lastid_val").remove();
         var out = '';
+        
+        var children = data[i].children;
+        var childrenstr = '';
+        for(var j=0;j<children.length;j++){
+            childrenstr += '<a href="<?php echo base_url(); ?>index.php/Child/Children_c/viewChild/'+children[j].id+'">'+children[j].name+' '+children[j].lastname+'</a>'
+        }
+        
         if(data[i].sharedpost!='sharedpost'){
             
             out = '<div class="panel panel-default" style="width:630px; margin-bottom:14px;">\
@@ -1122,6 +1138,7 @@ function loadMore(){
                                     <span><a href="<?php echo base_url(); ?>FrontUser/Home/profile/'+data[i].ids+'">'+data[i].username+'</a></span>\
                                 </div>\
                             </div>\
+                            <div>Children : '+childrenstr+'</div>\
                         </div>\
                         <div class="panel-body">\
                             <div class="row" style="width: 630px; min-width:auto; position: absolute;">\
@@ -1198,6 +1215,7 @@ function loadMore(){
                                             <span><a href="<?php echo base_url(); ?>FrontUser/Home/profile/'+data[i].ids+'">'+data[i].username+'</a></span>\
                                         </div>\
                                     </div>\
+                                    <div>Children : '+childrenstr+'</div>\
                                 </div>\
                                 <div class="panel-body">\
                                     <div class="row" style="width: 600px; min-width:auto; position: absolute;">\

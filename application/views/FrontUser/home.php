@@ -40,7 +40,7 @@ if ($logedin != true){
     <div class="panel panel-default"  style="margin-top:10px">
       <div class="panel-body">
       <img src="<?php echo base_url('img/events/calendar.png')?>" width=20px>
-     <a href="<?php echo base_url('events');?>"> events</a>
+     <a href="<?php echo base_url('events');?>"> Events</a>
     </div>
     </div>
 
@@ -922,8 +922,8 @@ function postLoad(){
             out = '<div class="panel panel-default" style="width:630px; margin-bottom:14px;">\
                         <div class="panel-heading">\
                             <div class="row">\
-                                <div class="col-sm-6 pull-right" style="background-color: #f5f5f5;margin-top:10px;padding:2px; border-color: #ddd;">\
-                                    <div class="col-sm-6">$'+data[i].amount+' needed<br/>$'+data[i].received_amount+' received</div>\
+                                <div class="col-sm-6 pull-right" style="color:white; padding:5px; background-color:#27ae60; margin-right:10px;">\
+                                    <div class="col-sm-6 ">$'+data[i].amount+' needed<br/>$'+data[i].received_amount+' received</div>\
                                     <div class="col-sm-6">\
                                     56 days left<br/> 5 donations\
                                     </div>\
@@ -1001,7 +1001,7 @@ function postLoad(){
                             <div class="panel panel-default" style="width:600px; margin-bottom:14px;">\
                                 <div class="panel-heading">\
                                     <div class="row">\
-                                        <div class="col-sm-6 pull-right" style="background-color: #f5f5f5;margin-top:10px;padding:2px; border-color: #ddd;">\
+                                        <div class="col-sm-6 pull-right" style="color:white; padding:5px; background-color:#27ae60; margin-right:10px;">\
                                             <div class="col-sm-6">$'+data[i].amount+' needed<br/>$'+data[i].received_amount+' received</div>\
                                             <div class="col-sm-6">56 days left<br/> 5 donations</div>\
                                         </div>\
@@ -1126,8 +1126,8 @@ function loadMore(){
             out = '<div class="panel panel-default" style="width:630px; margin-bottom:14px;">\
                         <div class="panel-heading">\
                             <div class="row">\
-                                <div class="col-sm-6 pull-right" style="background-color: #f5f5f5;margin-top:10px;padding:2px; border-color: #ddd;">\
-                                    <div class="col-sm-6">$'+data[i].amount+' needed<br/>$'+data[i].received_amount+' received</div>\
+                            <div class="col-sm-6 pull-right" style="color:white; padding:5px; background-color:#27ae60; margin-right:10px;">\
+                                    <div class="col-sm-6 ">$'+data[i].amount+' needed<br/>$'+data[i].received_amount+' received</div>\
                                     <div class="col-sm-6">\
                                     56 days left<br/> 5 donations\
                                     </div>\
@@ -1205,10 +1205,11 @@ function loadMore(){
                             <div class="panel panel-default" style="width:600px; margin-bottom:14px;">\
                                 <div class="panel-heading">\
                                     <div class="row">\
-                                        <div class="col-sm-6 pull-right" style="background-color: #f5f5f5;margin-top:10px;padding:2px; border-color: #ddd;">\
-                                            <div class="col-sm-6">$'+data[i].amount+' needed<br/>$'+data[i].received_amount+' received</div>\
-                                            <div class="col-sm-6">56 days left<br/> 5 donations</div>\
-                                        </div>\
+                                    <div class="col-sm-6 pull-right" style="color:white; padding:5px; background-color:#27ae60; margin-right:10px;">\
+                                    <div class="col-sm-6 ">$'+data[i].amount+' needed<br/>$'+data[i].received_amount+' received</div>\
+                                    <div class="col-sm-6">\
+                                    56 days left<br/> 5 donations\
+                                    </div>\
                                         <div class="col-sm-6 pull-left">\
                                             <img src="'+pic+'" width="35px" height="35px"/>\
                                             <span><a href="<?php echo base_url(); ?>FrontUser/Home/profile/'+data[i].ids+'">'+data[i].username+'</a></span>\

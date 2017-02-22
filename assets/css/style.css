@@ -1073,3 +1073,11 @@ span.round-tab:hover {
 }
 
 
+.toothpaste{
+  height:auto;
+  width: auto;
+  -webkit-border-radius: 0px 99px 0px 99px;
+  -moz-border-radius: 0px 99px 0px 99px;
+  border-radius: 0px 88px 0px 88px;
+  background-color:#12E312;
+}

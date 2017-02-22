@@ -10,7 +10,7 @@
    <link rel="stylesheet" href="<?php echo base_url('assets/css/chat.css');?>">
   <link rel="stylesheet" href="<?php echo base_url('assets/css/animate.css');?>">
   <link rel="stylesheet" href="<?php echo base_url('assets/css/hover.css');?>">
-
+  <link rel="stylesheet" href="<?php echo base_url('assets/css/childcard.css');?>">
   <link rel="stylesheet" href="<?php echo base_url('assets/css/style.css');?>">
    <link rel="stylesheet" href="<?php echo base_url('assets/css/event.css'); ?>">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -253,20 +253,7 @@
                 </p>
               </li>
               <!-- Menu Body -->
-              <li class="user-body">
-                <div class="row">
-                  <div class="col-xs-4 text-center">
-                    <a href="#" class="btn btn-info btn-flat" data-toggle="modal" data-target="#follow_modal">Followers</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a class="btn btn-info btn-flat" data-toggle="modal" data-target="#donation_modal">Donations</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#" class="btn btn-info btn-flat">Friends</a>
-                  </div>
-                </div>
-                <!-- /.row -->
-              </li>
+              
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">

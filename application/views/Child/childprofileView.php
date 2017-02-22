@@ -22,10 +22,20 @@
                              <span class="btn-label"><i class="glyphicon glyphicon-heart"></i></span>Donate</button>
                     </div>
                 </div>
+                <style>
+                    .slim{
+                        background-image: url("<?php echo base_url().$child->picture; ?>");
+                        background-size: 350px 250px;
+                    }
+                </style>
                 <div class="col-md-6 no-pad">
-                    <div class="user-image">
-                        <img src="<?php echo base_url().$child->picture; ?>" class="img-responsive thumbnail">            
+                    <div class="slim"
+                        data-service="<?php echo base_url(); ?>index.php/FileUpload_c/slimasync/<?php echo $child->id; ?>/img1br1children1br1/children"
+                        data-ratio="16:9"
+                        data-size="640,418" style="width: 350px; height: 250px;">
+                       <input type="file" name="slim[]" id="fileup"/>
                     </div>
+                    
                 </div>
             </div>
             <div class="row overview">
@@ -202,12 +212,7 @@
                     <center><button type="button" class="btn btn-lg btn-labeled btn-warning" data-toggle="modal" data-target="fakemodal">
                             <span class="btn-label"><i class="glyphicon glyphicon-warning-sign" aria-hidden="true"></i></span>This is Fake
                     </button></center>
-                    <div class="slim"
-                        data-service="<?php echo base_url(); ?>index.php/FileUpload_c/slimasync/<?php echo $child->id; ?>/img1br1children1br1/children"
-                        data-ratio="16:9"
-                        data-size="640,418" style="width: 250px;height: 150px;">
-                       <input type="file" name="slim[]"/>
-                    </div>
+                    
                 </div>
             </div>
         </div>

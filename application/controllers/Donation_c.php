@@ -23,6 +23,12 @@ class Donation_c extends MY_Controller{
         }
     }
     //get donation data (daily amounts)
+    public function getDonations($id,$startDate,$endDate) {
+        $amounts = $this->Donation_m->getDonations($id,$startDate,$endDate);
+        //echo $id;
+        echo json_encode($amounts);
+    }
+    //get donation data (daily amounts)
     public function getGraphData($id,$startDate,$endDate) {
         $amounts = $this->Donation_m->getAmounts($id,$startDate,$endDate);
         //echo $id;

@@ -123,8 +123,9 @@
                             <div class="col-xs-12 col-sm-4">
                                 <h2><strong id="donationcount"></strong></h2>
                                 <p><small >Donations</small></p>
-                                <button class="btn btn-info btn-block"><span class="fa fa-thumbs-o-up"></span> View Donations </button>
+                                <button class="btn btn-info btn-block" data-toggle="modal" data-target="#donation_modal"><span class="fa fa-thumbs-o-up"></span> View Donations </button>
                             </div>
+                            
                             <!--/col-->
                             <div class="col-xs-12 col-sm-4">
                                 <h2><strong id="donatedamount"></strong></h2>
@@ -144,6 +145,28 @@
         <!--/row-->
     </div>
     <!--/container-->
+    <!-- chart -->
+    <div class="col-lg-12 col-sm-12">
+        <div class="col-lg-3 col-sm-3">
+        </div>
+        <div class="col-lg-6 col-sm-6">
+            <div id="chart_div" style="width: 50%; min-height: 450px;"></div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <input type="date" id="strtdate" class="form-control">
+                </div>
+                <div class="col-sm-4">
+                    <input type="date" id="enddate" class="form-control">
+                </div>
+                <div class="col-sm-4">
+                    <button id="change" class="btn btn-default">Change X-axis</button>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
     <!-- Timeline -->
     <div class="container">
         <div class="page-header">
@@ -204,16 +227,16 @@
                                     for(var k2 in row[1]){
                                         var column = row[1][k2];
                                         if(column['needs']==null || column['needs']=='NULL' || column['needs']=='1'){
-                                            column['needs']
+                                            column['needs']="";
                                         }
                                         if(column['amount']==null || column['amount']=='NULL' || column['amount']=='1'){
-                                            column['amount']
+                                            column['amount']="";
                                         }
                                         if(column['how_help']==null || column['how_help']=='NULL' || column['how_help']=='1'){
-                                            column['how_help']
+                                            column['how_help']="";
                                         }
                                         if(column['why_help']==null || column['why_help']=='NULL' || column['why_help']=='1'){
-                                            column['why_help']
+                                            column['why_help']="";
                                         }
                                         
                                         var description = column['needs']+" "+column['amount']+" "+column['how_help']+" "+column['why_help'];
@@ -288,25 +311,6 @@
   following is for donation charts need to attach to profile  
 -->
 <!-- donation with starts here -->
-
-<div class="panel col-lg-12" style="border: solid;">
-
-<div class="row">
-    <div class="row">
-        <div class="col-sm-6">
-            <input type="date" id="strtdate" class="form-control">
-        </div>
-        <div class="col-sm-6">
-            <input type="date" id="enddate" class="form-control">
-        </div>
-    </div>
-    
-    <div id="chart_div" style="width: 100%; height: 500px;"></div>
-    <button id="change">Change X-axis</button>
-</div>
-    
-    
-</div>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script>
     google.charts.load('current', {'packages':['corechart']});
@@ -328,6 +332,10 @@
             url: "<?php echo base_url(); ?>" + "index.php/Donation_c/getGraphData/<?php echo $user->id;  ?>/"+startdate+"/"+endDate,
             dataType: 'json',
             success: function (res) {
+                if(res.length==0){
+                    document.getElementById('chart_div').innerHTML="No donations to show up";
+                    return;
+                }
                 var arr=[];
                 var k = Object.keys(res);
                 for(var i=0;i<k.length;i++){
@@ -344,7 +352,7 @@
 
                 var options = {
                   title: 'Your Donations',
-                  width: 900,
+                  width: 625,
                   height: 500,
                   hAxis: {
                     format: 'M/d/yy',
@@ -360,7 +368,7 @@
                 };
 
                 var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
-
+                
                 chart.draw(data, options);
 
                 var button = document.getElementById('change');
@@ -387,7 +395,9 @@
             type: "POST",
             url: "<?php echo base_url(); ?>" + "index.php/Donation_c/getTotalDonatedAmount/"+<?php echo $user->id;  ?>,
             success: function (res) {
-                document.getElementById('donatedamount').innerHTML = "Rs. "+res;
+                if(res=='')
+                    res='0';
+                document.getElementById('donatedamount').innerHTML = "$ "+res;
            
             },
             error: function (jqXHR, textStatus, errorThrown) {
@@ -553,6 +563,20 @@
 });
     
 
+  </script>
+  
+  <script>
+  $('#donationstrtdate,#donationenddate').change(function (){
+        var strtDate = $('#donationstrtdate').val();
+        var endDate = $('#donationenddate').val();
+        if((strtDate !== "") && (endDate !== "")){
+             getDonations("<?php echo $user->id; ?>",strtDate,endDate);
+        }
+    });
+    
+    var year = new Date().getFullYear();
+    getDonations("<?php echo $user->id; ?>",year+"-01-01",year+"-12-31");
+    
   </script>
 
 

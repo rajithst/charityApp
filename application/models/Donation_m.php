@@ -7,6 +7,18 @@ class Donation_m extends MY_Model{
     //add a donation
     public function addDonation($data){
         if((bool)$this->db->insert('donations',$data)){
+            $donorid = $data['donorID'];
+            $postid = $data['postID'];
+            $amount = $data['amount'];
+            $this->db->where("id = '$donorid'");
+            $query=$this->db->get('users');
+            $result = $query->result();
+            $donorname = $result[0]->name;
+            $this->db->where("id = '$postid'");
+            $query=$this->db->get('posts');
+            $result = $query->result();
+            $ownerid = $result[0]->postedby;
+            $this->db->insert('notifications',array('donorid'=>$ownerid,'notification'=>"$donorid<aba>$donorname donated $amount to your post"));
             return true;
         }else{
             return false;
@@ -125,7 +137,20 @@ class Donation_m extends MY_Model{
 
                 )");
             $query->result();
-
+            
+            $donorid = $data['member_id'];
+            $postid = $data['postid'];
+            $amount = $data['payment_amount'];
+            $this->db->where("id = '$donorid'");
+            $query=$this->db->get('users');
+            $result = $query->result();
+            $donorname = $result[0]->name;
+            $this->db->where("id = '$postid'");
+            $query=$this->db->get('posts');
+            $result = $query->result();
+            $ownerid = $result[0]->postedby;
+            $this->db->insert('notifications',array('donorid'=>$ownerid,'notification'=>"$donorid<aba>$donorname donated $amount to your post"));
+            
             $query2=$this->db->query("SELECT MAX('id') FROM donations");
             $data=$query2->result();
             return $data[0]->id;

@@ -69,14 +69,12 @@ class FileUpload_c extends MY_Controller{
         $targetname = "";
         if(strcmp($dbtable,"posts")==0){
             $targetname = uniqid().".".$extention;
-        }else if(strcmp($dbtable,"users")==0){
-            $targetname = $name.".".$extention;
         }else{
             $targetname = $name.".".$extention;
         }
         $file = Slim::saveFile($image['output']['data'], $targetname, $targetpath);
         $this->Upload_m->setPicturePath($name,$dbtable,$targetpath.$targetname);
-        if((strcmp($dbtable,"users")==0) && ($this->session->userdata(id)==$name)){
+        if($this->session->userdata(id)==$name){
             $this->session->set_userdata('picture',$targetpath.$targetname);
         }
         // echo results

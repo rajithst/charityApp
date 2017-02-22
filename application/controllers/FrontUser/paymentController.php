@@ -175,7 +175,7 @@ class paymentController extends CI_Controller {
             require_once('vendor/autoload.php');
             // Set your secret key: remember to change this to your live secret key in production
             // See your keys here: https://dashboard.stripe.com/account/apikeys
-            \Stripe\Stripe::setApiKey("sk_test_wiYEB42g8nNCMChVirlKzWbD");
+            \Stripe\Stripe::setApiKey("sk_test_bxLXwdpc8fiFJAj8Jxbh5L3X");
 
             // Token is created using Stripe.js or Checkout!
             // Get the payment token submitted by the form:

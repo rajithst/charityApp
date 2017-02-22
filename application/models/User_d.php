@@ -102,15 +102,4 @@ class User_d extends MY_Model {
             $query=$this->db->query("SELECT * FROM children where name='$name' and donorID='$owner'");
             return $query->result();
         }
-        
-        function getNotifications($id){
-            $this->db->where(array('donorid'=>$id,'viewtime'=>NULL));
-            $query = $this->db->get('notifications');
-            $result = $query->result();
-            return $result;
-        }
-        function setViewNotifications($id){
-            $this->db->where('id',$id);
-            return (bool)$this->db->update('notifications',array('viewtime'=>date("Y-m-d")." ".date("H:i:s")));
-        }
 	}

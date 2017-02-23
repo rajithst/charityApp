@@ -120,3 +120,9 @@
     width: 200px;
     height: 130px;
 }
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .event-list-event-cover{
+        width: 100%;
+    }
+}

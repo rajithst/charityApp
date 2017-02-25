@@ -1,19 +1,43 @@
 <!--left side bar-->
 <div class="col-sm-3 hidden-xs hidden-sm" style=" position:fixed; margin-top: 10px;">
 	<div class="panel panel-default">
-		<div class="panel-thumbnail"><img src="" class="profilepic img-responsive" width="80px"></div>
-		<div class="panel-body">
-			<p class="lead"><?php echo $this->session->userdata('name');?></p>
-			<p><l id="followercount"></l> Followers, 13 Posts</p>
-
-			<p>
-				<img src="https://lh3.googleusercontent.com/uFp_tsTJboUY7kue5XAsGA=s28" width="28px" height="28px">
-			</p>
+		<div class="panel-thumbnail"><img src="<?php 
+                                   if($this->session->userdata('google')){
+                                          echo $this->session->userdata('picture');
+                                    }else if($this->session->userdata('fb')){
+                                           echo 'http://graph.facebook.com/' . $this->session->userdata('username') . '/picture?type=normal';
+                                     }else{
+                                            echo base_url().$this->session->userdata('picture');
+                                      }
+                                        ?>" class="profilepic img-responsive" width="80px"></div>
+                                <div class="panel-body">
+			<div class="panel-body">
+                            <p class="lead"><?php echo $this->session->userdata('name');?></p>
+                            <p><l class="followercount"></l> Followers, <l class="postcount"></l> Posts</p>
+                          </div>
 		</div>
 	</div>
 
 </div>
 
+<!-- load post count -->
+<script>
+    loadPosts();
+    function loadPosts(){
+        jQuery.ajax({
+            type: "POST",
+            url: "<?php echo base_url(); ?>" + "index.php/FrontUser/postController/loadPostUserCount/"+<?php echo $this->session->userdata('id'); ?>,
+            dataType: 'json',
+            success: function (res) {
+                $('.postcount').html(res.length); 
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert(jqXHR.responseText);
+            }
+        });
+    }
+</script>
+<!-- end load post count -->
 
 <!--end of left side bar-->
 

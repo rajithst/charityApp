@@ -152,7 +152,7 @@
 					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 						<span class="fa fa-bars color-white"></span>
 					</button>
-					<h1><a class="navbar-brand" href="index.html" data-0="line-height:90px;" data-300="line-height:50px;">Help Me
+					<h1><a class="navbar-brand" href="#header" data-0="line-height:90px;" data-300="line-height:50px;">Help Me
 					</a></h1>
 				</div>
 				<div class="navbar-collapse collapse">
@@ -373,8 +373,7 @@
 						<div class="col-lg-6 ">
 							<div class="company mar-left10">
 								<h4>Give your hand to color the dreams of needy Children</h4>
-								<p>Charity is a web application which is built to help children who need help. The aim is to connect needy children with helping hands. The web application act as a platform in the process. Not just helping social awareness can be made about those children. The people who are always willing to help others can join with this.  People can donate funds and materials via this platform. Therefore Charity is a web based solution to uplift the lives of needy children.
-</p>
+								<p class="text-center">Charity is a web application which is built to help children who need help. The aim is to connect needy children with helping hands. The web application act as a platform in the process. Not just helping social awareness can be made about those children. The people who are always willing to help others can join with this.  People can donate funds and materials via this platform. Therefore Charity is a web based solution to uplift the lives of needy children.</p>
 							</div>
   <!-- 							<div class="list-style">
   								<div class="row">

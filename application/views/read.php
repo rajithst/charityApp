@@ -56,7 +56,7 @@
                 </div>
                 <div class="block">
                     <div class="list-group border-bottom">
-                        <a href="#" class="list-group-item"><span class="fa fa-inbox"></span> See Other posts <span class="badge badge-success">3</span></a>
+                        <a href="#" class="list-group-item"><span class="fa fa-inbox"></span> See Other posts</a>
                         <a href="#" class="list-group-item"><span class="fa fa-star"></span> Delete </a>
                         <a href="#" class="list-group-item"><span class="fa fa-rocket"></span> Draft</a>
                     </div>
@@ -82,7 +82,7 @@
                         }
                         ?>
                         <div class="pull-left">
-                            <img src="<?php echo $res->picture; ?>" class="panel-title-image" alt="John Doe"/>
+                            <img src="<?php echo base_url('public/'.$res->picture); ?>" class="panel-title-image" alt="John Doe"/>
                             <h3 class="panel-title"><a href=""><?php echo $res->name; ?></a> <small><?php echo $res->email; ?></small></h3>
                         </div>
                     </div>

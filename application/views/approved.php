@@ -6,23 +6,23 @@
     <div class="page-sidebar">
         <ul class="x-navigation">
             <li class="xn-logo">
-                <a href="index.html">ATLANT</a>
+                <a href="">Admin</a>
                 <a href="#" class="x-navigation-control"></a>
             </li>
             <li class="xn-profile">
                 <a href="#" class="profile-mini">
-                    <img src="assets/images/users/avatar.jpg" alt="John Doe"/>
+                    <img src="<?php echo base_url('public/img/user/user.jpg'); ?>" alt="John Doe"/>
                 </a>
                 <div class="profile">
                     <div class="profile-image">
-                        <img src="assets/images/users/avatar.jpg" alt="John Doe"/>
+                        <img src="<?php echo base_url('public/img/user/user.jpg'); ?>" alt="John Doe"/>
                     </div>
                     <div class="profile-data">
                         <div class="profile-data-name">  <?php echo $this->session->userdata('fname'). ' ' . $this->session->userdata('lname');?></div>
                     </div>
                 </div>
             </li>
-            <li class="xn-title">Navigation</li>
+
             <li class="">
                 <a href="Dashboard"><span class="fa fa-desktop"></span> <span class="xn-text">Dashboard</span></a>
             </li>
@@ -34,14 +34,18 @@
                     <li><a href="<?php echo base_url('index.php/Draft'); ?>"><span class="fa fa-users"></span>Draft</a></li>
                 </ul>
             </li>
-            <li class="xn-openable">
-                <a href="#"><span class="fa fa-files-o"></span> <span class="xn-text">Users</span></a>
-                <ul>
-                    <li><a href="pendingPosts"><span class="fa fa-image"></span>System Users</a></li>
-                    <li><a href="approvedPosts"><span class="fa fa-user"></span>Site Users</a></li>
+            <?php
+            $ulevel = $this->session->userdata('userlevel');
+            if ($ulevel==1) {
+                ?>
+                <li class="xn-openable">
+                    <a href="#"><span class="fa fa-files-o"></span> <span class="xn-text">Users</span></a>
+                    <ul>
+                        <li><a href="<?php echo base_url('index.php/Users'); ?>"><span class="fa fa-image"></span>System Users</a></li>
 
-                </ul>
-            </li>
+                    </ul>
+                </li>
+            <?php } ?>
 
         </ul>
     </div>
@@ -64,7 +68,7 @@
 
         <!-- PAGE TITLE -->
         <div class="page-title">
-            <h2><span class="fa fa-arrow-circle-o-left"></span> Sortable Tables</h2>
+            <h2><span class="fa fa-arrow-circle-o-left"></span> Approved Posts</h2>
         </div>
         <!-- END PAGE TITLE -->
 
@@ -77,7 +81,7 @@
                     <!-- START DEFAULT DATATABLE -->
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Default</h3>
+                            <h3 class="panel-title">Approved posts</h3>
                             <ul class="panel-controls">
                                 <li><a href="#" class="panel-collapse"><span class="fa fa-angle-down"></span></a></li>
                                 <li><a href="#" class="panel-refresh"><span class="fa fa-refresh"></span></a></li>
@@ -178,11 +182,6 @@
                                     $("#delete-alert").slideUp(500);
                                 });
                                 setTimeout(location.reload.bind(location), 3000);
-
-
-                                /*  $("table#pendingtable").html("");
-                                 $("table#pendingtable").html("<center><h2>No Pending posts available</h2></center>");
-                                 }*/
 
                             }
                         }

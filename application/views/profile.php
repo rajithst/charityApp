@@ -4,7 +4,50 @@
 
     <!-- START PAGE SIDEBAR -->
     <div class="page-sidebar">
-        <?php include "layouts/page_sidebar.php"; ?>
+        <ul class="x-navigation">
+            <li class="xn-logo">
+                <a href="">Admin</a>
+                <a href="#" class="x-navigation-control"></a>
+            </li>
+            <li class="xn-profile">
+                <a href="#" class="profile-mini">
+                    <img src="<?php echo base_url('public/img/user/user.jpg'); ?>" alt="John Doe"/>
+                </a>
+                <div class="profile">
+                    <div class="profile-image">
+                        <img src="<?php echo base_url('public/img/user/user.jpg'); ?>" alt="John Doe"/>
+                    </div>
+                    <div class="profile-data">
+                        <div class="profile-data-name">  <?php echo $this->session->userdata('fname'). ' ' . $this->session->userdata('lname');?></div>
+                    </div>
+                </div>
+            </li>
+
+            <li class="">
+                <a href="Dashboard"><span class="fa fa-desktop"></span> <span class="xn-text">Dashboard</span></a>
+            </li>
+            <li class="xn-openable">
+                <a href="#"><span class="fa fa-files-o"></span> <span class="xn-text">Posts</span></a>
+                <ul>
+                    <li><a href="<?php echo base_url('index.php/Pending'); ?>"><span class="fa fa-image"></span>Pending Posts</a></li>
+                    <li><a href="<?php echo base_url('index.php/Approved'); ?>"><span class="fa fa-user"></span>Approved</a></li>
+                    <li><a href="<?php echo base_url('index.php/Draft'); ?>"><span class="fa fa-users"></span>Draft</a></li>
+                </ul>
+            </li>
+            <?php
+            $ulevel = $this->session->userdata('userlevel');
+            if ($ulevel==1) {
+                ?>
+                <li class="xn-openable">
+                    <a href="#"><span class="fa fa-files-o"></span> <span class="xn-text">Users</span></a>
+                    <ul>
+                        <li><a href="<?php echo base_url('index.php/Users'); ?>"><span class="fa fa-image"></span>System Users</a></li>
+
+                    </ul>
+                </li>
+            <?php } ?>
+
+        </ul>
     </div>
     <!-- END PAGE SIDEBAR -->
 
@@ -59,7 +102,7 @@
                             <div class="panel panel-default">
                                 <div class="panel-body profile" style="background-color:#a7adb5;">
                                     <div class="profile-image">
-                                        <img src="<?php echo $res->picture; ?>" alt="Nadia Ali"/>
+                                        <img src="<?php echo base_url('public/'.$res->picture); ?>" alt="Nadia Ali"/>
                                     </div>
                                     <div class="profile-data">
                                         <div class="profile-data-name"><?php echo $res->name . " ". $res->lastname; ?></div>
@@ -102,7 +145,7 @@
 
                                     <a href="#" class="list-group-item reports" id="<?php echo $res->postedby; ?>"><span class="fa fa-coffee"></span> Profile Reports <span class="badge badge-default">18</span></a>
                                     <a href="#" class="list-group-item posts" id="<?php echo $res->postedby; ?>"><span class="fa fa-users"></span> Posts <span class="badge badge-danger"><?php echo $rows; ?></span></a>
-                                    <a href="#" class="list-group-item donations" id="<?php echo $res->postedby; ?>"><span class="fa fa-users"></span> Donations <span class="badge badge-danger">+7</span></a>
+                                    <a href="#" class="list-group-item donations" id="<?php echo $res->postedby; ?>"><span class="fa fa-users"></span> Donations <span class="badge badge-danger">7</span></a>
                                     <a href="#" class="list-group-item settings" id="<?php echo $res->postedby; ?>"><span class="fa fa-cog"></span> Settings</a>
                                 </div>
                             </div>

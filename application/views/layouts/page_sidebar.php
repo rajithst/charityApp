@@ -1,23 +1,23 @@
 <!-- START X-NAVIGATION -->
 <ul class="x-navigation">
     <li class="xn-logo">
-        <a href="index.html">ATLANT</a>
+        <a href="">Admin</a>
         <a href="#" class="x-navigation-control"></a>
     </li>
     <li class="xn-profile">
         <a href="#" class="profile-mini">
-            <img src="assets/images/users/avatar.jpg" alt="John Doe"/>
+            <img src="<?php echo base_url('public/img/user/user.jpg'); ?>" alt="John Doe"/>
         </a>
         <div class="profile">
             <div class="profile-image">
-                <img src="assets/images/users/avatar.jpg" alt="John Doe"/>
+                <img src="<?php echo base_url('public/img/user/user.jpg'); ?>" alt="John Doe"/>
             </div>
             <div class="profile-data">
                 <div class="profile-data-name">  <?php echo $this->session->userdata('fname'). ' ' . $this->session->userdata('lname');?></div>
             </div>
         </div>
     </li>
-    <li class="xn-title">Navigation</li>
+
     <li class="active">
         <a href="Dashboard"><span class="fa fa-desktop"></span> <span class="xn-text">Dashboard</span></a>
     </li>
@@ -37,7 +37,6 @@
         <a href="#"><span class="fa fa-files-o"></span> <span class="xn-text">Users</span></a>
         <ul>
             <li><a href="<?php echo base_url('index.php/Users'); ?>"><span class="fa fa-image"></span>System Users</a></li>
-            <li><a href="approvedPosts"><span class="fa fa-user"></span>Site Users</a></li>
 
         </ul>
     </li>

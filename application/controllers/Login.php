@@ -43,11 +43,13 @@ class Login extends Frontend_Controller{
             $email = $this->input->post('email');
             $gender = $this->input->post('reg_gender');
             $picture = $this->input->post('picture');
-            $existid = $this->User_d->getUserID($username);
-            if(!$existid){
-                $this->User_d->register();
-            }
             $id = $this->User_d->getUserID($username);
+            if(!$id){
+                $this->User_d->register();
+            	$id = $this->User_d->getUserID($username);
+			}
+			$result = $this->User_d->getUser($id);
+			$regdate = substr($result->registeredDate,0,10);
             $this->session->set_userdata(
             array(
                 'id' => $id,
@@ -55,6 +57,7 @@ class Login extends Frontend_Controller{
                 'name' =>$name,
                 'email' =>$email,
                 'gender' =>$gender,
+				'registereddate' =>$regdate,
                 'loggedin' =>TRUE,
                 'google' => TRUE,
                 'picture' => $picture

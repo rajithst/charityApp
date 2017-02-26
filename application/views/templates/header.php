@@ -250,7 +250,7 @@
                  ?>" class="profilepic img-circle" alt="User Image">
                 <p>
                   <?php echo $this->session->userdata('username').'<br>';?>
-                  <small>Member since Nov. 2012</small>
+                  <small>Member since <?php echo $this->session->userdata('registereddate');?></small>
                 </p>
               </li>
               <!-- Menu Body -->
@@ -896,21 +896,27 @@ function readingStatus(name){
                 url: "<?php echo base_url(); ?>" + "index.php/Follow_c/getFollowers/"+id+"/1",
                 dataType: 'json',
                 success: function (obj) {
-                        $('.followercount').html(obj.length);
-                    	var items=[];
-                        $.each(obj, function(i,val){  
-                             var pic = '<?php echo base_url();?>'+val.picture;
-                             if(val.type=='google'){
-                                 var pic = val.picture;
-                             }
-                             else if(val.type=='facebook'){
-                                 var pic="http://graph.facebook.com/"+val.username+"/picture?type=normal";
-                             }
-                             items.push($('<a class="list-group-item" href="<?php echo base_url();?>FrontUser/Home/profile/'+val.id+'"><li class="list-group-item"/></a>').html('<img src="'+pic+'" width="50px"/>'+' '+val.name));
-                        });
+						var fcount = obj.length;
+                        $('.followercount').html(fcount);
+						if(fcount>0){
+							var items=[];
+							$.each(obj, function(i,val){  
+								 var pic = '<?php echo base_url();?>'+val.picture;
+								 if(val.type=='google'){
+									 var pic = val.picture;
+								 }
+								 else if(val.type=='facebook'){
+									 var pic="http://graph.facebook.com/"+val.username+"/picture?type=normal";
+								 }
+								 items.push($('<a class="list-group-item" href="<?php echo base_url();?>FrontUser/Home/profile/'+val.id+'"><li class="list-group-item"/></a>').html('<img src="'+pic+'" width="50px"/>'+' '+val.name));
+							});
 
-                        $('#follow_items').append.apply($('#follow_items'), items);
-                        
+							$('#follow_items').append.apply($('#follow_items'), items);
+                        }else{
+							var items=[];
+							items.push($('<a class="list-group-item"><li class="list-group-item"/></a>').html('No followers to show up'));
+							$('#follow_items').append.apply($('#follow_items'), items);
+						}
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     alert(jqXHR.responseText);

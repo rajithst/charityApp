@@ -52,6 +52,7 @@ class Login_m extends MY_Model{
 				$name =$result->name;
 				$email =$result->email;
 				$gender =$result->gender;
+				$regdate = substr($result->registeredDate,0,10);
 				$picture =$result->picture;
 			}
 		
@@ -63,6 +64,7 @@ class Login_m extends MY_Model{
 							'name' =>$name,
 							'email' =>$email,
 							'gender' =>$gender,
+							'registereddate' =>$regdate,
                             'picture' => $picture,
 							'loggedin' =>TRUE,
                             'google' => FALSE,
@@ -109,6 +111,7 @@ class Login_m extends MY_Model{
 				$name =$result->name;
 				$email =$result->email;
 				$gender =$result->gender;
+				$regdate = substr($result->registeredDate,0,10);
 				$username=$result->username;
 				
 			}
@@ -121,6 +124,7 @@ class Login_m extends MY_Model{
 							'name' =>$name,
 							'email' =>$email,
 							'gender' =>$gender,
+							'registereddate' =>$regdate,
 							'loggedin' =>TRUE,
 							'fb'=>true
 		
@@ -158,6 +162,7 @@ class Login_m extends MY_Model{
 							$name =$results->name;
 							$email =$results->email;
 							$gender =$results->gender;
+							$regdate = substr($result->registeredDate,0,10);
 							$username=$results->username;
 							
 						}
@@ -170,6 +175,7 @@ class Login_m extends MY_Model{
 										'name' =>$name,
 										'email' =>$email,
 										'gender' =>$gender,
+										'registereddate' =>$regdate,
 										'loggedin' =>TRUE,
 										'fb'=>true
 					

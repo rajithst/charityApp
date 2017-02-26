@@ -48,8 +48,8 @@
                     <h4 id="followercount"></h4>
                 </div>
                 <div class="col-md-4 user-pad text-center">
-                    <h3>Something</h3>
-                    <h4>4,901</h4>
+                    <h3>Total Posts</h3>
+                    <h4><?php echo(count($posts))?></h4>
                 </div>
             </div>
         </div>
@@ -242,7 +242,7 @@
 <!-- donation with starts here -->
 
 <!-- chart -->
-    <div class="col-lg-12 col-sm-12">
+    <div class="col-lg-12 col-sm-12" style="margin-top: 3px;">
         <div class="col-lg-3 col-sm-3">
         </div>
         <div class="col-lg-6 col-sm-6">
@@ -255,7 +255,7 @@
                     <input type="date" id="enddate" class="form-control">
                 </div>
                 <div class="col-sm-4">
-                    <button id="change">Change X-axis</button>
+                    <button class="btn btn-danger" id="change">Change X-axis</button>
                 </div>
             </div>
         </div>

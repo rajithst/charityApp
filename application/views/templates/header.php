@@ -254,6 +254,18 @@
                 </p>
               </li>
               <!-- Menu Body -->
+			  <!-- Keep this don't delete it -->
+              <li class="user-body">
+                <div class="row">
+                  <div class="col-xs-6 text-center">
+                    <a href="#" class="btn btn-info btn-flat" data-toggle="modal" data-target="#follow_modal">Followers</a>
+                  </div>
+                  <div class="col-xs-6 text-center">
+                    <a href="#" class="btn btn-info btn-flat" data-toggle="modal" data-target="#donation_modal">Donations</a>
+                  </div>
+                </div>
+                <!-- /.row -->
+              </li>
               
               <!-- Menu Footer-->
               <li class="user-footer">

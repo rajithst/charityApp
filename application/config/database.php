@@ -77,16 +77,16 @@ $active_record=TRUE;
 $db['default'] = array(
 	'dsn'	=> '',
 
-	'hostname' => 'localhost',
+	/*'hostname' => 'localhost',
 	'username' => 'root',
-	'password' => 'rajith',
+	'password' => 'rajith',*/
 
 	/*'hostname' => 'eu-cdbr-azure-west-a.cloudapp.net',
 	 'username' => 'b15558e9c0342b',
-	 'password' => '3343d3cc',
-	/*'hostname' => 'localhost',
+	 'password' => '3343d3cc',*/
+	'hostname' => 'localhost',
 	'username' => 'root',
-	'password' => '',*/
+	'password' => '',
 
 
 	'database' => 'charity',

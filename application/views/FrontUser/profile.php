@@ -150,8 +150,8 @@
         <div class="col-lg-3 col-sm-3">
         </div>
         <div class="col-lg-6 col-sm-6">
-            <div id="chart_div" style="width: 50%; min-height: 450px;"></div>
-            <div class="row">
+            <div id="chart_div"></div>
+            <div class="row" id="chartinfo">
                 <div class="col-sm-4">
                     <input type="date" id="strtdate" class="form-control">
                 </div>
@@ -325,6 +325,8 @@
     function loadGraphOnLoad(){
         var year = new Date().getFullYear();
         loadData(year+"-01-01",year+"-12-31");
+		$('#strtdate').val(year+"-01-01");
+        $('#enddate').val(year+"-12-31");
     }
     function loadData(startdate,endDate){
         jQuery.ajax({
@@ -334,8 +336,10 @@
             success: function (res) {
                 if(res.length==0){
                     document.getElementById('chart_div').innerHTML="No donations to show up";
+					$('#chartinfo').hide();
                     return;
                 }
+				$('#chartinfo').show();
                 var arr=[];
                 var k = Object.keys(res);
                 for(var i=0;i<k.length;i++){

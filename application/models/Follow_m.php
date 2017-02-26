@@ -28,15 +28,13 @@ class Follow_m extends MY_Model{
         return (bool)$this->db->delete('follow');
     }
     function getFollowers($followingID,$type){
-        $where = "followingID = '$followingID' AND type = '$type'";
-        $this->db->where($where);
-        $query=$this->db->get('follow');
+        $q = "SELECT * FROM users INNER JOIN follow ON follow.followerID = users.id WHERE follow.followingID = $followingID AND follow.type = $type;";
+        $query = $this->db->query($q);
         return $query->result();
     }
     function getFollowings($followerID){
-        $where = "followerID = '$followerID' AND type = '$type'";
-        $this->db->where($where);
-        $query=$this->db->get('follow');
+        $q = "SELECT * FROM users INNER JOIN follow ON follow.followingID = users.id WHERE follow.followerID = $followerID AND follow.type = $type;";
+        $query = $this->db->query($q);
         return $query->result();
     }
 }

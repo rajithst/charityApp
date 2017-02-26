@@ -20,7 +20,6 @@ class Children_m extends MY_Model{
     //get all children
 
     public function getAllChildren(){
-        $this->db->select('id,name');
         $query=$this->db->get('children');
         return $query->result();
     }

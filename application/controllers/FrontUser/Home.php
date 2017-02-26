@@ -9,11 +9,13 @@ class Home extends Frontend_Controller {
 		$this->load->model('User_d');
                 $this->load->model('Donation_m');
                 $this->load->model('postModel');
+                $this->load->model('Children_m');
 	}
 
     public function index()
 	{
             $data['users']=$this->User_d->getUsers();
+            $data['children']=$this->Children_m->getAllChildren();
             //load children of user ends
 
             if(count($data) > 0)

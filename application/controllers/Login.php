@@ -25,8 +25,11 @@ class Login extends Frontend_Controller{
 
 			}else {
 
-				$this->session->set_flashdata('error','<script>alert("That email password combination does not exist");</script>');
-				redirect('Login','refresh');
+                $data['msg'] = "<div class='alert alert-danger'>
+                          <strong><center>Login Error !!</center></strong> <br>
+                          <center>Username Password Combination not matching</center>
+                        </div>";
+                $this->load->view('login', $data);
 			}
 
 		} 

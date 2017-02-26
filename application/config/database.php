@@ -76,12 +76,12 @@ $active_record=TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-        /*
+
 	'hostname' => 'localhost',
 	'username' => 'root',
-	'password' => 'rajith',*/
+	'password' => 'rajith',
 
-	'hostname' => 'eu-cdbr-azure-west-a.cloudapp.net',
+	/*'hostname' => 'eu-cdbr-azure-west-a.cloudapp.net',
 	 'username' => 'b15558e9c0342b',
 	 'password' => '3343d3cc',
 	/*'hostname' => 'localhost',

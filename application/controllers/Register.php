@@ -34,7 +34,19 @@ class Register extends Frontend_Controller {
     function setRegister() {
     	
     	if((bool)$this->User_d->register()){
-            redirect('Login','refresh');
+
+            $data['regmsg'] = "<div class='row'>
+<div class='col-md-3 .col-md-offset-3'>
+
+                            <div class='alert alert-info'>
+                          <strong><center>You're Signed Up..Please login to continue</center></strong> <br>
+                       
+                        </div>
+
+                            </div>
+
+</div>";
+            $this->load->view('login',$data);
         }else{
             $this->session->set_flashdata('error','<script>alert("Username already exist");</script>');
             redirect('Login','refresh');

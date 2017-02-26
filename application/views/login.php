@@ -156,6 +156,23 @@
 					</a></h1>
 				</div>
 				<div class="navbar-collapse collapse">
+
+                    <div class='row' style="height: 60px;">
+                        <div class="col-md-4" ></div>
+                        <div class='col-md-4' style="height: 60px;">
+
+                            <div class='alert alert-info'>
+                                <strong><center>You're Signed Up..Please login to continue</center></strong> <br>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-4"></div>
+
+                    </div>
+
+
 					<ul class="nav navbar-nav" data-0="margin-top:20px;" data-300="margin-top:5px;">
 						<li class="active"><a href="#header">Home</a></li>
 						<li><a href="#section-about">About</a></li>
@@ -208,6 +225,8 @@
                                      <?php $attributes = array('id' => 'login-form'); ?>
                                     <?php echo form_open('Login/login',$attributes)?>
                                  <form class="form" role="form" method="post" action="" accept-charset="UTF-8" id="login-nav">
+
+
                                         <div class="form-group">
                                              <label class="sr-only" for="lg_username" >User Name</label>
                                              <input type="text" class="form-control" id="lg_username" name="username"  data-errormessage-value-missing="Email is required!" placeholder="username">
@@ -227,6 +246,8 @@
                                         </div>
                                  </form>
                  <?php echo form_close()?>
+
+
                             </div>
                             <div class="bottom text-center">
                                 <h7 style="color: black">New here ? </h7> <button data-toggle="modal" data-target="#myModal" class="btn btn-success">Join Us</button>
@@ -247,6 +268,14 @@
 	<div class="blob"></div>
 	<div class="blob"></div>
 </div>
+
+    <?php
+    if (isset($msg)){
+        echo $msg;
+    }
+    ?>
+
+
 
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg">
 	<defs>

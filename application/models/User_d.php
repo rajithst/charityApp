@@ -20,19 +20,18 @@ class User_d extends MY_Model {
 				'password'=> $this->input->post('password'),
 				'email'=> $this->input->post('email'),
 				'gender'=> $this->input->post('reg_gender'),
-                                'picture'=> 'img/user/user.png',
-				'type'=>'none'
+                    'picture'=> 'img/user/user.png'
 		);
 		if($this->input->post('picture'))
                     $user_data['picture'] = $this->input->post('picture');
                 if($this->input->post('type'))
                     $user_data['type'] = $this->input->post('type');
                 $this->db->where('username',$user_data['username']);
-                $query=$this->db->get('Users');
+                $query=$this->db->get('users');
                 if(count($query->result())){
                     return false;
                 }
-                $res = $this->db->insert('Users', $user_data);
+                $res = $this->db->insert('users', $user_data);
                     
 		if ($res) {
 			return true;
@@ -47,7 +46,7 @@ class User_d extends MY_Model {
         
 	/** return all users **/
 	function getUsers(){
-		$query=$this->db->get('Users');
+		$query=$this->db->get('users');
 		return $query->result();
 
 	}
@@ -56,7 +55,7 @@ class User_d extends MY_Model {
         //get userID by username
         function getUserID($username){
             $this->db->where('username',$username);
-            $query = $this->db->get('Users');
+            $query = $this->db->get('users');
             $result = $query->result();
             if(count($result)>0){
                return $result[0]->id;
@@ -70,7 +69,7 @@ class User_d extends MY_Model {
         //get userData
         function getUser($id){
             $this->db->where('id',$id);
-            $query = $this->db->get('Users');
+            $query = $this->db->get('users');
             $result = $query->result();
             if(count($result)>0){
                return $result[0];

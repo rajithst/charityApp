@@ -413,12 +413,10 @@ if ($logedin != true){
                                 </form>
                         </div>
                         <div class="row">
-                                    <h4 id='loading' >loading..</h4>
                                     <div id="message"></div>
                         </div>
                         <ul class="list-inline pull-right">
-                            <li><button type="button" class="btn btn-success prev-step">Previous</button></li>
-                            <li><button type="button" class="btn btn-success next-step">Skip</button></li>
+                            <li><button type="button" class="btn btn-success prev-step" onclick="next2()">Previous</button></li>
                             <li><button type="button" class="btn btn-success btn-info-full next-step" onclick="next3()">Save and continue</button></li>
                         </ul>
                     </div>
@@ -437,9 +435,8 @@ if ($logedin != true){
                             </div>
                         </div>
                         <ul class="list-inline pull-right">
-                            <li><button type="button" class="btn btn-success prev-step">Previous</button></li>
-                            <li><button type="button" class="btn btn-success next-step">Skip</button></li>
-                            <li><button type="button" class="btn btn-success btn-info-full next-step" onclick="next3()">Save and continue</button></li>
+                            <li><button type="button" class="btn btn-success prev-step" onclick="next2()">Previous</button></li>
+                            <li><button type="button" class="btn btn-success btn-info-full next-step" data-dismiss="modal">Finish</button></li>
                         </ul>
                     </div>
 

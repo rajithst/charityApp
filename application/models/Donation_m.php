@@ -49,20 +49,9 @@ class Donation_m extends MY_Model{
     
     public function getReceivedAmounts($id,$startDate,$endDate){
         $where = "pc.childid=$id AND d.date >= '$startDate' AND d.date <= '$endDate'";
-        $sql = "SELECT CAST(d.date AS DATE) AS date,sum(d.amount) AS amount,p.n_of_children AS n_of_children FROM donations d INNER JOIN postchildren pc INNER JOIN posts p WHERE d.postID=pc.postid AND pc.postid=p.id AND $where GROUP BY CAST(d.date AS DATE)";
+        $sql = "SELECT CAST(d.date AS DATE) AS date,sum(d.amount/p.n_of_children) AS amount FROM donations d INNER JOIN postchildren pc ON d.postID=pc.postid INNER JOIN posts p ON pc.postid=p.id WHERE $where GROUP BY CAST(d.date AS DATE)";
         $query = $this->db->query($sql);
-        $result = $query->result();
-        $data = array();
-        foreach ($result as $row){
-            $amount = floatval($row->amount);
-            $date = $row->date;
-            $nc = intval($row->n_of_children);
-            if($nc>1){
-                $amount = $amount/$nc;
-            }
-            array_push($data, array('date' => $date, 'amount' => $amount));
-        }
-        return $data;
+        return $query->result();
     }
     public function getTotalDonatedAmount($id){
         $where = "donorID=$id";
@@ -73,19 +62,9 @@ class Donation_m extends MY_Model{
     }
     public function getTotalReceivedAmount($id){
         $where = "pc.childid=$id";
-        $sql = "SELECT sum(d.amount) AS amount,p.n_of_children AS n_of_children FROM donations d INNER JOIN postchildren pc INNER JOIN posts p WHERE d.postID=pc.postid AND pc.postid=p.id AND $where";
+        $sql = "SELECT sum(d.amount/p.n_of_children) AS amount FROM donations d INNER JOIN postchildren pc ON d.postID=pc.postid INNER JOIN posts p ON pc.postid=p.id WHERE $where;";
         $query = $this->db->query($sql);
-        $result = $query->result();
-        $data = array();
-        foreach ($result as $row){
-            $amount = floatval($row->amount);
-            $date = $row->date;
-            $nc = intval($row->n_of_children);
-            if($nc>1){
-                $amount = $amount/$nc;
-            }
-            array_push($data, array('date' => $date, 'amount' => $amount));
-        }
+        $data = $query->result();
         return $data[0]->amount;
     }
 

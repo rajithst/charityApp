@@ -33,7 +33,7 @@
 
 <script type="text/javascript" src="<?php echo base_url('public/js/plugins/moment.min.js'); ?>"></script>
 
-
+<script type="text/javascript" src="<?php echo base_url('public/js/plugins/bootstrap/bootstrap-select.js');?>"></script>
 <!-- END THIS PAGE PLUGINS-->
 
 <script type="text/javascript" src="<?php echo base_url('public/js/plugins/datatables/jquery.dataTables.min.js'); ?>"></script>

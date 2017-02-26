@@ -29,7 +29,8 @@ class Login_m extends MY_Model{
 				 $lname =$result->last_name;
 				 $email = $result->email;
 				 $id = $result->id;
-				
+				 $ulevel = $result->userlevel;
+
 			}
 
 		
@@ -41,6 +42,7 @@ class Login_m extends MY_Model{
 							'lname' =>$lname,
 							'email' =>$email,
 							'id' =>$id,
+							'userlevel' =>$ulevel,
 							'loggedin' =>TRUE
 		
 		

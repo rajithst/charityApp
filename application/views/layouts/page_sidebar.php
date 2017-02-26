@@ -29,14 +29,19 @@
             <li><a href="<?php echo base_url('index.php/Draft'); ?>"><span class="fa fa-users"></span>Draft</a></li>
         </ul>
     </li>
+    <?php
+    $ulevel = $this->session->userdata('userlevel');
+    if ($ulevel==1) {
+    ?>
     <li class="xn-openable">
         <a href="#"><span class="fa fa-files-o"></span> <span class="xn-text">Users</span></a>
         <ul>
-            <li><a href="pendingPosts"><span class="fa fa-image"></span>System Users</a></li>
+            <li><a href="<?php echo base_url('index.php/Users'); ?>"><span class="fa fa-image"></span>System Users</a></li>
             <li><a href="approvedPosts"><span class="fa fa-user"></span>Site Users</a></li>
 
         </ul>
     </li>
+    <?php } ?>
 
 </ul>
 <!-- END X-NAVIGATION -->

@@ -36,16 +36,13 @@ class Register extends Frontend_Controller {
     	if((bool)$this->User_d->register()){
 
             $data['regmsg'] = "<div class='row'>
-<div class='col-md-3 .col-md-offset-3'>
+                                    <div class='col-md-12'>
+                                        <div class='alert alert-info'>
+                                            <strong><center>You're Signed Up..Please login to continue</center></strong> <br>
+                                        </div>
+                                    </div>
+                                </div>";
 
-                            <div class='alert alert-info'>
-                          <strong><center>You're Signed Up..Please login to continue</center></strong> <br>
-                       
-                        </div>
-
-                            </div>
-
-</div>";
             $this->load->view('login',$data);
         }else{
             $this->session->set_flashdata('error','<script>alert("Username already exist");</script>');

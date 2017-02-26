@@ -156,23 +156,6 @@
 					</a></h1>
 				</div>
 				<div class="navbar-collapse collapse">
-
-                    <div class='row' style="height: 60px;">
-                        <div class="col-md-4" ></div>
-                        <div class='col-md-4' style="height: 60px;">
-
-                            <div class='alert alert-info'>
-                                <strong><center>You're Signed Up..Please login to continue</center></strong> <br>
-
-                            </div>
-
-                        </div>
-
-                        <div class="col-md-4"></div>
-
-                    </div>
-
-
 					<ul class="nav navbar-nav" data-0="margin-top:20px;" data-300="margin-top:5px;">
 						<li class="active"><a href="#header">Home</a></li>
 						<li><a href="#section-about">About</a></li>
@@ -183,6 +166,12 @@
                 <li>
            
                      <div class="row">
+                         <?php
+
+                            if (isset($regmsg)){
+                                echo $regmsg;
+                            }
+                         ?>
                             <div class="col-md-12">
                                 Login via
                                 <div class="social-buttons">

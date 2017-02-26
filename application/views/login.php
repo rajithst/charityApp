@@ -372,30 +372,30 @@
 					
 						<div class="col-lg-6 ">
 							<div class="company mar-left10">
-								<h4>Our Community has created 1928  <span>vestibulum </span> at eros.</h4>
-								<p>Nullam id dolor id nibh ultricies vehicula ut id elit. Donec sed odio dui. Fusce dapibus, tellus ac cursus etiam porta sem malesuada magna mollis euismod. commodo, Faccibus mollis interdum. Morbi leo risus, porta ac, vestibulum at eros.
-								  Nullam id dolor id nibh ultricies vehicula ut id elit. Donec sed odio dui. Fusce dapibus, tellus ac.</p>
+								<h4>Give your hand to color the dreams of needy Children</h4>
+								<p>Charity is a web application which is built to help children who need help. The aim is to connect needy children with helping hands. The web application act as a platform in the process. Not just helping social awareness can be made about those children. The people who are always willing to help others can join with this.  People can donate funds and materials via this platform. Therefore Charity is a web based solution to uplift the lives of needy children.
+</p>
 							</div>
-							<div class="list-style">
-								<div class="row">
-									<div class="col-lg-6 col-sm-6 col-xs-12">
-										<ul>
-											<li>Sollicitudin Vestibulum</li>
-											<li>Fermentum Pellentesque</li>
-											<li>Sollicitudin Vestibulum</li>
-											<li>Nullam id dolor id nibh</li>
-										</ul>
-									</div>
-									<div class="col-lg-6 col-sm-6 col-xs-12">
-										<ul>
-											<li>Sollicitudin Vestibulum</li>
-											<li>Fermentum Pellentesque</li>
-											<li>Sollicitudin Vestibulum</li>
-											<li>Nullam id dolor id nibh</li>
-										</ul>
-									</div>
-								</div>
-							</div>
+  <!-- 							<div class="list-style">
+  								<div class="row">
+  									<div class="col-lg-6 col-sm-6 col-xs-12">
+  										<ul>
+  											<li></li>
+  											<li></li>
+  											<li></li>
+  											<li></li>
+  										</ul>
+  									</div>
+  									<div class="col-lg-6 col-sm-6 col-xs-12">
+  										<ul>
+  											<li></li>
+  											<li></li>
+  											<li></li>
+  											<li></li>
+  										</ul>
+  									</div>
+  								</div>
+  							</div> -->
 						</div>
 					
 					</div>	
@@ -434,7 +434,7 @@
 										<figure><i class="fa fa-copyright"></i></figure>
 									</div>
 										<h2><a href="#">Organization</a></h2>
-										<p>"Be a part of our journy ,be our strength,you can become the hope of innocent children"</p>
+										<p>"Become the hope of a dreamer by creating a path to the victory"</p>
 								</div>
 							</div>
 						</div>
@@ -451,7 +451,7 @@
 										<figure><i class="fa fa-handshake-o"></i></figure>
 									</div>
 										<h2><a href="#">One to One</a></h2>
-										<p>"You can make a child smile by fully or partially sponsoring them"</p>
+										<p>"Be the reason behind an innocent smile by supporting a child"</p>
 								</div>
 							</div>	
 						</div>
@@ -466,7 +466,7 @@
 									<figure><i class="fa fa-dropbox"></i></figure>
 								</div>
 									<h2><a href="#">Logistics</a></h2>
-									<p>"You can make everyone proud by taking the items to the children"</p>
+									<p>"No big expectations just a humble need"</p>
 							</div>
 						</div>
 					</div>
@@ -512,7 +512,7 @@
                                 Licensing information: https://bootstrapmade.com/license/
                                 Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Green
                             -->
-                            <a href="https://bootstrapmade.com/">Bootstrap Themes</a> by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+                            <a href="https://bootstrapmade.com/">Chrity Web Application</a> by <a href="https://bootstrapmade.com/">Example.com</a>
                         </div>
                     </div>
 			</div>

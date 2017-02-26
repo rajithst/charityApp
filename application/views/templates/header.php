@@ -908,7 +908,7 @@ function readingStatus(name){
 								 else if(val.type=='facebook'){
 									 var pic="http://graph.facebook.com/"+val.username+"/picture?type=normal";
 								 }
-								 items.push($('<a class="list-group-item" href="<?php echo base_url();?>FrontUser/Home/profile/'+val.id+'"><li class="list-group-item"/></a>').html('<img src="'+pic+'" width="50px"/>'+' '+val.name));
+								 items.push($('<a class="list-group-item" href="<?php echo base_url();?>FrontUser/Home/profile/'+val.followerID+'"><li class="list-group-item"/></a>').html('<img src="'+pic+'" width="50px"/>'+' '+val.name));
 							});
 
 							$('#follow_items').append.apply($('#follow_items'), items);

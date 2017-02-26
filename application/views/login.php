@@ -558,13 +558,117 @@
 
 	<script src="https://maps.google.com/maps/api/js?sensor=true"></script>
 	<script>wow = new WOW({}).init();</script>
-    
 
-<script>
-$(document).ready(function(){
-    $("#login-form").validationEngine('attach', {promptPosition : "centerRight", scroll: false});
-   });
-</script>
+    <script type="text/javascript">
+        
+        function validatefname(name) {
+             var reg = /[A-Za-z -']$/;
+
+            if(document.getElementById(name).value==""){
+                document.getElementById(name).style.background ='#FA3535';
+                document.getElementById('valError').style.display = "block";
+
+            }
+             if(reg.test(document.getElementById(name).value)){
+
+             document.getElementById(name).style.background ='#0DD160';
+             document.getElementById('nameError').style.display = "none";
+                 document.getElementById('valError').style.display = "none";
+             return true;
+             }else{
+
+             document.getElementById(name).style.background ='#FA3535';
+             document.getElementById('nameError').style.display = "block";
+             return false;
+             }
+        }
+
+        function validateuname(username) {
+
+            if(document.getElementById("username").value==""){
+                document.getElementById("username").style.background ='#FA3535';
+                document.getElementById('unameError').style.display = "block";
+                return false;
+            }else{
+
+                document.getElementById('username').style.background ='#0DD160';
+                document.getElementById('unameError').style.display = "none";
+                return false;
+            }
+        }
+
+
+        function validatepwd(name) {
+
+            if(document.getElementById('password').value==""){
+                document.getElementById('password').style.background ='#FA3535';
+                document.getElementById('pwdError').style.display = "block";
+
+            }else if(document.getElementById('password').value.length < 8){
+                document.getElementById('password').style.background ='#FA3535';
+                document.getElementById('pwdlenError').style.display = "block";
+            }else{
+
+                document.getElementById('password').style.background ='#0DD160';
+                document.getElementById('pwdlenError').style.display = "none";
+                document.getElementById('pwdError').style.display = "none";
+                return false;
+            }
+        }
+
+        function confirmpwd(){
+
+            var pwd =  document.getElementById('password').value;
+            var cpwd =  document.getElementById('password_confirm').value;
+
+            if (pwd != cpwd) {
+
+                document.getElementById('password').style.background ='red';
+                document.getElementById('password_confirm').style.background = "red";
+                document.getElementById('pwdmatchnoError').style.display = "block";
+            }else{
+
+                document.getElementById('password_confirm').style.background ='#0DD160';
+                document.getElementById('pwdmatchnoError').style.display = "none";
+                return false;
+            }
+
+
+
+        }
+
+        function emailval(){
+
+            var reg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+
+            if(document.getElementById("email").value==""){
+                document.getElementById("email").style.background ='#FA3535';
+                document.getElementById('emailemptyError').style.display = "block";
+
+            }
+            if(reg.test(document.getElementById("email").value)){
+
+                document.getElementById("email").style.background ='#0DD160';
+                document.getElementById('emailemptyError').style.display = "none";
+                document.getElementById('emailError').style.display = "none";
+                return true;
+            }else{
+
+                document.getElementById("email").style.background ='#FA3535';
+                document.getElementById('emailError').style.display = "block";
+                return false;
+            }
+
+
+
+        }
+
+
+    </script>
+
+
+
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
@@ -582,23 +686,33 @@ $(document).ready(function(){
                 <div class="login-group">
                     <div class="form-group">
                         <label for="name">Name</label>
-                        <input type="text" class="form-control validate[required]" id="name" name="name" placeholder="Your Name">
+                        <input required type="text" class="form-control validate[required]" id="name" name="name" placeholder="Your Name" onblur="validatefname(name)">
+
+                        <span id="nameError" style="display:none;">Your name must only contain alphebatical letters!</span>
+                        <span id="valError" style="display:none;">Your name Field must not empty!</span>
                     </div>
                     <div class="form-group">
                         <label for="username">User Name</label>
-                        <input type="text" class="form-control validate[required]" id="username" name="username" placeholder="Username">
+                        <input required type="text" class="form-control validate[required]" id="username" name="username" placeholder="Username" onblur="validateuname(username)">
+
+                        <span id="unameError" style="display:none;">Your user name Field must not empty!</span>
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <input type="password" class="form-control validate[required]" id="password" name="password" placeholder="Password">
+                        <input required type="password" class="form-control validate[required]" id="password" name="password" placeholder="Password" onblur="validatepwd(password)">
+                        <span id="pwdError" style="display:none;">Your password Field must not empty!</span>
+                        <span id="pwdlenError" style="display:none;">Your password must have minimum 8 characters!</span>
                     </div>
                     <div class="form-group">
                         <label for="password_confirm">Password Confirm</label>
-                        <input type="password" class="form-control validate[required,equals[password]]" id="password_confirm" name="password_confirm" placeholder="Confirm Password">
+                        <input required type="password" class="form-control validate[required,equals[password]]" id="password_confirm" name="password_confirm" placeholder="Confirm Password" onblur="confirmpwd()">
+                        <span id="pwdmatchnoError" style="display:none;">Your password doesnt match!</span>
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" class="form-control validate[required,custom[email]]" id="email" name="email" placeholder="Email">
+                        <input required type="email" class="form-control validate[required,custom[email]]" id="email" name="email" placeholder="Email" onblur="emailval()">
+                        <span id="emailError" style="display:none;">Your email should be valid!</span>
+                        <span id="emailemptyError" style="display:none;">Your email should be not empty!</span>
                     </div>
                     <div class="form-group login-group-checkbox">
                         <input type="radio" class="validate[required]" name="reg_gender" id="male" value ="male">
@@ -617,7 +731,7 @@ $(document).ready(function(){
 
       </div>
       <div class="modal-footer">
-      <button type="submit" class="btn btn-primary" id="reg_btn">Sign In </button>
+      <button type="submit" class="btn btn-primary" id="savechanges">Sign In </button>
               </form>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>

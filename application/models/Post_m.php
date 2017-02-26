@@ -15,7 +15,7 @@ class Post_m extends MY_Model {
 
 	function  getPendingPosts(){
 
-	    $sql = "SELECT posts.id,posts.postedby,posts.posteddate,posts.posttime,posts.needs, users.name, users.lastname FROM posts INNER JOIN users WHERE posts.postedby=users.id AND posts.status=0 ORDER BY posteddate DESC ";
+	    $sql = "SELECT posts.id,posts.postedby,posts.posteddate,posts.needs, users.name, users.lastname FROM posts INNER JOIN users WHERE posts.postedby=users.id AND posts.status=0 ORDER BY posteddate DESC ";
         $query = $this->db->query($sql);
         $res = $query->result();
         return $res;
@@ -23,7 +23,7 @@ class Post_m extends MY_Model {
 
     function  getApprovedPosts(){
 
-        $sql = "SELECT posts.id,posts.postedby,posts.posteddate,posts.posttime,posts.approvedate,posts.approvetime,posts.needs, users.name, users.lastname FROM posts INNER JOIN users WHERE posts.postedby=users.id AND posts.status=1 ORDER BY posteddate DESC ";
+        $sql = "SELECT posts.id,posts.postedby,posts.posteddate,posts.approvedate,posts.approvetime,posts.needs, users.name, users.lastname FROM posts INNER JOIN users WHERE posts.postedby=users.id AND posts.status=1 ORDER BY posteddate DESC ";
         $query = $this->db->query($sql);
         $res = $query->result();
         return $res;
@@ -31,7 +31,7 @@ class Post_m extends MY_Model {
 
     function  getDraftedPosts(){
 
-        $sql = "SELECT posts.id,posts.postedby,posts.posteddate,posts.posttime,posts.approvedate,posts.approvetime,posts.needs, users.name, users.lastname FROM posts INNER JOIN users WHERE posts.postedby=users.id AND posts.status=2 ORDER BY posteddate DESC ";
+        $sql = "SELECT posts.id,posts.postedby,posts.posteddate,posts.approvedate,posts.approvetime,posts.needs, users.name, users.lastname FROM posts INNER JOIN users WHERE posts.postedby=users.id AND posts.status=2 ORDER BY posteddate DESC ";
         $query = $this->db->query($sql);
         $res = $query->result();
         return $res;
@@ -71,7 +71,7 @@ class Post_m extends MY_Model {
 
     function getPostdata($id){
 
-        $sql = "SELECT posts.id,posts.postedby,posts.posteddate,posts.posttime,posts.needs,posts.amount,posts.how_help,posts.why_help,posts.tags,posts.child_profiles, users.name, users.lastname,users.picture,users.email FROM posts  INNER JOIN users WHERE posts.postedby=users.id AND posts.id=$id";
+        $sql = "SELECT posts.id,posts.postedby,posts.posteddate,posts.needs,posts.amount,posts.how_help,posts.why_help,posts.tags,posts.n_of_children, users.name, users.lastname,users.picture,users.email FROM posts  INNER JOIN users WHERE posts.postedby=users.id AND posts.id=$id";
         $query = $this->db->query($sql);
         $res = $query->result();
         return $res;

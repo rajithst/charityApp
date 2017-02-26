@@ -103,7 +103,7 @@
                                     <th>Posted By</th>
                                     <th>Post Subject</th>
                                     <th>Posted Date</th>
-                                    <th>Podted Time</th>
+
                                     <th>Drafted Date</th>
                                     <th>Drafted Time</th>
                                     <th>Actions</th>
@@ -118,10 +118,9 @@
 
                                 ?>
                                 <tr>
-                                    <td><a href="<?php echo $res->postedby; ?>"><?php echo $res->name . " " . $res->lastname;?></a></td>
-                                    <td><a href="<?php echo $res->id; ?>"><?php echo $res->needs;?></a></td>
+                                    <td><a href="Profile/view/<?php echo $res->postedby; ?>"><?php echo $res->name . " " . $res->lastname;?></a></td>
+                                    <td><a href="Post/read/<?php echo $res->id; ?>"><?php echo $res->needs;?></a></td>
                                     <td><?php echo $res->posteddate;?></td>
-                                    <td><?php echo $res->posttime;?></td>
                                     <td><?php echo $res->approvedate;?></td>
                                     <td><?php echo $res->approvetime;?></td>
                                     <td><button type="button" class="btn btn-success btn-rounded publish" id="<?php echo $res->id; ?>">Publish</button> <button type="button" class="btn btn-danger btn-rounded delete" id="<?php echo $res->id; ?>">Delete</button></td>

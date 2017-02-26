@@ -106,7 +106,6 @@
                                     <th>Published By</th>
                                     <th>Post Subject</th>
                                     <th>Published Date</th>
-                                    <th>Published Time</th>
                                     <th>Pending Status</th>
                                     <th>Actions</th>
 
@@ -123,7 +122,6 @@
                                     <td><a href="Profile/view/<?php echo $res->postedby; ?>"><?php echo $res->name . " " . $res->lastname;?></a></td>
                                     <td><a href="Post/read/<?php echo $res->id; ?>"><?php echo $res->needs;?></a></td>
                                     <td><?php echo $res->posteddate;?></td>
-                                    <td><?php echo $res->posttime;?></td>
                                     <td><span class="label label-success label-form">18 days</span></td>
                                     <td><button type="button" class="btn btn-success btn-rounded publish" id="<?php echo $res->id; ?>">Publish</button> <button type="button" class="btn btn-danger btn-rounded delete" id="<?php echo $res->id; ?>">Delete</button><button type="button" class="btn btn-warning btn-rounded draft" id="<?php echo $res->id; ?>">Add to Draft</button></td>
 

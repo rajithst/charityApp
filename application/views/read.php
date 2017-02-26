@@ -87,13 +87,87 @@
                         </div>
                     </div>
                     <div class="panel-body">
-                        <h3><?php echo $res->needs; ?> <small class="pull-right text-muted"><span class="fa fa-clock-o"></span> <?php echo $res->posteddate; ?></small></h3>
-                        <p>Hello Dmitry,</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ligula risus, viverra sit amet purus id, ullamcorper venenatis leo. Ut vitae semper neque. Nunc vel lacus vel erat sodales ultricies sed sed massa. Duis non elementum velit. Nunc quis molestie dui. Nullam ullamcorper lectus in mattis volutpat. Nunc egestas felis sit amet ultrices euismod. Donec lacinia neque vel quam pharetra, non dignissim arcu semper. Donec ultricies, neque ut vehicula ultrices, ligula velit sodales purus, eget eleifend libero risus sed turpis. Fusce hendrerit vel dui ut pulvinar. Ut sed tristique ante, sed egestas turpis. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        <p>Fusce sit amet dui at nunc laoreet facilisis. Proin consequat orci sollicitudin sem cursus, quis vehicula eros ultrices. Cras fermentum justo at nibh tincidunt, consectetur elementum est aliquam.</p>
-                        <p>Nam dignissim convallis nulla, vitae porta purus fringilla ac. Praesent consectetur ex eu dui efficitur sollicitudin. Mauris libero est, aliquam a diam maximus, dignissim laoreet lacus.</p>
-                        <p>Nulla ac nisi sodales, auctor dui et, consequat turpis. Cras dolor turpis, sagittis vel elit in, varius elementum arcu. Mauris aliquet lorem ac enim blandit, nec consequat tortor auctor. Sed eget nunc at justo congue mollis eget a urna. Phasellus in mauris quis tortor porta tristique at a risus.</p>
-                        <p class="text-muted"><strong>Best Regards<br/>John Doe</strong></p>
+
+
+
+                        <div class="page-content-wrap">
+
+                            <div class="row">
+                                <div class="col-md-12">
+
+                                    <form class="form-horizontal">
+                                        <div class="panel panel-default">
+                                            <div class="panel-body form-group-separated">
+
+                                                <div class="form-group">
+                                                    <label class="col-md-3 col-xs-12 control-label">Needs</label>
+                                                    <div class="col-md-6 col-xs-12">
+                                                        <div class="input-group">
+                                                            <?php echo $res->needs; ?>
+
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-md-3 col-xs-12 control-label">Amount</label>
+                                                    <div class="col-md-6 col-xs-12">
+                                                        <div class="input-group">
+
+                                                            <?php echo $res->amount; ?>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-md-3 col-xs-12 control-label">How Help</label>
+                                                    <div class="col-md-6 col-xs-12">
+                                                        <div class="input-group">
+
+                                                            <?php echo $res->how_help; ?>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-md-3 col-xs-12 control-label">Why help</label>
+                                                    <div class="col-md-6 col-xs-12">
+                                                        <div class="input-group">
+                                                            <?php echo $res->why_help; ?>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="form-group">
+                                                    <label class="col-md-3 col-xs-12 control-label">Tags</label>
+                                                    <div class="col-md-6 col-xs-12">
+                                                        <div class="input-group">
+                                                            <?php echo $res->tags; ?>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="form-group">
+                                                    <label class="col-md-3 col-xs-12 control-label">Numbe of Children</label>
+                                                    <div class="col-md-6 col-xs-12">
+                                                        <div class="input-group">
+                                                            <?php echo $res->n_of_children; ?>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+
+                        </div>
+
                     </div>
                     <div class="panel-footer">
                         <button class="btn btn-success pull-right"><span class="fa fa-mail-reply"></span> Post Reply</button>

@@ -17,8 +17,7 @@ class Profile_m extends MY_Model{
 
     public function getProfileData($id){
 
-        $sql = "SELECT posts.id,posts.postedby,posts.posteddate,posts.posttime,posts.needs,posts.status, users.name, users.lastname,users.picture,users.email,users.profilestatus FROM posts INNER JOIN users WHERE posts.postedby=$id";
-
+        $sql = "SELECT posts.id,posts.postedby,posts.posteddate,posts.needs,posts.status, users.name, users.lastname,users.picture,users.email,users.profilestatus FROM posts INNER JOIN users WHERE posts.postedby=$id AND users.id=$id";
         $query = $this->db->query($sql);
         $res = $query->result();
 

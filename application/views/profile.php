@@ -69,39 +69,41 @@
                                 <div class="panel-body">
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <button class="btn btn-info btn-rounded btn-block delete" id="<?php echo $res->id; ?>"><span class="fa fa-check"></span> Delete</button>
+                                            <button class="btn btn-info btn-rounded btn-block delete" id="<?php echo $res->postedby; ?>"><span class="fa fa-check"></span> Delete</button>
                                         </div>
 
                                         <div class="col-md-4">
                                             <?php
 
-                                            if($res->profilestatus == 1)
+                                            if($res->profilestatus == 1) {
                                                 echo "<span class='label label-success label-form'>Active Profile</span>";
-                                            else
+                                            }else {
                                                 echo "<span class='label label-warning label-form'>Suspended Profile</span>";
+                                            }
                                             ?>
                                         </div>
 
                                         <?php
-                                        if($res->profilestatus == 1)
+                                        if($res->profilestatus == 1) {
                                             echo "<div class='col-md-4'>
-                                    <button class='btn btn-primary btn-rounded btn-block suspend' id='". $res->id . "'><span class='fa fa-comments'></span> Suspend</button>
+                                    <button class='btn btn-primary btn-rounded btn-block suspend' id='" . $res->postedby . "'><span class='fa fa-comments'></span> Suspend</button>
                                 </div>";
 
-                                        else
+                                        }else {
                                             echo "<div class='col-md-4'>
-                                    <button class='btn btn-warning btn-rounded btn-block setactive' id='". $res->id ."'><span class='fa fa-comments'></span> Active</button>
+                                    <button class='btn btn-warning btn-rounded btn-block setactive' id='" . $res->postedby . "'><span class='fa fa-comments'></span> Active</button>
                                 </div>";
+                                        }
                                         ?>
 
                                     </div>
                                 </div>
                                 <div class="panel-body list-group border-bottom">
 
-                                    <a href="#" class="list-group-item reports" id="<?php echo $res->id; ?>"><span class="fa fa-coffee"></span> Profile Reports <span class="badge badge-default">18</span></a>
-                                    <a href="#" class="list-group-item posts" id="<?php echo $res->id; ?>"><span class="fa fa-users"></span> Posts <span class="badge badge-danger"><?php echo $rows; ?></span></a>
-                                    <a href="#" class="list-group-item donations" id="<?php echo $res->id; ?>"><span class="fa fa-users"></span> Donations <span class="badge badge-danger">+7</span></a>
-                                    <a href="#" class="list-group-item settings" id="<?php echo $res->id; ?>"><span class="fa fa-cog"></span> Settings</a>
+                                    <a href="#" class="list-group-item reports" id="<?php echo $res->postedby; ?>"><span class="fa fa-coffee"></span> Profile Reports <span class="badge badge-default">18</span></a>
+                                    <a href="#" class="list-group-item posts" id="<?php echo $res->postedby; ?>"><span class="fa fa-users"></span> Posts <span class="badge badge-danger"><?php echo $rows; ?></span></a>
+                                    <a href="#" class="list-group-item donations" id="<?php echo $res->postedby; ?>"><span class="fa fa-users"></span> Donations <span class="badge badge-danger">+7</span></a>
+                                    <a href="#" class="list-group-item settings" id="<?php echo $res->postedby; ?>"><span class="fa fa-cog"></span> Settings</a>
                                 </div>
                             </div>
                         <?php }
@@ -126,7 +128,6 @@
                                 <thead>
                                 <tr>
                                     <th>Posted Date</th>
-                                    <th>Posted Time</th>
                                     <th>Subject</th>
                                     <th>Status</th>
                                 </tr>
@@ -142,7 +143,7 @@
                                     }
                                 echo "<tr>
                                     <td>$res->posteddate</td>
-                                    <td>$res->posttime</td>
+                                  
                                     <td><a href=".base_url()."index.php/Post/read/$res->id$token>$res->needs</a></td>";
 
                                      if ($res->status==1){

@@ -82,7 +82,7 @@ class User_d extends MY_Model {
         //get carers
         function getCareer($id){
             $this->db->where('id',$id);
-            $query = $this->db->get('Career');
+            $query = $this->db->get('career');
             $result = $query->result();
             return $result;
         }
@@ -90,7 +90,7 @@ class User_d extends MY_Model {
         //get chidlren registered by particular user
         function getChildren($id){
             $this->db->where('donorID',$id);
-            $query = $this->db->get('Children');
+            $query = $this->db->get('children');
             $result = $query->result();
             return $result;
         }

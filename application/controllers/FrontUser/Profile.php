@@ -5,8 +5,8 @@ class Profile extends Frontend_Controller {
         private $id = null;
 	public function __construct() {
 		parent::__construct();
+        $this->load->model('profileModel');
 		$this->load->model('User_d');
-                $this->load->model('profileModel');
 	}
 
         //set the view of timeline in profile
